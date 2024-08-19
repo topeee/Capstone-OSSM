@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CREATE ACCOUNT PAGE</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="header-container">
+    <img src="logo.png" alt="sanM" class="logo">
+    <p class="municipal-text">MUNICIPAL GOVERNMENT OF <br> <b>SAN MATEO RIZAL</b></p>
+  </div>
+
+  <h1 class="main-title">CREATE NEW OSSM ACCOUNT</h1>
+
+  <div class="outside-container">
+    <div class="create-account-container">
+      <h2>Create Account</h2>
+      <form action="/submit_form" method="post">
+        <!-- This is for name -->
+        <div class="form-group">
+          <div class="form-group-half">
+            <label for="firstname">*First Name:</label>
+            <input type="text" id="firstname" name="firstname" required>
+          </div>
+          <div class="form-group-half">
+            <label for="lastname">*Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required>
+          </div>
+        </div>
+        <!-- This is for middle name and suffix -->
+        <div class="form-group">
+          <div class="form-group-half">
+            <label for="middlename">Middle Name:</label>
+            <input type="text" id="middlename" name="middlename" required>
+          </div>
+          <div class="form-group-half">
+            <label for="suffix">Suffix:</label>
+            <select name="suffix" id="suffix">
+              <option value="jr">Jr</option>
+              <option value="Lele">Lele</option>
+              <option value="Gago">Gago</option>
+            </select>
+          </div>
+        </div>
+        <!-- This is for email -->
+        <div class="form-group">
+          <div class="form-group-half">
+            <label for="email">*Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -10,7 +10,10 @@
 <body>
   <div class="header-container">
     <img src="logo.png" alt="sanM" class="logo">
-    <p class="municipal-text">MUNICIPAL GOVERNMENT OF <br> <b>SAN MATEO RIZAL</b></p>
+    <p class="municipal-text">
+      MUNICIPAL GOVERNMENT OF <br>
+      <b>SAN MATEO RIZAL</b>
+    </p>
   </div>
 
   <h1 class="main-title">CREATE NEW OSSM ACCOUNT</h1>

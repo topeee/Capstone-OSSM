@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,16 +65,16 @@
     
     <div class="container">
         <nav>
-            <a href="login.php">Login</a>
-            <a href="register.php">Register</a>
-            <a href="about.php">About Us</a>
-            <a href="contact.php">Contact</a>
+            <a href="index.php">Home</a>
+            <a href="logout.php">Logout</a>
+            <a href="Create Account.html">Register</a>
+            <a href="Login.html">login</a>
         </nav>
 
-        <h2>Welcome to the Homepage</h2>
-        <p>This is the homepage of your website. You can add content here to introduce visitors to your site and provide links to other pages.</p>
+        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['email']); ?>!</h2>
+        <p>This is the homepage of your website. You are successfully logged in.</p>
         
-        <p>Feel free to customize this page with your own content and design. You can add sections for news, updates, or any other information relevant to your website.</p>
+        <p>Feel free to customize this page with your own content and design.</p>
     </div>
 
     <footer>

@@ -136,26 +136,17 @@
         <p></p>
         <div class="form-container">
             <form action="login.php" method="POST">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <div class="error-container">
-                <p class="error-message" id="emailError">Please input an email address.</p>
-                <p class="error-message" id="passwordError">Please input a password.</p>
-            </div>
-            <div class="form-check mb-3 text-start">
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Remember Me</label>
-            </div>
-            <div class="btn-center">
-                <button type="button" class="btn btn-primary" onclick="validateForm()">Login</button>
-            </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
+            
             <div class="link-container">
                 <a href="Create Account.html" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>

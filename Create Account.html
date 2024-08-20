@@ -15,114 +15,115 @@
         <h6>Create New OSSM Account</h6>
 
         <div class="form-container">
-            <form class="row g-3" action="create_account.php" method="POST">
-                <div class="col-md-6 form-floating">
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
-                    <label for="firstname">First Name</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
-                    <label for="lastname">Last Name</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" required>
-                    <label for="middlename">Middle Name</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <select class="form-select" id="suffix-dropdown" name="suffix-dropdown">
-                        <option value="" selected>Select a suffix</option>
-                        <option value="Jr">Jr.</option>
-                        <option value="Sr">Sr.</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="IV">IV</option>
-                        <option value="V">V</option>
-                    </select>
-                    <label for="suffix-dropdown">Suffix</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="date" class="form-control" id="dob" name="dob" required>
-                    <label for="dob">Date of Birth</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <select class="form-select" id="gender-dropdown" name="gender-dropdown">
-                        <option value="" selected>Select a gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Prefer not to say">Prefer not to say</option>
-                    </select>
-                    <label for="gender-dropdown">Gender</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="text" class="form-control" id="mn" name="mn" placeholder="Mobile Number" required>
-                    <label for="mn">Mobile Number</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="text" class="form-control" id="tn" name="tn" placeholder="Tel Number">
-                    <label for="tn">Tel Number</label>
-                </div>
-                <h6 class="col-12">Note: Please provide your email address and mobile number to receive updates. Your email will be your username.</h6>
-                <div class="col-md-6 form-floating">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="email" class="form-control" id="cfrm-email" name="cfrm-email" placeholder="Confirm Email" required>
-                    <label for="cfrm-email">Confirm Email</label>
-                </div>
-                <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="house#" name="house#" placeholder="House #" required>
-                    <label for="house#">House #</label>
-                </div>
-                <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="street" name="street" placeholder="Street" required>
-                    <label for="street">Street</label>
-                </div>
-                <div class="col-md-4 form-floating">
-                    <select class="form-select" id="barangay-dropdown" name="barangay-dropdown">
-                        <option value="" selected>Select a barangay</option>
-                        <option value="Ampid I">Ampid I</option>
-                        <option value="Ampid II">Ampid II</option>
-                        <option value="Banaba">Banaba</option>
-                        <option value="Dulong Bayan I">Dulong Bayan I</option>
-                        <option value="Dulong Bayan II">Dulong Bayan II</option>
-                        <option value="Guinayang">Guinayang</option>
-                        <option value="Guitnangbayan I">Guitnangbayan I</option>
-                        <option value="Guitnangbayan II">Guitnangbayan II</option>
-                        <option value="Gulod Malaya">Gulod Malaya</option>
-                        <option value="Malanday">Malanday</option>
-                        <option value="Maly">Maly</option>
-                        <option value="Pintong Bukawe">Pintong Bukawe</option>
-                        <option value="Sto. Nino">Sto. Nino</option>
-                        <option value="Sta. Ana">Sta. Ana</option>
-                        <option value="Silangan">Silangan</option>
-                    </select>
-                    <label for="barangay-dropdown">Barangay</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                    <label for="password">Password</label>
-                </div>
-                <div class="col-md-6 form-floating">
-                    <input type="password" class="form-control" id="cfrmpassword" name="cfrmpassword" placeholder="Confirm Password" required>
-                    <label for="cfrmpassword">Confirm Password</label>
-                </div>
-                <div class="privacy-policy col-12">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="termsOfUse" name="termsOfUse" required>
-                        <label class="form-check-label" for="termsOfUse">
-                            I have read and understood the <a href="#">Terms of Use.</a>
-                        </label>
+            <div class="form-container">
+                <form class="row g-3" action="create_account.php" method="POST">
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
+                        <label for="firstname">First Name</label>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="dataPrivacyPolicy" name="dataPrivacyPolicy" required>
-                        <label class="form-check-label" for="dataPrivacyPolicy">
-                            I have read and understood the <a href="#">Data Privacy Policy.</a>
-                        </label>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
+                        <label for="lastname">Last Name</label>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
-            </form>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" required>
+                        <label for="middlename">Middle Name</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <select class="form-select" id="suffix-dropdown" name="suffix-dropdown">
+                            <option value="" selected>Select a suffix</option>
+                            <option value="Jr">Jr.</option>
+                            <option value="Sr">Sr.</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                        <label for="suffix-dropdown">Suffix</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="date" class="form-control" id="dob" name="dob" required>
+                        <label for="dob">Date of Birth</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <select class="form-select" id="gender-dropdown" name="gender-dropdown">
+                            <option value="" selected>Select a gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                        <label for="gender-dropdown">Gender</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="mn" name="mn" placeholder="Mobile Number" required>
+                        <label for="mn">Mobile Number</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="tn" name="tn" placeholder="Tel Number">
+                        <label for="tn">Tel Number</label>
+                    </div>
+                    <h6 class="col-12">Note: Please provide your email address and mobile number to receive updates. Your email will be your username.</h6>
+                    <div class="col-md-6 form-floating">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="email" class="form-control" id="cfrm-email" name="cfrm-email" placeholder="Confirm Email" required>
+                        <label for="cfrm-email">Confirm Email</label>
+                    </div>
+                    <div class="col-md-4 form-floating">
+                        <input type="text" class="form-control" id="house#" name="house#" placeholder="House #" required>
+                        <label for="house#">House #</label>
+                    </div>
+                    <div class="col-md-4 form-floating">
+                        <input type="text" class="form-control" id="street" name="street" placeholder="Street" required>
+                        <label for="street">Street</label>
+                    </div>
+                    <div class="col-md-4 form-floating">
+                        <select class="form-select" id="barangay-dropdown" name="barangay-dropdown">
+                            <option value="" selected>Select a barangay</option>
+                            <option value="Ampid I">Ampid I</option>
+                            <option value="Ampid II">Ampid II</option>
+                            <option value="Banaba">Banaba</option>
+                            <option value="Dulong Bayan I">Dulong Bayan I</option>
+                            <option value="Dulong Bayan II">Dulong Bayan II</option>
+                            <option value="Guinayang">Guinayang</option>
+                            <option value="Guitnangbayan I">Guitnangbayan I</option>
+                            <option value="Guitnangbayan II">Guitnangbayan II</option>
+                            <option value="Gulod Malaya">Gulod Malaya</option>
+                            <option value="Malanday">Malanday</option>
+                            <option value="Maly">Maly</option>
+                            <option value="Pintong Bukawe">Pintong Bukawe</option>
+                            <option value="Sto. Nino">Sto. Nino</option>
+                            <option value="Sta. Ana">Sta. Ana</option>
+                            <option value="Silangan">Silangan</option>
+                        </select>
+                        <label for="barangay-dropdown">Barangay</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="password" class="form-control" id="cfrmpassword" name="cfrmpassword" placeholder="Confirm Password" required>
+                        <label for="cfrmpassword">Confirm Password</label>
+                    </div>
+                    <div class="privacy-policy col-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="termsOfUse" name="termsOfUse" required>
+                            <label class="form-check-label" for="termsOfUse">
+                                I have read and understood the <a href="#">Terms of Use.</a>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="dataPrivacyPolicy" name="dataPrivacyPolicy" required>
+                            <label class="form-check-label" for="dataPrivacyPolicy">
+                                I have read and understood the <a href="#">Data Privacy Policy.</a>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+                </form>
             <div class="footer">
                 Already have an account?
                 <a href="login.html" class="link">Sign In Here!</a>

@@ -3,7 +3,7 @@ Capstone OSSM
 
 MEMBERS:
 <br>
-Manuel, Mico Skyler 
-Martin, Charlie
-Ramos, Christopher D. 
+Manuel, Mico Skyler <br>
+Martin, Charlie<br>
+Ramos, Christopher D. <br>
 Ramos, Dhome Arvie 

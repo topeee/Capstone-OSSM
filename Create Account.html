@@ -94,141 +94,128 @@
   }
 </style>
 <body>
+  <div class="main-content">
+    <img src="logo.png" alt="SM Logo" class="img-fluid logo">
+    <h2>MUNICIPAL GOVERNMENT OF</h2>
+    <h1>SAN MATEO RIZAL</h1>
+    <h6>Create New OSSM Account</h6>
 
-  <div class="container">
-    <div class="header text-center">
-      <img src="logo.png" alt="SM">
-      <p class="main-text">MUNICIPAL GOVERNMENT OF<br><b>SAN MATEO RIZAL</b></p>
-    </div>
-
-    <div class="title">
-      <p>CREATE NEW OSSM ACCOUNT</p>
-    </div>
-
-    <div class="form-reg">
-      <form class="row g-3">
-        <div class="col-md-6">
-          <label for="firstname" class="form-label">*First Name:</label>
-          <input type="text" class="form-control" id="firstname" required>
-        </div>
-        <div class="col-md-6">
-          <label for="lastname" class="form-label">*Last Name:</label>
-          <input type="text" class="form-control" id="lastname" required>
-        </div>
-        <div class="col-md-6">
-          <label for="middlename" class="form-label">*Middle Name:</label>
-          <input type="text" class="form-control" id="middlename" required>
-        </div>
-        <div class="col-md-6">
-          <label for="suffix" class="form-label">Suffix:</label>
-          <br>
-          <select id="suffix-dropdown">
-            <option value="">Select a suffix</option>
-            <option value="Jr">Jr.</option>
-            <option value="Sr">Sr.</option>
-            <option value="II">II</option>
-            <option value="III">III</option>
-            <option value="IV">IV</option>
-            <option value="V">V</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label for="dob" class="form-label">Date of Birth:</label>
-          <input type="date" class="form-control" id="dob" name="dob" required>
-        </div>
-        <div class="col-md-6">
-          <label for="gender" class="form-label">Gender</label>
-          <br>
-          <select id="gender-dropdown">
-            <option value="">Select a gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label for="mn" class="form-label">Mobile Number:</label>
-          <input type="text" class="form-control" id="mn" required>
-        </div>
-        <div class="col-md-6">
-          <label for="tn" class="form-label">Tel Number:</label>
-          <input type="text" class="form-control" id="tn">
-        </div>
-
-        <h6>Note: Please provide your email address and mobile number to receive updates. Your email will be your username.</h6>
-
-        <div class="col-md-6">
-          <label for="email" class="form-label">*Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="@gmail.com" required>
-        </div>
-        <div class="col-md-6">
-          <label for="cfrm-email" class="form-label">*Confirm Email:</label>
-          <input type="email" class="form-control" id="cfrm-email" placeholder="@gmail.com" required>
-        </div>
-        <div class="col-md-4">
-          <label for="house#" class="form-label">*House #:</label>
-          <input type="text" class="form-control" id="house#" required>
-        </div>
-        <div class="col-md-4">
-          <label for="street" class="form-label">*Street:</label>
-          <input type="text" class="form-control" id="street" required>
-        </div>
-        <div class="col-md-4">
-          <label for="barangay" class="form-label">*Barangay</label>
-          <br>
-          <select id="barangay-dropdown">
-            <option value="">Select a barangay</option>
-            <option value="Ampid I">Ampid I</option>
-            <option value="Ampid II">Ampid II</option>
-            <option value="Banaba">Banaba</option>
-            <option value="Dulong Bayan I">Dulong Bayan I</option>
-            <option value="Dulong Bayan II">Dulong Bayan II</option>
-            <option value="Guinayang"> Guinayang</option>
-            <option value="Guitnangbayan I">Guitnangbayan I</option>
-            <option value="Guitnangbayan II">Guitnangbayan II</option>
-            <option value="Gulod Malaya">Gulod Malaya</option>
-            <option value="Malanday">Malanday</option>
-            <option value="Maly">Maly</option>
-            <option value="Pintong Bukawe">Pintong Bukawe</option>
-            <option value="Sto. Nino">Sto. Nino</option>
-            <option value="Sta. Ana">Sta. Ana</option>
-            <option value="Silangan">Silangan</option>
-          </select>
-        </div>
-
-        <div class="col-md-6">
-          <label for="password" class="form-label">*Password:</label>
-          <input type="password" class="form-control" id="password" required>
-        </div>
-        <div class="col-md-6">
-          <label for="cfrmpassword" class="form-label">*Confirm Password:</label>
-          <input type="password" class="form-control" id="cfrmpassword" required>
-        </div>
-
-        <div class="privacy-policy">
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="termsOfUse" name="termsOfUse" required>
-            <label class="form-check-label" for="termsOfUse">
-              I have read and understood the <a href="#">Terms of Use.</a>
-            </label>
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="dataPrivacyPolicy" name="dataPrivacyPolicy" required>
-            <label class="form-check-label" for="dataPrivacyPolicy">
-              I have read and understood the <a href="#">Data Privacy Policy.</a>
-            </label>
-          </div>
-        </div>
-
-        <button type="submit" class="btn create-btn">CREATE ACCOUNT</button>
-
+    <div class="form-container">
+        <form class="row g-3">
+            <div class="col-md-6 form-floating">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
+                <label for="firstname">First Name</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
+                <label for="lastname">Last Name</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="text" class="form-control" id="middlename" placeholder="Middle Name" required>
+                <label for="middlename">Middle Name</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <select class="form-select" id="suffix-dropdown">
+                    <option value="" selected>Select a suffix</option>
+                    <option value="Jr">Jr.</option>
+                    <option value="Sr">Sr.</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                </select>
+                <label for="suffix-dropdown">Suffix</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="date" class="form-control" id="dob" name="dob" required>
+                <label for="dob">Date of Birth</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <select class="form-select" id="gender-dropdown">
+                    <option value="" selected>Select a gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                <label for="gender-dropdown">Gender</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="text" class="form-control" id="mn" placeholder="Mobile Number" required>
+                <label for="mn">Mobile Number</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="text" class="form-control" id="tn" placeholder="Tel Number">
+                <label for="tn">Tel Number</label>
+            </div>
+            <h6 class="col-12">Note: Please provide your email address and mobile number to receive updates. Your email will be your username.</h6>
+            <div class="col-md-6 form-floating">
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="email" class="form-control" id="cfrm-email" placeholder="Confirm Email" required>
+                <label for="cfrm-email">Confirm Email</label>
+            </div>
+            <div class="col-md-4 form-floating">
+                <input type="text" class="form-control" id="house#" placeholder="House #" required>
+                <label for="house#">House #</label>
+            </div>
+            <div class="col-md-4 form-floating">
+                <input type="text" class="form-control" id="street" placeholder="Street" required>
+                <label for="street">Street</label>
+            </div>
+            <div class="col-md-4 form-floating">
+                <select class="form-select" id="barangay-dropdown">
+                    <option value="" selected>Select a barangay</option>
+                    <option value="Ampid I">Ampid I</option>
+                    <option value="Ampid II">Ampid II</option>
+                    <option value="Banaba">Banaba</option>
+                    <option value="Dulong Bayan I">Dulong Bayan I</option>
+                    <option value="Dulong Bayan II">Dulong Bayan II</option>
+                    <option value="Guinayang">Guinayang</option>
+                    <option value="Guitnangbayan I">Guitnangbayan I</option>
+                    <option value="Guitnangbayan II">Guitnangbayan II</option>
+                    <option value="Gulod Malaya">Gulod Malaya</option>
+                    <option value="Malanday">Malanday</option>
+                    <option value="Maly">Maly</option>
+                    <option value="Pintong Bukawe">Pintong Bukawe</option>
+                    <option value="Sto. Nino">Sto. Nino</option>
+                    <option value="Sta. Ana">Sta. Ana</option>
+                    <option value="Silangan">Silangan</option>
+                </select>
+                <label for="barangay-dropdown">Barangay</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="col-md-6 form-floating">
+                <input type="password" class="form-control" id="cfrmpassword" placeholder="Confirm Password" required>
+                <label for="cfrmpassword">Confirm Password</label>
+            </div>
+            <div class="privacy-policy col-12">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="termsOfUse" name="termsOfUse" required>
+                    <label class="form-check-label" for="termsOfUse">
+                        I have read and understood the <a href="#">Terms of Use.</a>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dataPrivacyPolicy" name="dataPrivacyPolicy" required>
+                    <label class="form-check-label" for="dataPrivacyPolicy">
+                        I have read and understood the <a href="#">Data Privacy Policy.</a>
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+        </form>
         <div class="footer">
-          Already have an account?
-          <a href="login.html" class="link">Sign In Here!</a>
+            Already have an account?
+            <a href="login.html" class="link">Sign In Here!</a>
         </div>
-      </form>
     </div>
-  </div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

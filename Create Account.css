@@ -1,111 +1,55 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('bg-color.png');
-    padding: 20px;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px; /* Added padding to the body */
 }
-
-.header-container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* visibility */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* shadow */
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 50px; /* Added margin-bottom for extra space */
 }
 .logo {
-    position: absolute;
-    top: 100px;
-    left: 50px;
-    width: 150px;
+    max-width: 200px;
     height: auto;
-    margin-right: 15px;
-}
-
-.municipal-text {
-    position: absolute;
-    top: 150px;
-    left: 220px;
-    width: 300px;
-    font-size: 20px;
-    text-align: justify;
-}
-
-.main-title {
-    position: absolute;
-    top: 250px;
-    left: 50px;
-    font-size: 24px;
     margin-bottom: 20px;
 }
-
-.outside-container {
+h2, h1, h6 {
+    margin: 10px 0; /* spacing between text elements */
+}
+.form-container {
     width: 100%;
-    max-width: 500px;
+    margin-top: 20px;
 }
-
-.create-account-container {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 60%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 5em;
-}
-
-h2 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.form-group {
-    display: flex;
-    flex-wrap: wrap;
+.form-floating {
     margin-bottom: 15px;
 }
-
-.form-group-half {
-    flex: 1;
-    padding: 5px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input, select {
+.btn-primary {
     width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    margin-top: 20px;
 }
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .form-group-half {
-        flex-basis: 100%;
-        padding: 0;
-        margin-bottom: 10px;
-    }
-
-    .main-title {
-        font-size: 20px;
-    }
-
-    .logo {
-        width: 80px;
-    }
-
-    .municipal-text {
-        font-size: 14px;
-    }
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+.privacy-policy {
+    text-align: left;
+    margin-top: 20px;
+}
+.resend-button {
+    margin-top: 10px;
 }

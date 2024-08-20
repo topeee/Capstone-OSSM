@@ -90,6 +90,10 @@
             display: none;
             text-align: left;
         }
+        .error-container {
+            text-align: left;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -100,14 +104,15 @@
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
-                <p class="error-message" id="emailError">Please input an email address.</p>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
+            </div>
+            <div class="error-container">
+                <p class="error-message" id="emailError">Please input an email address.</p>
                 <p class="error-message" id="passwordError">Please input a password.</p>
             </div>
-            <p></p>
             <div class="form-check mb-3 text-start">
                 <input type="checkbox" class="form-check-input" id="rememberMe">
                 <label class="form-check-label" for="rememberMe">Remember Me</label>

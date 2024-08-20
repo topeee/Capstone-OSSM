@@ -9,18 +9,20 @@ $dbname = "u271593949_ossm";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+    // Retrieve form data
     $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
     $middle_name = $_POST['middlename'];
@@ -43,7 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$barangay', '$password_hash')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New account created successfully";
+        // Display a success message and redirect using JavaScript
+        echo "<script>
+                alert('Account created successfully!');
+                window.location.href='login.html';
+              </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

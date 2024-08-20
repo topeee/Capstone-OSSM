@@ -101,6 +101,32 @@
             font-style: normal;
             color: rgb(0, 0, 0);
         }
+        .social-login-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-login-container a {
+            color: #fff;
+            text-decoration: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+        }
+        .facebook {
+            background-color: #3b5998;
+        }
+        .gmail {
+            background-color: #db4437;
+        }
+        .x {
+            background-color: #1da1f2;
+        }
     </style>
 </head>
 <body>
@@ -131,6 +157,17 @@
             <div class="link-container">
                 <a href="Create Account.html" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>
+            </div>
+            <div class="social-login-container">
+                <a href="#" class="facebook" aria-label="Login with Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="gmail" aria-label="Login with Gmail">
+                    <i class="bi bi-google"></i>
+                </a>
+                <a href="#" class="x" aria-label="Login with X">
+                    <i class="bi bi-twitter"></i>
+                </a>
             </div>
         </div>
     </div>

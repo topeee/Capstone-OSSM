@@ -26,7 +26,7 @@
                         <label for="lastname"><span style="color: red;">*</span> Last Name</label>
                     </div>
                     <div class="col-md-6 form-floating">
-                        <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" required>
+                        <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name">
                         <label for="middlename"> Middle Name</label>
                     </div>
                     <div class="col-md-6 form-floating">
@@ -45,7 +45,7 @@
                         <input type="date" class="form-control" id="dob" name="dob" required>
                         <label for="dob"><span style="color: red;">*</span>Date of Birth</label>
                     </div>
-                    <div class="col-md-6 form-floating">
+                    <div class="col-md-6 form-floating" id="gender" name="gender" required>
                         <select class="form-select" id="gender-dropdown"name="gender-dropdown">
                             <option value="" selected>Select a gender</option>
                             <option value="Male">Male</option>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-6 form-floating">
                         <input type="text" class="form-control" id="tn" name="tn" placeholder="Tel Number">
-                        <label for="tn"><span style="color: red;">*</span> Tel Number</label>
+                        <label for="tn"> Tel Number</label>
                     </div>
                     <h6 class="col-12">Note: Please provide your email address and mobile number to receive updates. Your email will be your username.</h6>
                     <div class="col-md-6 form-floating">
@@ -84,7 +84,7 @@
                         <label for="sbd">Subdivison or Village</label>
                     </div>
                     <div class="col-md-12 form-floating">
-                        <select class="form-select" id="barangay-dropdown" name="barangay-dropdown">
+                        <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" required>
                             <option value="" selected>Select a barangay</option>
                             <option value="Ampid I">Ampid I</option>
                             <option value="Ampid II">Ampid II</option>

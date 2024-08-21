@@ -387,6 +387,7 @@ footer {
             <a href="#">CONTACT US</a>
         </div>
         <div class="footer-policies">
+             <a href="logout.php">logout</a>
             <a href="#">TERMS OF SERVICE</a>
             <a href="#">PRIVACY POLICY</a>
         </div>

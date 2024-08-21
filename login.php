@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $hashed_password)) {
             $_SESSION['email'] = $email;
-            header("Location: index.php");
+            header('Location: index.php');
             exit();
         } else {
             echo "Invalid password.";

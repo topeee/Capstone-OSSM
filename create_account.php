@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $first_name = $_POST['first_name'];
+    $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
     $middle_name = $_POST['middlename'];
     $suffix = $_POST['suffix-dropdown'];
@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $house_number = $_POST['house#'];
     $street = $_POST['street'];
+    $subdivision = $_POST['sbd/vilg'];
     $barangay = $_POST['barangay-dropdown'];
     $password = $_POST['password'];
 
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "An account with this email already exists. Please use a different email.";
     } else {
         // Insert data into the database
-        $sql = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, password_hash)
-                VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$barangay', '$password_hash')";
+        $sql = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password_hash)
+                VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$password_hash')";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: login.html");

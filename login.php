@@ -26,7 +26,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "No user found with that email.";
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $recaptchaSecret = '6LfBFCwqAAAAAG48Ddaqq0WNsWCTmHWDoK2vdWy1';
+        $recaptchaResponse = $_POST['g-recaptcha-response'];
+        
+        // Verify the reCAPTCHA response
+        $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaResponse}");
+        $responseData = json_decode($verifyResponse);
+        
+        if ($responseData->success) {
+            // Process form data
+            echo 'Form submission successful!';
+        } else {
+            echo 'reCAPTCHA verification failed. Please try again.';
+        }
+    }
+
+
     $stmt->close();
     $conn->close();
 }
+
 ?>

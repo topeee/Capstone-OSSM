@@ -1,9 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
-// Include database connection file
-include 'db_connection.php';
+include 'db.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -20,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['email'] = $email;
             header("Location: index.php");
-
             exit();
         } else {
             echo "Invalid password.";

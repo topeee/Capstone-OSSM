@@ -1,9 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
-// Include database connection file
 include 'db_connection.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -19,8 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $hashed_password)) {
             $_SESSION['email'] = $email;
-            header("Location: index.php");
-
+            header('Location: index.php');
             exit();
         } else {
             echo "Invalid password.";
@@ -29,7 +26,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "No user found with that email.";
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $recaptchaSecret = '6LfBFCwqAAAAAG48Ddaqq0WNsWCTmHWDoK2vdWy1';
+        $recaptchaResponse = $_POST['g-recaptcha-response'];
+        
+        // Verify the reCAPTCHA response
+        $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaResponse}");
+        $responseData = json_decode($verifyResponse);
+        
+        if ($responseData->success) {
+            // Process form data
+            echo 'Form submission successful!';
+        } else {
+            echo 'reCAPTCHA verification failed. Please try again.';
+        }
+    }
+
+
     $stmt->close();
     $conn->close();
 }
+
 ?>

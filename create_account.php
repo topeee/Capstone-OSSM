@@ -1,10 +1,10 @@
 <?php
 
 
-$servername = "153.92.15.26";
-$username = "u271593949_ossm"; // XAMPP default username is 'root'
-$password = "0neSti**"; // XAMPP default password is an empty string
-$dbname = "u271593949_ossm";
+$servername = "153.92.15.26"; // Change this to your database server
+$username = "u271593949_ossmdb"; // Change this to your database username
+$password = "IOBPXl3Y@;"; // Change this to your database password
+$dbname = "u271593949_ossmdb"; // Change this to your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

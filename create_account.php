@@ -1,10 +1,10 @@
 <?php
 
 
-$servername = "153.92.15.26"; // Change this to your database server
-$username = "u271593949_ossmdb"; // Change this to your database username
-$password = "IOBPXl3Y@;"; // Change this to your database password
-$dbname = "u271593949_ossmdb"; // Change this to your database name
+$servername = "153.92.15.26"; 
+$username = "u271593949_ossmdb"; 
+$password = "IOBPXl3Y@;"; 
+$dbname = "u271593949_ossmdb"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

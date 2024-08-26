@@ -326,6 +326,15 @@ footer {
         align-items: center;
         padding: 5px;
     }
+    .modal-dialog-centered {
+        display: flex;
+        align-items: center;
+        min-height: 100vh; /* Ensure the modal takes full height of the screen */
+    }
+
+    .modal-content {
+        margin: auto; /* Center the modal content */
+    }
 }
 
     </style>
@@ -352,12 +361,197 @@ footer {
     <!-- Main content area -->
     <main>
         <div class="services">
-            <a href="#"> <div class="service-card light odd">Violation Management</div> </a>
-            <a href="#"> <div class="service-card dark even">Social Services</div> </a>
-            <a href="#"> <div class="service-card light odd">Educational Support</div> </a>
-            <a href="#"> <div class="service-card dark even">Economic & Investment Support</div> </a>
-            <a href="#"> <div class="service-card light odd">Health Services</div> </a>
-            <a href="#"> <div class="service-card dark even">Citizen ID</div> </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#violationModal">
+                <div class="service-card light odd">Violation Management</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="violationModal" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="violationModalLabel">Violation Management</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">OVR Payment</h5>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#socialServicesModal">
+                <div class="service-card dark even">Social Services</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="socialServicesModal" tabindex="-1" aria-labelledby="socialServicesModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="SocialServicesModal">Social Services</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="Senior Citizen Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Senior.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Senior Citizen Application</h5>
+                                </div>
+                            </div>
+                            <div class=" PWD Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\PWD.png" class="card-img-top" alt="Type 2">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">PWD Application</h5>
+                                </div>
+                            </div>
+                            <div class="    Solo Parent card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Solo Parent.png" class="card-img-top" alt="Type 3">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Solo Parent Application</h5>
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
+                <div class="service-card light odd">Educational Support</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="educationalModal" tabindex="-1" aria-labelledby="educationalModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="educationalModalLabel">Educational Model</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Scholar.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Scholarship Application</h5>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
+                <div class="service-card dark even">Economic & Investment Support</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="econModal" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="econModalLabel">Economic & Investment Support</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Occupational.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Occupational Permit</h5>
+                                </div>
+                            </div>
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Business.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Business Permit</h5>
+                                </div>
+                            </div>
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Tricycle.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Tricycle Permit</h5>
+                                </div>
+                            </div>
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\RPT.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Real Property</h5>
+                                </div>
+                            </div>
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Market.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Market One-Stop Shop</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
+                <div class="service-card light odd">Health Services</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="healthModal" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="healthModalLabel">Health Services</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\_Medical.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Medical Records</h5>
+                                </div>
+                            </div>     
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\_death.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Death Certificate</h5>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
+                <div class="service-card dark even">Citizen ID</div>
+            </a>
+            <!-- Modal Structure -->
+            <div class="modal fade" id="citizenModal" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="citizenModalLabel">Health Services</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <!-- Types of Management Cards -->
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\ID.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Citizen ID</h5>
+                                </div>
+                            </div>     
+                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
+                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Query.png" class="card-img-top" alt="Type 1">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">OSSM Query Portal</h5>
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <br>

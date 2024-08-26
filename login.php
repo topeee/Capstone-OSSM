@@ -26,46 +26,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "No user found with that email.";
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $secretKey = '6Lc1qi8qAAAAAHiE38axrmiw6SsbBTtZzbcwG5i5'; // Replace with your actual secret key
-        $captcha = $_POST['g-recaptcha-response'];
-    
-        if (!$captcha) {
-            echo 'Please check the the captcha form.';
-            exit;
-        }
-    
-        // Verify the reCAPTCHA response
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = [
-            'secret' => $secretKey,
-            'response' => $captcha
-        ];
-    
-        $options = [
-            'http' => [
-                'header' => 'Content-type: application/x-www-form-urlencoded',
-                'method' => 'POST',
-                'content' => http_build_query($data),
-            ],
-        ];
-        $context = stream_context_create($options);
-        $response = file_get_contents($url, false, $context);
-        $result = json_decode($response, true);
-    
-        // Check if the verification was successful
-        if ($result['success']) {
-            // Proceed with form processing
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-    
-            // You can now process the form data, e.g., save it to a database, send an email, etc.
-            echo 'Form submitted successfully!';
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $recaptchaSecret = "6LdSsC8qAAAAAALv4qGXAlg-_krUe2lT2nsayFs8";
+        $recaptchaResponse = $_POST['g-recaptcha-response'];
+        
+        // Make a POST request to the reCAPTCHA API to verify the response
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaSecret&response=$recaptchaResponse");
+        $responseKeys = json_decode($response, true);
+        
+        // Check if the reCAPTCHA verification was successful
+        if (intval($responseKeys["success"]) === 1) {
+            // Verification successful
+            echo "reCAPTCHA verification successful.";
+            // Continue with your form processing
         } else {
-            echo 'Captcha verification failed. Please try again.';
+            // Verification failed
+            echo "reCAPTCHA verification failed. Please try again.";
         }
-    } else {
-        echo 'Invalid request method';
     }
 
 

@@ -3,7 +3,7 @@
 
 $servername = "153.92.15.26"; 
 $username = "u271593949_ossmdb"; 
-$password = "IOBPXl3Y@;"; 
+$password = "UcMPAq^5"; 
 $dbname = "u271593949_ossmdb"; 
 
 // Create connection

@@ -17,7 +17,8 @@
 
         <div class="form-container">
             <div class="form-container">
-                <form class="row g-3" action="create_account.php" method="POST">
+                <form class="row g-3" action="create_account.php" method="POST" enctype="multipart/form-data">
+
                     <div class="col-md-6 form-floating">
                         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
                         <label for="firstname"><span style="color: red;">*</span> First name </label>
@@ -56,7 +57,7 @@
                         <label for="gender-dropdown"><span style="color: red;">*</span>Gender</label>
                     </div>
                     <div class="col-md-6 form-floating">
-                        <input type="tel" class="form-control" id="mn" name="mn" placeholder="Mobile Number" maxlength="11" pattern="\d[11]" required>
+                        <input type="tel" class="form-control" id="mn" name="mn" placeholder="Mobile Number"  required>
                         <label for="mn"><span style="color: red;">*</span> Mobile Number</label>
                     </div>
                     <div class="col-md-6 form-floating">

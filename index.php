@@ -534,7 +534,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <a href="citizen.html">
+                    <a href="citizenID.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Type 1">
                             <h5 class="card-title">Citizen ID</h5>

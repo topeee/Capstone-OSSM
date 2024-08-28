@@ -344,7 +344,7 @@ footer {
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\logo.png" alt="Logo" class="navbar-brand-logo">
+                <img src="logo.png" alt="Logo" class="navbar-brand-logo">
                 <span>OSSM</span>
             </a>
             <div class="navbar-nav ms-auto">

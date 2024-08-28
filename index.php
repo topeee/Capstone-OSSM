@@ -349,7 +349,7 @@ footer {
             </a>
             <div class="navbar-nav ms-auto">
                 <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
-                <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
+                <a class="nav-link" href="#"><img src="Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
             </div>
         </div>
     </nav>
@@ -375,7 +375,7 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="Type 1">
+                                <img src="VIOLATION.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">OVR Payment</h5>
                                 </div>
@@ -399,19 +399,19 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="Senior Citizen Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Senior.png" class="card-img-top" alt="Type 1">
+                                <img src="Senior.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Senior Citizen Application</h5>
                                 </div>
                             </div>
                             <div class=" PWD Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\PWD.png" class="card-img-top" alt="Type 2">
+                                <img src="PWD.png" class="card-img-top" alt="Type 2">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">PWD Application</h5>
                                 </div>
                             </div>
                             <div class="    Solo Parent card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Solo Parent.png" class="card-img-top" alt="Type 3">
+                                <img src="Solo Parent.png" class="card-img-top" alt="Type 3">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Solo Parent Application</h5>
                                 </div>
@@ -435,7 +435,7 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Scholar.png" class="card-img-top" alt="Type 1">
+                                <img src="Scholar.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Scholarship Application</h5>
                                 </div>
@@ -459,31 +459,31 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Occupational.png" class="card-img-top" alt="Type 1">
+                                <img src="Occupational.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Occupational Permit</h5>
                                 </div>
                             </div>
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Business.png" class="card-img-top" alt="Type 1">
+                                <img src="Business.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Business Permit</h5>
                                 </div>
                             </div>
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Tricycle.png" class="card-img-top" alt="Type 1">
+                                <img src="Tricycle.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Tricycle Permit</h5>
                                 </div>
                             </div>
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\RPT.png" class="card-img-top" alt="Type 1">
+                                <img src="RPT.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Real Property</h5>
                                 </div>
                             </div>
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Market.png" class="card-img-top" alt="Type 1">
+                                <img src="Market.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Market One-Stop Shop</h5>
                                 </div>
@@ -507,13 +507,13 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\_Medical.png" class="card-img-top" alt="Type 1">
+                                <img src="_Medical.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Medical Records</h5>
                                 </div>
                             </div>     
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\_death.png" class="card-img-top" alt="Type 1">
+                                <img src="_death.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Death Certificate</h5>
                                 </div>
@@ -537,13 +537,13 @@ footer {
                         <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
                             <!-- Types of Management Cards -->
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\ID.png" class="card-img-top" alt="Type 1">
+                                <img src="ID.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Citizen ID</h5>
                                 </div>
                             </div>     
                             <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\Query.png" class="card-img-top" alt="Type 1">
+                                <img src="Query.png" class="card-img-top" alt="Type 1">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">OSSM Query Portal</h5>
                                 </div>

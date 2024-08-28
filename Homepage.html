@@ -1,344 +1,332 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-    body {
-    background-image: url('bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    }
+        body {
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-a {
-    text-decoration: none;
-}
+        a {
+            text-decoration: none;
+        }
 
-.navbar-brand-logo {
-    width: 80px;
-    height: 80px;
-}
+        .navbar-brand-logo {
+            width: 80px;
+            height: 80px;
+        }
 
-.navbar {
-    background-color: rgba(255, 255, 255, 0.13);
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.13);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
 
-.container {
-    flex: 1;
-    padding-top: 150px;
-}
+        .container {
+            flex: 1;
+            padding-top: 150px;
+        }
 
-.Hamburger-Icon {
-    width: 30px;
-    height: 30px;
-}
+        .Hamburger-Icon {
+            width: 30px;
+            height: 30px;
+        }
 
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    font-family: 'Arial', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-}
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+        }
 
-.navbar-brand span {
-    margin-left: 10px;
-}
+        .navbar-brand span {
+            margin-left: 10px;
+        }
 
-.navbar-nav {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 20px;
-}
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 20px;
+        }
 
-.username {
-    color: white;
-    margin-left: 10px;
-    font-size: 1.2rem;
-}
+        .username {
+            color: white;
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
 
-.Services {
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    margin-top: 130px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+        .Services {
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            margin-top: 130px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
 
-.card {
-    cursor: pointer;
-    width: 18rem;
-    height: 18rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-}
+        .inside-card {
+            background-color: rgb(0, 0, 0);
+            width: 300px;
+            height: 350px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-.card:nth-child(odd) {
-    background-color: black;
-}
+        .inside-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-.card:nth-child(even) {
-    background-color: white;
-    color: black;
-}
+        .inside-card .card-title {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-align: center;
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: nowrap; /* This line prevents the items from wrapping */
+            gap: 20px; /* Optional: adds space between each item */
+            overflow-x: auto; /* Add horizontal scroll if the content overflows */
+        }
+        .modal-dialog.wide-modal {
+            max-width: 90%; /* Adjust the width as needed */
+        }
+        .inside-card {
+            flex: 0 0 auto; /* Adjust the size as needed */
+            margin: 10px;
+            max-width: 250px; /* Ensure each card does not exceed this width */
+        }
+        footer {
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: 10px;
-    padding: 20px;
-}
+        .footer-links, .footer-policies {
+            display: flex;
+            gap: 20px;
+        }
 
-footer {
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: auto;
-}
+        .footer-links {
+            justify-content: flex-start;
+        }
 
-.footer-links, .footer-policies {
-    display: flex;
-    gap: 20px;
-}
+        .footer-policies {
+            justify-content: flex-end;
+        }
 
-.footer-links {
-    justify-content: flex-start;
-}
+        .footer-links a, .footer-policies a {
+            color: #002B5C;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
 
-.footer-policies {
-    justify-content: flex-end;
-}
+        .services {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            gap: 20px;
+        }
 
-.footer-links a, .footer-policies a {
-    color: #002B5C;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
+        .service-card {
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin: 10px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+        }
 
-.services {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
-}
+        .even {
+            margin-top: 225px;
+        }
 
-.service-card {
-    width: 250px;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    margin: 10px;
-    font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-}
+        .odd {
+            margin-top: 125px;
+        }
 
-.even {
-    margin-top: 225px;
-}
+        .service-card:hover {
+            transform: scale(1.1);
+        }
 
-.odd {
-    margin-top: 125px;
-}
+        .service-card.dark {
+            background-color: #002B5C;
+            color: #fff;
+        }
 
-.service-card:hover {
-    transform: scale(1.1);
-}
+        .service-card.light {
+            background-color: #F2F2F2;
+            color: #002B5C;
+        }
 
-.service-card.dark {
-    background-color: #002B5C;
-    color: #fff;
-}
+        .appointment {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
 
-.service-card.light {
-    background-color: #F2F2F2;
-    color: #002B5C;
-}
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .navbar-brand-logo {
+                width: 60px;
+                height: 60px;
+            }
 
-.appointment {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-}
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
 
-/* Media Queries */
-@media (max-width: 1200px) {
-    .navbar-brand-logo {
-        width: 60px;
-        height: 60px;
-    }
+            .username {
+                font-size: 1rem;
+            }
 
-    .navbar-brand {
-        font-size: 1.25rem;
-    }
+            .service-card {
+                width: 200px;
+                height: 200px;
+                font-size: 25px;
+            }
 
-    .username {
-        font-size: 1rem;
-    }
+            footer {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .card {
-        width: 16rem;
-        height: 16rem;
-    }
+            .footer-links, .footer-policies {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
 
-    .service-card {
-        width: 200px;
-        height: 200px;
-        font-size: 25px;
-    }
+        @media (max-width: 992px) {
+            .navbar-brand-logo {
+                width: 50px;
+                height: 50px;
+            }
 
-    footer {
-        flex-direction: column;
-        align-items: center;
-    }
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
 
-    .footer-links, .footer-policies {
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-}
+            .username {
+                font-size: 0.9rem;
+            }
 
-@media (max-width: 992px) {
-    .navbar-brand-logo {
-        width: 50px;
-        height: 50px;
-    }
+            .service-card {
+                width: 180px;
+                height: 180px;
+                font-size: 20px;
+            }
 
-    .navbar-brand {
-        font-size: 1.1rem;
-    }
+            footer {
+                padding: 10px;
+            }
+        }
 
-    .username {
-        font-size: 0.9rem;
-    }
+        @media (max-width: 768px) {
+            .navbar-brand-logo {
+                width: 40px;
+                height: 40px;
+            }
 
-    .card {
-        width: 14rem;
-        height: 14rem;
-    }
+            .navbar-brand {
+                font-size: 1rem;
+            }
 
-    .service-card {
-        width: 180px;
-        height: 180px;
-        font-size: 20px;
-    }
+            .username {
+                font-size: 0.8rem;
+            }
 
-    footer {
-        padding: 10px;
-    }
-}
+            .service-card {
+                width: 150px;
+                height: 150px;
+                font-size: 18px;
+            }
 
-@media (max-width: 768px) {
-    .navbar-brand-logo {
-        width: 40px;
-        height: 40px;
-    }
+            .services {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .navbar-brand {
-        font-size: 1rem;
-    }
+            .service-card {
+                margin: 5px;
+            }
+        }
 
-    .username {
-        font-size: 0.8rem;
-    }
+        @media (max-width: 576px) {
+            .navbar-brand-logo {
+                width: 30px;
+                height: 30px;
+            }
 
-    .card {
-        width: 12rem;
-        height: 12rem;
-    }
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
 
-    .service-card {
-        width: 150px;
-        height: 150px;
-        font-size: 18px;
-    }
+            .username {
+                display: none;
+            }
 
-    .services {
-        flex-direction: column;
-        align-items: center;
-    }
+            .service-card {
+                width: 120px;
+                height: 120px;
+                font-size: 16px;
+            }
 
-    .service-card {
-        margin: 5px;
-    }
-}
+            .appointment {
+                font-size: 24px;
+            }
 
-@media (max-width: 576px) {
-    .navbar-brand-logo {
-        width: 30px;
-        height: 30px;
-    }
-
-    .navbar-brand {
-        font-size: 0.9rem;
-    }
-
-    .username {
-        display: none;
-    }
-
-    .card {
-        width: 10rem;
-        height: 10rem;
-    }
-
-    .service-card {
-        width: 120px;
-        height: 120px;
-        font-size: 16px;
-    }
-
-    .appointment {
-        font-size: 24px;
-    }
-
-    footer {
-        flex-direction: column;
-        align-items: center;
-        padding: 5px;
-    }
-    .modal-dialog-centered {
-        display: flex;
-        align-items: center;
-        min-height: 100vh; /* Ensure the modal takes full height of the screen */
-    }
-
-    .modal-content {
-        margin: auto; /* Center the modal content */
-    }
-}
-
+            footer {
+                flex-direction: column;
+                align-items: center;
+                padding: 5px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -349,7 +337,7 @@ footer {
             </a>
             <div class="navbar-nav ms-auto">
                 <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
-                <a class="nav-link" href="#"><img src="Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
+                <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
             </div>
         </div>
     </nav>
@@ -364,212 +352,225 @@ footer {
             <a href="#" data-bs-toggle="modal" data-bs-target="#violationModal">
                 <div class="service-card light odd">Violation Management</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="violationModal" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="violationModalLabel">Violation Management</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="VIOLATION.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">OVR Payment</h5>
-                                </div>
-                            </div>                
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#" data-bs-toggle="modal" data-bs-target="#socialServicesModal">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#socialModal">
                 <div class="service-card dark even">Social Services</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="socialServicesModal" tabindex="-1" aria-labelledby="socialServicesModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="SocialServicesModal">Social Services</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="Senior Citizen Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Senior.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Senior Citizen Application</h5>
-                                </div>
-                            </div>
-                            <div class=" PWD Application card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="PWD.png" class="card-img-top" alt="Type 2">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">PWD Application</h5>
-                                </div>
-                            </div>
-                            <div class="    Solo Parent card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Solo Parent.png" class="card-img-top" alt="Type 3">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Solo Parent Application</h5>
-                                </div>
-                            </div>                    
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
                 <div class="service-card light odd">Educational Support</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="educationalModal" tabindex="-1" aria-labelledby="educationalModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="educationalModalLabel">Educational Model</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Scholar.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Scholarship Application</h5>
-                                </div>
-                            </div>                
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
                 <div class="service-card dark even">Economic & Investment Support</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="econModal" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="econModalLabel">Economic & Investment Support</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Occupational.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">Occupational Permit</h6>
-                                </div>
-                            </div>
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Business.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Business Permit</h5>
-                                </div>
-                            </div>
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Tricycle.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Tricycle Permit</h5>
-                                </div>
-                            </div>
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="RPT.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Real Property</h5>
-                                </div>
-                            </div>
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Market.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Market One-Stop Shop</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
                 <div class="service-card light odd">Health Services</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="healthModal" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="healthModalLabel">Health Services</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="_Medical.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Medical Records</h5>
-                                </div>
-                            </div>     
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="_death.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Death Certificate</h5>
-                                </div>
-                            </div>            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
                 <div class="service-card dark even">Citizen ID</div>
             </a>
-            <!-- Modal Structure -->
-            <div class="modal fade" id="citizenModal" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' class -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="citizenModalLabel">Health Services</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+    </main>
+    
+    <!-- Violation Management Modal -->
+    <div class="modal fade" id="violationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
+        <div class="modal-dialog wide-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a href="ovr-payment.html">
+                        <div class="inside-card mb-4">
+                            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">OVR Payment</h5>
                         </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center wide-modal-body">
-                            <!-- Types of Management Cards -->
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="ID.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Citizen ID</h5>
-                                </div>
-                            </div>     
-                            <div class="card mb-4" style="width: 19rem; height: 21rem; padding: 30px;">
-                                <img src="Query.png" class="card-img-top" alt="Type 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">OSSM Query Portal</h5>
-                                </div>
-                            </div>            
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Services Modal -->
+    <div class="modal fade" id="socialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
+        <div class="modal-dialog wide-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a href="senior-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Senior.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
+                    </a>
+                    <a href="pwd-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="PWD.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">PWD Application</h5>
+                        </div>
+                    </a>
+                    <a href="solo-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Solo Parent.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Solo Parent Application</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Support Modal -->
+    <div class="modal fade" id="educationalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="educationalModalLabel" aria-hidden="true">
+        <div class="modal-dialog wide-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a href="scholar-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Scholar.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Scholarship Application</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Economic & Investment Support Modal -->
+    <div class="modal fade" id="econModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
+        <div class="modal-dialog wide-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a href="occupational-apply.html"></a>
+                        <div class="inside-card mb-4">
+                            <img src="Occupational.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Occupational Permit</h5>
+                        </div>
+                    <a href="business-apply.html">    
+                        <div class="inside-card mb-4">
+                            <img src="Business.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Business Permit</h5>
+                        </div>
+                    </a>
+                    <a href="tricpermit-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Tricycle.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Tricycle Permit</h5>
+                        </div>
+                    </a>
+                    <a href="rpt-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="RPT.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Real Property</h5>
+                        </div>
+                    </a>
+                    <a href="market-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Market.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Market One-Stop Shop</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Services Modal -->
+    <div class="modal fade" id="healthModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
+        <div class="modal-dialog wide-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <a href="medical.html">
+                    <div class="inside-card mb-4">
+                        <img src="_Medical.png" class="card-img-top" alt="Type 1">
+                        <h5 class="card-title">Medical Records</h5>
+                    </div>
+                </a>
+                <a href="death.html">
+                    <div class="inside-card mb-4">
+                        <img src="_death.png" class="card-img-top" alt="Type 1">
+                        <h5 class="card-title">Death Certificate</h5>
+                    </div>
+                </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Citizen ID Modal -->
+        <div class="modal fade" id="citizenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
+            <div class="modal-dialog wide-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <a href="citizen.html">
+                        <div class="inside-card mb-4">
+                            <img src="ID.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Citizen ID</h5>
+                        </div>
+                    </a>
+                    <a href="query.html">
+                        <div class="inside-card mb-4">
+                            <img src="Query.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">OSSM Query Portal</h5>
+                        </div>
+                    </a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <br>
-
+<br>
         <div class="Appoinment">
             <a href="#"> <div class="appointment">Book an Appointment</div></a>
         </div>
-    </main>
 
+    
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="#">ABOUT</a>
-            <a href="#">CONTACT US</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Services</a>
         </div>
         <div class="footer-policies">
-            <a href="#">TERMS OF SERVICE</a>
-            <a href="#">PRIVACY POLICY</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
         </div>
     </footer>
 </body>
+
 </html>

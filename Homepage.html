@@ -379,10 +379,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="inside-card mb-4">
-                        <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">OVR Payment</h5>
-                    </div>
+                    <a href="ovr-payment.html">
+                        <div class="inside-card mb-4">
+                            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">OVR Payment</h5>
+                        </div>
+                    </a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -400,18 +402,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="inside-card mb-4">
-                        <img src="Senior.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Senior Citizen Application</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="PWD.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">PWD Application</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="Solo Parent.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Solo Parent Application</h5>
-                    </div>
+                    <a href="senior-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Senior.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Senior Citizen Application</h5>
+                        </div>
+                    </a>
+                    <a href="pwd-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="PWD.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">PWD Application</h5>
+                        </div>
+                    </a>
+                    <a href="solo-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Solo Parent.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Solo Parent Application</h5>
+                        </div>
+                    </a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -429,10 +437,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="inside-card mb-4">
-                        <img src="Scholar.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Scholarship Application</h5>
-                    </div>
+                    <a href="scholar-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Scholar.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Scholarship Application</h5>
+                        </div>
+                    </a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -450,26 +460,35 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="inside-card mb-4">
-                        <img src="Occupational.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Occupational Permit</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="Business.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Business Permit</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="Tricycle.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Tricycle Permit</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="RPT.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Real Property</h5>
-                    </div>
-                    <div class="inside-card mb-4">
-                        <img src="Market.png" class="card-img-top" alt="Type 1">
-                        <h5 class="card-title">Market One-Stop Shop</h5>
-                    </div>
+                    <a href="occupational-apply.html"></a>
+                        <div class="inside-card mb-4">
+                            <img src="Occupational.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Occupational Permit</h5>
+                        </div>
+                    <a href="business-apply.html">    
+                        <div class="inside-card mb-4">
+                            <img src="Business.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Business Permit</h5>
+                        </div>
+                    </a>
+                    <a href="tricpermit-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Tricycle.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Tricycle Permit</h5>
+                        </div>
+                    </a>
+                    <a href="rpt-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="RPT.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Real Property</h5>
+                        </div>
+                    </a>
+                    <a href="market-apply.html">
+                        <div class="inside-card mb-4">
+                            <img src="Market.png" class="card-img-top" alt="Type 1">
+                            <h5 class="card-title">Market One-Stop Shop</h5>
+                        </div>
+                    </a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -487,14 +506,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                <a href="medical.html">
                     <div class="inside-card mb-4">
                         <img src="_Medical.png" class="card-img-top" alt="Type 1">
                         <h5 class="card-title">Medical Records</h5>
                     </div>
+                </a>
+                <a href="death.html">
                     <div class="inside-card mb-4">
                         <img src="_death.png" class="card-img-top" alt="Type 1">
                         <h5 class="card-title">Death Certificate</h5>
                     </div>
+                </a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -511,14 +534,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                    <a href="citizen.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Type 1">
                             <h5 class="card-title">Citizen ID</h5>
                         </div>
+                    </a>
+                    <a href="query.html">
                         <div class="inside-card mb-4">
                             <img src="Query.png" class="card-img-top" alt="Type 1">
                             <h5 class="card-title">OSSM Query Portal</h5>
                         </div>
+                    </a>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

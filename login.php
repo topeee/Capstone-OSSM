@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         return $response_data->success;
     }
+
 // Login example
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recaptcha_response = $_POST['g-recaptcha-response'];
@@ -53,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (verify_recaptcha($recaptcha_response)) {
         // Proceed with login
         // Authenticate user credentials
-        echo "Logged in successfully!";
+        echo "CAPTCHA Correct!";
     } else {
         echo "Please complete the CAPTCHA.";
     }

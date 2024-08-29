@@ -347,9 +347,12 @@ if (!isset($_SESSION['email'])) {
                 <span>OSSM</span>
             </a>
             <div class="navbar-nav ms-auto">
-                <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
-                <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
-            </div>
+    <a class="nav-link" href="account_profile.html"> <!-- Add your desired URL in the href attribute -->
+        <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
+    </a>
+    <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
+</div>
+
         </div>
     </nav>
 

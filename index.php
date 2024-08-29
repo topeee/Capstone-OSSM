@@ -7,6 +7,7 @@ if (!isset($_SESSION['email'])) {
     header('Location: login.html');
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +21,10 @@ if (!isset($_SESSION['email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            background-image: url('bg.png');
+            background-image: linear-gradient(to bottom, #00bfff, #87cefa);
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
             display: flex;
@@ -82,7 +83,7 @@ if (!isset($_SESSION['email'])) {
 
         .username {
             color: white;
-            margin-left: 10px;
+            margin-left: 1450px;
             font-size: 1.2rem;
         }
 
@@ -233,123 +234,47 @@ if (!isset($_SESSION['email'])) {
             font-weight: bold;
             font-size: 30px;
         }
-
-        /* Media Queries */
-        @media (max-width: 1200px) {
-            .navbar-brand-logo {
-                width: 60px;
-                height: 60px;
-            }
-
-            .navbar-brand {
-                font-size: 1.25rem;
-            }
-
-            .username {
-                font-size: 1rem;
-            }
-
-            .service-card {
-                width: 200px;
-                height: 200px;
-                font-size: 25px;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-links, .footer-policies {
-                justify-content: center;
-                margin-bottom: 10px;
-            }
+        .navbar {
+            background-color: transparent; /* Remove background color */
         }
 
-        @media (max-width: 992px) {
-            .navbar-brand-logo {
-                width: 50px;
-                height: 50px;
-            }
-
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
-
-            .username {
-                font-size: 0.9rem;
-            }
-
-            .service-card {
-                width: 180px;
-                height: 180px;
-                font-size: 20px;
-            }
-
-            footer {
-                padding: 10px;
-            }
+        .navbar-toggler-icon {
+            background-image: url('Burger icon.png'); /* Set custom icon for toggler */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
         }
 
-        @media (max-width: 768px) {
-            .navbar-brand-logo {
-                width: 40px;
-                height: 40px;
-            }
+        .dropdown-menu {
+            background-color: #fff; /* Set background color of dropdown */
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 100vw; /* Ensure dropdown fits within viewport */
+            width: auto;
+        }
+        
 
-            .navbar-brand {
-                font-size: 1rem;
-            }
-
-            .username {
-                font-size: 0.8rem;
-            }
-
-            .service-card {
-                width: 150px;
-                height: 150px;
-                font-size: 18px;
-            }
-
-            .services {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .service-card {
-                margin: 5px;
-            }
+        .dropdown-item {
+            white-space: nowrap; /* Prevent text from wrapping */
         }
 
-        @media (max-width: 576px) {
-            .navbar-brand-logo {
-                width: 30px;
-                height: 30px;
-            }
+        .btn-secondary {
+            background-color: transparent; /* Remove background color */
+            border: none; /* Remove border */
+        }
 
-            .navbar-brand {
-                font-size: 0.9rem;
-            }
+        .btn-secondary:focus,
+        .btn-secondary:active {
+            box-shadow: none; /* Remove focus and active shadow */
+        }
 
-            .username {
-                display: none;
-            }
-
-            .service-card {
-                width: 120px;
-                height: 120px;
-                font-size: 16px;
-            }
-
-            .appointment {
-                font-size: 24px;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
-                padding: 5px;
-            }
+        .Hamburger-Icon {
+            width: 30px; /* Adjust icon size as needed */
+            height: auto;
+        }
+        .logout-item{
+            color: red;
         }
     </style>
 </head>
@@ -362,13 +287,21 @@ if (!isset($_SESSION['email'])) {
                 <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\logo.png" alt="Logo" class="navbar-brand-logo">
                 <span>OSSM</span>
             </a>
-            <div class="navbar-nav ms-auto">
-    <a class="nav-link" href="account_profile.html"> <!-- Add your desired URL in the href attribute -->
-        <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
-    </a>
-    <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
-</div>
-
+            <span class="username">Hello, Username</span> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDropdown"
+                aria-controls="navDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="dropdown-center">
+                <a class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="Burger icon.png" alt="Burger Icon" class="Hamburger-Icon">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end"> <!-- Add dropdown-menu-end class here -->
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                    <li><a class="dropdown-item logout-item" href="#">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 

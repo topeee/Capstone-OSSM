@@ -23,16 +23,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Login example
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $recaptcha_response = $_POST['g-recaptcha-response'];
-    
-    if (verify_recaptcha($recaptcha_response)) {
-        // Proceed with login
-        // Authenticate user credentials
-        echo "Logged in successfully!";
-    } else {
-        echo "Please complete the CAPTCHA.";
-    }
-}
+
 ?>

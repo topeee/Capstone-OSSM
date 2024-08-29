@@ -3,51 +3,62 @@ session_start();
 include 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashed_password);
-        $stmt->fetch();
-
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['email'] = $email;
-            header('Location: index.php');
-            exit();
-        } else {
-            echo "Invalid password.";
-        }
+    if (empty($email) || empty($password)) {
+        echo "Please enter both email and password.";
     } else {
-        echo "No user found with that email.";
-    }
+        $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $recaptchaSecret = "6LdSsC8qAAAAAALv4qGXAlg-_krUe2lT2nsayFs8";
-        $recaptchaResponse = $_POST['g-recaptcha-response'];
-        
-        // Make a POST request to the reCAPTCHA API to verify the response
-        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaSecret&response=$recaptchaResponse");
-        $responseKeys = json_decode($response, true);
-        
-        // Check if the reCAPTCHA verification was successful
-        if (intval($responseKeys["success"]) === 1) {
-            // Verification successful
-            echo "reCAPTCHA verification successful.";
-            // Continue with your form processing
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($hashed_password);
+                $stmt->fetch();
+
+                if (password_verify($password, $hashed_password)) {
+                    $_SESSION['email'] = $email;
+                    header('Location: index.php');
+                    exit();
+                } else {
+                    echo "Invalid password.";
+                }
+            } else {
+                echo "No user found with that email.";
+            }
+
+            $stmt->close();
         } else {
-            // Verification failed
-            echo "reCAPTCHA verification failed. Please try again.";
+            echo "Database error: Unable to prepare statement.";
         }
     }
 
+    function verify_recaptcha($recaptcha_response) {
+        $secret_key = '6LdSsC8qAAAAAALv4qGXAlg-_krUe2lT2nsayFs8';
+        $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+        
+        // Create a POST request to verify the reCAPTCHA response
+        $response = file_get_contents($verify_url . '?secret=' . $secret_key . '&response=' . $recaptcha_response);
+        $response_data = json_decode($response);
+        
+        return $response_data->success;
+    }
 
-    $stmt->close();
+// Login example
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    
+    if (verify_recaptcha($recaptcha_response)) {
+        // Proceed with login
+        // Authenticate user credentials
+        echo "CAPTCHA Correct!";
+    } else {
+        echo "Please complete the CAPTCHA.";
+    }
+}
     $conn->close();
 }
-
 ?>

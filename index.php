@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    // If not logged in, redirect to the login page
+    header('Location: login.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -347,14 +358,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\logo.png" alt="Logo" class="navbar-brand-logo">
                 <span>OSSM</span>
             </a>
             <div class="navbar-nav ms-auto">
-                <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
-                <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
-            </div>
+    <a class="nav-link" href="account_profile.html"> <!-- Add your desired URL in the href attribute -->
+        <span class="username">Username</span> <!-- Replace 'Username' with the actual username -->
+    </a>
+    <a class="nav-link" href="#"><img src="C:\Users\rexce\Desktop\ossm\Burger icon.png" alt="Burger Icon" class="Hamburger-Icon"></a>
+</div>
+
         </div>
     </nav>
 
@@ -550,7 +564,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <a href="citizen.html">
+                    <a href="citizenID.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Type 1">
                             <h5 class="card-title">Citizen ID</h5>

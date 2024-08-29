@@ -114,13 +114,29 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-around;
+            justify-content:center;
             flex-wrap: nowrap; /* This line prevents the items from wrapping */
             gap: 20px; /* Optional: adds space between each item */
             overflow-x: auto; /* Add horizontal scroll if the content overflows */
+            padding: -100px;
         }
-        .modal-dialog.wide-modal {
-            max-width: 90%; /* Adjust the width as needed */
+        .modal-dialog.violation-wide-modal {
+            max-width: 30%; /* Adjust the width as needed */
+        }
+        .modal-dialog.social-wide-modal {
+            max-width: 55%; /* Adjust the width as needed */
+        }
+        .modal-dialog.educational-wide-modal {
+            max-width: 30%; /* Adjust the width as needed */
+        }
+        .modal-dialog.economic-wide-modal {
+            max-width: 85%; /* Adjust the width as needed */
+        }
+        .modal-dialog.health-wide-modal {
+            max-width: 40%; /* Adjust the width as needed */
+        }
+        .modal-dialog.citizen-wide-modal {
+            max-width: 40%; /* Adjust the width as needed */
         }
         .inside-card {
             flex: 0 0 auto; /* Adjust the size as needed */
@@ -372,7 +388,7 @@
     
     <!-- Violation Management Modal -->
     <div class="modal fade" id="violationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
-        <div class="modal-dialog wide-modal">
+        <div class="modal-dialog violation-wide-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
@@ -395,7 +411,7 @@
 
     <!-- Social Services Modal -->
     <div class="modal fade" id="socialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
-        <div class="modal-dialog wide-modal">
+        <div class="modal-dialog social-wide-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
@@ -430,7 +446,7 @@
 
     <!-- Educational Support Modal -->
     <div class="modal fade" id="educationalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="educationalModalLabel" aria-hidden="true">
-        <div class="modal-dialog wide-modal">
+        <div class="modal-dialog educational-wide-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
@@ -453,7 +469,7 @@
 
     <!-- Economic & Investment Support Modal -->
     <div class="modal fade" id="econModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
-        <div class="modal-dialog wide-modal">
+        <div class="modal-dialog economic-wide-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
@@ -499,7 +515,7 @@
 
     <!-- Health Services Modal -->
     <div class="modal fade" id="healthModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
-        <div class="modal-dialog wide-modal">
+        <div class="modal-dialog health-wide-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
@@ -527,7 +543,7 @@
     </div>
     <!-- Citizen ID Modal -->
         <div class="modal fade" id="citizenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
-            <div class="modal-dialog wide-modal">
+            <div class="modal-dialog citizen-wide-modal">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>

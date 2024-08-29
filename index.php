@@ -411,7 +411,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                     <a href="ovr-payment.html">
                         <div class="inside-card mb-4">
-                            <img src="VIOLATION.png" class="card-img-top" alt="Type 1">
+                            <img src="ovr.png" class="card-img-top" alt="Type 1">
                             <h5 class="card-title">OVR Payment</h5>
                         </div>
                     </a>

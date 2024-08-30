@@ -130,6 +130,12 @@
         .x {
             background-color: #1da1f2;
         }
+        .captcha-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; /* Adjust margin as needed */
+    }
+
     </style>
 </head>
 <body>
@@ -147,7 +153,10 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
+                <div class="captcha-container">
+                    <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
+                </div>
+                
 
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>

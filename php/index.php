@@ -299,7 +299,7 @@ if (!isset($_SESSION['email'])) {
                 <ul class="dropdown-menu dropdown-menu-end"> <!-- Add dropdown-menu-end class here -->
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                    <li><a class="dropdown-item logout-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>

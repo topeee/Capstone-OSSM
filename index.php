@@ -14,325 +14,338 @@ if (!isset($_SESSION['email'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Footer.Clean.icons.css">
     <title>Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background-image: linear-gradient(to bottom, #00bfff, #87cefa);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .navbar-brand-logo {
-            width: 80px;
-            height: 80px;
-        }
-
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.13);
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-
-        .container {
-            flex: 1;
-            padding-top: 150px;
-        }
-
-        .Hamburger-Icon {
-            width: 30px;
-            height: 30px;
-        }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-            font-family: 'Arial', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: rgb(0, 0, 0);
-        }
-
-        .navbar-brand span {
-            margin-left: 10px;
-        }
-
-        .navbar-nav {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            margin-right: 20px;
-        }
-
-        .username {
-            color: white;
-            margin-left: 1450px;
-            font-size: 1.2rem;
-        }
-
-        .Services {
-            color: aliceblue;
-            display: flex;
-            justify-content: center;
-            align-self: center;
-            margin-top: 130px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        .inside-card {
-            background-color: rgb(0, 0, 0);
-            width: 300px;
-            height: 350px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .inside-card img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .inside-card .card-title {
-            margin-top: 15px;
-            font-size: 1.2rem;
-            color: #ffffff;
-            text-align: center;
-        }
-        .modal-body {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content:center;
-            flex-wrap: nowrap; /* This line prevents the items from wrapping */
-            gap: 20px; /* Optional: adds space between each item */
-            overflow-x: auto; /* Add horizontal scroll if the content overflows */
-            padding: -100px;
-        }
-        .modal-dialog.violation-wide-modal {
-            max-width: 30%; /* Adjust the width as needed */
-        }
-        .modal-dialog.social-wide-modal {
-            max-width: 55%; /* Adjust the width as needed */
-        }
-        .modal-dialog.educational-wide-modal {
-            max-width: 30%; /* Adjust the width as needed */
-        }
-        .modal-dialog.economic-wide-modal {
-            max-width: 85%; /* Adjust the width as needed */
-        }
-        .modal-dialog.health-wide-modal {
-            max-width: 40%; /* Adjust the width as needed */
-        }
-        .modal-dialog.citizen-wide-modal {
-            max-width: 40%; /* Adjust the width as needed */
-        }
-        .inside-card {
-            flex: 0 0 auto; /* Adjust the size as needed */
-            margin: 10px;
-            max-width: 250px; /* Ensure each card does not exceed this width */
-        }
-        footer {
-            width: 100%;
-            background-color: #fff;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: auto;
-        }
-
-        .footer-links, .footer-policies {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links {
-            justify-content: flex-start;
-        }
-
-        .footer-policies {
-            justify-content: flex-end;
-        }
-
-        .footer-links a, .footer-policies a {
-            color: #002B5C;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .services {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        .service-card {
-            width: 250px;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            margin: 10px;
-            font-size: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bolder;
-        }
-
-        .even {
-            margin-top: 225px;
-        }
-
-        .odd {
-            margin-top: 125px;
-        }
-
-        .service-card:hover {
-            transform: scale(1.1);
-        }
-
-        .service-card.dark {
-            background-color: #002B5C;
-            color: #fff;
-        }
-
-        .service-card.light {
-            background-color: #F2F2F2;
-            color: #002B5C;
-        }
-
-        .appointment {
-            text-align: center;
-            font-weight: bold;
-            font-size: 30px;
-        }
-        .navbar {
-            background-color: transparent; /* Remove background color */
-        }
-
-        .navbar-toggler-icon {
-            background-image: url('Burger icon.png'); /* Set custom icon for toggler */
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 30px;
-            height: 30px;
-        }
-
-        .dropdown-menu {
-            background-color: #fff; /* Set background color of dropdown */
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 100vw; /* Ensure dropdown fits within viewport */
-            width: auto;
-        }
-        
-
-        .dropdown-item {
-            white-space: nowrap; /* Prevent text from wrapping */
-        }
-
-        .btn-secondary {
-            background-color: transparent; /* Remove background color */
-            border: none; /* Remove border */
-        }
-
-        .btn-secondary:focus,
-        .btn-secondary:active {
-            box-shadow: none; /* Remove focus and active shadow */
-        }
-
-        .Hamburger-Icon {
-            width: 30px; /* Adjust icon size as needed */
-            height: auto;
-        }
-        .logout-item{
-            color: red;
-        }
-    </style>
 </head>
+<style>
+    body {
+  background: linear-gradient(#00bfff, #87cefa); /* or your background image */
+  background-size: cover; 
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
 
+
+.navbar-brand-logo {
+  margin-right: 8px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif ;
+  padding-left: 6px;
+}
+
+.d-flex .username {
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+.Hamburger-Icon {
+  width: 36px;
+  height: 36px;
+}
+
+.username {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.services {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.service-card {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  margin: 10px;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+.even {
+  margin-top: 225px;
+}
+
+.odd {
+  margin-top: 125px;
+}
+
+.service-card:hover {
+  transform: scale(1.1);
+}
+
+.service-card.dark {
+  background-color: #002B5C;
+  color: #fff;
+}
+
+.service-card.light {
+  background-color: #F2F2F2;
+  color: #002B5C;
+}
+
+/* Modal Adjustments */
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Optional: space between items */
+  overflow-x: auto; /* Add horizontal scroll if needed */
+  padding: 0;
+}
+
+.modal-dialog.violation-wide-modal {
+  max-width: 30%;
+}
+
+.modal-dialog.social-wide-modal {
+  max-width: 55%;
+}
+
+.modal-dialog.educational-wide-modal {
+  max-width: 30%;
+}
+
+.modal-dialog.economic-wide-modal {
+  max-width: 85%;
+}
+
+.modal-dialog.health-wide-modal {
+  max-width: 40%;
+}
+
+.modal-dialog.citizen-wide-modal {
+  max-width: 40%;
+}
+
+.bs-icon {
+  --bs-icon-size: .75rem;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--bs-icon-size);
+  width: calc(var(--bs-icon-size) * 2);
+  height: calc(var(--bs-icon-size) * 2);
+  color: var(--bs-primary);
+}
+
+.bs-icon-xs {
+  --bs-icon-size: 1rem;
+  width: calc(var(--bs-icon-size) * 1.5);
+  height: calc(var(--bs-icon-size) * 1.5);
+}
+
+.bs-icon-sm {
+  --bs-icon-size: 1rem;
+}
+
+.bs-icon-md {
+  --bs-icon-size: 1.5rem;
+}
+
+.bs-icon-lg {
+  --bs-icon-size: 2rem;
+}
+
+.bs-icon-xl {
+  --bs-icon-size: 2.5rem;
+}
+
+.bs-icon.bs-icon-primary {
+  color: var(--bs-white);
+  background: var(--bs-primary);
+}
+
+.bs-icon.bs-icon-primary-light {
+  color: var(--bs-primary);
+  background: rgba(var(--bs-primary-rgb), .2);
+}
+
+.bs-icon.bs-icon-semi-white {
+  color: var(--bs-primary);
+  background: rgba(255, 255, 255, .5);
+}
+
+.bs-icon.bs-icon-rounded {
+  border-radius: .5rem;
+}
+
+.bs-icon.bs-icon-circle {
+  border-radius: 50%;
+}
+
+footer {
+  background: #002B5C; /* example background color */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+main {
+  flex-grow: 1;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-item{
+  color: red;
+}
+
+.inside-card {
+  background-color: rgb(0, 0, 0);
+  width: 300px;
+  height: 350px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inside-card .card-title {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.appointment {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 5%;
+}
+
+.e-services {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Keeps the link color consistent with surrounding text */
+}
+
+.carousel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.btn:active {
+  background-color: rgba(0, 0, 0, 0); /* Fully transparent */
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  /* Styles specific to laptops go here */
+  
+  /* Example: Adjusting the font size for service cards */
+  .service-card {
+    font-size: 24px; /* Adjust as needed */
+  }
+
+  /* Example: Adjusting the padding of the services section */
+  .services {
+    padding: 30px;
+    gap: 30px;
+  }
+
+  /* Example: Adjusting modal dialog sizes */
+  .modal-dialog.violation-wide-modal {
+    max-width: 40%;
+  }
+
+  .modal-dialog.social-wide-modal {
+    max-width: 60%;
+  }
+}
+</style>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\logo.png" alt="Logo" class="navbar-brand-logo">
-                <span>OSSM</span>
-            </a>
-            <span class="username">Hello, Username</span> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDropdown"
-                aria-controls="navDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="dropdown-center">
-                <a class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="Burger icon.png" alt="Burger Icon" class="Hamburger-Icon">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end"> <!-- Add dropdown-menu-end class here -->
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                    <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
-                </ul>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="assets/img/logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
+            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
+                <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="assets/img/Burger%20icon.png" alt="Burger Icon" width="36" height="36"></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                        <li><a class="dropdown-item logout-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="Services">
-        <h1>E-SERVICES</h1>
+    <div class="e-services col-xl-6 text-center mx-auto">
+        <h2>E-SERVICES</h2>
     </div>
 
-    <!-- Main content area -->
     <main>
-        <div class="services">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#violationModal">
-                <div class="service-card light odd">Violation Management</div>
-            </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#socialModal">
-                <div class="service-card dark even">Social Services</div>
-            </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
-                <div class="service-card light odd">Educational Support</div>
-            </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
-                <div class="service-card dark even">Economic & Investment Support</div>
-            </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
-                <div class="service-card light odd">Health Services</div>
-            </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
-                <div class="service-card dark even">Citizen ID</div>
-            </a>
-        </div>
+        <main>
+            <div class="services">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#violationModal">
+                    <div class="service-card light odd">Violation Management</div>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#socialModal">
+                    <div class="service-card dark even">Social Services</div>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
+                    <div class="service-card light odd">Educational Support</div>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
+                    <div class="service-card dark even">Economic & Investment Support</div>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
+                    <div class="service-card light odd">Health Services</div>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
+                    <div class="service-card dark even">Citizen ID</div>
+                </a>
+            </div>
+        </main>
     </main>
-    
+
     <!-- Violation Management Modal -->
     <div class="modal fade" id="violationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
         <div class="modal-dialog violation-wide-modal">
@@ -344,7 +357,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                     <a href="ovr-payment.html">
                         <div class="inside-card mb-4">
-                            <img src="ovr.png" class="card-img-top" alt="Type 1">
+                            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="OVR Icon">
                             <h5 class="card-title">OVR Payment</h5>
                         </div>
                     </a>
@@ -367,19 +380,19 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                     <a href="senior-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="Senior.png" class="card-img-top" alt="Type 1">
+                            <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
                     <a href="pwd-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="PWD.png" class="card-img-top" alt="Type 1">
+                            <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>
                         </div>
                     </a>
                     <a href="solo-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="Solo Parent.png" class="card-img-top" alt="Type 1">
+                            <img src="Solo Parent.png" class="card-img-top" alt="Solo Parent Icon">
                             <h5 class="card-title">Solo Parent Application</h5>
                         </div>
                     </a>
@@ -402,7 +415,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                     <a href="scholar-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="Scholar.png" class="card-img-top" alt="Type 1">
+                            <img src="Scholar.png" class="card-img-top" alt="Scholar Icon">
                             <h5 class="card-title">Scholarship Application</h5>
                         </div>
                     </a>
@@ -425,30 +438,30 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                     <a href="occupational-apply.html"></a>
                         <div class="inside-card mb-4">
-                            <img src="Occupational.png" class="card-img-top" alt="Type 1">
+                            <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
                             <h5 class="card-title">Occupational Permit</h5>
                         </div>
                     <a href="business-apply.html">    
                         <div class="inside-card mb-4">
-                            <img src="Business.png" class="card-img-top" alt="Type 1">
+                            <img src="Business.png" class="card-img-top" alt="Business Icon">
                             <h5 class="card-title">Business Permit</h5>
                         </div>
                     </a>
                     <a href="tricpermit-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="Tricycle.png" class="card-img-top" alt="Type 1">
+                            <img src="Tricycle.png" class="card-img-top" alt="Tricycle Icon">
                             <h5 class="card-title">Tricycle Permit</h5>
                         </div>
                     </a>
                     <a href="rpt-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="RPT.png" class="card-img-top" alt="Type 1">
+                            <img src="RPT.png" class="card-img-top" alt="RPT Icon">
                             <h5 class="card-title">Real Property</h5>
                         </div>
                     </a>
                     <a href="market-apply.html">
                         <div class="inside-card mb-4">
-                            <img src="Market.png" class="card-img-top" alt="Type 1">
+                            <img src="Market.png" class="card-img-top" alt="Market Icon">
                             <h5 class="card-title">Market One-Stop Shop</h5>
                         </div>
                     </a>
@@ -471,13 +484,13 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-body">
                 <a href="medical.html">
                     <div class="inside-card mb-4">
-                        <img src="_Medical.png" class="card-img-top" alt="Type 1">
+                        <img src="_Medical.png" class="card-img-top" alt="Medical Icon">
                         <h5 class="card-title">Medical Records</h5>
                     </div>
                 </a>
                 <a href="death.html">
                     <div class="inside-card mb-4">
-                        <img src="_death.png" class="card-img-top" alt="Type 1">
+                        <img src="_death.png" class="card-img-top" alt="Death Icon">
                         <h5 class="card-title">Death Certificate</h5>
                     </div>
                 </a>
@@ -497,15 +510,15 @@ if (!isset($_SESSION['email'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <a href="citizenID.html">
+                    <a href="citizen.html">
                         <div class="inside-card mb-4">
-                            <img src="ID.png" class="card-img-top" alt="Type 1">
+                            <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>
                         </div>
                     </a>
                     <a href="query.html">
                         <div class="inside-card mb-4">
-                            <img src="Query.png" class="card-img-top" alt="Type 1">
+                            <img src="Query.png" class="card-img-top" alt="Query Icon">
                             <h5 class="card-title">OSSM Query Portal</h5>
                         </div>
                     </a>
@@ -521,19 +534,42 @@ if (!isset($_SESSION['email'])) {
             <a href="#"> <div class="appointment">Book an Appointment</div></a>
         </div>
 
-    
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Services</a>
+<footer>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-3">
+                <ul class="list-inline my-2">
+                    <li class="list-inline-item"><a class="link-secondary" href="#">About usy</a></li>
+                    <li class="list-inline-item"><a class="link-secondary" href="#">Services</a></li>
+                    <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
+                </ul>
+            <div class="col">
+                <ul class="list-inline my-2">
+                    <li class="list-inline-item me-4">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                            </svg></div>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                            </svg></div>
+                    </li>
+                    <li class="list-inline-item">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
+                            </svg></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="list-inline my-2">
+                    <li class="list-inline-item"><a class="link-secondary" href="#">Privacy Policy</a></li>
+                    <li class="list-inline-item"><a class="link-secondary" href="#">Terms of Use</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-policies">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
-    </footer>
+    </div>
+</footer>
 </body>
 
 </html>

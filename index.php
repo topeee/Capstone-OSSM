@@ -156,11 +156,12 @@ if (!isset($_SESSION['email'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <a href="occupational-apply.html"></a>
+                    <a href="occupational-apply.html">
                         <div class="inside-card mb-4">
                             <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
                             <h5 class="card-title">Occupational Permit</h5>
                         </div>
+                    </a>
                     <a href="business-apply.html">    
                         <div class="inside-card mb-4">
                             <img src="Business.png" class="card-img-top" alt="Business Icon">

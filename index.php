@@ -9,6 +9,9 @@ if (!isset($_SESSION['email'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -19,6 +22,7 @@ if (!isset($_SESSION['email'])) {
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="img/png" href="logo.png">
     <title>Homepage</title>
 </head>
 
@@ -30,7 +34,7 @@ if (!isset($_SESSION['email'])) {
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,19 +52,20 @@ if (!isset($_SESSION['email'])) {
                     <div class="service-card light odd">Violation Management</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#socialModal">
-                    <div class="service-card dark even">Social Services</div>
+                    <div class="service-card dark even" >Social Services</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
-                    <div class="service-card light odd">Educational Support</div>
+                    <div class="service-card light odd" >Educational Support</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
-                    <div class="service-card dark even">Economic & Investment Support</div>
+                    <div class="service-card dark even" >Economic & Investment Support</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
-                    <div class="service-card light odd">Health Services</div>
+                    <div class="service-card light odd" >Health Services</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
-                    <div class="service-card dark even">Citizen ID</div>
+                    <div class="service-card dark even" >Citizen ID</div>
+                    
                 </a>
             </div>
         </main>
@@ -72,12 +77,11 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="ovr-payment.html">
                         <div class="inside-card mb-4">
-                            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="OVR Icon">
+                            <img src="VIOLATION.png" class="card-img-top" alt="OVR Icon">
                             <h5 class="card-title">OVR Payment</h5>
                         </div>
                     </a>
@@ -95,7 +99,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="senior-apply.html">
@@ -130,7 +133,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="scholar-apply.html">
@@ -153,7 +155,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="occupational-apply.html">
@@ -200,7 +201,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <a href="medical.html">
@@ -228,10 +228,9 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <a href="citizen.html">
+                    <a href="citizenID.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>

@@ -186,3 +186,7 @@ a {
   transition: transform 1s;
 }
 
+.fs-5 {
+  font-weight: bold;
+}
+

@@ -1,0 +1,188 @@
+body {
+  background: linear-gradient(#00bfff, #87cefa); /* or your background image */
+  background-size: cover; 
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+
+.navbar-brand-logo {
+  margin-right: 8px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif ;
+  padding-left: 6px;
+}
+
+.d-flex .username {
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+.Hamburger-Icon {
+  width: 36px;
+  height: 36px;
+}
+
+.username {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.services {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.service-card {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  margin: 10px;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+.even {
+  margin-top: 225px;
+}
+
+.odd {
+  margin-top: 125px;
+}
+
+.service-card:hover {
+  transform: scale(1.1);
+}
+
+.service-card.dark {
+  background-color: #002B5C;
+  color: #fff;
+}
+
+.service-card.light {
+  background-color: #F2F2F2;
+  color: #002B5C;
+}
+
+/* Modal Adjustments */
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Optional: space between items */
+  overflow-x: auto; /* Add horizontal scroll if needed */
+  padding: 0;
+}
+
+.modal-dialog.violation-wide-modal {
+  max-width: 30%;
+}
+
+.modal-dialog.social-wide-modal {
+  max-width: 55%;
+}
+
+.modal-dialog.educational-wide-modal {
+  max-width: 30%;
+}
+
+.modal-dialog.economic-wide-modal {
+  max-width: 85%;
+}
+
+.modal-dialog.health-wide-modal {
+  max-width: 40%;
+}
+
+.modal-dialog.citizen-wide-modal {
+  max-width: 40%;
+}
+
+
+footer {
+  background: #002B5C; /* example background color */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+main {
+  flex-grow: 1;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-item{
+  color: red;
+}
+
+.inside-card {
+  background-color: rgb(0, 0, 0);
+  width: 300px;
+  height: 350px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inside-card .card-title {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.appointment {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 5%;
+}
+
+.e-services {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Keeps the link color consistent with surrounding text */
+}
+
+.carousel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+

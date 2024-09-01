@@ -130,6 +130,19 @@
         .x {
             background-color: #1da1f2;
         }
+        .captcha-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; 
+    }
+        .error-message {
+        color: red;
+        margin-top: 5px;
+        display: none;
+        text-align: left;
+    }
+
+
     </style>
 </head>
 <body>
@@ -138,20 +151,23 @@
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
         <div class="form-container">
-            <form action="login.php" method="POST">
+            <form action="login.php" method="POST" onsubmit="return validateForm()">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
+                    <div id="emailError" class="error-message">Please enter a valid email address.</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
+                    <div id="passwordError" class="error-message">Please enter your password.</div>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-
+                <div class="captcha-container">
+                    <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
+                    <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
+                </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            
             <div class="link-container">
                 <a href="Create Account.html" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>
@@ -168,7 +184,6 @@
                 </a>
             </div>
         </div>
-    </div>
     <div class="footer-links">
         <a href="#">Terms of Service</a> | 
         <a href="#">Privacy Policy</a>
@@ -176,31 +191,36 @@
 
     <script>
         function validateForm() {
-            var email = document.getElementById('floatingInput').value;
-            var password = document.getElementById('floatingPassword').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
             var emailError = document.getElementById('emailError');
             var passwordError = document.getElementById('passwordError');
             var isValid = true;
-
-            if (!email) {
+    
+            // Email validation
+            if (!email || !validateEmail(email)) {
                 emailError.style.display = 'block';
                 isValid = false;
             } else {
                 emailError.style.display = 'none';
             }
-
+    
+            // Password validation
             if (!password) {
                 passwordError.style.display = 'block';
                 isValid = false;
             } else {
                 passwordError.style.display = 'none';
             }
-
-            if (isValid) {
-                // Proceed with form submission or other logic
-                alert('Form submitted successfully!');
-            }
+    
+            return isValid; // Return false to prevent form submission if invalid
+        }
+    
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
     </script>
+    
 </body>
 </html>

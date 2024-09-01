@@ -11,11 +11,7 @@ if (!isset($_SESSION['email'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-=======
->>>>>>> 029927c23530cbb08c50c188c89dce0b4e738281
-
+    
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">

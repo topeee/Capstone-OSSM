@@ -37,11 +37,7 @@ if (!isset($_SESSION['email'])) {
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-<<<<<<< HEAD
                         <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
-=======
-                        <li><a class="dropdown-item logout-item" href="">Logout</a></li>
->>>>>>> 029927c23530cbb08c50c188c89dce0b4e738281
                     </ul>
                 </div>
             </div>

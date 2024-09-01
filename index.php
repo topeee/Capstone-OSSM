@@ -9,6 +9,8 @@ if (!isset($_SESSION['email'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -28,9 +30,9 @@ if (!isset($_SESSION['email'])) {
             <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -252,7 +254,7 @@ if (!isset($_SESSION['email'])) {
         </div>
 <br>
         <div class="Appoinment">
-            <a href="#"> <div class="appointment">Book an Appointment</div></a>
+            <a href="Appointment_form.html"> <div class="appointment">Book an Appointment</div></a>
         </div>
 
 <footer>

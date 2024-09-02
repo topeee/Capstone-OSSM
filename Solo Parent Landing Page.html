@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.js">
+    <link rel="stylesheet" href="Footer.Clean.icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="img/png" href="logo.png">
+    <title>Solo Parent Application</title>
+</head>
+
+<style>
+    body {
+  background: linear-gradient(#00bfff, #87cefa); /* or your background image */
+  background-size: cover; 
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+
+.navbar-brand-logo {
+  margin-right: 8px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif ;
+  padding-left: 6px;
+}
+.d-flex .username {
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+.Hamburger-Icon {
+  width: 36px;
+  height: 36px;
+}
+
+.username {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+</style>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
+            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
+                <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+</body>
+</html>

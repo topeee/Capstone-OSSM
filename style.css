@@ -178,14 +178,6 @@ a {
   color: inherit; /* Keeps the link color consistent with surrounding text */
 }
 
-.carousel {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-
 .fs-5 {
   font-weight: bold;
 }

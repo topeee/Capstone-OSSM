@@ -73,6 +73,7 @@
 }
 
 .inner-card {
+    display: flex;
     margin-top: 20px;
 }
 
@@ -126,6 +127,36 @@ html, body {
   color: #fff;
   transform: translateY(-7px);
 }
+
+.guide-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.guide-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.step {
+    margin-bottom: 20px;
+}
+
+.step-content {
+    display: none; /* Hidden by default */
+    font-size: 120%;
+}
+
+.step-title {
+    cursor: pointer;
+}
+
+.step-title:hover {
+    color: #007bff; /* Optional: change color on hover */
+}
+
+
 </style>
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
@@ -194,102 +225,33 @@ html, body {
                     </div>
 
                     <br>
+
+
                     
-                    <div class="inner-card mx-auto">
-                        <div class="card border-light mb-3" style="width: 50rem;">
+                        <div class="card border-light mb-3" style="max-width: 100%; width: 60rem;">
                             <div class="card-header fs-3 fw-bold text-center">FAQs on SOLO PARENT ASSISTANCE PROGRAM</div>
-                                <div class="card-body mx-auto text-center">  
-                                    <div>
-                                        <p class="fs-5">What is the Solo Parent Assistance Program?</p>
-                                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
-                                        data-bs-content="The Solo Parent Assistance Program is a government initiative designed to provide financial and other forms of support to solo parents who are raising their children on their own. This includes educational assistance, livelihood training, and healthcare benefits.">
-                                            Answer
-                                        </button>
-                                    </div>
-
-                                    <br>
-
-                                    <div>  
-                                        <p class="fs-5">Who qualifies for the Solo Parent Assistance Program?</p>
-                                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
-                                        data-bs-content="To qualify, you must be a solo parent as defined by law (e.g., due to death of spouse, legal separation, abandonment, etc.), have dependent children, and meet the income requirements specified by the program, typically for those in low-income brackets.">
-                                            Answer
-                                        </button>
-                                    </div>
-
-                                    <br>
-
-                                    <div>
-                                        <p class="fs-5">What are the benefits provided under this program?</p>
-                                        <button type="button" class="btn btn-secondary" id="popoverBtn1" data-bs-toggle="popover" data-bs-placement="bottom" data-content-id="popoverCntnt1">
-                                            Answer
-                                        </button>
-                                        <div id="popoverCntnt1" style="display: none;">
-                                            <ul style="margin-left: -20px; padding-left: 0;">
-                                                <li>Financial Assistance: Monthly cash subsidies or one-time grants.</li>
-                                                <li>Educational Assistance: Scholarships or school supplies for children.</li>
-                                                <li>Livelihood Support: Access to training programs and financial aid for small businesses.</li>
-                                                <li>Healthcare Benefits: Free or subsidized medical services for the solo parent and their children.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <br>
-
-                                    <div>  
-                                        <p class="fs-5">How can I apply for the Solo Parent Assistance Program?</p>
-                                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
-                                        data-bs-content="To apply, you need to visit your local social welfare office or apply online through the official government portal. You will be required to submit documentation such as proof of solo parenthood, proof of income, and other relevant documents.">
-                                            Answer
-                                        </button>
-                                    </div>
-
-                                    <br>
-
-                                    <div>
-                                        <p class="fs-5">What documents are needed to apply for assistance?</p>
-                                        <button type="button" class="btn btn-secondary" id="popoverBtn2" data-bs-toggle="popover" data-bs-placement="bottom" data-content-id="popoverCntnt2">
-                                            Answer
-                                        </button>
-                                        <div id="popoverCntnt2" style="display: none;">
-                                            <ul style="margin-left: -20px; padding-left: 0;">
-                                                <li>Barangay Certificate of Indigency</li>
-                                                <li>Certificate of Enrollment or School ID of the children</li>
-                                                <li>Proof of income</li>
-                                                <li>Birth certificates of children(s)</li>
-                                            </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                <div class="inner-card mx-auto">
-                    <div class="card border-light mb-3" style="width: 60rem;">
-                        <div class="card-header fs-3 fw-bold text-center">FAQs on SOLO PARENT ASSISTANCE PROGRAM</div>
                             <div class="accordion" id="accordionOSSM">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size: 55%;">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size: 1rem;">
                                             What is the Solo Parent Assistance Program?
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
-                                        <div class="accordion-body" style="font-size: 115%;">
-                                            The Solo Parent Assistance Program is a government initiative designed to provide financial and other forms of support to solo parents who are raising their children on their own. This includes educational assistance, livelihood training, and healthcare benefits
+                                        <div class="accordion-body" style="font-size: 1.15rem;">
+                                            The Solo Parent Assistance Program is a government initiative designed to provide financial and other forms of support to solo parents who are raising their children on their own. This includes educational assistance, livelihood training, and healthcare benefits.
                                         </div>
                                     </div>
                                 </div>
-
+                    
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 55%;">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 1rem;">
                                             Who qualifies for the Solo Parent Assistance Program?
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
-                                        <div class="accordion-body" style="font-size: 115%;">
+                                        <div class="accordion-body" style="font-size: 1.15rem;">
                                             To qualify, you must be a solo parent as defined by law (e.g., due to death of spouse, legal separation, abandonment, etc.), have dependent children, and meet the income requirements specified by the program, typically for those in low-income brackets.
                                         </div>
                                     </div>
@@ -349,166 +311,159 @@ html, body {
                                 </div>
                             </div>
                         </div>
-                    </div>
                     
-                    <div class="card-body">
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 1: Enter Personal Information</p>
-                            <p class="fs-5">Fill in the following details:</p>
-                            <ul style="font-size: 150%;">
-                                <li>First Name</li>
-                                <li>Place of Birth</li>
-                                <li>Religion</li>
-                                <li>Civil Status</li>
-                                <li>PWD (Person with Disability) Status</li>
-                                <li>Solo Parent Status</li>
-                                <li>Nationality</li>
-                                <li>Occupation</li>
-                                <li>Contact Number</li>
-                                <li>Contact Email Address</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 2: Determine Your Status</p>
-                            <p class="fs-5">Question: Are you a PWD (Person with Disability)?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Proceed to Step 3.</li>
-                                <li>No: Proceed to Step 6.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 3: PWD Information</p>
-                            <p class="fs-5">Question: Do you have an existing PWD ID number?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Enter your PWD ID number and proceed to the end.</li>
-                                <li>No: Go to Step 4.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 4: Enter Personal Information</p>
-                            <p class="fs-5">Fill in the following details:</p>
-                            <ul style="font-size: 150%;">
-                                <li>Ethnic Group</li>
-                                <li>Type of Disability</li>
-                                <li>Cause of Disability</li>
-                                <li>Diagnosis</li>
-                                <li>Union Attainment</li>
-                                <li>Educational Attainment</li>
-                                <li>ID Reference Number</li>
-                                <li>SSS (Social Security System) Number</li>
-                                <li>GSIS (Government Service Insurance System) Number</li>
-                                <li>PhilHealth Number</li>
-                                <li>PAGIBIG Number</li>
-                                <li>NGO (Non-Governmental Organization) Affiliation</li>
-                                <li>NGO Contact Person</li>
-                                <li>NGO Office Address</li>
-                                <li>NGO Telephone Number</li>
-                                <li>PWD Organization Affiliation</li>
-                                <li>PWD Organization Contact Person</li>
-                                <li>PWD Organization Office Address</li>
-                                <li>PWD Organization Telephone Number</li>
-                                <li>Civic/Political Affiliation</li>
-                                <li>Civic/Political Contact Person</li>
-                                <li>Civic/Political Office Address</li>
-                                <li>Civic/Political Telephone Number</li>
-                                <li>Guardian First Name</li>
-                                <li>Guardian Last Name</li>
-                                <li>Guardian Middle Name</li>
-                                <li>Guardian Mobile Number</li>
-                                <li>Caregiver First Name</li>
-                                <li>Caregiver Last Name</li>
-                                <li>Caregiver Middle Name</li>
-                                <li>Caregiver Mobile Number</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 5: Confirm Solo Parent Status</p>
-                            <p class="fs-5">Question: Question: Are you a Solo Parent?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Proceed to Step 7.</li>
-                                <li>No: End.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 6: Solo Parent Information</p>
-                            <p class="fs-5">Question: Do you have an existing Solo Parent ID number?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Enter your Solo Parent ID number and proceed to the end.</li>
-                                <li>No: Go to Step 7.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 7: Enter Solo Parent Classifications</p>
-                            <p class="fs-5">Fill in the following details:</p>
-                            <ul style="font-size: 150%;">
-                                <li>Solo Parent Classification</li>
-                                <li>Monthly Income</li>
-                                <li>Total Family Income</li>
-                                <li>Needs/Problems of Solo Parent</li>
-                                <li>Family Resources</li>
-                                <li>Educational Attainment</li>
-                                <li>Name of Company/Agency</li>
-                                <li>Contact Number</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 8: Fill Out Family Composition</p>
-                            <p class="fs-5">For each family member, fill in:</p>
-                            <ul style="font-size: 150%;">
-                                <li>Name</li>
-                                <li>Age</li>
-                                <li>Birthdate</li>
-                                <li>Status</li>
-                                <li>PWD (if applicable)</li>
-                                <li>Relationship</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 9: Check Family Status</p>
-                            <p class="fs-5">Question: Are they currently enrolled/registered for this school year/term?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Fill in the Grade Level and proceed to the next question.</li>
-                                <li>No: Skip to employment status.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 10: Employment Information</p>
-                            <p class="fs-5">Question: Are they currently employed?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Fill in the occupation and monthly income, then proceed to Step 11.</li>
-                                <li>No: Proceed to Step 11.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 11: Additional Family Members
-                            </p>
-                            <p class="fs-5">Question: Are you a PWD (Person with Disability)?</p>
-                            <ul style="font-size: 150%;">
-                                <li>Yes: Proceed to Step 3.</li>
-                                <li>No: Proceed to Step 6.</li>
-                            </ul>
-                        </blockquote>
-                        <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Step 12: End of Form</p>
-                            <p class="fs-5">If all necessary details have been filled in, your form is complete.</p>
-                        </blockquote>
-                    </div>
+                    
+                        <div class="guide-  container">
+                            <h2 class="guide-title">What papers need to apply? See the step by step guide</h2>
+                            
+                            <div class="card-body">
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 1: Enter Personal Information</p>
+                                    <ul class="step-content">
+                                        <li>First Name</li>
+                                        <li>Place of Birth</li>
+                                        <li>Religion</li>
+                                        <li>Civil Status</li>
+                                        <li>PWD (Person with Disability) Status</li>
+                                        <li>Solo Parent Status</li>
+                                        <li>Nationality</li>
+                                        <li>Occupation</li>
+                                        <li>Contact Number</li>
+                                        <li>Contact Email Address</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 2: Determine Your Status</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Proceed to Step 3.</li>
+                                        <li>No: Proceed to Step 6.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 3: PWD Information</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Enter your PWD ID number and proceed to the end.</li>
+                                        <li>No: Go to Step 4.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 4: Enter Personal Information</p>
+                                    <ul class="step-content">
+                                        <li>Ethnic Group</li>
+                                        <li>Type of Disability</li>
+                                        <li>Cause of Disability</li>
+                                        <li>Diagnosis</li>
+                                        <li>Union Attainment</li>
+                                        <li>Educational Attainment</li>
+                                        <li>ID Reference Number</li>
+                                        <li>SSS (Social Security System) Number</li>
+                                        <li>GSIS (Government Service Insurance System) Number</li>
+                                        <li>PhilHealth Number</li>
+                                        <li>PAGIBIG Number</li>
+                                        <li>NGO (Non-Governmental Organization) Affiliation</li>
+                                        <li>NGO Contact Person</li>
+                                        <li>NGO Office Address</li>
+                                        <li>NGO Telephone Number</li>
+                                        <li>PWD Organization Affiliation</li>
+                                        <li>PWD Organization Contact Person</li>
+                                        <li>PWD Organization Office Address</li>
+                                        <li>PWD Organization Telephone Number</li>
+                                        <li>Civic/Political Affiliation</li>
+                                        <li>Civic/Political Contact Person</li>
+                                        <li>Civic/Political Office Address</li>
+                                        <li>Civic/Political Telephone Number</li>
+                                        <li>Guardian First Name</li>
+                                        <li>Guardian Last Name</li>
+                                        <li>Guardian Middle Name</li>
+                                        <li>Guardian Mobile Number</li>
+                                        <li>Caregiver First Name</li>
+                                        <li>Caregiver Last Name</li>
+                                        <li>Caregiver Middle Name</li>
+                                        <li>Caregiver Mobile Number</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 5: Confirm Solo Parent Status</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Proceed to Step 7.</li>
+                                        <li>No: End.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 6: Solo Parent Information</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Enter your Solo Parent ID number and proceed to the end.</li>
+                                        <li>No: Go to Step 7.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 7: Enter Solo Parent Classifications</p>
+                                    <ul class="step-content">
+                                        <li>Solo Parent Classification</li>
+                                        <li>Monthly Income</li>
+                                        <li>Total Family Income</li>
+                                        <li>Needs/Problems of Solo Parent</li>
+                                        <li>Family Resources</li>
+                                        <li>Educational Attainment</li>
+                                        <li>Name of Company/Agency</li>
+                                        <li>Contact Number</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 8: Fill Out Family Composition</p>
+                                    <ul class="step-content">
+                                        <li>Name</li>
+                                        <li>Age</li>
+                                        <li>Birthdate</li>
+                                        <li>Status</li>
+                                        <li>PWD (if applicable)</li>
+                                        <li>Relationship</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 9: Check Family Status</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Fill in the Grade Level and proceed to the next question.</li>
+                                        <li>No: Skip to employment status.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 10: Employment Information</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Fill in the occupation and monthly income, then proceed to Step 11.</li>
+                                        <li>No: Proceed to Step 11.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 11: Additional Family Members</p>
+                                    <ul class="step-content">
+                                        <li>Yes: Proceed to Step 3.</li>
+                                        <li>No: Proceed to Step 6.</li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="step">
+                                    <p class="fw-bold fs-4 step-title">Step 12: End of Form</p>
+                                    <ul class="step-content">
+                                        <li>If all necessary details have been filled in, your form is complete.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                     <div class="wrap">
                         <button class="button">Apply Now?</button>
-                      </div>
-
+                    </div>
 
                       <br>
             </div>
@@ -580,6 +535,22 @@ html, body {
                 answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
             });
         });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+    const stepTitles = document.querySelectorAll('.step-title');
+
+    stepTitles.forEach(title => {
+        title.addEventListener('click', () => {
+            const content = title.nextElementSibling;
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block'; // Show
+            } else {
+                content.style.display = 'none'; // Hide
+            }
+        });
+    });
+});
+
     </script>
     
 </body>

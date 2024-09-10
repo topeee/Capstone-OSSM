@@ -1,14 +1,40 @@
 <?php
 session_start();
+require_once 'db_connection.php';
 
 // Check if the user is logged in
 if (!isset($_SESSION['email'])) {
     // If not logged in, redirect to the login page
     header('Location: login.html');
     exit();
+    
 }
 
+// Get the logged in user's email from the session
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+
+// Query the database to get the user's name based on their email
+// Replace 'your_table_name' with the actual name of your table
+$query = "SELECT name FROM users WHERE email = '$email'";
+$result = $connection ? mysqli_query($connection, $query) : false;
+
+// Check if the query was successful
+if ($result) {
+    // Fetch the row from the result
+    $row = mysqli_fetch_assoc($result);
+    
+    // Get the name from the row
+    $name = $row['name'];
+} else {
+    // Handle the error if the query fails
+    $name = 'Unknown';
+}
+
+// Display the logged in user's name
+echo "Welcome, " . ($name !== 'Unknown' ? $name : 'Username') . "!";
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     

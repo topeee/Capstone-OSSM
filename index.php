@@ -1,10 +1,8 @@
 <?php
 session_start();
-require_once 'db_connection.php';
-
-
+include 'db_connection.php';
+$first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Guest';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,14 +23,7 @@ require_once 'db_connection.php';
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto">
-                <?php
-                // Check if user is logged in
-                if (isset($_SESSION['firstname'])) {
-                    $first_name = $_SESSION['firstname'];
-                    echo '<span class="username">Hello, ' . $first_name . '</span>';
-                }
-                ?>
+            <div class="d-flex align-items-center ms-auto">Hello, <?php echo htmlspecialchars($first_name); ?></span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
@@ -43,7 +34,6 @@ require_once 'db_connection.php';
             </div>
         </div>
     </nav>
-</body>
 
     <div class="e-services col-xl-6 text-center mx-auto">
         <h2>E-SERVICES</h2>
@@ -297,4 +287,3 @@ require_once 'db_connection.php';
 </body>
 
 </html>
-<?php

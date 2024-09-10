@@ -1,9 +1,22 @@
 <?php
 session_start();
 include 'db_connection.php';
-$first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Guest';
-?>
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 
+    // Fetch the user's first name from the database
+    $query = "SELECT first_name FROM users WHERE email = ?";
+    if ($stmt = $conn->prepare($query)) {
+        $stmt->bind_param("s", $email); // Assuming email is a string
+        $stmt->execute();
+        $stmt->bind_result($first_name);
+        $stmt->fetch();
+        $stmt->close();
+    }
+} else {
+    $first_name = 'Guest';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     

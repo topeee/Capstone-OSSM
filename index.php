@@ -29,8 +29,8 @@ require_once 'db_connection.php';
                 <?php
                 // Check if user is logged in
                 if (isset($_SESSION['firstname'])) {
-                    $firstname = $_SESSION['firstname'];
-                    echo '<span class="username">Hello, ' . $firstname . '</span>';
+                    $first_name = $_SESSION['firstname'];
+                    echo '<span class="username">Hello, ' . $first_name . '</span>';
                 }
                 ?>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>

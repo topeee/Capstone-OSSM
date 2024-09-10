@@ -28,9 +28,9 @@ require_once 'db_connection.php';
             <div class="d-flex align-items-center ms-auto">
                 <?php
                 // Check if user is logged in
-                if (isset($_SESSION['username'])) {
-                    $username = $_SESSION['username'];
-                    echo '<span class="username">Hello, ' . $username . '</span>';
+                if (isset($_SESSION['firstname'])) {
+                    $firstname = $_SESSION['firstname'];
+                    echo '<span class="username">Hello, ' . $firstname . '</span>';
                 }
                 ?>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
@@ -43,10 +43,7 @@ require_once 'db_connection.php';
             </div>
         </div>
     </nav>
-                </div>
-            </div>
-        </div>
-    </nav>
+</body>
 
     <div class="e-services col-xl-6 text-center mx-auto">
         <h2>E-SERVICES</h2>

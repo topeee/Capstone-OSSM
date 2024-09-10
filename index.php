@@ -1,13 +1,21 @@
 <?php
 session_start();
+include 'db_connection.php';
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-    // If not logged in, redirect to the login page
-    header('Location: login.html');
-    exit();
+    // Fetch the user's first name from the database
+    $query = "SELECT first_name FROM users WHERE email = ?";
+    if ($stmt = $conn->prepare($query)) {
+        $stmt->bind_param("s", $email); // Assuming email is a string
+        $stmt->execute();
+        $stmt->bind_result($first_name);
+        $stmt->fetch();
+        $stmt->close();
+    }
+} else {
+    $first_name = 'Guest';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +36,7 @@ if (!isset($_SESSION['email'])) {
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
+            <div class="d-flex align-items-center ms-auto">Hello, <?php echo htmlspecialchars($first_name); ?></span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>

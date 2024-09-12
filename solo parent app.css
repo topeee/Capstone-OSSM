@@ -1,0 +1,126 @@
+body {
+    background: linear-gradient(#00bfff, #87cefa); /* or your background image */
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex-grow: 1;
+}
+.navbar-brand-logo {
+    margin-right: 8px;
+  }
+  
+  .brand-name {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 6px;
+  }
+  
+  .d-flex .username {
+    font-size: 22px;
+    margin-right: 16px;
+  }
+  
+  .Hamburger-Icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .username {
+    color: white;
+    margin-left: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+  footer {
+    background: #002B5C;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+  
+  footer .list-inline-item a {
+    color: white;
+  }
+  
+  .bs-icon-circle {
+    border-radius: 50%;
+    padding: 10px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .bs-icon {
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+  
+  .list-inline-item a:hover {
+    text-decoration: underline;
+  }
+  .progress-sidebar {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    position: relative;
+}
+.progress-sidebar ul {
+    padding-left: 0;
+}
+.progress-sidebar ul li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.progress-sidebar ul li.active {
+    background-color: #0d6efd;
+    color: white;
+}
+.progress-sidebar ul li a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding-right: 30px;
+}
+/* Icon alignment to right */
+.progress-sidebar ul li i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.hidden-xs {
+    display: none;
+}
+.hide {
+    display: none;
+}
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.form-section {
+    margin-bottom: 20px;
+    clear: both; /* Prevents overlap between sections */
+}
+@media (min-width: 576px) {
+    .hidden-xs {
+        display: block;
+    }
+}    

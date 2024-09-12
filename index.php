@@ -1,17 +1,25 @@
 <?php
 session_start();
+include 'db_connection.php';
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-    // If not logged in, redirect to the login page
-    header('Location: login.html');
-    exit();
+    // Fetch the user's first name from the database
+    $query = "SELECT first_name FROM users WHERE email = ?";
+    if ($stmt = $conn->prepare($query)) {
+        $stmt->bind_param("s", $email); // Assuming email is a string
+        $stmt->execute();
+        $stmt->bind_result($first_name);
+        $stmt->fetch();
+        $stmt->close();
+    }
+} else {
+    $first_name = 'Guest';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -21,18 +29,19 @@ if (!isset($_SESSION['email'])) {
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="img/png" href="logo.png">
     <title>Homepage</title>
 </head>
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
+            <div class="d-flex align-items-center ms-auto">Hello, <?php echo htmlspecialchars($first_name); ?></span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,19 +59,20 @@ if (!isset($_SESSION['email'])) {
                     <div class="service-card light odd">Violation Management</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#socialModal">
-                    <div class="service-card dark even">Social Services</div>
+                    <div class="service-card dark even" >Social Services</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#educationalModal">
-                    <div class="service-card light odd">Educational Support</div>
+                    <div class="service-card light odd" >Educational Support</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#econModal">
-                    <div class="service-card dark even">Economic & Investment Support</div>
+                    <div class="service-card dark even" >Economic & Investment Support</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#healthModal">
-                    <div class="service-card light odd">Health Services</div>
+                    <div class="service-card light odd" >Health Services</div>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
-                    <div class="service-card dark even">Citizen ID</div>
+                    <div class="service-card dark even" >Citizen ID</div>
+                    
                 </a>
             </div>
         </main>
@@ -74,12 +84,11 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="ovr-payment.html">
                         <div class="inside-card mb-4">
-                            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\VIOLATION.png" class="card-img-top" alt="OVR Icon">
+                            <img src="VIOLATION.png" class="card-img-top" alt="OVR Icon">
                             <h5 class="card-title">OVR Payment</h5>
                         </div>
                     </a>
@@ -97,7 +106,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="senior-apply.html">
@@ -112,7 +120,7 @@ if (!isset($_SESSION['email'])) {
                             <h5 class="card-title">PWD Application</h5>
                         </div>
                     </a>
-                    <a href="solo-apply.html">
+                    <a href="Solo Parent Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Solo Parent.png" class="card-img-top" alt="Solo Parent Icon">
                             <h5 class="card-title">Solo Parent Application</h5>
@@ -132,7 +140,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="scholar-apply.html">
@@ -155,7 +162,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <a href="occupational-apply.html">
@@ -202,7 +208,6 @@ if (!isset($_SESSION['email'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <a href="medical.html">
@@ -230,10 +235,9 @@ if (!isset($_SESSION['email'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <a href="citizen.html">
+                    <a href="citizenID.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>

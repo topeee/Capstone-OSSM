@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($responseData->success) {
         if (empty($email) || empty($password)) {
-            echo "Please enter both email and password.";
+            $_SESSION['error'] = "Please enter both email and password.";
+            header('Location: login.html');
+            exit();
         } else {
             $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
             if ($stmt) {
@@ -39,22 +41,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header('Location: index.php');
                         exit();
                     } else {
-                        echo "Invalid password.";
+                        $_SESSION['error'] = "Invalid password.";
+                        header('Location: login.html');
+                        exit();
                     }
                 } else {
-                    echo "No user found with that email.";
+                    $_SESSION['error'] = "No user found with that email.";
+                    header('Location: login.html');
+                    exit();
                 }
 
                 $stmt->close();
             } else {
-                echo "Database error: Unable to prepare statement.";
+                $_SESSION['error'] = "Database error: Unable to prepare statement.";
+                header('Location: login.html');
+                exit();
             }
         }
     } else {
         // reCAPTCHA failed
-        echo "reCAPTCHA verification failed. Please try again.";
+        $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
+        header('Location: login.html');
+        exit();
     }
 } else {
-    echo "Invalid request method.";
+    $_SESSION['error'] = "Invalid request method.";
+    header('Location: login.html');
+    exit();
 }
 ?>

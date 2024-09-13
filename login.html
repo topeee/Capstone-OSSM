@@ -167,6 +167,43 @@
                     <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
+                <script>
+                    function validateForm() {
+                        var email = document.getElementById('email').value;
+                        var password = document.getElementById('password').value;
+                        var captchaResponse = grecaptcha.getResponse();
+                        var emailError = document.getElementById('emailError');
+                        var passwordError = document.getElementById('passwordError');
+                        var captchaError = document.getElementById('captchaError');
+                        var isValid = true;
+
+                        // Email validation
+                        if (!email || !validateEmail(email)) {
+                            emailError.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            emailError.style.display = 'none';
+                        }
+
+                        // Password validation
+                        if (!password) {
+                            passwordError.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            passwordError.style.display = 'none';
+                        }
+
+                        // CAPTCHA validation
+                        if (!captchaResponse) {
+                            captchaError.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            captchaError.style.display = 'none';
+                        }
+
+                        return isValid; // Return false to prevent form submission if invalid
+                    }
+                </script>
             </form>
             <div class="link-container">
                 <a href="Create Account.html" class="link">Create Account</a>

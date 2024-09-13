@@ -114,13 +114,13 @@ if (isset($_SESSION['email'])) {
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
-                    <a href="pwd-apply.html">
+                    <a href="PWD-application.html">
                         <div class="inside-card mb-4">
                             <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>
                         </div>
                     </a>
-                    <a href="solo-apply.html">
+                    <a href="Solo Parent Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Solo Parent.png" class="card-img-top" alt="Solo Parent Icon">
                             <h5 class="card-title">Solo Parent Application</h5>

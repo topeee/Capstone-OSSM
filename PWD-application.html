@@ -101,22 +101,22 @@
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" >
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" >
+                                <select class="form-select" id="gender" required></select>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" >
+                                <select class="form-select" id="civilstatus" required></select>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="self">Married</option>
                                     <option value="spouse">Widowed</option>
@@ -132,29 +132,29 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" >
+                                <input type="date" class="form-control" id="dob" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="tele" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" >
+                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
+                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" >
+                                <input type="email" class="form-control" id="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="workPhone" class="form-label">Work Phone</label>
-                                <input type="tel" class="form-control" id="workPhone" placeholder="(916) 345-0000 x123" >
+                                <input type="tel" class="form-control" id="workPhone" placeholder="(916) 345-0000 x123" required>
                             </div>
                         </div>
     
@@ -174,13 +174,13 @@
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" >
+                                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" required>
                                     <label class="form-check-label" for="yesOption">
                                         Yes
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" >
+                                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" required>
                                     <label class="form-check-label" for="noOption">
                                         No
                                     </label>
@@ -191,27 +191,27 @@
                         <div id="yesFields" style="display: none;">
                             <div class="mb-3">
                                 <label for="PWDIdNumber" class="form-label">PWD ID Number</label>
-                                <input type="text" class="form-control" id="PWDIdNumber" placeholder="Enter ID Number" >
+                                <input type="text" class="form-control" id="PWDIdNumber" placeholder="Enter ID Number" required>
                             </div>
                             <div class="mb-3">
                                 <label for="idImageUpload" class="form-label">Upload PWD ID</label>
-                                <input type="file" class="form-control" id="PWDidImageUpload" >
+                                <input type="file" class="form-control" id="PWDidImageUpload" required>
                             </div>
                         </div>
     
                         <div id="noFields" style="display: none;">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label for="PWDClassification" class="form-label">Ethnic Group</label>
-                                    <input type="text" class="form-control" id="PWDethnicGroup" placeholder="Ethnic Group" >
+                                    <label for="PWDethnicGroup" class="form-label">Ethnic Group</label>
+                                    <input type="text" class="form-control" id="PWDethnicGroup" placeholder="Ethnic Group" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="familyResources" class="form-label">Diagnosis</label>
-                                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" >
+                                    <label for="pwdDiagnosis" class="form-label">Diagnosis</label>
+                                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
-                                    <select class="form-select" id="education" >
+                                    <select class="form-select" id="education" required>
                                         <option value="" disabled selected>Choose...</option>
                                         <option value="elementary">Elementary</option>
                                         <option value="highSchool">High School</option>
@@ -223,8 +223,8 @@
     
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">ID Reference No.</label>
-                                    <input type="text" class="form-control" id="refNo" placeholder="ID Reference No." >
+                                    <label for="refNo" class="form-label">ID Reference No.</label>
+                                    <input type="text" class="form-control" id="refNo" placeholder="ID Reference No." required>
                                 </div>
                             </div>
 
@@ -234,7 +234,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="input-group control-group after-add-more">
-                                                <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" >
+                                                <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" required>
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                                 </div>
@@ -244,7 +244,7 @@
         
                                     <div class="copy-fields hide">
                                         <div class="control-group input-group" style="margin-top:10px">
-                                            <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" >
+                                            <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" required>
                                             <div class="input-group-btn">
                                                 <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                             </div>
@@ -259,7 +259,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="input-group control-group after-add-more">
-                                                <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" >
+                                                <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" required>
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                                 </div>
@@ -269,7 +269,7 @@
         
                                     <div class="copy-fields hide">
                                         <div class="control-group input-group" style="margin-top:10px">
-                                            <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" >
+                                            <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" required>
                                             <div class="input-group-btn">
                                                 <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                             </div>
@@ -291,23 +291,23 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">SSS Number</label>
-                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" >
+                                        <label for="SSS" class="form-label">SSS Number</label>
+                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">GSIS Number</label>
-                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" >
+                                        <label for="GSIS" class="form-label">GSIS Number</label>
+                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" required>
                                     </div>
                                 </div>
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PhilHealth Number</label>
-                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" >
+                                        <label for="PhilHealth" class="form-label">PhilHealth Number</label>
+                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PAGIBIG Number</label>
-                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" >
+                                        <label for="PAGIBIG" class="form-label">PAGIBIG Number</label>
+                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" required>
                                     </div>
                                 </div>
                                 
@@ -323,52 +323,52 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Landline</label>
-                                    <input type="text" class="form-control" id="landline" placeholder="Landline" >
+                                    <label for="landline" class="form-label">Landline</label>
+                                    <input type="text" class="form-control" id="landline" placeholder="Landline" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Guardian First Name</label>
-                                    <input type="text" class="form-control" id="guardianFname" placeholder="Guardian First Name" >
+                                    <label for="guardianFname" class="form-label">Guardian First Name</label>
+                                    <input type="text" class="form-control" id="guardianFname" placeholder="Guardian First Name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Guardian Last Name</label>
-                                    <input type="text" class="form-control" id="guardianLname" placeholder="Guardian Last Name" >
+                                    <label for="guardianLname" class="form-label">Guardian Last Name</label>
+                                    <input type="text" class="form-control" id="guardianLname" placeholder="Guardian Last Name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Guardian Middle Name</label>
-                                    <input type="text" class="form-control" id="guardianMname" placeholder="Guardian Middle Name" >
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="company" class="form-label">Guardian Mobile Number</label>
-                                    <input type="text" class="form-control" id="guardianNumber" placeholder="Guardian Mobile Number" >
+                                    <label for="guardianMname" class="form-label">Guardian Middle Name</label>
+                                    <input type="text" class="form-control" id="guardianMname" placeholder="Guardian Middle Name" required>
                                 </div>
                             </div>
                             
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Caregiver First Name</label>
-                                    <input type="text" class="form-control" id="careFname" placeholder="Caregiver First Name" >
+                                    <label for="guardianNumber" class="form-label">Guardian Mobile Number</label>
+                                    <input type="text" class="form-control" id="guardianNumber" placeholder="Guardian Mobile Number" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="careFname" class="form-label">Caregiver First Name</label>
+                                    <input type="text" class="form-control" id="careFname" placeholder="Caregiver First Name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Caregiver Last Name</label>
-                                    <input type="text" class="form-control" id="careLname" placeholder="Caregiver Last Name" >
+                                    <label for="careLname" class="form-label">Caregiver Last Name</label>
+                                    <input type="text" class="form-control" id="careLname" placeholder="Caregiver Last Name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Caregiver Middle Name</label>
-                                    <input type="text" class="form-control" id="careMname" placeholder="Caregiver Middle Name" >
+                                    <label for="careMname" class="form-label">Caregiver Middle Name</label>
+                                    <input type="text" class="form-control" id="careMname" placeholder="Caregiver Middle Name" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">    
                                 <div class="col-md-4">
-                                    <label for="company" class="form-label">Caregiver Mobile Number</label>
-                                    <input type="text" class="form-control" id="careNumber" placeholder="Caregiver Mobile Number" >
+                                    <label for="careNumber" class="form-label">Caregiver Mobile Number</label>
+                                    <input type="text" class="form-control" id="careNumber" placeholder="Caregiver Mobile Number" required>
                                 </div>
                             </div>
                             
@@ -385,61 +385,61 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">NGO Organization Affiliation</label>
-                                        <input type="text" class="form-control" id="ngoOrgAff" placeholder="NGO Organization Affiliation" >
+                                        <label for="ngoOrgAff" class="form-label">NGO Organization Affiliation</label>
+                                        <input type="text" class="form-control" id="ngoOrgAff" placeholder="NGO Organization Affiliation" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">NGO Contact Person</label>
-                                        <input type="text" class="form-control" id="ngoContact" placeholder="NGO Contact Person" >
+                                        <label for="ngoContact" class="form-label">NGO Contact Person</label>
+                                        <input type="text" class="form-control" id="ngoContact" placeholder="NGO Contact Person" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">NGO Office Address</label>
-                                        <input type="text" class="form-control" id="ngoOfficeAddress" placeholder="NGO Office Address" >
+                                        <label for="ngoOfficeAddress" class="form-label">NGO Office Address</label>
+                                        <input type="text" class="form-control" id="ngoOfficeAddress" placeholder="NGO Office Address" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">NGO Telephone Number</label>
-                                        <input type="text" class="form-control" id="ngoTelNo" placeholder="NGO Telephone Number" >
+                                        <label for="ngoTelNo" class="form-label">NGO Telephone Number</label>
+                                        <input type="text" class="form-control" id="ngoTelNo" placeholder="NGO Telephone Number" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PWD Organization Affiliation</label>
-                                        <input type="text" class="form-control" id="pwdOrgAff" placeholder="PWD Organization Affiliation" >
+                                        <label for="pwdOrgAff" class="form-label">PWD Organization Affiliation</label>
+                                        <input type="text" class="form-control" id="pwdOrgAff" placeholder="PWD Organization Affiliation" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PWD Organization Contact Person</label>
-                                        <input type="text" class="form-control" id="pwdOrgContact" placeholder="PWD Organization Contact Person" >
+                                        <label for="pwdOrgContact" class="form-label">PWD Organization Contact Person</label>
+                                        <input type="text" class="form-control" id="pwdOrgContact" placeholder="PWD Organization Contact Person" required>
                                     </div>
                                 </div>
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PWD Organization Office Address</label>
-                                        <input type="text" class="form-control" id="pwdOrgOffice" placeholder="PWD Organization Office Address" >
+                                        <label for="pwdOrgOffice" class="form-label">PWD Organization Office Address</label>
+                                        <input type="text" class="form-control" id="pwdOrgOffice" placeholder="PWD Organization Office Address" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">PWD Organization Telephone Number</label>
-                                        <input type="text" class="form-control" id="pwdOrgTelNo" placeholder="PWD Organization Telephone Number" >
+                                        <label for="pwdOrgTelNo" class="form-label">PWD Organization Telephone Number</label>
+                                        <input type="text" class="form-control" id="pwdOrgTelNo" placeholder="PWD Organization Telephone Number" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">Civic/Political Affiliation</label>
-                                        <input type="text" class="form-control" id="civpolAff" placeholder="Civic/Political Affiliation" >
+                                        <label for="civpolAff" class="form-label">Civic/Political Affiliation</label>
+                                        <input type="text" class="form-control" id="civpolAff" placeholder="Civic/Political Affiliation" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">Civic/Political Contact Person</label>
-                                        <input type="text" class="form-control" id="civpolContact" placeholder="Civic/Political Contact Person" >
+                                        <label for="civpolContact" class="form-label">Civic/Political Contact Person</label>
+                                        <input type="text" class="form-control" id="civpolContact" placeholder="Civic/Political Contact Person" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">Civic/Political Office Address</label>
-                                        <input type="text" class="form-control" id="civpolOfficeAddress" placeholder="Civic/Political Office Address" >
+                                        <label for="civpolOfficeAddress" class="form-label">Civic/Political Office Address</label>
+                                        <input type="text" class="form-control" id="civpolOfficeAddress" placeholder="Civic/Political Office Address" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="company" class="form-label">Civic/Political Telephone Number</label>
-                                        <input type="text" class="form-control" id="civpolTelNo" placeholder="Civic/Political Telephone Number" >
+                                        <label for="civpolTelNo" class="form-label">Civic/Political Telephone Number</label>
+                                        <input type="text" class="form-control" id="civpolTelNo" placeholder="Civic/Political Telephone Number" required>
                                     </div>
                                 </div>
                                 

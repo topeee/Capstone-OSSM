@@ -126,8 +126,8 @@
                                 <label for="civilstatus" class="form-label">Civil Status</label>
                                 <select class="form-select" id="civilstatus" required>
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="self">Self</option>
-                                    <option value="spouse">Spouse</option>
+                                    <option value="self">Married</option>
+                                    <option value="spouse">Widowed</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -584,11 +584,11 @@
                                 <!-- Affiliation Information -->
                                 <tr>
                                     <td class="category-cell"><strong>NGO Organization Affiliation:</strong></td>
-                                    <td class="detail-cell" id="summaryNgoOrgAff"></td>
+                                    <td class="detail-cell" id="summaryngoOrgAff"></td>
                                 </tr>
                                 <tr>
                                     <td class="category-cell"><strong>NGO Contact Person:</strong></td>
-                                    <td class="detail-cell" id="summaryNgoContact"></td>
+                                    <td class="detail-cell" id="summaryngoContact"></td>
                                 </tr>
                                 <tr>
                                     <td class="category-cell"><strong>NGO Office Address:</strong></td>
@@ -765,20 +765,20 @@
     document.getElementById('summaryCaregiverNumber').innerText = document.getElementById('careNumber').value || 'Not Provided';
 
     // NGO and Affiliation Information
-    document.getElementById('summaryNgoOrgAff').innerText = document.getElementById('ngoOrgAff').value || 'Not Provided';
-    document.getElementById('summaryNgoContact').innerText = document.getElementById('ngoContact').value || 'Not Provided';
-    document.getElementById('summaryNgoOfficeAddress').innerText = document.getElementById('ngoOfficeAddress').value || 'Not Provided';
-    document.getElementById('summaryNgoTelNo').innerText = document.getElementById('ngoTelNo').value || 'Not Provided';
+    document.getElementById('summaryngoOrgAff').innerText = document.getElementById('ngoOrgAff').value || 'Not Provided';
+    document.getElementById('summaryngoContact').innerText = document.getElementById('ngoContact').value || 'Not Provided';
+    document.getElementById('summaryngoOfficeAddress').innerText = document.getElementById('ngoOfficeAddress').value || 'Not Provided';
+    document.getElementById('summaryngoTelNo').innerText = document.getElementById('ngoTelNo').value || 'Not Provided';
 
-    document.getElementById('summaryPwdOrgAff').innerText = document.getElementById('pwdOrgAff').value || 'Not Provided';
-    document.getElementById('summaryPwdOrgContact').innerText = document.getElementById('pwdOrgContact').value || 'Not Provided';
-    document.getElementById('summaryPwdOrgOffice').innerText = document.getElementById('pwdOrgOffice').value || 'Not Provided';
-    document.getElementById('summaryPwdOrgTelNo').innerText = document.getElementById('pwdOrgTelNo').value || 'Not Provided';
+    document.getElementById('summarypwdOrgAff').innerText = document.getElementById('pwdOrgAff').value || 'Not Provided';
+    document.getElementById('summarypwdOrgContact').innerText = document.getElementById('pwdOrgContact').value || 'Not Provided';
+    document.getElementById('summarypwdOrgOffice').innerText = document.getElementById('pwdOrgOffice').value || 'Not Provided';
+    document.getElementById('summarypwdOrgTelNo').innerText = document.getElementById('pwdOrgTelNo').value || 'Not Provided';
 
-    document.getElementById('summaryCivpolAff').innerText = document.getElementById('civpolAff').value || 'Not Provided';
-    document.getElementById('summaryCivpolContact').innerText = document.getElementById('civpolContact').value || 'Not Provided';
-    document.getElementById('summaryCivpolOfficeAddress').innerText = document.getElementById('civpolOfficeAddress').value || 'Not Provided';
-    document.getElementById('summaryCivpolTelNo').innerText = document.getElementById('civpolTelNo').value || 'Not Provided';
+    document.getElementById('summarycivpolAff').innerText = document.getElementById('civpolAff').value || 'Not Provided';
+    document.getElementById('summarycivpolContact').innerText = document.getElementById('civpolContact').value || 'Not Provided';
+    document.getElementById('summarycivpolOfficeAddress').innerText = document.getElementById('civpolOfficeAddress').value || 'Not Provided';
+    document.getElementById('summarycivpolTelNo').innerText = document.getElementById('civpolTelNo').value || 'Not Provided';
 }
 
 

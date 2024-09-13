@@ -114,7 +114,7 @@ if (isset($_SESSION['email'])) {
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
-                    <a href="pwd-apply.html">
+                    <a href="PWD-application.html">
                         <div class="inside-card mb-4">
                             <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>

@@ -151,7 +151,7 @@
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
         <div class="form-container">
-            <form action="VALIDATION.php" method="POST">
+            <form action="login.php" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -227,7 +227,7 @@
     
             return isValid; // Return false to prevent form submission if invalid
         }
-    </script>
+
         function validateEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);

@@ -162,9 +162,9 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                     <div id="passwordError" class="error-message">Please enter your password.</div>
                 </div>
-                <div class="captcha-container" >
+                <div>
                     <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-                    <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
+        
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                
@@ -197,6 +197,7 @@
             var password = document.getElementById('password').value;
             var emailError = document.getElementById('emailError');
             var passwordError = document.getElementById('passwordError');
+            var captchaError = document.getElementById('captchaError');
             var isValid = true;
     
             // Email validation
@@ -214,10 +215,19 @@
             } else {
                 passwordError.style.display = 'none';
             }
+
+            // reCAPTCHA validation
+            var captchaResponse = grecaptcha.getResponse();
+            if (captchaResponse.length === 0) {
+                captchaError.style.display = 'block';
+                isValid = false;
+            } else {
+                captchaError.style.display = 'none';
+            }
     
             return isValid; // Return false to prevent form submission if invalid
         }
-    
+    </script>
         function validateEmail(email) {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);

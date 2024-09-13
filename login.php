@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
         
         // Create a POST request to verify the reCAPTCHA response
-        $response = file_get_contents($verify_url . '?secret=' . $secret_key . '&response=' . $recaptcha_response);
+        $response = file_get_contents("{$verify_url}?secret={$secret_key}&response={$recaptcha_response}");
         $response_data = json_decode($response);
         
         return $response_data->success;
@@ -61,4 +61,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
     $conn->close();
 }
-?>
+

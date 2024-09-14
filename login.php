@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit();
                 }
 
-                $stmt->close();
+                // Remove the unnecessary line
             } else {
                 $_SESSION['error'] = "Database error: Unable to prepare statement.";
                 header('Location: login.html');
@@ -69,4 +69,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: login.html');
     exit();
 }
-?>
+// Remove the closing tag

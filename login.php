@@ -28,35 +28,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
             if ($stmt) {
-                header('Location: index.php');
-                exit();
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->store_result();
+
+                if ($stmt->num_rows > 0) {
+                    $stmt->bind_result($hashed_password);
+                    $stmt->fetch();
+
+                    if (password_verify($password, $hashed_password)) {
+                        $_SESSION['email'] = $email;
+                        header('Location: index.php');
+                        exit();
+                    } else {
+                        $_SESSION['error'] = "Invalid password.";
+                        header('Location: login.html');
+                        exit();
+                    }
+                } else {
+                    $_SESSION['error'] = "No user found with that email.";
+                    header('Location: login.html');
+                    exit();
+                }
+
+                $stmt->close();
             } else {
-                $_SESSION['error'] = "Invalid password.";
+                $_SESSION['error'] = "Database error: Unable to prepare statement.";
                 header('Location: login.html');
                 exit();
             }
         }
-    } else {
-        $_SESSION['error'] = "No user found with that email.";
-        header('Location: login.html');
-        exit();
-    }
-    
-    $stmt->close();
-    } else {
-        $_SESSION['error'] = "Database error: Unable to prepare statement.";
-        header('Location: login.html');
-        exit();
-    }
     } else {
         // reCAPTCHA failed
         $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
         header('Location: login.html');
         exit();
     }
-    } else {
-        $_SESSION['error'] = "Invalid request method.";
-        header('Location: login.html');
-        exit();
-    }
+} else {
+    $_SESSION['error'] = "Invalid request method.";
+    header('Location: login.html');
+    exit();
+}
 ?>

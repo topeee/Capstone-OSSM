@@ -1,40 +1,10 @@
 RewriteEngine on
 
-# RewriteCond %{REQUEST_URI} ^/(.+)\.html?$ [nocase]
-
+# Remove .html (or htm) from visible URL (permanent redirect)
+RewriteCond %{REQUEST_URI} ^/(.+)\.html?$ [nocase]
 RewriteRule ^ /%1 [L,R=301]
 
 # Quietly point back to the HTML file (temporary/undefined redirect):
-
-# QRewriteCond %{REQUEST_FILENAME} !-d
-T_FILERewriteCond %{REQUEST_FILENAME}.html -f
-ME}.htmRewriteRule ^ %{REQUEST_URI}.html [END]
-
-# Add .php to visible URL (permanent redirect)
-RewriteCond %{REQUEST_URI} ^/(.+)\.php?$ [nocase]
-RewriteRule ^ /%1 [L,R=301]
-
-# Quietly point back to the PHP file (temporary/undefined redirect):
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^ %{REQUEST_URI}.php [END]
-
-
-
-# Redirect to index.php if PHP file not found
-
-RewriteCond %{REQUEST_FILENAME} !-f
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [L]
-
+RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^ %{REQUEST_URI}.html [END]
-
-# Add .php to visible URL (permanent redirect)
-RewriteCond %{REQUEST_URI} ^/(.+)\.php?$ [nocase]
-RewriteRule ^ /%1 [L,R=301]
-
-# Quietly point back to the PHP file (temporary/undefined redirect):
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^ %{REQUEST_URI}.php [END]

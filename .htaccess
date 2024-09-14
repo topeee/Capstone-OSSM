@@ -1,9 +1,19 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ - [R=404,L]
+To hide the file extensions `.html` and `.php` in URLs, you can use the following code in your `.htaccess` file:
 
-RewriteEngine on
+```apache
+RewriteEngine On
+
+# Hide .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ - [R=404,L]
+RewriteRule ^([^\.]+)/?$ $1.html [L]
+
+# Hide .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)/?$ $1.php [L]
+```
+
+Make sure to place this code in the `.htaccess` file located in the root directory of your website. This will allow you to access `.html` and `.php` files without explicitly including the file extensions in the URLs.
+
+Please note that mod_rewrite module needs to be enabled on your server for this to work.

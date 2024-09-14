@@ -45,7 +45,7 @@ if (!isset($_SESSION['email'])) {
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>

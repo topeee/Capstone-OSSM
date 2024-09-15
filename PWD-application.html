@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="pwd app.css">
       <link rel="icon" type="img/png" href="logo.png">
-      <title>PWD Application</title>
+      <title>PWD Application Form</title>
 
     </head>
     <body>
@@ -291,7 +291,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="SSS" class="form-label">SSS Number</label>
+                                        <label for="SSS" class="form-label">SSS Number/UMID Number</label>
                                         <input type="text" class="form-control" id="SSS" placeholder="SSS Number" required>
                                     </div>
                                     <div class="col-md-4">
@@ -320,58 +320,78 @@
                             <h4>Contact Information of Guardian/Caregiver</h4>
                             
                             <br>
-
                             <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="landline" class="form-label">Landline</label>
-                                    <input type="text" class="form-control" id="landline" placeholder="Landline" required>
+                                <div class="col-md-6">
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="contactType" id="guardianOption" value="guardian" required>
+                                    <label class="form-check-label" for="guardianOption">
+                                      Guardian
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="contactType" id="caregiverOption" value="caregiver" required>
+                                    <label class="form-check-label" for="caregiverOption">
+                                      Caregiver
+                                    </label>
+                                  </div>
                                 </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="guardianFname" class="form-label">Guardian First Name</label>
-                                    <input type="text" class="form-control" id="guardianFname" placeholder="Guardian First Name" required>
+                              </div>
+                                <!-- Guardian Info -->
+                                <div id="guardianInfo" style="display: none;">
+                                    <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="guardianFname" class="form-label">Guardian First Name</label>
+                                        <input type="text" class="form-control" id="guardianFname" placeholder="Guardian First Name">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="guardianLname" class="form-label">Guardian Last Name</label>
+                                        <input type="text" class="form-control" id="guardianLname" placeholder="Guardian Last Name">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="guardianMname" class="form-label">Guardian Middle Name</label>
+                                        <input type="text" class="form-control" id="guardianMname" placeholder="Guardian Middle Name">
+                                    </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="guardianNumber" class="form-label">Guardian Mobile Number</label>
+                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Guardian Mobile Number">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="guardianNumber" class="form-label">Landline</label>
+                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Landline">
+                                    </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="guardianLname" class="form-label">Guardian Last Name</label>
-                                    <input type="text" class="form-control" id="guardianLname" placeholder="Guardian Last Name" required>
+                                
+                                <!-- Caregiver Info -->
+                                <div id="caregiverInfo" style="display: none;">
+                                    <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="careFname" class="form-label">Caregiver First Name</label>
+                                        <input type="text" class="form-control" id="careFname" placeholder="Caregiver First Name">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="careLname" class="form-label">Caregiver Last Name</label>
+                                        <input type="text" class="form-control" id="careLname" placeholder="Caregiver Last Name">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="careMname" class="form-label">Caregiver Middle Name</label>
+                                        <input type="text" class="form-control" id="careMname" placeholder="Caregiver Middle Name">
+                                    </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="careNumber" class="form-label">Caregiver Mobile Number</label>
+                                        <input type="text" class="form-control" id="careNumber" placeholder="Caregiver Mobile Number">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="guardianNumber" class="form-label">Landline</label>
+                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Landline">
+                                    </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="guardianMname" class="form-label">Guardian Middle Name</label>
-                                    <input type="text" class="form-control" id="guardianMname" placeholder="Guardian Middle Name" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="guardianNumber" class="form-label">Guardian Mobile Number</label>
-                                    <input type="text" class="form-control" id="guardianNumber" placeholder="Guardian Mobile Number" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="careFname" class="form-label">Caregiver First Name</label>
-                                    <input type="text" class="form-control" id="careFname" placeholder="Caregiver First Name" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="careLname" class="form-label">Caregiver Last Name</label>
-                                    <input type="text" class="form-control" id="careLname" placeholder="Caregiver Last Name" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="careMname" class="form-label">Caregiver Middle Name</label>
-                                    <input type="text" class="form-control" id="careMname" placeholder="Caregiver Middle Name" required>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">    
-                                <div class="col-md-4">
-                                    <label for="careNumber" class="form-label">Caregiver Mobile Number</label>
-                                    <input type="text" class="form-control" id="careNumber" placeholder="Caregiver Mobile Number" required>
-                                </div>
-                            </div>
-                            
+                                                                                        
                         </form>    
                     </div>
                 
@@ -787,7 +807,20 @@
             }
         });
 
-      
+                $(document).ready(function() {
+        // Listen for changes to the radio buttons
+        $('input[name="contactType"]').change(function() {
+            if (this.value === 'guardian') {
+            $('#guardianInfo').show();
+            $('#caregiverInfo').hide();
+            } else if (this.value === 'caregiver') {
+            $('#guardianInfo').hide();
+            $('#caregiverInfo').show();
+            }
+        });
+        });
+
+
       // Progress sidebar click event handler
       $(".progress-item").click(function() {
           let targetSection = $(this).data('target');

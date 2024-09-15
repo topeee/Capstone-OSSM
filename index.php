@@ -16,6 +16,10 @@ if (isset($_SESSION['email'])) {
 } else {
     $first_name = 'Guest';
 }
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +40,12 @@ if (isset($_SESSION['email'])) {
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto">Hello, <?php echo htmlspecialchars($first_name); ?></span>
+            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>

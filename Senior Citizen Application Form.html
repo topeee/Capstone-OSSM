@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
       <link rel="icon" type="img/png" href="logo.png">
-      <title>Solo Parent Application</title>
+      <title>Senior Citizen Application Form</title>
 
     </head>
     <body>
@@ -179,7 +179,7 @@
                           <!-- Educational Attainment -->
                           <div class="row mb-3">
                               <div class="col-md-6">
-                                  <label for="education" class="form-label">Educational Attainment</label>
+                                  <label for="education" class="form-label"><h5>Educational Attainment</h5></label>
                                   <select class="form-select" id="education" required>
                                       <option value="" disabled selected>Choose...</option>
                                       <option value="elementary">Elementary</option>
@@ -229,16 +229,15 @@
                                   <label for="jobTitle" class="form-label">Job Title</label>
                                   <input type="text" name="jobTitle[]" class="form-control" placeholder="Job Title" required>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                   <label for="yearsWorked" class="form-label">Years Worked</label>
                                   <input type="number" name="yearsWorked[]" class="form-control" placeholder="Years Worked" required>
                               </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-danger remove-employment" type="button">Remove</button>
+                                </div>
                             </div>
-                            <div class="row mb-3">
-                              <div class="col-md-3">
-                                  <button class="btn btn-danger remove-employment" type="button">Remove</button>
-                              </div>
-                            </div>
+                            
                       </div>
               
     
@@ -480,6 +479,23 @@
                               <td><strong>Phone:</strong></td>
                               <td id="summaryPhone"></td>
                           </tr>
+
+                        <!-- Sectoral Information -->
+                        <tr id="educationRow">
+                            <td><strong>Educational Attainment:</strong></td>
+                            <td id="summaryEducation"></td>
+                        </tr>
+                        <tr id="companyRow">
+                            <td><strong>Employment History:</strong></td>
+                            <td id="summaryCompany"></td>
+                        </tr>
+
+                  
+                          <!-- Family Composition -->
+                          <tr>
+                              <td><strong>Family Members:</strong></td>
+                              <td id="summaryFamilyMembers"></td>
+                          </tr>
                   
                           <!-- Identification Section -->
                           <tr>
@@ -505,22 +521,6 @@
                           <tr>
                               <td><strong>Digital Copy of Valid ID:</strong></td>
                               <td id="summaryValidIdImage"></td>
-                          </tr>
-                  
-                          <!-- Sectoral Information -->
-                          <tr id="educationRow" style="display: none;">
-                              <td><strong>Educational Attainment:</strong></td>
-                              <td id="summaryEducation"></td>
-                          </tr>
-                          <tr id="companyRow" style="display: none;">
-                              <td><strong>Employment History:</strong></td>
-                              <td id="summaryCompany"></td>
-                          </tr>
-                  
-                          <!-- Family Composition -->
-                          <tr>
-                              <td><strong>Family Members:</strong></td>
-                              <td id="summaryFamilyMembers"></td>
                           </tr>
                       </tbody>
                   </table>
@@ -613,6 +613,10 @@
     document.getElementById('summaryBloodType').innerText = bloodType;
     document.getElementById('summaryAddress').innerText = address;
 
+    document.getElementById('educationRow').style.display = education ? '' : 'none';
+    document.getElementById('companyRow').style.display = employmentHistory ? '' : 'none';
+
+
     // Identification Section
     const signatureImage = document.getElementById('signatureImageUpload').value.split('\\').pop();  // Get file name
     const pictureImage = document.getElementById('1x1pictureImageUpload').value.split('\\').pop();  // Get file name
@@ -637,6 +641,19 @@
         }
     });
     document.getElementById('summaryFamilyMembers').innerText = familyNames.length > 0 ? familyNames.join(', ') : 'No Family Members Added';
+        // Educational Attainment
+    const education = document.getElementById('education').value || 'Not Provided';
+    document.getElementById('summaryEducation').innerText = education;
+
+    // Employment History
+    let employmentHistory = '';
+    document.querySelectorAll('input[name="companyName[]"]').forEach((el, index) => {
+        const companyName = el.value || 'Not Provided';
+        const jobTitle = document.querySelectorAll('input[name="jobTitle[]"]')[index].value || 'Not Provided';
+        const yearsWorked = document.querySelectorAll('input[name="yearsWorked[]"]')[index].value || 'Not Provided';
+        employmentHistory += `${companyName} - ${jobTitle} (${yearsWorked} years)<br>`;
+    });
+    document.getElementById('summaryCompany').innerHTML = employmentHistory || 'No Employment History Added';
 }
 
             

@@ -365,115 +365,126 @@
 
                           <div class="mb-3">
                             <label for="idImageUpload" class="form-label">Digital Copy of TIN ID</label>
-                            <input type="file" class="form-control" id="signatureImageUpload" required>
+                            <input type="file" class="form-control" id="tinImageUpload" required>
                           </div>
                           <div class="mb-3">
-                            <label for="idImageUpload" class="form-label">Digital Copy of 1x1 PhilHealth ID</label>
-                            <input type="file" class="form-control" id="1x1pictureImageUpload" required>
+                            <label for="idImageUpload" class="form-label">Digital Copy of PhilHealth ID</label>
+                            <input type="file" class="form-control" id="philpictureImageUpload" required>
                           </div>
                       </form>
                     </div>
 
 
                 <!-- Section 5: User Summary Section -->
-                <div class="form-section" id="section5" style="display: none;">
-                  <h4>User Summary</h4>
-                  <table class="table table-bordered">
-                      <thead>
-                          <tr>
-                              <th>Category</th>
-                              <th>Details</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <!-- Basic Information -->
-                          <tr>
-                              <td><strong>Name:</strong></td>
-                              <td id="summaryName"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Gender:</strong></td>
-                              <td id="summaryGender"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Civil Status:</strong></td>
-                              <td id="summaryCivilStatus"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Date of Birth:</strong></td>
-                              <td id="summaryDob"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Birth Place:</strong></td>
-                              <td id="summaryBirthPlace"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Age:</strong></td>
-                              <td id="summaryAge"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Blood Type:</strong></td>
-                              <td id="summaryBloodType"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Address:</strong></td>
-                              <td id="summaryAddress"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Telephone:</strong></td>
-                              <td id="summaryTele"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Phone:</strong></td>
-                              <td id="summaryPhone"></td>
-                          </tr>
-
-                        <!-- Sectoral Information -->
-                        <tr id="educationRow">
-                            <td><strong>Educational Attainment:</strong></td>
-                            <td id="summaryEducation"></td>
-                        </tr>
-                        <tr id="companyRow">
-                            <td><strong>Employment History:</strong></td>
-                            <td id="summaryCompany"></td>
-                        </tr>
-
-                  
-                          <!-- Family Composition -->
-                          <tr>
-                              <td><strong>Family Members:</strong></td>
-                              <td id="summaryFamilyMembers"></td>
-                          </tr>
-                  
-                          <!-- Identification Section -->
-                          <tr>
-                              <td><strong>Digital Copy of Signature:</strong></td>
-                              <td id="summarySignatureImage"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Digital Copy of 1x1 Picture:</strong></td>
-                              <td id="summaryPictureImage"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Digital Copy of Left Thumb Mark:</strong></td>
-                              <td id="summaryLtmImage"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Digital Copy of Right Thumb Mark:</strong></td>
-                              <td id="summaryRtmImage"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Digital Copy of Birth Certificate:</strong></td>
-                              <td id="summaryBirthCertImage"></td>
-                          </tr>
-                          <tr>
-                              <td><strong>Digital Copy of Valid ID:</strong></td>
-                              <td id="summaryValidIdImage"></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  
-                </div>
+                    <div class="form-section" id="section5" style="display: none;">
+                        <h4>User Summary</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Basic Information -->
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td id="summaryName"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gender:</strong></td>
+                                    <td id="summaryGender"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Civil Status:</strong></td>
+                                    <td id="summaryCivilStatus"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date of Birth:</strong></td>
+                                    <td id="summaryDob"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Birth Place:</strong></td>
+                                    <td id="summaryBirthPlace"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Age:</strong></td>
+                                    <td id="summaryAge"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Blood Type:</strong></td>
+                                    <td id="summaryBloodType"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nationality:</strong></td>
+                                    <td id="summaryNationality"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Religion:</strong></td>
+                                    <td id="summaryReligion"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address:</strong></td>
+                                    <td id="summaryAddress"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Telephone:</strong></td>
+                                    <td id="summaryTele"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td id="summaryPhone"></td>
+                                </tr>
+                    
+                                <!-- Family Information -->
+                                <tr>
+                                    <td><strong>Father's Name:</strong></td>
+                                    <td id="summaryFatherName"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Father's Age:</strong></td>
+                                    <td id="summaryFatherAge"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Father's Occupation:</strong></td>
+                                    <td id="summaryFatherOccupation"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mother's Name:</strong></td>
+                                    <td id="summaryMotherName"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mother's Age:</strong></td>
+                                    <td id="summaryMotherAge"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mother's Occupation:</strong></td>
+                                    <td id="summaryMotherOccupation"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Siblings:</strong></td>
+                                    <td id="summarySiblings"></td>
+                                </tr>
+                    
+                                <!-- Educational Background -->
+                                <tr>
+                                    <td><strong>Educational Background:</strong></td>
+                                    <td id="summaryEducation"></td>
+                                </tr>
+                    
+                                <!-- Identification Section -->
+                                <tr>
+                                    <td><strong>Digital Copy of TIN ID:</strong></td>
+                                    <td id="summaryTinId"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Digital Copy of PhilHealth ID:</strong></td>
+                                    <td id="summaryPhilHealthId"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+  
     
     
                 <!-- Navigation Buttons -->
@@ -543,6 +554,8 @@
     const gender = document.getElementById('gender').value || 'Not Provided';
     const civilStatus = document.getElementById('civilstatus').value || 'Not Provided';
     const bloodType = document.getElementById('bloodType').value || 'Not Provided';
+    const nationality = document.getElementById('nationality').value || 'Not Provided';
+    const religion = document.getElementById('religion').value || 'Not Provided';
     const address = document.getElementById('address').value || 'Not Provided';
     const tele = document.getElementById('tele').value || 'Not Provided';
     const phone = document.getElementById('phone').value || 'Not Provided';
@@ -552,57 +565,51 @@
     document.getElementById('summaryGender').innerText = gender;
     document.getElementById('summaryCivilStatus').innerText = civilStatus;
     document.getElementById('summaryDob').innerText = birthdate;
-    document.getElementById('summaryTele').innerText = tele;
-    document.getElementById('summaryPhone').innerText = phone;
-
-    // Add new fields to the summary for Basic Information
     document.getElementById('summaryBirthPlace').innerText = birthPlace;
     document.getElementById('summaryAge').innerText = age;
     document.getElementById('summaryBloodType').innerText = bloodType;
+    document.getElementById('summaryNationality').innerText = nationality;
+    document.getElementById('summaryReligion').innerText = religion;
     document.getElementById('summaryAddress').innerText = address;
+    document.getElementById('summaryTele').innerText = tele;
+    document.getElementById('summaryPhone').innerText = phone;
 
-    document.getElementById('educationRow').style.display = education ? '' : 'none';
-    document.getElementById('companyRow').style.display = employmentHistory ? '' : 'none';
+    // Father's Information
+    const fatherName = document.getElementById('fatherName').value || 'Not Provided';
+    const fatherAge = document.getElementById('fatherAge').value || 'Not Provided';
+    const fatherOccupation = document.getElementById('fatherOccupation').value || 'Not Provided';
+    document.getElementById('summaryFatherName').innerText = fatherName;
+    document.getElementById('summaryFatherAge').innerText = fatherAge;
+    document.getElementById('summaryFatherOccupation').innerText = fatherOccupation;
 
+    // Mother's Information
+    const motherName = document.getElementById('motherName').value || 'Not Provided';
+    const motherAge = document.getElementById('motherAge').value || 'Not Provided';
+    const motherOccupation = document.getElementById('motherOccupation').value || 'Not Provided';
+    document.getElementById('summaryMotherName').innerText = motherName;
+    document.getElementById('summaryMotherAge').innerText = motherAge;
+    document.getElementById('summaryMotherOccupation').innerText = motherOccupation;
 
-    // Identification Section
-    const signatureImage = document.getElementById('signatureImageUpload').value.split('\\').pop();  // Get file name
-    const pictureImage = document.getElementById('1x1pictureImageUpload').value.split('\\').pop();  // Get file name
-    const ltmImage = document.getElementById('ltmImageUpload').value.split('\\').pop();  // Get file name
-    const rtmImage = document.getElementById('rtmImageUpload').value.split('\\').pop();  // Get file name
-    const birthCertImage = document.getElementById('birthCertificateImageUpload').value.split('\\').pop();  // Get file name
-    const validIdImage = document.getElementById('validDdImageUpload').value.split('\\').pop();  // Get file name
-
-    // Update Summary Table with Identification Information
-    document.getElementById('summarySignatureImage').innerText = signatureImage || 'No file uploaded';
-    document.getElementById('summaryPictureImage').innerText = pictureImage || 'No file uploaded';
-    document.getElementById('summaryLtmImage').innerText = ltmImage || 'No file uploaded';
-    document.getElementById('summaryRtmImage').innerText = rtmImage || 'No file uploaded';
-    document.getElementById('summaryBirthCertImage').innerText = birthCertImage || 'No file uploaded';
-    document.getElementById('summaryValidIdImage').innerText = validIdImage || 'No file uploaded';
-
-    // Family Composition (Optional Section)
-    const familyNames = [];
-    document.querySelectorAll('input[name="familyName[]"]').forEach((el) => {
-        if (el.value) {
-            familyNames.push(el.value);
-        }
+    // Siblings
+    const siblings = [];
+    document.querySelectorAll('input[name="siblingName[]"]').forEach((el, index) => {
+        const siblingName = el.value || 'Not Provided';
+        const siblingAge = document.querySelectorAll('input[name="siblingAge[]"]')[index].value || 'Not Provided';
+        siblings.push(`${siblingName} (${siblingAge} years old)`);
     });
-    document.getElementById('summaryFamilyMembers').innerText = familyNames.length > 0 ? familyNames.join(', ') : 'No Family Members Added';
-        // Educational Attainment
+    document.getElementById('summarySiblings').innerText = siblings.length > 0 ? siblings.join(', ') : 'No Siblings Added';
+
+    // Educational Background
     const education = document.getElementById('education').value || 'Not Provided';
     document.getElementById('summaryEducation').innerText = education;
 
-    // Employment History
-    let employmentHistory = '';
-    document.querySelectorAll('input[name="companyName[]"]').forEach((el, index) => {
-        const companyName = el.value || 'Not Provided';
-        const jobTitle = document.querySelectorAll('input[name="jobTitle[]"]')[index].value || 'Not Provided';
-        const yearsWorked = document.querySelectorAll('input[name="yearsWorked[]"]')[index].value || 'Not Provided';
-        employmentHistory += `${companyName} - ${jobTitle} (${yearsWorked} years)<br>`;
-    });
-    document.getElementById('summaryCompany').innerHTML = employmentHistory || 'No Employment History Added';
+    // Identification Section
+    const tinId = document.getElementById('tinIdImageUpload').value.split('\\').pop() || 'No file uploaded';
+    const philHealthId = document.getElementById('philHealthIdImageUpload').value.split('\\').pop() || 'No file uploaded';
+    document.getElementById('summaryTinId').innerText = tinId;
+    document.getElementById('summaryPhilHealthId').innerText = philHealthId;
 }
+
 
             
       

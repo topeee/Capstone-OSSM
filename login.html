@@ -192,6 +192,8 @@
 
     <script>
         function validateForm() {
+            console.log("Validation function triggered"); // Debugging log
+
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             var emailError = document.getElementById('emailError');
@@ -201,6 +203,7 @@
 
             // Email validation
             if (!email || !validateEmail(email)) {
+                console.log("Invalid email"); // Debugging log
                 emailError.style.display = 'block';
                 isValid = false;
             } else {
@@ -209,6 +212,7 @@
 
             // Password validation
             if (!password) {
+                console.log("Missing password"); // Debugging log
                 passwordError.style.display = 'block';
                 isValid = false;
             } else {
@@ -231,6 +235,7 @@
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
+
     </script>
     
 </body>

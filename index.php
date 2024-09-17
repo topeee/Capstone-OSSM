@@ -146,7 +146,7 @@ if (!isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="scholar-apply.html">
+                    <a href="Scholarship Application Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Scholar.png" class="card-img-top" alt="Scholar Icon">
                             <h5 class="card-title">Scholarship Application</h5>

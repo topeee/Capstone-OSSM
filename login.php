@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php';
+include 'db_connection.php'; // Assuming db_connection.php connects to the database
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
@@ -21,11 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $responseData = json_decode($response);
 
     if ($responseData->success) {
+        // Validate email and password
         if (empty($email) || empty($password)) {
             $_SESSION['error'] = "Please enter both email and password.";
             header('Location: login.html');
             exit();
         } else {
+            // Prepare the SQL statement
             $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
             if ($stmt) {
                 $stmt->bind_param("s", $email);
@@ -36,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_result($hashed_password);
                     $stmt->fetch();
 
+                    // Verify the password
                     if (password_verify($password, $hashed_password)) {
                         $_SESSION['email'] = $email;
                         header('Location: index.php');
@@ -69,4 +72,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: login.html');
     exit();
 }
-?>

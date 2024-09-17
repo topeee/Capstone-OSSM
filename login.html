@@ -151,7 +151,7 @@
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
         <div class="form-container">
-            <form action="login.php" method="POST">
+            <form action="login.php" method="POST" onsubmit="return validateForm()">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -162,14 +162,13 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                     <div id="passwordError" class="error-message">Please enter your password.</div>
                 </div>
-                <div>
+                <div class="mb-3">
                     <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-        
+                    <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-               
-                
             </form>
+            
             <div class="link-container">
                 <a href="Create Account.html" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>
@@ -199,7 +198,7 @@
             var passwordError = document.getElementById('passwordError');
             var captchaError = document.getElementById('captchaError');
             var isValid = true;
-    
+
             // Email validation
             if (!email || !validateEmail(email)) {
                 emailError.style.display = 'block';
@@ -207,7 +206,7 @@
             } else {
                 emailError.style.display = 'none';
             }
-    
+
             // Password validation
             if (!password) {
                 passwordError.style.display = 'block';
@@ -224,7 +223,7 @@
             } else {
                 captchaError.style.display = 'none';
             }
-    
+
             return isValid; // Return false to prevent form submission if invalid
         }
 

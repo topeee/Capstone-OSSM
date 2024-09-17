@@ -112,13 +112,13 @@ if (!isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="senior-apply.html">
+                    <a href="Solo Parent Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
-                    <a href="PWD-application.html">
+                    <a href="PWD-landing-page.html">
                         <div class="inside-card mb-4">
                             <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>

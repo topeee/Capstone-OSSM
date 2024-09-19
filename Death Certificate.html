@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="pwd app.css">
       <link rel="icon" type="img/png" href="logo.png">
-      <title>Medical Record Form</title>
+      <title>Death Certificate Request</title>
 
     </head>
     <body>
@@ -49,15 +49,21 @@
             <div id="progress-menu" class="col-md-3 progress-sidebar hidden-xs" style="background-color: rgb(227, 249, 255);">
                 <h4 class="text-center">Progress</h4>
                 <ul>
-                    <li class="progress-item active" data-target="basic-information-section">
+                    <li class="progress-item active" data-target="request-information">
                         <a href="#">
-                            Basic Information
+                            Request Details
                             <i class="bi bi-check-square-fill"></i>
                         </a>
                     </li>
-                    <li class="progress-item" data-target="medical-section">
+                    <li class="progress-item" data-target="deceased-information">
                         <a href="#">
-                            Medical Information
+                            Deceased Information
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
+                    <li class="progress-item" data-target="informant-section">
+                        <a href="#">
+                            Informant Section
                             <i class="bi bi-check-square"></i>
                         </a>
                     </li>
@@ -73,28 +79,55 @@
             <!-- Main form -->
             <div class="col-md-9">
                 <!-- Basic Information Section -->
-                <div class="form-section" id="basic-information-section">
-                    <h4>Basic Information</h4>
+                <div class="form-section" id="request-information">
+                    <h4>Request Details</h4>
                     <p class="alert alert-info">
-                        A separate application must be filed for each person seeking assistance. This is for Medical Record Only.
+                        A separate application must be filed for each person seeking assistance. This is for Death Certificate Request Only.
                     </p>
     
                     <form>
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <label for="certificateType" class="form-label">Certificate type</label>
+                                <input type="text" class="form-control" id="certificateType" placeholder="Certificate type" required>
                             </div>
                             <div class="col-md-4">
-                                <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <label for="typeIssuance" class="form-label">Type of Issuance</label>
+                                <input type="text" class="form-control" id="typeIssuance" placeholder="Type of Issuance" required>
                             </div>
                             <div class="col-md-4">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <label for="noCopies" class="form-label">Number of Copies</label>
+                                <input type="number" class="form-control" id="noCopies" placeholder="Number of Copies" required>
                             </div>
                         </div>
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                                <br><br>
+                                <i class="bi bi-info-circle-fill"></i>       
+                                *Note: Please fill up the following required fields. Please fill out the following required * fields, put N/A if not applicable.
+                            </div>
+                    </form>
+                </div>
     
+                <!-- Sectoral Information Section -->
+                <div class="form-section" id="deceased-information" style="display: none;">
+                    <form>
+                        <h4>Deceased Information</h4>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="lName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lName" placeholder="Last Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="fName" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="mInitial" class="form-label">Middle Initial</label>
+                                <input type="text" class="form-control" id="mInitial" placeholder="Middle Initial" required>
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="gender" class="form-label">Gender</label>
@@ -105,72 +138,98 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" required>
+                                <label for="cInfo" class="form-label">Corpse Disposal</label>
+                                <select class="form-select" id="cInfo" required>
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="self">Married</option>
-                                    <option value="spouse">Widowed</option>
+                                    <option value="burial">Burial</option>
+                                    <option value="directBurial">Direct Burial</option>
+                                    <option value="cremation">Cremation</option>
+                                    <option value="directCremation">Direct Cremation</option>
+                                    <option value="others">Others</option>
                                 </select>
-                            </div>                            
+                            </div>
+                            <div class="col-md-4" id="othersField" style="display: none;"> 
+                                <label for="others" class="form-label">Others</label>
+                                <input type="text" class="form-control" id="others" placeholder="Specify">
+                            </div>
+                        </div>                        
+
+<br>
+
+                        <div class="row mb-3">
+                            <h4>Death Information</h4>
+                            <h5>Place of Death</h5>
                             <div class="col-md-4">
-                                <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
+                                <label for="nameDeath" class="form-label">Name of Cemetery or Crematory</label>
+                                <input type="text" class="form-control" id="nameDeath" placeholder="Name of Cemetery or Crematory" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="address" class="form-label">Address of Cemetery or Crematory</label>
+                                <input type="text" class="form-control" id="address" placeholder="Address of Cemetery or Crematory" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dateDeath" class="form-label">Date of Death</label>
+                                <input type="date" class="form-control" id="dateDeath" placeholder="Date of Death" required>
                             </div>
                         </div>
+                            
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="timeDeath" class="form-label">Time of Death</label>
+                                <input type="time" class="form-control" id="timeDeath" placeholder="Time of Death" required>
+                            </div>
+                        </div>
+
+                            <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                                <br><br>
+                                <i class="bi bi-info-circle-fill"></i>       
+                                *Note: Please fill up the following required fields. Please fill out the following required * fields, put N/A if not applicable.
+                            </div>
+                    </form>
+                </div>
     
+
+
+                <div class="form-section" id="informant-section" style="display: none;">
+                    <form>
+                        <h4>Informant Information</h4>
+                        <p class="alert alert-info">
+                            An Informant is the person who provides the information of the deceased and such other facts relevant to the circumstances of the deceased.
+                            This portion is where the Informant certifies the truth and correctness of the information appearing on the death certificate.
+                            It also contains information as to the identity of the Informant, and his/her signature.
+                        </p>
+
+                        <p class="alert alert-secondary">I hereby certify that all information supplied are true and correct to my own knowledge and belief:</p>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                                <label for="Iname" class="form-label">Informant's Name</label>
+                                <input type="text" class="form-control" id="Iname" placeholder="Informant's Name" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <div class=" col-md-6">
+                                <label for="relationship" class="form-label">Relationship to the Deceased</label>
+                                <input type="text" class="form-control" id="relationship" placeholder="Relationship to the Deceased" required>
                             </div>
                         </div>
-    
+
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="Address" class="form-label">Adress</label>
-                                <input type="text " class="form-control" id="address" placeholder="Address" required>
-                            </div>
+                             <div class="col-md-6">
+                                <label for="iAddress" class="form-label">Informant's Address</label>
+                                <input type="text" class="form-control" id="iAddress" placeholder="Informant's Address" required>
+                             </div>
+                             <div class="col-md-6">
+                                <label for="dateCert" class="form-label">Date Of Certification</label>
+                                <input type="date" class="form-control" id="dateCert" placeholder="Date Of Certification" required>
+                             </div>
                         </div>
-    
+
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
                             <br><br>
-                              <i class="bi bi-info-circle-fill"></i>       
-                                If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
+                            <i class="bi bi-info-circle-fill"></i>       
+                            *Note: Please fill up the following required fields. Please fill out the following required * fields, put N/A if not applicable.
                         </div>
                     </form>
                 </div>
-    
-                <!-- Sectoral Information Section -->
-                <div class="form-section" id="medical-section" style="display: none;">
-                    <form>
-                        <h4>Medical Information</h4>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="healthcareProvider" class="form-label">Health Care Provider</label>
-                                <input type="text" class="form-control" id="healthcareProvide" placeholder="Health Care Provider" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="requestType" class="form-label">Type of Request</label>
-                                <input type="text" class="form-control" id="requestType" placeholder="Type of Request" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="purpose" class="form-label">Purpose of Request</label>
-                                <input type="text" class="form-control" id="purpose" placeholder="Purpose of Request" required>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-7">
-                                <label for="details" class="form-label">Details of Request</label>
-                                <input type="text" class="form-control" id="details" placeholder="Details of Request" required>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-    
+
     
                 <!-- Section 4: User Summary Section -->
                     <div class="form-section" id="summary" style="display: none;">
@@ -183,9 +242,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Basic Information -->
+                                <!-- Request Details -->
                                 <tr>
-                                    <td class="category-cell">Name:</td>
+                                    <td class="category-cell">Certificate Type:</td>
+                                    <td class="detail-cell" id="summaryCertificateType"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell">Type of Issuance:</td>
+                                    <td class="detail-cell" id="summaryTypeIssuance"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell">Number of Copies:</td>
+                                    <td class="detail-cell" id="summaryNoCopies"></td>
+                                </tr>
+                        
+                                <!-- Deceased Information -->
+                                <tr>
+                                    <td class="category-cell">Full Name:</td>
                                     <td class="detail-cell" id="summaryName"></td>
                                 </tr>
                                 <tr>
@@ -193,45 +266,45 @@
                                     <td class="detail-cell" id="summaryGender"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Civil Status:</td>
-                                    <td class="detail-cell" id="summaryCivilStatus"></td>
+                                    <td class="category-cell">Corpse Disposal:</td>
+                                    <td class="detail-cell" id="summaryCorpseDisposal"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Date of Birth:</td>
-                                    <td class="detail-cell" id="summaryDob"></td>
+                                    <td class="category-cell">Cemetery Name:</td>
+                                    <td class="detail-cell" id="summaryCemeteryName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Phone:</td>
-                                    <td class="detail-cell" id="summaryPhone"></td>
+                                    <td class="category-cell">Cemetery Address:</td>
+                                    <td class="detail-cell" id="summaryCemeteryAddress"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Email:</td>
-                                    <td class="detail-cell" id="summaryEmail"></td>
+                                    <td class="category-cell">Date of Death:</td>
+                                    <td class="detail-cell" id="summaryDateDeath"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Address</td>
-                                    <td class="detail-cell" id="address"></td>
+                                    <td class="category-cell">Time of Death:</td>
+                                    <td class="detail-cell" id="summaryTimeDeath"></td>
                                 </tr>
-
-                                <!-- Medical Information -->
+                        
+                                <!-- Informant Information -->
                                 <tr>
-                                    <td class="category-cell">Health Care Provider:</td>
-                                    <td class="detail-cell" id="healthcareProvider"></td>
-                                </tr>
-                                <tr>
-                                    <td class="category-cell">Type of Request</td>
-                                    <td class="detail-cell" id="requestType"></td>
+                                    <td class="category-cell">Informant Name:</td>
+                                    <td class="detail-cell" id="summaryInformantName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Purpose of Request</td>
-                                    <td class="detail-cell" id="purpose"></td>
+                                    <td class="category-cell">Relationship to Deceased:</td>
+                                    <td class="detail-cell" id="summaryRelationship"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Details of Request</td>
-                                    <td class="detail-cell" id="details"></td>
+                                    <td class="category-cell">Informant Address:</td>
+                                    <td class="detail-cell" id="summaryInformantAddress"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell">Date of Certification:</td>
+                                    <td class="detail-cell" id="summaryDateCert"></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
 
     
@@ -293,35 +366,37 @@
       });
       
       function populateSummary() {
-    // Basic Information
-    document.getElementById('summaryName').innerText = 
-        `${document.getElementById('firstName').value || 'Not Provided'} ${document.getElementById('middleName').value || ''} ${document.getElementById('lastName').value || 'Not Provided'}`.trim();
-    document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
-    document.getElementById('summaryCivilStatus').innerText = document.getElementById('civilstatus').value || 'Not Provided';
-    document.getElementById('summaryDob').innerText = document.getElementById('dob').value || 'Not Provided';
-    document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
-    document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
-    document.getElementById('address').innerText = document.getElementById('address')?.value || 'Not Provided'; 
-    
-    // Medical Information
-    document.getElementById('healthcareProvider').innerText = document.getElementById('healthcareProvider').value || 'Not Provided';
-    document.getElementById('requestType').innerText = document.getElementById('requestType').value || 'Not Provided';
-    document.getElementById('purpose').innerText = document.getElementById('purpose').value || 'Not Provided';
-    document.getElementById('details').innerText = document.getElementById('details').value || 'Not Provided';
+    // Request Details
+    document.getElementById('summaryCertificateType').innerText = document.getElementById('certificateType').value || 'Not Provided';
+    document.getElementById('summaryTypeIssuance').innerText = document.getElementById('typeIssuance').value || 'Not Provided';
+    document.getElementById('summaryNoCopies').innerText = document.getElementById('noCopies').value || 'Not Provided';
 
-    // Further customization based on additional user inputs in the form...
+    // Deceased Information
+    document.getElementById('summaryName').innerText = 
+        `${document.getElementById('fName').value || 'Not Provided'} ${document.getElementById('mInitial').value || ''} ${document.getElementById('lName').value || 'Not Provided'}`.trim();
+    document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
+    document.getElementById('summaryCorpseDisposal').innerText = document.getElementById('cInfo').value || 'Not Provided';
+    document.getElementById('summaryCemeteryName').innerText = document.getElementById('nameDeath').value || 'Not Provided';
+    document.getElementById('summaryCemeteryAddress').innerText = document.getElementById('address').value || 'Not Provided';
+    document.getElementById('summaryDateDeath').innerText = document.getElementById('dateDeath').value || 'Not Provided';
+    document.getElementById('summaryTimeDeath').innerText = document.getElementById('timeDeath').value || 'Not Provided';
+
+    // Informant Information
+    document.getElementById('summaryInformantName').innerText = document.getElementById('Iname').value || 'Not Provided';
+    document.getElementById('summaryRelationship').innerText = document.getElementById('relationship').value || 'Not Provided';
+    document.getElementById('summaryInformantAddress').innerText = document.getElementById('iAddress').value || 'Not Provided';
+    document.getElementById('summaryDateCert').innerText = document.getElementById('dateCert').value || 'Not Provided';
 }
+
 
   
       // Navigation button logic
       let currentSection = 0;
      
       const sections = [
-            "#basic-information-section", 
-            "#medical-section", 
-            "#government-numbers", 
-            "#contact-information", 
-            "#affiliation", 
+            "#request-information", 
+            "#deceased-information", 
+            "#informant-section", 
             "#summary"
         ];
 
@@ -451,8 +526,22 @@
               console.log("Error: No row found to remove.");
           }
       });
+
+        document.getElementById('cInfo').addEventListener('change', function() {
+        const othersField = document.getElementById('othersField');
+        
+        // Show the 'Others' text field if the selected option is 'others'
+        if (this.value === 'others') {
+            othersField.style.display = 'block';
+            document.getElementById('others').setAttribute('required', true);  // Make 'Others' input required when visible
+        } else {
+            othersField.style.display = 'none';
+            document.getElementById('others').removeAttribute('required');  // Remove 'required' attribute when hidden
+        }
+        });
+  
       
-      </script>
+</script>
 
 
 </body>

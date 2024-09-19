@@ -214,13 +214,13 @@ if (!isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
                 </div>
                 <div class="modal-body">
-                <a href="medical.html">
+                <a href="Medical Record Form.html">
                     <div class="inside-card mb-4">
                         <img src="_Medical.png" class="card-img-top" alt="Medical Icon">
                         <h5 class="card-title">Medical Records</h5>
                     </div>
                 </a>
-                <a href="death.html">
+                <a href="Death Certificate.html">
                     <div class="inside-card mb-4">
                         <img src="_death.png" class="card-img-top" alt="Death Icon">
                         <h5 class="card-title">Death Certificate</h5>

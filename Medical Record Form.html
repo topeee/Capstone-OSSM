@@ -120,19 +120,19 @@
     
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="tele" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
-                            </div>
-                            <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
                                 <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <label for="Address" class="form-label">Adress</label>
+                                <input type="text " class="form-control" id="address" placeholder="Address" required>
                             </div>
                         </div>
     
@@ -201,10 +201,6 @@
                                     <td class="detail-cell" id="summaryDob"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Telephone:</td>
-                                    <td class="detail-cell" id="summaryTele"></td>
-                                </tr>
-                                <tr>
                                     <td class="category-cell">Phone:</td>
                                     <td class="detail-cell" id="summaryPhone"></td>
                                 </tr>
@@ -213,8 +209,8 @@
                                     <td class="detail-cell" id="summaryEmail"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell">Work Phone:</td>
-                                    <td class="detail-cell" id="summaryWorkPhone"></td>
+                                    <td class="category-cell">Address</td>
+                                    <td class="detail-cell" id="address"></td>
                                 </tr>
 
                                 <!-- Medical Information -->
@@ -303,10 +299,9 @@
     document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
     document.getElementById('summaryCivilStatus').innerText = document.getElementById('civilstatus').value || 'Not Provided';
     document.getElementById('summaryDob').innerText = document.getElementById('dob').value || 'Not Provided';
-    document.getElementById('summaryTele').innerText = document.getElementById('tele').value || 'Not Provided';
     document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
     document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
-    document.getElementById('summaryWorkPhone').innerText = document.getElementById('workPhone')?.value || 'Not Provided';  // Handle optional work phone field
+    document.getElementById('address').innerText = document.getElementById('address')?.value || 'Not Provided'; 
     
     // Medical Information
     document.getElementById('healthcareProvider').innerText = document.getElementById('healthcareProvider').value || 'Not Provided';

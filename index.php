@@ -168,7 +168,7 @@ if (!isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="occupational-apply.html">
+                    <a href="Occupational permit.html">
                         <div class="inside-card mb-4">
                             <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
                             <h5 class="card-title">Occupational Permit</h5>

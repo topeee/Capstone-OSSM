@@ -16,6 +16,10 @@ if (isset($_SESSION['email'])) {
 } else {
     $first_name = 'Guest';
 }
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +40,12 @@ if (isset($_SESSION['email'])) {
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto">Hello, <?php echo htmlspecialchars($first_name); ?></span>
+            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
                 <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -108,13 +112,13 @@ if (isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="senior-apply.html">
+                    <a href="Solo Parent Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
-                    <a href="pwd-apply.html">
+                    <a href="PWD-landing-page.html">
                         <div class="inside-card mb-4">
                             <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>
@@ -142,7 +146,7 @@ if (isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="scholar-apply.html">
+                    <a href="Scholarship Application Landing Page.html">
                         <div class="inside-card mb-4">
                             <img src="Scholar.png" class="card-img-top" alt="Scholar Icon">
                             <h5 class="card-title">Scholarship Application</h5>
@@ -164,7 +168,7 @@ if (isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="occupational-apply.html">
+                    <a href="Occupational permit.html">
                         <div class="inside-card mb-4">
                             <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
                             <h5 class="card-title">Occupational Permit</h5>
@@ -210,13 +214,13 @@ if (isset($_SESSION['email'])) {
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
                 </div>
                 <div class="modal-body">
-                <a href="medical.html">
+                <a href="Medical Record Form.html">
                     <div class="inside-card mb-4">
                         <img src="_Medical.png" class="card-img-top" alt="Medical Icon">
                         <h5 class="card-title">Medical Records</h5>
                     </div>
                 </a>
-                <a href="death.html">
+                <a href="Death Certificate.html">
                     <div class="inside-card mb-4">
                         <img src="_death.png" class="card-img-top" alt="Death Icon">
                         <h5 class="card-title">Death Certificate</h5>

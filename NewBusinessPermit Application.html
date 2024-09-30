@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="icon" type="img/png" href="logo.png">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-      <title>Solo Parent Application</title>
+      <title>New Business Application</title>
       <style>
 body {
     background: linear-gradient(#00bfff, #87cefa); /* or your background image */
@@ -148,7 +148,16 @@ main {
     .hidden-xs {
         display: block;
     }
-}    
+}
+
+.business-type-section {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
       </style>
     </head>
     <body>
@@ -423,34 +432,37 @@ main {
                         <div class="head mb-3">
                             <h2>Business Information and Registration</h2>
                         </div>
-                        <h5 style="font-weight: 700;">Type of Business:</h5>
-                        <div class="row mb-3 ms-3">
-                            <div class="col-md-12 align-items-center">
-                                <p>Please choose one:</p>
+                        <div class="business-type-section" style="background-color: #f0f8ff; padding: 20px; border-radius: 8px; margin: 10px;">
+                            <div class="row mb-3 ms-3">
+                                <h5 style="font-weight: 700;">Type of Business:</h5>
+                                <div class="col-md-12 align-items-center">
+                                    <p>Please choose one:</p>
+                                </div>
+                                <div class="col-md-4 form-check">
+                                    <input type="radio" id="soleProprietorship" name="choice4" value="soleProprietorship" class="form-check-input" style="width: 20px; height: 20px;">
+                                    <label for="soleProprietorship" class="form-check-label">Sole Proprietorship</label>
+                                </div>
+                                <div class="col-md-4 form-check">
+                                    <input type="radio" id="partnership" name="choice4" value="partnership" class="form-check-input" style="width: 20px; height: 20px;">
+                                    <label for="partnership" class="form-check-label">Partnership</label>
+                                </div>
+                                <div class="col-md-4 form-check">
+                                    <input type="radio" id="corporation" name="choice4" value="corporation" class="form-check-input" style="width: 20px; height: 20px;">
+                                    <label for="corporation" class="form-check-label">Corporation</label>
+                                </div>
                             </div>
-                            <div class="col-md-4 form-check">
-                                <input type="radio" id="soleProprietorship" name="choice4" value="soleProprietorship" class="form-check-input" style="width: 20px; height: 20px;">
-                                <label for="soleProprietorship" class="form-check-label">Sole Proprietorship</label>
-                            </div>
-                            <div class="col-md-4 form-check">
-                                <input type="radio" id="partnership" name="choice4" value="partnership" class="form-check-input" style="width: 20px; height: 20px;">
-                                <label for="partnership" class="form-check-label">Partnership</label>
-                            </div>
-                            <div class="col-md-4 form-check">
-                                <input type="radio" id="corporation" name="choice4" value="corporation" class="form-check-input" style="width: 20px; height: 20px;">
-                                <label for="corporation" class="form-check-label">Corporation</label>
-                            </div>
-                        </div>
-                        <div class="row mb-3 ms-3">
-                            <div class="col-md-4 form-check">
-                                <input type="radio" id="cooperative" name="choice4" value="cooperative" class="form-check-input" style="width: 20px; height: 20px;">
-                                <label for="cooperative" class="form-check-label">Cooperative</label>
-                            </div>
-                            <div class="col-md-4 form-check">
-                                <input type="radio" id="opc" name="choice4" value="opc" class="form-check-input" style="width: 20px; height: 20px;">
-                                <label for="opc" class="form-check-label">One-Person Corporation</label>
-                            </div>
-                        </div>                        
+                            <div class="row mb-3 ms-3">
+                                <div class="col-md-4 form-check">
+                                    <input type="radio" id="cooperative" name="choice4" value="cooperative" class="form-check-input" style="width: 20px; height: 20px;">
+                                    <label for="cooperative" class="form-check-label">Cooperative</label>
+                                </div>
+                                <div class="col-md-6 form-check">
+                                    <input type="radio" id="opc" name="choice4" value="opc" class="form-check-input" style="width: 20px; height: 20px;">
+                                    <label for="opc" class="form-check-label">One-Person Corporation</label>
+                                </div>
+                            </div>  
+                        </div>      
+
                         <br>
                         <!-- New Business-Related Fields -->
                         <div class="row mb-3">
@@ -481,7 +493,7 @@ main {
                             </div>
                             <div class="col-md-4 d-flex align-items-end">
                                 <input type="checkbox" id="same-as-business" name="same-as-business">
-                                <label for="same-as-business" style="margin-left: 10px; margin-top: 10px;">Same as Business</label>
+                                <label for="same-as-business" style="margin-left: 10px; margin-top: 10px;">Same as Business Name</label>
                             </div>
                         </div>
                         <!-- Main address field -->
@@ -641,7 +653,7 @@ main {
                                 </div>
                             </div>
 
-                            <br><br><br>
+                            <br><br>
                             <!-- New Address Field with Checkbox -->
                             <div class="row mb-3">
                                 <h5 style="font-weight: 700;">Business Location Address:</h5>
@@ -693,7 +705,7 @@ main {
                                 </div>
                             </div>
                             <p style="color: red;">Reminder: Make sure your address is correct, because it will be reflected in the Mayor's Permit</p>
-                            <br><br><br>
+                            <br><br>
 
                             <div class="row mb-3">
                                 <p><span style="color: red;">*</span> One field is at least required.</p>
@@ -775,7 +787,7 @@ main {
                                 <!-- Hidden Input Fields for "Yes" -->
                                 <div id="hidden-info-yes" style="display: none;">
                                     <div class="row mb-3">
-                                        <!-- Surname -->
+                                        <p>Owned / Represented By:</p>
                                         <div class="col-md-3">
                                             <label for="surname">Surname</label>
                                             <input type="text" id="surname" name="surname" class="form-control">
@@ -800,7 +812,7 @@ main {
 
                                 <!-- Hidden Input Fields for "No" -->
                                 <div id="hidden-info-no" style="display: none;">
-                                    <!-- Fields from "Yes" -->
+                                    <p>Name of Lessor:</p>
                                     <div class="row mb-3">
                                         <div class="col-md-3">
                                             <label for="surname">Surname</label>
@@ -844,11 +856,52 @@ main {
     
                 <!-- Business Activity -->
                 <div class="form-section" id="business-activity" style="display: none;">
+                    <h2>Business Activity</h2>
+                    <p style="font-weight: 700;">Business Details:</p>
                     <div class="row mb-3">
-                        <h2>Business Activity</h2>
-                        <p style="font-weight: 700;">Business Details:</p> 
-                
-                        <!-- Line of Business (Dropdown) -->
+                        <div class="col-md-6">
+                            <label for="tci">Total Capital Investment (Paid up Capital + Lease Expenses + Equipments):</label>
+                            <input type="text" id="tci" name="tci" class="form-control" required>
+                        </div>
+                    </div>
+
+                            <p>Do you have tax incentives from any Goverment Entity?</p>
+                        <div class="row mb-3 ms-2">
+                            <div class="col-md-6 form-check">
+                                <!-- Yes Option -->
+                                <input type="radio" id="yesUpload" name="uploadChoice" value="yes" class="form-check-input" onclick="toggleFileInput(true)">
+                                <label for="yesUpload" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="col-md-6 form-check">
+                                <!-- No Option -->
+                                <input type="radio" id="noUpload" name="uploadChoice" value="no" class="form-check-input" onclick="toggleFileInput(false)">
+                                <label for="noUpload" class="form-check-label">No</label>
+                            </div>
+                        </div>
+                    
+                        <!-- File Input (initially hidden) -->
+                        <div id="fileInputContainer" style="display: none;" class="mb-3 col-md-6">
+                            <label for="fileUpload" class="form-label">Choose a file:</label>
+                            <input type="file" id="fileUpload" name="fileUpload" class="form-control">
+                        </div>
+
+                    <p style="opacity: 0.6;">Please choose one only:</p>
+                    <div class="row mb-3 ms-2">
+                        <div class="col-md-4 form-check">
+                            <input type="radio" id="main-office" name="office-location" value="main-office" class="form-check-input">
+                            <label for="main-office" class="form-check-label">Main Office</label>
+                        </div>
+                        <div class="col-md-4 form-check">
+                            <input type="radio" id="branch" name="office-location" value="branch" class="form-check-input">
+                            <label for="branch" class="form-check-label">Branch</label>
+                        </div>
+                        <div class="col-md-4 form-check">
+                            <input type="radio" id="admin-office" name="office-location" value="admin-office" class="form-check-input">
+                            <label for="admin-office" class="form-check-label">Admin Office Only</label>
+                        </div>
+                    </div>
+            
+                    <div class="row mb-3"> 
                         <div class="col-md-6">
                             <label for="line-business">Line of Business</label>
                             <div class="input-group">
@@ -896,23 +949,25 @@ main {
                             </div>
                 
                             <!-- Size Dropdown (depends on description) -->
-                            <div class="col-md-3">
-                                <label for="size">Size (e.g., sq. meters)</label>
+                            <div class="col-md-6">
+                                <label for="size">Size</label>
                                 <select id="size" name="size" class="form-control">
-                                    <option value="">Select Size</option>
+                                    <option value="">Select Size (e.g., sq. meters)</option>
                                 </select>
                             </div>
-                
+
+                            <div class="col-md-6">
+                                <label for="description">Description of Business</label>
+                                <textarea id="descriptions" name="descriptions" class="form-control" rows="3" placeholder="Provide a brief description of the business"></textarea>    
+                            </div>
+
                             <!-- + and - Buttons -->
                             <div class="col-md-3 d-flex align-items-end">
                                 <button type="button" class="btn btn-success" onclick="addFieldGroup()">+</button>
                                 <button type="button" class="btn btn-danger ml-2" onclick="removeFieldGroup()">-</button>
                             </div>
                             <!-- Description of Business -->
-                            <div class="col-md-6">
-                                <label for="description">Description of Business</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Provide a brief description of the business"></textarea>    
-                            </div>
+                            
 
                         </div>
                     </div>
@@ -1269,20 +1324,22 @@ main {
                     <div class="col-md-6">
                         <label for="upload-auth-id" class="form-label">Authorization Form:</label>
                         <input type="file" id="upload-auth-id" name="upload-auth-id" class="form-control">
+                        <a href="Authorization Letter.pdf" download="AuthorizationForm.pdf" class="text-decoration-none mt-2 d-block">
+                            Doesn't have authorization form? Click here!
+                        </a>
                     </div>
                 
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-6">
                         <label for="upload-rep-id" class="form-label">Scanned ID of the Representative:</label>
                         <input type="file" id="upload-rep-id" name="upload-rep-id" class="form-control">
                     </div>
-                </div>                
+                </div>     
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="upload-id" class="form-label">Scanned ID of the Owner:</label>
-                        <input type="file" id="upload-id" name="upload-id" class="form-control">
-                    </div>
-                </div>
+                <div class="col-md-6"> 
+                    <label for="upload-id" class="form-label">Scanned ID of the Owner:</label>
+                    <input type="file" id="upload-id" name="upload-id" class="form-control">
+                </div>     
+                     
             </form>
         </div>
     </div>
@@ -1375,6 +1432,17 @@ main {
     </footer>
 
     <script>
+
+        //Toggle the business activity government entity?
+        function toggleFileInput(isVisible) {
+        const fileInputContainer = document.getElementById('fileInputContainer');
+        if (isVisible) {
+            fileInputContainer.style.display = 'block'; // Show the file input if "Yes" is selected
+        } else {
+            fileInputContainer.style.display = 'none'; // Hide the file input if "No" is selected
+        }
+    }
+
         // Summarize Business Operation inpit - start
         function updateBusinessOperationSummary() {
         // Get form input values from the Business Operation section
@@ -1420,28 +1488,28 @@ main {
         function updateSummary() {
         // Get form input values
         const businessType = document.querySelector('input[name="choice4"]:checked')?.nextElementSibling.innerText || "Not Selected";
-        const dtiSecCda = document.getElementById('dti-sec-cda').value;
-        const tin = document.getElementById('tin').value;
-        const sss = document.getElementById('sss').value;
-        const businessName = document.getElementById('business-name').value;
-        const tradeName = document.getElementById('trade-name').value || "N/A";
-        const house = document.getElementById('house').value;
-        const buildingName = document.getElementById('building-name').value || "N/A";
-        const blockNo = document.getElementById('block-no').value;
-        const subdivision = document.getElementById('subdivision').value || "N/A";
-        const province = document.getElementById('province').value;
-        const city = document.getElementById('city').value;
-        const barangay = document.getElementById('barangay').value;
-        const zipCode = document.getElementById('zip-code').value;
-        const district = document.getElementById('district').value || "N/A";
-        const telephone = document.getElementById('telephone').value || "N/A";
-        const email = document.getElementById('email').value;
-        const mobile = document.getElementById('mobile').value;
-        const surname = document.getElementById('surname').value;
-        const givenName = document.getElementById('given-name').value;
-        const middleName = document.getElementById('middle-name').value || "N/A";
-        const suffix = document.getElementById('suffix').value || "N/A";
-        const sex = document.getElementById('sex').value || "N/A";
+        const dtiSecCda = document.getElementById('dti-sec-cda').value || "Not Provided";
+        const tin = document.getElementById('tin').value || "Not Provided";
+        const sss = document.getElementById('sss').value || "Not Provided";
+        const businessName = document.getElementById('business-name').value || "Not Provided";
+        const tradeName = document.getElementById('trade-name').value || "Not Provided";
+        const house = document.getElementById('house').value || "Not Provided";
+        const buildingName = document.getElementById('building-name').value || "Not Provided";
+        const blockNo = document.getElementById('block-no').value  || "Not Provided";
+        const subdivision = document.getElementById('subdivision').value || "Not Provided";
+        const province = document.getElementById('province').value || "Not Provided";
+        const city = document.getElementById('city').value || "Not Provided";
+        const barangay = document.getElementById('barangay').value || "Not Provided";
+        const zipCode = document.getElementById('zip-code').value || "Not Provided";
+        const district = document.getElementById('district').value || "Not Provided";
+        const telephone = document.getElementById('telephone').value || "Not Provided";
+        const email = document.getElementById('email').value || "Not Provided";
+        const mobile = document.getElementById('mobile').value || "Not Provided";
+        const surname = document.getElementById('surname').value || "Not Provided";
+        const givenName = document.getElementById('given-name').value || "Not Provided";
+        const middleName = document.getElementById('middle-name').value || "Not Provided";
+        const suffix = document.getElementById('suffix').value || "Not Provided";
+        const sex = document.getElementById('sex').value || "Not Provided";
 
         // Create the summary table rows
         const summaryTable = document.getElementById('summary-table');
@@ -1721,10 +1789,11 @@ main {
         const zipCode = document.getElementById('zip-code').value;
         const district = document.getElementById('district').value;
 
-        // Concatenate all fields into one address with spaces instead of commas
-        let fullAddress = `${house ? house + ' ' : ''}${buildingName ? buildingName + ' ' : ''}${blockNo ? blockNo + ' ' : ''}`;
-        fullAddress += `${subdivision ? subdivision + ' ' : ''}${barangay ? 'Barangay ' + barangay + ' ' : ''}`;
-        fullAddress += `${province ? province + ' ' : ''}${city ? city + ' ' : ''}`;
+    // Concatenate all fields into one address with spaces instead of commas
+    let fullAddress = `${house ? house + ' ' : ''}${buildingName ? buildingName + ' ' : ''}${blockNo ? blockNo + ' ' : ''}`;
+    fullAddress += `${subdivision ? subdivision + ' ' : ''}${barangay ? barangay + ' ' : ''}`;  // Removed 'Barangay' prefix
+    fullAddress += `${province ? province + ' ' : ''}${city ? city + ' ' : ''}`;
+
         
         // Display in preview section
         document.getElementById('address-preview').textContent = fullAddress.trim() !== '' ? fullAddress : 'Complete address will appear here...';
@@ -1760,7 +1829,7 @@ main {
           $("#progress-menu").toggleClass('hidden-xs');
       });
 
-   // For file input
+    // For file input
     function showFileName() {
         const input = document.getElementById('file-upload');
         const fileName = input.files[0] ? input.files[0].name : ''; // Check if a file is selected
@@ -1768,7 +1837,13 @@ main {
     }
       // Navigation button logic
       let currentSection = 0;
-      const sections = ["#basic-information-section", "#business-information", "#business-operation", "#business-activity", "#required-information", "#summary-page", "#sum-bus-op"];
+      const sections = ["#basic-information-section", 
+                        "#business-information", 
+                        "#business-operation", 
+                        "#business-activity", 
+                        "#required-information", 
+                        "#summary-page", 
+                        "#sum-bus-op"];
       
       $("#prev-btn").click(function() {
           if (currentSection > 0) {

@@ -29,8 +29,7 @@ if (!isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <meta name="google-site-verification" content="wAvD2wGt1DenxrTjMkTvjq_U0CyIfaM1nYmB7SU_fkQ" />
-
+    <meta name="google-site-verification" content="Nm8ZJfVMJl6DFmA-otP2soEfb3gz3LBtW0GLCwwOZtM" />
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">

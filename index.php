@@ -29,6 +29,8 @@ if (!isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <meta name="google-site-verification" content="wAvD2wGt1DenxrTjMkTvjq_U0CyIfaM1nYmB7SU_fkQ" />
+
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
@@ -36,7 +38,6 @@ if (!isset($_SESSION['email'])) {
     <link rel="icon" type="img/png" href="logo.png">
     <title>Homepage</title>
 </head>
-
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>

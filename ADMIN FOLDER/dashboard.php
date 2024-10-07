@@ -1,3 +1,34 @@
+<?php
+session_start();
+include 'db_connection.php';
+
+// Check if the current user is an admin
+if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+    echo "Access denied.";
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
+
+    $stmt = $conn->prepare("UPDATE users SET is_admin = ? WHERE email = ?");
+    if ($stmt) {
+        $stmt->bind_param("is", $is_admin, $email);
+        if ($stmt->execute()) {
+            echo "User updated successfully.";
+        } else {
+            echo "Error updating user.";
+        }
+        $stmt->close();
+    } else {
+        echo "Error preparing statement.";
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

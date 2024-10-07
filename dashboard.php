@@ -211,7 +211,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || $_SESSION['is
 			<i class="ti-user"></i>
 			<ul class="sub-ico-item">
 				<li><a href="#">Settings</a></li>
-				<li><a class="js__logout" href="#">Log Out</a></li>
+				<li><a class="js__logout" href="logout.php">Log Out</a></li>
 			</ul>
 			<!-- /.sub-ico-item -->
 		</div>

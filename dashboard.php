@@ -224,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<i class="ti-user"></i>
 			<ul class="sub-ico-item">
 				<li><a href="#">Settings</a></li>
-				<li><a class="js__logout" href="#">Log Out</a></li>
+				<li><a class="js__logout" href="logout.php">Log Out</a></li>
 			</ul>
 			<!-- /.sub-ico-item -->
 		</div>

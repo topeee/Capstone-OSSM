@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['email'] = $email;
                         $_SESSION['is_admin'] = $is_admin;
 
+                        // Debugging output
+                        error_log("User is_admin value: " . $is_admin);
+
                         switch ($is_admin) {
                             case 1:
                                 header('Location: dashboard.php');
@@ -64,10 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header('Location: login.html');
                 exit();
             }
-           
         }
     } else {
-        // reCAPTCHA failed
         $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
         header('Location: login.html');
         exit();
@@ -77,3 +78,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: login.html');
     exit();
 }
+?>

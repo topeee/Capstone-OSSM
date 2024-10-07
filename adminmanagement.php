@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Admin Management</h1>
-    <form method="POST" action="admin_management.php">
+    <form method="POST" action="adminmanagement.php">
         <label for="email">User Email:</label>
         <input type="email" id="email" name="email" required>
         <br>

@@ -45,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         switch ($is_admin) {
                             case 1:
-                                header('Location: index.php');
+                                header('Location: dashboard.php');
                                 break;
                             default:
-                                header('Location: index.php');
+                                header('Location: dashboard.php');
                                 break;
                         }
                         exit();

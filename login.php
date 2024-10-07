@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 header('Location: dashboard.php');
                                 break;
                             default:
-                                header('Location: dashboard.php');
+                                header('Location: index.php');
                                 break;
                         }
                         exit();

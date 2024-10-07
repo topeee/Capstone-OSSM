@@ -1,33 +1,13 @@
 <?php
 session_start();
-include 'db_connection.php';
 
-// Check if the current user is an admin
-if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-	echo "Access denied.";
-	exit();
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
-
-    $stmt = $conn->prepare("UPDATE users SET is_admin = ? WHERE email = ?");
-    if ($stmt) {
-        $stmt->bind_param("is", $is_admin, $email);
-        if ($stmt->execute()) {
-            echo "User updated successfully.";
-        } else {
-            echo "Error updating user.";
-        }
-        $stmt->close();
-    } else {
-        echo "Error preparing statement.";
-    }
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
+    // Redirect to login page
+    header('Location: login.html');
+    exit();
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>DASHBOARD</title>
+	<title>OSSM DASHBOARD</title>
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
@@ -55,16 +35,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Sweet Alert -->
 	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
 	
-	<!-- iCheck -->
-	<link rel="stylesheet" href="assets/plugin/iCheck/skins/square/blue.css">
+	<!-- Percent Circle -->
+	<link rel="stylesheet" href="assets/plugin/percircle/css/percircle.css">
+
+	<!-- Chartist Chart -->
+	<link rel="stylesheet" href="assets/plugin/chart/chartist/chartist.min.css">
+
+	<!-- FullCalendar -->
+	<link rel="stylesheet" href="assets/plugin/fullcalendar/fullcalendar.min.css">
+	<link rel="stylesheet" href="assets/plugin/fullcalendar/fullcalendar.print.css" media='print'>
 
 </head>
 
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="dashboard.php" class="logo"><img src="logo.png"width="110" height="110">></i>OSSM</a>
-		<button type="button" class="button-close fa fa-times js__menu_close"></button>
+	<div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
+	<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
 	<div class="content">
@@ -73,11 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<h5 class="title">Navigation</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
-				<li>
-					<a class="waves-effect" href="index.html"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
+				<li class="current">
+					<a class="waves-effect" href="dashboard.php"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
 				</li>
 				<li>
-					<a class="waves-effect" href="calendar.html"><i class="menu-icon ti-calendar"></i><span>Calendar</span></a>
+					<a class="waves-effect" href="dashboard.php"><i class="menu-icon ti-calendar"></i><span>Calendar</span></a>
 				</li>
 				<li>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-bar-chart"></i><span>Charts</span><span class="menu-arrow fa fa-angle-down"></span></a>
@@ -161,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<li>
 					<a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
 				</li>
-				<li class="current">
+				<li>
 					<a class="waves-effect" href="inbox.html"><i class="menu-icon ti-email"></i><span>Mail</span><span class="notice notice-danger">New</span></a>
 				</li>
 				<li>
@@ -207,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="fixed-navbar">
 	<div class="pull-left">
 		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Inbox</h1>
+		<h1 class="page-title">Home</h1>
 		<!-- /.page-title -->
 	</div>
 	<!-- /.pull-left -->
@@ -224,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<i class="ti-user"></i>
 			<ul class="sub-ico-item">
 				<li><a href="#">Settings</a></li>
-				<li><a class="js__logout" href="logout.php">Log Out</a></li>
+				<li><a class="js__logout" href="#">Log Out</a></li>
 			</ul>
 			<!-- /.sub-ico-item -->
 		</div>
@@ -404,237 +391,395 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- /#message-popup -->
 <div id="wrapper">
 	<div class="main-content">
-		<div class="row">
-			<div class="col-md-3 col-xs-12">
-				<a href="compose.html" class="btn btn-danger btn-mail-main btn-block margin-bottom-20 waves-effect waves-light">COMPOSE</a>
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-								<span class="label-text-right pull-right">35</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-envelope"></i> Sent</a></li>
-							<li><a href="#"><i class="fa fa-file-text"></i> Drafts
-								<span class="label-text-right pull-right">27</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label-right bg-primary pull-right">234</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-trash"></i> Trash</a></li>
-						</ul>
+		<div class="row small-spacing">
+			<div class="col-lg-3 col-xs-12">
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-apple text-inverse"></i>
+						<h2 class="counter text-inverse">2561</h2>
+						<p class="text">Product Sales</p>
 					</div>
-					<!-- /.box-body -->
+					<!-- .statistics-box .with-icon -->
 				</div>
-				<!-- /. box -->
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#"><i class="fa fa-circle-o text-primary"></i> Important</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-success"></i> Promotions</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-danger"></i> Social</a></li>
-						</ul>
+				<!-- /.box-content -->
+
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-android text-success"></i>
+						<h2 class="counter text-success">3562</h2>
+						<p class="text">Visitors</p>
 					</div>
-					<!-- /.box-body -->
+					<!-- .statistics-box .with-icon -->
 				</div>
-				<!-- /.box -->
+				<!-- /.box-content -->
+
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-user text-primary"></i>
+						<h2 class="counter text-primary">283</h2>
+						<p class="text">Members</p>
+					</div>
+					<!-- .statistics-box .with-icon -->
+				</div>
+				<!-- /.box-content -->
 			</div>
-			<!-- /.col-md-3 col-xs-12 -->
-			<div class="col-md-9 col-xs-12">
-				<div class="box">
-					<div class="box-header with-border">
-						<h3 class="box-title">Inbox</h3>
-						<div class="box-tools">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm" placeholder="Search Mail">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</div>
-						<!-- /.box-tools -->
+			<!-- /.col-lg-3 col-xs-12 -->
+			<div class="col-lg-9 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Statistics</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
 					</div>
-					<!-- /.box-header -->
-					<div class="box-body no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
-						<div class="table-responsive mailbox-messages">
-							<table class="table table-hover table-striped">
-								<tbody>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">5 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">28 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">11 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">15 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">Yesterday</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">4 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">14 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">15 days ago</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- /.table -->
-						</div>
-						<!-- /.mail-box-messages -->
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
-					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div id="svg-animation-chartist-chart" class="chartist-chart" style="height: 314px"></div>
+					<!-- /#svg-animation-chartist-chart.chartist-chart -->
 				</div>
-				<!-- /. box -->
+				<!-- /.box-content -->
 			</div>
-			<!-- /.col-md-9 col-xs-12 -->
+			<!-- /.col-lg-9 col-xs-12 -->
+		</div>
+		<!-- /.row small-spacing -->
+
+		<div class="row small-spacing">
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-info">Site Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-1" class="left-content margin-top-15"></div>
+						<!-- /#traffic-sparkline-chart-1 -->
+						<div class="right-content">
+							<h2 class="counter text-info">278</h2>
+							<!-- /.counter -->
+							<p class="text text-info">Visitors Income</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-success">Trade Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-2" class="left-content margin-top-10"></div>
+						<!-- /#traffic-sparkline-chart-2 -->
+						<div class="right-content">
+							<h2 class="counter text-success">36%</h2>
+							<!-- /.counter -->
+							<p class="text text-success">Total Income</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-success">Sales Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-3" class="left-content"></div>
+						<!-- /#traffic-sparkline-chart-3 -->
+						<div class="right-content">
+							<h2 class="counter text-danger">849 <i class="fa fa-usd"></i></h2>
+							<!-- /.counter -->
+							<p class="text text-danger">Credit Earned</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+		</div>
+		<!-- /.row small-spacing -->
+
+		<div class="row small-spacing">
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Activity</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="activity-list">
+						<div class="activity-item">
+							<div class="bar bg-primary">
+								<div class="dot bg-primary"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">10 min</div>
+								<!-- /.date -->
+								<div class="text">
+									Harry has finished "Amaza HTML" task
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-danger">
+								<div class="dot bg-danger"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">15 min</div>
+								<!-- /.date -->
+								<div class="text">
+									You completed your task
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-success">
+								<div class="dot bg-success"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">30 min</div>
+								<!-- /.date -->
+								<div class="text">
+									New updated has been installed
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-violet">
+								<div class="dot bg-violet"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">1 hour ago</div>
+								<!-- /.date -->
+								<div class="text">Write some comments</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-warning">
+								<div class="dot bg-warning"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">1 day ago</div>
+								<!-- /.date -->
+								<div class="text">4 friends request accepted</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-orange">
+								<div class="dot bg-orange"></div>
+								<div class="last-dot bg-orange"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">12 days ago</div>
+								<!-- /.date -->
+								<div class="text">Daisy has joined your team</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+					</div>
+					<!-- /.activity-list -->
+					<a href="#" class="activity-link">View all activity <i class="fa fa-angle-down"></i></a>
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-8 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Purchases</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Product</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<table class="table table-striped margin-bottom-10">
+						<thead>
+							<tr>
+								<th style="width:40%;">Product</th>
+								<th>Price</th>
+								<th>Date</th>
+								<th>State</th>
+								<th style="width:5%;"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Amaza Themes</td>
+								<td>$71</td>
+								<td>Nov 12,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Macbook</td>
+								<td>$142</td>
+								<td>Nov 10,2016</td>
+								<td class="text-danger">Cancelled</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Samsung TV</td>
+								<td>$200</td>
+								<td>Nov 01,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Ninja Admin</td>
+								<td>$200</td>
+								<td>Oct 28,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Galaxy Note 5</td>
+								<td>$200</td>
+								<td>Oct 28,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>CleanUp Themes</td>
+								<td>$71</td>
+								<td>Oct 22,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Facebook WP Plugin</td>
+								<td>$10</td>
+								<td>Oct 15,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Iphone 7</td>
+								<td>$100</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Nova House</td>
+								<td>$100</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Repair Cars</td>
+								<td>$35</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<!-- /.table -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-6 col-xs-12 -->
 		</div>
 		<!-- /.row -->		
 		<footer class="footer">
@@ -667,9 +812,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<script src="assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
 	<script src="assets/scripts/chart.sparkline.init.min.js"></script>
 
-	<!-- iCheck -->
-	<script src="assets/plugin/iCheck/icheck.min.js"></script>
-	<script src="assets/scripts/mailbox.init.min.js"></script>
+	<!-- Percent Circle -->
+	<script src="assets/plugin/percircle/js/percircle.js"></script>
+
+	<!-- Google Chart -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<!-- Chartist Chart -->
+	<script src="assets/plugin/chart/chartist/chartist.min.js"></script>
+	<script src="assets/scripts/jquery.chartist.init.min.js"></script>
+
+	<!-- FullCalendar -->
+	<script src="assets/plugin/moment/moment.js"></script>
+	<script src="assets/plugin/fullcalendar/fullcalendar.min.js"></script>
+	<script src="assets/scripts/fullcalendar.init.js"></script>
 
 	<script src="assets/scripts/main.min.js"></script>
 </body>

@@ -40,10 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['email'] = $email;
                         $_SESSION['is_admin'] = $is_admin;
 
-                        if ($is_admin) {
-                            header('Location: dashboard.php');
-                        } else {
-                            header('Location: index.php');
+                        switch ($is_admin) {
+                            case 1:
+                                header('Location: dashboard.php');
+                                break;
+                            default:
+                                header('Location: index.php');
+                                break;
                         }
                         exit();
                     } else {
@@ -56,12 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: login.html');
                     exit();
                 }
-                $stmt->close();
             } else {
                 $_SESSION['error'] = "Database error: Unable to prepare statement.";
                 header('Location: login.html');
                 exit();
             }
+           
         }
     } else {
         // reCAPTCHA failed
@@ -74,4 +77,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: login.html');
     exit();
 }
-?>

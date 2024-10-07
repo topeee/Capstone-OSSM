@@ -3,10 +3,10 @@ session_start();
 include 'db_connection.php';
 
 // Check if the current user is an admin
-// if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-// echo "Access denied.";
-//    exit();
-//}
+if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+	echo "Access denied.";
+	exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);

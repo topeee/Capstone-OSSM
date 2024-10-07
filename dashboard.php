@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Inbox - SpaceX Template</title>
+	<title>DASHBOARD</title>
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="index.html" class="logo"><i class="ico ti-rocket"></i>SpaceX</a>
+		<a href="dashboard.php" class="logo"><i class="ico ti-rocket"></i>OSSM</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->

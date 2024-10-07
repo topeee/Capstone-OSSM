@@ -1,34 +1,3 @@
-<?php
-session_start();
-include 'db_connection.php';
-
-// Check if the current user is an admin
-// if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-// echo "Access denied.";
-//    exit();
-//}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
-
-    $stmt = $conn->prepare("UPDATE users SET is_admin = ? WHERE email = ?");
-    if ($stmt) {
-        $stmt->bind_param("is", $is_admin, $email);
-        if ($stmt->execute()) {
-            echo "User updated successfully.";
-        } else {
-            echo "Error updating user.";
-        }
-        $stmt->close();
-    } else {
-        echo "Error preparing statement.";
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>DASHBOARD</title>
+	<title>Responsive Table - SpaceX Template</title>
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
@@ -55,15 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Sweet Alert -->
 	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
 	
-	<!-- iCheck -->
-	<link rel="stylesheet" href="assets/plugin/iCheck/skins/square/blue.css">
+	<!-- Table Responsive -->
+	<link rel="stylesheet" href="assets/plugin/RWD-table-pattern/css/rwd-table.min.css">
 
 </head>
 
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="dashboard.php" class="logo"><img src="logo.png"width="110" height="110">></i>OSSM</a>
+		<a href="index.html" class="logo"><i class="ico ti-rocket"></i>SpaceX</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -143,12 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
-				<li>
+				<li class="current active">
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layout-accordion-merged"></i><span>Tables</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="tables-basic.html">Basic Tables</a></li>
 						<li><a href="tables-datatable.html">Data Tables</a></li>
-						<li><a href="tables-responsive.html">Responsive Tables</a></li>
+						<li class="current"><a href="tables-responsive.html">Responsive Tables</a></li>
 						<li><a href="tables-editable.html">Editable Tables</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
@@ -161,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<li>
 					<a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
 				</li>
-				<li class="current">
+				<li>
 					<a class="waves-effect" href="inbox.html"><i class="menu-icon ti-email"></i><span>Mail</span><span class="notice notice-danger">New</span></a>
 				</li>
 				<li>
@@ -207,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="fixed-navbar">
 	<div class="pull-left">
 		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Inbox</h1>
+		<h1 class="page-title">Responsive Table</h1>
 		<!-- /.page-title -->
 	</div>
 	<!-- /.pull-left -->
@@ -404,239 +373,475 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- /#message-popup -->
 <div id="wrapper">
 	<div class="main-content">
-		<div class="row">
-			<div class="col-md-3 col-xs-12">
-				<a href="compose.html" class="btn btn-danger btn-mail-main btn-block margin-bottom-20 waves-effect waves-light">COMPOSE</a>
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-								<span class="label-text-right pull-right">35</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-envelope"></i> Sent</a></li>
-							<li><a href="#"><i class="fa fa-file-text"></i> Drafts
-								<span class="label-text-right pull-right">27</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label-right bg-primary pull-right">234</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-trash"></i> Trash</a></li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content">
+					<div class="table-responsive" data-pattern="priority-columns">
+						<table id="tech-companies-1" class="table table-small-font table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Company</th>
+									<th data-priority="1">Last Trade</th>
+									<th data-priority="3">Trade Time</th>
+									<th data-priority="1">Change</th>
+									<th data-priority="3">Prev Close</th>
+									<th data-priority="3">Open</th>
+									<th data-priority="6">Bid</th>
+									<th data-priority="6">Ask</th>
+									<th data-priority="6">1y Target Est</th>
+									<th data-priority="6">Lorem</th>
+									<th data-priority="6">Ipsum</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>GOOG <span class="co-name">Google Inc.</span></th>
+									<td>597.74</td>
+									<td>12:12PM</td>
+									<td>14.81 (2.54%)</td>
+									<td>582.93</td>
+									<td>597.95</td>
+									<td>597.73 x 100</td>
+									<td>597.91 x 300</td>
+									<td>731.10</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AAPL <span class="co-name">Apple Inc.</span></th>
+									<td>378.94</td>
+									<td>12:22PM</td>
+									<td>5.74 (1.54%)</td>
+									<td>373.20</td>
+									<td>381.02</td>
+									<td>378.92 x 300</td>
+									<td>378.99 x 100</td>
+									<td>505.94</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+									<td>191.55</td>
+									<td>12:23PM</td>
+									<td>3.16 (1.68%)</td>
+									<td>188.39</td>
+									<td>194.99</td>
+									<td>191.52 x 300</td>
+									<td>191.58 x 100</td>
+									<td>240.32</td>
+									<td colspan="2">Spanning cell</td>  
+								</tr>       
+								<tr>
+									<th>ORCL <span class="co-name">Oracle Corporation</span></th>
+									<td>31.15</td>
+									<td>12:44PM</td>
+									<td>1.41 (4.72%)</td>
+									<td>29.74</td>
+									<td>30.67</td>
+									<td>31.14 x 6500</td>
+									<td>31.15 x 3200</td>
+									<td>36.11</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+									<td>25.50</td>
+									<td>12:27PM</td>
+									<td>0.66 (2.67%)</td>
+									<td>24.84</td>
+									<td>25.37</td>
+									<td>25.50 x 71100</td>
+									<td>25.51 x 17800</td>
+									<td>31.50</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>
+								<tr>
+									<th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+									<td>18.65</td>
+									<td>12:45PM</td>
+									<td>0.97 (5.49%)</td>
+									<td>17.68</td>
+									<td>18.23</td>
+									<td>18.65 x 10300</td>
+									<td>18.66 x 24000</td>
+									<td>21.12</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>      
+								<tr>
+									<th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+									<td>15.81</td>
+									<td>12:25PM</td>
+									<td>0.11 (0.67%)</td>
+									<td>15.70</td>
+									<td>15.94</td>
+									<td>15.79 x 6100</td>
+									<td>15.80 x 17000</td>
+									<td>18.16</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>         
+								</tr>
+								<!-- Repeat -->
+								<tr>
+									<th>GOOG <span class="co-name">Google Inc.</span></th>
+									<td>597.74</td>
+									<td>12:12PM</td>
+									<td>14.81 (2.54%)</td>
+									<td>582.93</td>
+									<td>597.95</td>
+									<td>597.73 x 100</td>
+									<td>597.91 x 300</td>
+									<td>731.10</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AAPL <span class="co-name">Apple Inc.</span></th>
+									<td>378.94</td>
+									<td>12:22PM</td>
+									<td>5.74 (1.54%)</td>
+									<td>373.20</td>
+									<td>381.02</td>
+									<td>378.92 x 300</td>
+									<td>378.99 x 100</td>
+									<td>505.94</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+									<td>191.55</td>
+									<td>12:23PM</td>
+									<td>3.16 (1.68%)</td>
+									<td>188.39</td>
+									<td>194.99</td>
+									<td>191.52 x 300</td>
+									<td>191.58 x 100</td>
+									<td>240.32</td>
+									<td colspan="2">Spanning cell</td>  
+								</tr>       
+								<tr>
+									<th>ORCL <span class="co-name">Oracle Corporation</span></th>
+									<td>31.15</td>
+									<td>12:44PM</td>
+									<td>1.41 (4.72%)</td>
+									<td>29.74</td>
+									<td>30.67</td>
+									<td>31.14 x 6500</td>
+									<td>31.15 x 3200</td>
+									<td>36.11</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+									<td>25.50</td>
+									<td>12:27PM</td>
+									<td>0.66 (2.67%)</td>
+									<td>24.84</td>
+									<td>25.37</td>
+									<td>25.50 x 71100</td>
+									<td>25.51 x 17800</td>
+									<td>31.50</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>
+								<tr>
+									<th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+									<td>18.65</td>
+									<td>12:45PM</td>
+									<td>0.97 (5.49%)</td>
+									<td>17.68</td>
+									<td>18.23</td>
+									<td>18.65 x 10300</td>
+									<td>18.66 x 24000</td>
+									<td>21.12</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>      
+								<tr>
+									<th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+									<td>15.81</td>
+									<td>12:25PM</td>
+									<td>0.11 (0.67%)</td>
+									<td>15.70</td>
+									<td>15.94</td>
+									<td>15.79 x 6100</td>
+									<td>15.80 x 17000</td>
+									<td>18.16</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>         
+								</tr>
+								<!-- Repeat -->
+								<tr>
+									<th>GOOG <span class="co-name">Google Inc.</span></th>
+									<td>597.74</td>
+									<td>12:12PM</td>
+									<td>14.81 (2.54%)</td>
+									<td>582.93</td>
+									<td>597.95</td>
+									<td>597.73 x 100</td>
+									<td>597.91 x 300</td>
+									<td>731.10</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AAPL <span class="co-name">Apple Inc.</span></th>
+									<td>378.94</td>
+									<td>12:22PM</td>
+									<td>5.74 (1.54%)</td>
+									<td>373.20</td>
+									<td>381.02</td>
+									<td>378.92 x 300</td>
+									<td>378.99 x 100</td>
+									<td>505.94</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+									<td>191.55</td>
+									<td>12:23PM</td>
+									<td>3.16 (1.68%)</td>
+									<td>188.39</td>
+									<td>194.99</td>
+									<td>191.52 x 300</td>
+									<td>191.58 x 100</td>
+									<td>240.32</td>
+									<td colspan="2">Spanning cell</td>  
+								</tr>       
+								<tr>
+									<th>ORCL <span class="co-name">Oracle Corporation</span></th>
+									<td>31.15</td>
+									<td>12:44PM</td>
+									<td>1.41 (4.72%)</td>
+									<td>29.74</td>
+									<td>30.67</td>
+									<td>31.14 x 6500</td>
+									<td>31.15 x 3200</td>
+									<td>36.11</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+									<td>25.50</td>
+									<td>12:27PM</td>
+									<td>0.66 (2.67%)</td>
+									<td>24.84</td>
+									<td>25.37</td>
+									<td>25.50 x 71100</td>
+									<td>25.51 x 17800</td>
+									<td>31.50</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>
+								<tr>
+									<th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+									<td>18.65</td>
+									<td>12:45PM</td>
+									<td>0.97 (5.49%)</td>
+									<td>17.68</td>
+									<td>18.23</td>
+									<td>18.65 x 10300</td>
+									<td>18.66 x 24000</td>
+									<td>21.12</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>      
+								<tr>
+									<th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+									<td>15.81</td>
+									<td>12:25PM</td>
+									<td>0.11 (0.67%)</td>
+									<td>15.70</td>
+									<td>15.94</td>
+									<td>15.79 x 6100</td>
+									<td>15.80 x 17000</td>
+									<td>18.16</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>         
+								</tr>
+								<!-- Repeat -->
+								<tr>
+									<th>GOOG <span class="co-name">Google Inc.</span></th>
+									<td>597.74</td>
+									<td>12:12PM</td>
+									<td>14.81 (2.54%)</td>
+									<td>582.93</td>
+									<td>597.95</td>
+									<td>597.73 x 100</td>
+									<td>597.91 x 300</td>
+									<td>731.10</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AAPL <span class="co-name">Apple Inc.</span></th>
+									<td>378.94</td>
+									<td>12:22PM</td>
+									<td>5.74 (1.54%)</td>
+									<td>373.20</td>
+									<td>381.02</td>
+									<td>378.92 x 300</td>
+									<td>378.99 x 100</td>
+									<td>505.94</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+									<td>191.55</td>
+									<td>12:23PM</td>
+									<td>3.16 (1.68%)</td>
+									<td>188.39</td>
+									<td>194.99</td>
+									<td>191.52 x 300</td>
+									<td>191.58 x 100</td>
+									<td>240.32</td>
+									<td colspan="2">Spanning cell</td>  
+								</tr>       
+								<tr>
+									<th>ORCL <span class="co-name">Oracle Corporation</span></th>
+									<td>31.15</td>
+									<td>12:44PM</td>
+									<td>1.41 (4.72%)</td>
+									<td>29.74</td>
+									<td>30.67</td>
+									<td>31.14 x 6500</td>
+									<td>31.15 x 3200</td>
+									<td>36.11</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+									<td>25.50</td>
+									<td>12:27PM</td>
+									<td>0.66 (2.67%)</td>
+									<td>24.84</td>
+									<td>25.37</td>
+									<td>25.50 x 71100</td>
+									<td>25.51 x 17800</td>
+									<td>31.50</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>
+								<tr>
+									<th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+									<td>18.65</td>
+									<td>12:45PM</td>
+									<td>0.97 (5.49%)</td>
+									<td>17.68</td>
+									<td>18.23</td>
+									<td>18.65 x 10300</td>
+									<td>18.66 x 24000</td>
+									<td>21.12</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>      
+								<tr>
+									<th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+									<td>15.81</td>
+									<td>12:25PM</td>
+									<td>0.11 (0.67%)</td>
+									<td>15.70</td>
+									<td>15.94</td>
+									<td>15.79 x 6100</td>
+									<td>15.80 x 17000</td>
+									<td>18.16</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>         
+								</tr>
+								<!-- Repeat -->
+								<tr>
+									<th>GOOG <span class="co-name">Google Inc.</span></th>
+									<td>597.74</td>
+									<td>12:12PM</td>
+									<td>14.81 (2.54%)</td>
+									<td>582.93</td>
+									<td>597.95</td>
+									<td>597.73 x 100</td>
+									<td>597.91 x 300</td>
+									<td>731.10</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AAPL <span class="co-name">Apple Inc.</span></th>
+									<td>378.94</td>
+									<td>12:22PM</td>
+									<td>5.74 (1.54%)</td>
+									<td>373.20</td>
+									<td>381.02</td>
+									<td>378.92 x 300</td>
+									<td>378.99 x 100</td>
+									<td>505.94</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+									<td>191.55</td>
+									<td>12:23PM</td>
+									<td>3.16 (1.68%)</td>
+									<td>188.39</td>
+									<td>194.99</td>
+									<td>191.52 x 300</td>
+									<td>191.58 x 100</td>
+									<td>240.32</td>
+									<td colspan="2">Spanning cell</td>  
+								</tr>       
+								<tr>
+									<th>ORCL <span class="co-name">Oracle Corporation</span></th>
+									<td>31.15</td>
+									<td>12:44PM</td>
+									<td>1.41 (4.72%)</td>
+									<td>29.74</td>
+									<td>30.67</td>
+									<td>31.14 x 6500</td>
+									<td>31.15 x 3200</td>
+									<td>36.11</td>
+									<td colspan="2">Spanning cell</td>
+								</tr>      
+								<tr>
+									<th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+									<td>25.50</td>
+									<td>12:27PM</td>
+									<td>0.66 (2.67%)</td>
+									<td>24.84</td>
+									<td>25.37</td>
+									<td>25.50 x 71100</td>
+									<td>25.51 x 17800</td>
+									<td>31.50</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>
+								<tr>
+									<th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+									<td>18.65</td>
+									<td>12:45PM</td>
+									<td>0.97 (5.49%)</td>
+									<td>17.68</td>
+									<td>18.23</td>
+									<td>18.65 x 10300</td>
+									<td>18.66 x 24000</td>
+									<td>21.12</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>  
+								</tr>      
+								<tr>
+									<th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+									<td>15.81</td>
+									<td>12:25PM</td>
+									<td>0.11 (0.67%)</td>
+									<td>15.70</td>
+									<td>15.94</td>
+									<td>15.79 x 6100</td>
+									<td>15.80 x 17000</td>
+									<td>18.16</td>
+									<td>Non-spanning</td>
+									<td>Non-spanning</td>         
+								</tr>
+							</tbody>
+						</table>
+					</div> 
 				</div>
-				<!-- /. box -->
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#"><i class="fa fa-circle-o text-primary"></i> Important</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-success"></i> Promotions</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-danger"></i> Social</a></li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
+				<!-- /.box-content -->
 			</div>
-			<!-- /.col-md-3 col-xs-12 -->
-			<div class="col-md-9 col-xs-12">
-				<div class="box">
-					<div class="box-header with-border">
-						<h3 class="box-title">Inbox</h3>
-						<div class="box-tools">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm" placeholder="Search Mail">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</div>
-						<!-- /.box-tools -->
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
-						<div class="table-responsive mailbox-messages">
-							<table class="table table-hover table-striped">
-								<tbody>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">5 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">28 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">11 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">15 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">Yesterday</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">4 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">14 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">15 days ago</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- /.table -->
-						</div>
-						<!-- /.mail-box-messages -->
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
-					</div>
-				</div>
-				<!-- /. box -->
-			</div>
-			<!-- /.col-md-9 col-xs-12 -->
+			<!-- /.col-lg-6 col-xs-12 -->
 		</div>
-		<!-- /.row -->		
+		<!-- /.row small-spacing -->		
 		<footer class="footer">
 			<ul class="list-inline">
 				<li>2016 © NinjaAdmin.</li>
@@ -667,9 +872,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<script src="assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
 	<script src="assets/scripts/chart.sparkline.init.min.js"></script>
 
-	<!-- iCheck -->
-	<script src="assets/plugin/iCheck/icheck.min.js"></script>
-	<script src="assets/scripts/mailbox.init.min.js"></script>
+	<!-- Responsive Table -->
+	<script src="assets/plugin/RWD-table-pattern/js/rwd-table.min.js"></script>
+	<script src="assets/scripts/rwd.demo.min.js"></script>
 
 	<script src="assets/scripts/main.min.js"></script>
 </body>

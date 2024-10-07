@@ -1,34 +1,3 @@
-<?php
-session_start();
-include 'db_connection.php';
-
-// Check if the current user is an admin
-// if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-// echo "Access denied.";
-//    exit();
-//}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
-
-    $stmt = $conn->prepare("UPDATE users SET is_admin = ? WHERE email = ?");
-    if ($stmt) {
-        $stmt->bind_param("is", $is_admin, $email);
-        if ($stmt->execute()) {
-            echo "User updated successfully.";
-        } else {
-            echo "Error updating user.";
-        }
-        $stmt->close();
-    } else {
-        echo "Error preparing statement.";
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>DASHBOARD</title>
+	<title>Wysiwig Editor - SpaceX Template</title>
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
@@ -55,15 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Sweet Alert -->
 	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
 	
-	<!-- iCheck -->
-	<link rel="stylesheet" href="assets/plugin/iCheck/skins/square/blue.css">
+	<!-- TinyMCE -->
+	<link rel="stylesheet" href="assets/plugin/tinymce/skins/lightgray/skin.min.css">
+	<!-- Must include this script FIRST -->
+	<script src="assets/plugin/tinymce/tinymce.min.js"></script>
 
 </head>
 
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="dashboard.php" class="logo"><img src="logo.png"width="110" height="110">></i>OSSM</a>
+		<a href="index.html" class="logo"><i class="ico ti-rocket"></i>SpaceX</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -130,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>
-				<li>
+				<li class="current active">
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layout"></i><span>Forms</span><span class="notice notice-blue">7</span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="form-elements.html">General Elements</a></li>
@@ -138,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<li><a href="form-fileupload.html">Form Uploads</a></li>
 						<li><a href="form-validation.html">Form Validation</a></li>
 						<li><a href="form-wizard.html">Form Wizard</a></li>
-						<li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
+						<li class="current"><a href="form-wysiwig.html">Wysiwig Editors</a></li>
 						<li><a href="form-xeditable.html">X-editable</a></li>
 					</ul>
 					<!-- /.sub-menu js__content -->
@@ -161,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<li>
 					<a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
 				</li>
-				<li class="current">
+				<li>
 					<a class="waves-effect" href="inbox.html"><i class="menu-icon ti-email"></i><span>Mail</span><span class="notice notice-danger">New</span></a>
 				</li>
 				<li>
@@ -207,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="fixed-navbar">
 	<div class="pull-left">
 		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Inbox</h1>
+		<h1 class="page-title">Wysiwig Editor</h1>
 		<!-- /.page-title -->
 	</div>
 	<!-- /.pull-left -->
@@ -404,237 +375,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- /#message-popup -->
 <div id="wrapper">
 	<div class="main-content">
-		<div class="row">
-			<div class="col-md-3 col-xs-12">
-				<a href="compose.html" class="btn btn-danger btn-mail-main btn-block margin-bottom-20 waves-effect waves-light">COMPOSE</a>
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-								<span class="label-text-right pull-right">35</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-envelope"></i> Sent</a></li>
-							<li><a href="#"><i class="fa fa-file-text"></i> Drafts
-								<span class="label-text-right pull-right">27</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label-right bg-primary pull-right">234</span></a>
-							</li>
-							<li><a href="#"><i class="fa fa-trash"></i> Trash</a></li>
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Default</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
 						</ul>
+						<!-- /.sub-menu -->
 					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /. box -->
-				<div class="box box-solid">
-					<div class="box-body">
-						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#"><i class="fa fa-circle-o text-primary"></i> Important</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-success"></i> Promotions</a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-danger"></i> Social</a></li>
+					<!-- /.dropdown js__dropdown -->
+					<textarea id="tinymce">
+						<img src="http://placehold.it/80x80" alt="">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa ad consequatur illum unde! Sapiente accusantium, officiis ab velit sunt, perspiciatis ducimus expedita voluptates corrupti hic eligendi iusto ad error id!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab sapiente ratione quidem aut rerum asperiores tenetur, minus eveniet porro! Quo, quos harum accusamus sapiente perspiciatis dicta ratione tempore officia.</p>
+						<ul>
+							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+							<li>Culpa ad consequatur illum unde! Sapiente accusantium.</li>
+							<li>A ab sapiente ratione quidem aut rerum asperiores tenetur</li>
+							<li>Quo, quos harum accusamus sapiente perspiciatis</li>
+							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
 						</ul>
-					</div>
-					<!-- /.box-body -->
+					</textarea>
 				</div>
-				<!-- /.box -->
+				<!-- /.box-content -->
 			</div>
-			<!-- /.col-md-3 col-xs-12 -->
-			<div class="col-md-9 col-xs-12">
-				<div class="box">
-					<div class="box-header with-border">
-						<h3 class="box-title">Inbox</h3>
-						<div class="box-tools">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm" placeholder="Search Mail">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</div>
-						<!-- /.box-tools -->
+			<!-- /.col-xs-12 -->
+
+			<div class="col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Inline</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
 					</div>
-					<!-- /.box-header -->
-					<div class="box-body no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
-						<div class="table-responsive mailbox-messages">
-							<table class="table table-hover table-striped">
-								<tbody>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">5 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">28 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">11 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">15 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">Yesterday</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">4 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">14 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">15 days ago</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- /.table -->
-						</div>
-						<!-- /.mail-box-messages -->
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
+					<!-- /.dropdown js__dropdown -->
+					<h2 class="editable">Editable header</h2>
+
+					<div class="editable">
+						<p>
+							This is an editable div element.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt est ac dolor condimentum vitae laoreet ante accumsan. Nullam tincidunt tincidunt ante tempus commodo. Duis rutrum, magna non lacinia tincidunt, risus lacus tempus ipsum, sit amet euismod justo metus ut metus. Donec feugiat urna non leo laoreet in tincidunt lectus gravida. Sed semper ante sed dui consectetur eget commodo eros imperdiet. Mauris magna diam, scelerisque at ornare vel, dignissim ac sem. Fusce id congue lacus. Duis sit amet tellus erat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus mattis facilisis pretium. In in nibh eu urna ornare semper. Sed imperdiet felis vitae nibh sagittis eu pulvinar metus facilisis. Sed dolor orci, aliquet sagittis auctor id, faucibus at justo.
+						</p>
+						<p>
+							Vestibulum vestibulum velit nec magna lobortis elementum. Ut egestas ultrices tincidunt. Sed vestibulum mi vitae dui interdum eget rhoncus neque faucibus. Ut nec leo tellus. Nunc in metus sit amet purus bibendum dignissim pulvinar quis erat. Quisque vel ultricies nisi. Vestibulum eu ante risus. In ultrices dignissim massa, vel luctus dui consequat quis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dui nulla, venenatis at porttitor nec, sagittis et urna. Nulla facilisi. Integer bibendum porta urna porta suscipit. In condimentum quam quis justo accumsan molestie. Fusce accumsan vulputate mattis. Sed pharetra volutpat erat at convallis. Etiam tempus, est ac tincidunt scelerisque, mi elit pretium nulla, sit amet viverra nisl enim id lorem. Suspendisse ut enim ullamcorper tellus eleifend sagittis. Aenean mollis turpis eu nisl viverra laoreet. Mauris ante purus, tempor ut viverra eu, vestibulum eget tellus. Morbi vitae dolor tellus. Mauris sodales rutrum nunc, a imperdiet augue egestas vel. Nulla facilisi. Nulla venenatis tristique nisi ut blandit. Phasellus suscipit arcu adipiscing velit posuere nec lacinia urna mattis.
+						</p>
+						<p>
+							Nulla ullamcorper magna sit amet leo porta blandit. Aliquam sed nulla ac arcu vehicula feugiat. Fusce eget accumsan dui. Vestibulum vel leo tellus. Sed dignissim justo in nunc interdum tempor vehicula neque egestas. Fusce lacinia turpis sit amet leo consequat laoreet. Cras nec erat ac purus volutpat consequat. Vestibulum iaculis tincidunt purus eget blandit. Cras consectetur tellus libero. Vestibulum eros orci, volutpat vitae lobortis sit amet, porta quis felis. In a lacus ac neque luctus mollis. Nulla elementum nunc ac ante porttitor id venenatis augue venenatis. In aliquam magna non dolor convallis consequat.
+						</p>
 					</div>
 				</div>
-				<!-- /. box -->
+				<!-- /.box-content -->
 			</div>
-			<!-- /.col-md-9 col-xs-12 -->
+			<!-- /.col-xs-12 -->
 		</div>
 		<!-- /.row -->		
 		<footer class="footer">
@@ -667,9 +480,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<script src="assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
 	<script src="assets/scripts/chart.sparkline.init.min.js"></script>
 
-	<!-- iCheck -->
-	<script src="assets/plugin/iCheck/icheck.min.js"></script>
-	<script src="assets/scripts/mailbox.init.min.js"></script>
+	<!-- TinyMCE -->
+	<!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
+	<link rel="stylesheet" href="assets/plugin/tinymce/skins/lightgray/skin.min.css">
+	<script src="assets/plugin/tinymce/plugins/advlist/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/anchor/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/autolink/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/autoresize/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/autosave/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/bbcode/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/charmap/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/code/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/codesample/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/colorpicker/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/contextmenu/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/directionality/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/emoticons/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/example/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/example_dependency/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/fullpage/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/fullscreen/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/hr/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/image/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/imagetools/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/importcss/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/insertdatetime/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/layer/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/legacyoutput/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/link/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/lists/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/media/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/nonbreaking/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/noneditable/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/pagebreak/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/paste/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/preview/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/print/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/save/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/searchreplace/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/spellchecker/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/tabfocus/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/table/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/template/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/textcolor/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/textpattern/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/visualblocks/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/visualchars/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/plugins/wordcount/plugin.min.js "></script>
+	<script src="assets/plugin/tinymce/themes/modern/theme.min.js"></script>
+	<!-- Plugin Files DON'T INCLUDES THESES FILES IF YOU USE IN THE HOST -->
+
+	<script src="assets/scripts/tinymce.init.min.js"></script>
 
 	<script src="assets/scripts/main.min.js"></script>
 </body>

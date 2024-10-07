@@ -1,34 +1,3 @@
-<?php
-session_start();
-include 'db_connection.php';
-
-// Check if the current user is an admin
-// if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-// echo "Access denied.";
-//    exit();
-//}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
-
-    $stmt = $conn->prepare("UPDATE users SET is_admin = ? WHERE email = ?");
-    if ($stmt) {
-        $stmt->bind_param("is", $is_admin, $email);
-        if ($stmt->execute()) {
-            echo "User updated successfully.";
-        } else {
-            echo "Error updating user.";
-        }
-        $stmt->close();
-    } else {
-        echo "Error preparing statement.";
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>DASHBOARD</title>
+	<title>Read Mail - SpaceX Template</title>
 
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="assets/styles/style.min.css">
@@ -55,15 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Sweet Alert -->
 	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
 	
-	<!-- iCheck -->
-	<link rel="stylesheet" href="assets/plugin/iCheck/skins/square/blue.css">
-
 </head>
 
 <body>
 <div class="main-menu">
 	<header class="header">
-		<a href="dashboard.php" class="logo"><img src="logo.png"width="110" height="110">></i>OSSM</a>
+		<a href="index.html" class="logo"><i class="ico ti-rocket"></i>SpaceX</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -161,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<li>
 					<a class="waves-effect" href="profile.html"><i class="menu-icon ti-user"></i><span>Profile</span></a>
 				</li>
-				<li class="current">
+				<li>
 					<a class="waves-effect" href="inbox.html"><i class="menu-icon ti-email"></i><span>Mail</span><span class="notice notice-danger">New</span></a>
 				</li>
 				<li>
@@ -207,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="fixed-navbar">
 	<div class="pull-left">
 		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
-		<h1 class="page-title">Inbox</h1>
+		<h1 class="page-title">Read Mail</h1>
 		<!-- /.page-title -->
 	</div>
 	<!-- /.pull-left -->
@@ -406,7 +372,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<div class="main-content">
 		<div class="row">
 			<div class="col-md-3 col-xs-12">
-				<a href="compose.html" class="btn btn-danger btn-mail-main btn-block margin-bottom-20 waves-effect waves-light">COMPOSE</a>
+				<a href="compose.html" class="btn btn-danger btn-mail-main btn-block margin-bottom-20 waves-effect waves-light">Compose</a>
 				<div class="box box-solid">
 					<div class="box-body">
 						<ul class="nav nav-pills nav-stacked">
@@ -439,198 +405,122 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 			<!-- /.col-md-3 col-xs-12 -->
 			<div class="col-md-9 col-xs-12">
-				<div class="box">
+				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Inbox</h3>
-						<div class="box-tools">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm" placeholder="Search Mail">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
+						<h3 class="box-title">Read Mail</h3>
+						<div class="box-tools pull-right">
+							<a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+							<a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
 						</div>
-						<!-- /.box-tools -->
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
-								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
+						<div class="mailbox-read-info">
+							<h3>Message Subject Is Placed Here</h3>
+							<h5>From: help@example.com
+								<span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span>
+							</h5>
 						</div>
-						<div class="table-responsive mailbox-messages">
-							<table class="table table-hover table-striped">
-								<tbody>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">5 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">28 mins ago</td>
-									</tr>
-									<tr class="unread">
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">11 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">15 hours ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">Yesterday</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">2 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">4 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star-o"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">12 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">14 days ago</td>
-									</tr>
-									<tr>
-										<td><input type="checkbox"></td>
-										<td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-										<td class="mailbox-name"><a href="read-mail.html">Mat Helme</a></td>
-										<td class="mailbox-subject"><span class="mailbox-subject-title">Amaza Themes Approved</span> - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-										</td>
-										<td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-										<td class="mailbox-date">15 days ago</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- /.table -->
+						<!-- /.mailbox-read-info -->
+						<div class="mailbox-controls with-border text-center">
+							<button type="button" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="tooltip" data-container="body" title="Delete"><i class="fa fa-trash"></i></button>
+							<button type="button" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="tooltip" data-container="body" title="Reply"><i class="fa fa-reply"></i></button>
+							<button type="button" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="tooltip" data-container="body" title="Forward"><i class="fa fa-share"></i></button>
+							<button type="button" class="btn btn-default btn-sm waves-effect waves-light" data-toggle="tooltip" title="Print"><i class="fa fa-print"></i></button>
 						</div>
-						<!-- /.mail-box-messages -->
+						<!-- /.mailbox-controls -->
+						<div class="mailbox-read-message">
+							<p>Hello John,</p>
+							<p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
+								on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
+								master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack
+								gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon
+								asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu
+								blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American
+								Apparel.
+							</p>
+							<p>Raw denim McSweeney's bicycle rights, iPhone trust fund quinoa Neutra VHS kale chips vegan PBR&amp;B
+								literally Thundercats +1. Forage tilde four dollar toast, banjo health goth paleo butcher. Four dollar
+								toast Brooklyn pour-over American Apparel sustainable, lumbersexual listicle gluten-free health goth
+								umami hoodie. Synth Echo Park bicycle rights DIY farm-to-table, retro kogi sriracha dreamcatcher PBR&amp;B
+								flannel hashtag irony Wes Anderson. Lumbersexual Williamsburg Helvetica next level. Cold-pressed
+								slow-carb pop-up normcore Thundercats Portland, cardigan literally meditation lumbersexual crucifix.
+								Wayfarers raw denim paleo Bushwick, keytar Helvetica scenester keffiyeh 8-bit irony mumblecore
+								whatever viral Truffaut.
+							</p>
+							<p>Post-ironic shabby chic VHS, Marfa keytar flannel lomo try-hard keffiyeh cray. Actually fap fanny
+								pack yr artisan trust fund. High Life dreamcatcher church-key gentrify. Tumblr stumptown four dollar
+								toast vinyl, cold-pressed try-hard blog authentic keffiyeh Helvetica lo-fi tilde Intelligentsia. Lomo
+								locavore salvia bespoke, twee fixie paleo cliche brunch Schlitz blog McSweeney's messenger bag swag
+								slow-carb. Odd Future photo booth pork belly, you probably haven't heard of them actually tofu ennui
+								keffiyeh lo-fi Truffaut health goth. Narwhal sustainable retro disrupt.
+							</p>
+							<p>Skateboard artisan letterpress before they sold out High Life messenger bag. Bitters chambray
+								leggings listicle, drinking vinegar chillwave synth. Fanny pack hoodie American Apparel twee. American
+								Apparel PBR listicle, salvia aesthetic occupy sustainable Neutra kogi. Organic synth Tumblr viral
+								plaid, shabby chic single-origin coffee Etsy 3 wolf moon slow-carb Schlitz roof party tousled squid
+								vinyl. Readymade next level literally trust fund. Distillery master cleanse migas, Vice sriracha
+								flannel chambray chia cronut.
+							</p>
+							<p>Thanks,<br>Jane</p>
+						</div>
+						<!-- /.mailbox-read-message -->
 					</div>
 					<!-- /.box-body -->
-					<div class="box-footer no-padding">
-						<div class="mailbox-controls">
-							<!-- Check all button -->
-							<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-exclamation-circle"></i></button>
-							<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-refresh"></i></button>
-							<div class="pull-right">
-								<span class="inbox-text">1-50/200</span>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-left"></i></button>
-									<button type="button" class="btn btn-default btn-sm waves-effect waves-light"><i class="fa fa-angle-right"></i></button>
+					<div class="mailbox-footer">
+						<ul class="mailbox-attachments clearfix">
+							<li>
+								<span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+								<div class="mailbox-attachment-info">
+									<a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
+									<span class="mailbox-attachment-size">
+									1,245 KB
+									<a href="#" class="btn btn-default btn-xs waves-effect waves-light pull-right"><i class="fa fa-cloud-download"></i></a>
+									</span>
 								</div>
-								<!-- /.btn-group -->
-							</div>
-							<!-- /.pull-right -->
-						</div>
+							</li>
+							<li>
+								<span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
+								<div class="mailbox-attachment-info">
+									<a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
+									<span class="mailbox-attachment-size">
+									1,245 KB
+									<a href="#" class="btn btn-default btn-xs waves-effect waves-light pull-right"><i class="fa fa-cloud-download"></i></a>
+									</span>
+								</div>
+							</li>
+							<li>
+								<span class="mailbox-attachment-icon has-img"><img src="http://placehold.it/1250x835" alt="Attachment"></span>
+								<div class="mailbox-attachment-info">
+									<a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
+									<span class="mailbox-attachment-size">
+									2.67 MB
+									<a href="#" class="btn btn-default btn-xs waves-effect waves-light pull-right"><i class="fa fa-cloud-download"></i></a>
+									</span>
+								</div>
+							</li>
+							<li>
+								<span class="mailbox-attachment-icon has-img"><img src="http://placehold.it/1250x835" alt="Attachment"></span>
+								<div class="mailbox-attachment-info">
+									<a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
+									<span class="mailbox-attachment-size">
+									1.9 MB
+									<a href="#" class="btn btn-default btn-xs waves-effect waves-light pull-right"><i class="fa fa-cloud-download"></i></a>
+									</span>
+								</div>
+							</li>
+						</ul>
 					</div>
+					<!-- /.box-footer -->
+					<div class="box-footer">
+						<div class="pull-right">
+							<button type="button" class="btn btn-default waves-effect waves-light"><i class="fa fa-reply"></i> Reply</button>
+							<button type="button" class="btn btn-default waves-effect waves-light"><i class="fa fa-share"></i> Forward</button>
+						</div>
+						<button type="button" class="btn btn-default waves-effect waves-light"><i class="fa fa-trash-o"></i> Delete</button>
+						<button type="button" class="btn btn-default waves-effect waves-light"><i class="fa fa-print"></i> Print</button>
+					</div>
+					<!-- /.box-footer -->
 				</div>
 				<!-- /. box -->
 			</div>
@@ -666,10 +556,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Sparkline Chart -->
 	<script src="assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
 	<script src="assets/scripts/chart.sparkline.init.min.js"></script>
-
-	<!-- iCheck -->
-	<script src="assets/plugin/iCheck/icheck.min.js"></script>
-	<script src="assets/scripts/mailbox.init.min.js"></script>
 
 	<script src="assets/scripts/main.min.js"></script>
 </body>

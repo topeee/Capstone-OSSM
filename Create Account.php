@@ -1,10 +1,201 @@
+
+<?php
+
+require 'vendor/autoload.php';
+
+
+function performOcrWithApiKey($imagePath, $apiKey) {
+    $imageData = file_get_contents($imagePath);
+    $base64Image = base64_encode($imageData);
+
+    $url = "https://vision.googleapis.com/v1/images:annotate?key={$apiKey}";
+
+    $jsonRequest = json_encode([
+        "requests" => [
+            [
+                "image" => [
+                    "content" => $base64Image
+                ],
+                "features" => [
+                    [
+                        "type" => "TEXT_DETECTION",
+                        "maxResults" => 1
+                    ]
+                ]
+            ]
+        ]
+    ]);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $responseDecoded = json_decode($response, true);
+
+    if (isset($responseDecoded['responses'][0]['textAnnotations'][0]['description'])) {
+        return $responseDecoded['responses'][0]['textAnnotations'][0]['description'];
+    } else {
+        return "No text found in the ID Document.";
+    }
+}
+ 
+$servername = "153.92.15.26"; 
+$username = "u271593949_ossmdb"; 
+$password = "UcMPAq^5"; 
+$dbname = "u271593949_ossmdb"; 
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $first_name = $_POST['firstname'];
+    $last_name = $_POST['lastname'];
+    $middle_name = $_POST['middlename'];
+    $suffix = $_POST['suffix-dropdown'];
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender-dropdown'];
+    $mobile_number = $_POST['mn'];
+    $tel_number = $_POST['tn'];
+    $email = $_POST['email'];
+    $house_number = $_POST['house#'];
+    $street = $_POST['street'];
+    $subdivision = $_POST['sbd/vilg'];
+    $barangay = $_POST['barangay-dropdown'];
+    $password = $_POST['password'];
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Handle the ID Document Upload
+        if (isset($_FILES['validId'])) {
+            $idDocument = $_FILES['validId'];
+            $uploadError = $idDocument['error'];
+    
+            if ($uploadError === UPLOAD_ERR_OK) {
+                $uploadDir = 'uploads/';
+                $idDocumentPath = $uploadDir . basename($idDocument['name']);
+    
+                // Ensure the upload directory exists
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+    
+                // Move the uploaded file to the upload directory
+                if (move_uploaded_file($idDocument['tmp_name'], $idDocumentPath)) {
+                    echo "ID Document uploaded successfully.<br>";
+    
+                    // Perform OCR on the ID document
+                    $ocrText = performOcrWithApiKey($idDocumentPath, $apiKey);
+                    echo "Extracted Text from ID: " . $ocrText . "<br>";
+    
+                } else {
+                    echo "Error uploading ID Document.<br>";
+                    exit;
+                }
+            } else {
+                echo "File upload error: " . $uploadError . "<br>";
+                exit;
+            }
+        } else {
+            echo "No file was uploaded.<br>";
+            exit;
+        }
+    }
+    
+    // Your Google Cloud Vision API key
+    $apiKey = 'f11612787649e6de5b3c4a4c790e24003a1819ad';
+
+    // Perform OCR
+    // Perform OCR using the API key
+    $ocrText = performOcrWithApiKey($idDocumentPath, $apiKey);
+    echo "OCR Text: " . $ocrText . "<br>";
+
+    // Hash the password
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Check if email already exists
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "An account with this email already exists. Please use a different email.";
+    } else {
+        // Insert data into the database
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password_hash, id_document)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssssssss", $first_name, $last_name, $middle_name, $suffix, $dob, $gender, $mobile_number, $tel_number, $email, $house_number, $street, $subdivision, $barangay, $password_hash, $idDocumentPath);
+
+        if ($stmt->execute()) {
+            header("Location: login.html");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+    }
+
+    $stmt->close();
+    $conn->close();
+
+
+    define('GOOGLE_CLIENT_ID', '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com');
+    define('GOOGLE_CLIENT_SECRET', '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');
+    define('GOOGLE_REDIRECT_URL', 'onestopsanmateo.online');
+
+    if(!session_id()){
+        session_start();
+    }
+
+    require_once 'google-api-php-client/Google_Client.php';
+require_once 'google-api-php-client/contrib/Google_Oauth2Service.php';
+
+$gClient = new Google_Client();
+$gClient->setApplicationName('Login to OSSM');
+$gClient->setClientId(GOOGLE_CLIENT_ID);
+$gClient->setClientSecret(GOOGLE_CLIENT_SECRET);
+$gClient->setRedirectUri(GOOGLE_REDIRECT_URL);
+
+$google_oauthV2 = new Google_Oauth2Service($gClient);
+}
+
+
+
+
+
+
+$conn->close();
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com
+    ">
+    <script src="https://accounts.google.com/gsi/client" async></script>
     <title>Create OSSM Account</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="Create Account.css" rel="stylesheet"> <!-- Link to external CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -17,6 +208,26 @@
         <h2>MUNICIPAL GOVERNMENT OF</h2>
         <h1>SAN MATEO RIZAL</h1>
         <h6>Create New OSSM Account</h6>
+
+        <div id="g_id_onload"
+     data-client_id="64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="onestopsanmeto.online"
+     data-nonce=""
+     data-auto_select="true"
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+
 
         <div class="form-container">
             <div class="form-container">
@@ -192,7 +403,9 @@
                 <a href="login.html" class="link">Sign In Here!</a>
             </div>
         </div>
+       
     </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -235,6 +448,20 @@
             preview.style.display = "none";
             noPreview.style.display = "block";
             removeButton.style.display = "none";
+        }
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
+
+            // Send the ID token to your server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'google_signin.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                console.log('Signed in as: ' + xhr.responseText);
+            };
+            xhr.send('idtoken=' + id_token);
+            
         }
     </script>
 

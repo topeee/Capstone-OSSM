@@ -1,7 +1,6 @@
 
 <?php
 
-require 'vendor/autoload.php';
 
 
 function performOcrWithApiKey($imagePath, $apiKey) {
@@ -149,16 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 
-    define('GOOGLE_CLIENT_ID', '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com');
-    define('GOOGLE_CLIENT_SECRET', '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');
-    define('GOOGLE_REDIRECT_URL', 'onestopsanmateo.online');
-
-    if(!session_id()){
-        session_start();
-    }
-
-    require_once 'google-api-php-client/Google_Client.php';
-require_once 'google-api-php-client/contrib/Google_Oauth2Service.php';
+  
 
 
 }

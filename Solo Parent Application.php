@@ -14,6 +14,58 @@
       <link rel="stylesheet" href="solo parent app.css">
       <link rel="icon" type="img/png" href="logo.png">
       <title>Solo Parent Application</title>
+      <?php
+      
+      session_start();
+      include 'db_connection.php';
+      
+      // Check connection
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+
+      // Capture form data
+      $name = $_POST['name'];
+      $gender = $_POST['gender'];
+      $civil_status = $_POST['civil_status'];
+      $date_of_birth = $_POST['date_of_birth'];
+      $telephone = $_POST['telephone'];
+      $phone = $_POST['phone'];
+      $email = $_POST['email'];
+      $work_phone = $_POST['work_phone'];
+      $family_members = $_POST['family_members'];
+      $solo_parent_id = $_POST['soloParentId'];
+
+      if ($solo_parent_id == 'yes') {
+          $solo_parent_id_number = $_POST['soloParentIdNumber'];
+          $id_image_upload = $_FILES['idImageUpload']['name'];
+          $target_dir = "uploads/";
+          $target_file = $target_dir . basename($id_image_upload);
+          move_uploaded_file($_FILES['idImageUpload']['tmp_name'], $target_file);
+          $solo_parent_classification = NULL;
+          $monthly_income = NULL;
+      } else {
+          $solo_parent_id_number = NULL;
+          $id_image_upload = NULL;
+          $solo_parent_classification = $_POST['soloParentClassification'];
+          $monthly_income = $_POST['monthlyIncome'];
+      }
+
+      // Prepare and bind
+      $stmt = $conn->prepare("INSERT INTO SoloParentApplication (name, gender, civil_status, date_of_birth, telephone, phone, email, work_phone, family_members, solo_parent_id_number, id_image_upload, solo_parent_classification, monthly_income) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("ssssssssssssd", $name, $gender, $civil_status, $date_of_birth, $telephone, $phone, $email, $work_phone, $family_members, $solo_parent_id_number, $id_image_upload, $solo_parent_classification, $monthly_income);
+
+      // Execute the statement
+      if ($stmt->execute()) {
+          echo "New record created successfully";
+      } else {
+          echo "Error: " . $stmt->error;
+      }
+
+      // Close connections
+      $stmt->close();
+      $conn->close();
+      ?>
 
     </head>
     <body>

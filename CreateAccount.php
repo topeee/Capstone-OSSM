@@ -160,13 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once 'google-api-php-client/Google_Client.php';
 require_once 'google-api-php-client/contrib/Google_Oauth2Service.php';
 
-$gClient = new Google_Client();
-$gClient->setApplicationName('Login to OSSM');
-$gClient->setClientId(GOOGLE_CLIENT_ID);
-$gClient->setClientSecret(GOOGLE_CLIENT_SECRET);
-$gClient->setRedirectUri(GOOGLE_REDIRECT_URL);
 
-$google_oauthV2 = new Google_Oauth2Service($gClient);
 }
 
 

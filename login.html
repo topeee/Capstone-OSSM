@@ -170,6 +170,12 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+            
+<fb:login-button 
+scope="public_profile,email"
+onlogin="checkLoginState();">
+</fb:login-button>
                 
             </form>
             <div class="link-container">
@@ -234,16 +240,48 @@
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
-        // auth2 is initialized with gapi.auth2.init() and a user is signed in.
 
-if (auth2.isSignedIn.get()) {
-  var profile = auth2.currentUser.get().getBasicProfile();
-  console.log('ID: ' + profile.getId());
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+
+function statusChangeCallback(response) {
+    if (response.status === 'connected') {
+        console.log('Logged in and authenticated');
+        setElements(true);
+        testAPI();
+    } else {
+        console.log('Not authenticated');
+        setElements(false);
+    }
+}
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
 }
     </script>
     

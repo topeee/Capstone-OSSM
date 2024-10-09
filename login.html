@@ -169,79 +169,52 @@
                 <div>
                     <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
                     <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>        
+                    
+                    </form>
+                    <div class="link-container">
+                        <a href="CreateAccount.php" class="link">Create Account</a>
+                        <a href="Forgot password.html" class="link">Forgot Password</a>
+                  
+                  
+                    </div>
 
-               
-                
-            </form>
-            <div class="link-container">
-                <a href="CreateAccount.php" class="link">Create Account</a>
-                <a href="Forgot password.html" class="link">Forgot Password</a>
-            </div>
-            <div class="social-login-container">
-                <a href="#" class="facebook" aria-label="Login with Facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="gmail" aria-label="Login with Gmail">
-                    <i class="bi bi-google"></i>
-                </a>
-                <a href="#" class="x" aria-label="Login with X">
-                    <i class="bi bi-twitter"></i>
-                </a>
-            </div>
-        </div>
-    <div class="footer-links">
-        <a href="#">Terms of Service</a> | 
-        <a href="#">Privacy Policy</a>
-    </div>
-
-    <script>
-        function validateForm() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var emailError = document.getElementById('emailError');
-            var passwordError = document.getElementById('passwordError');
-            var captchaError = document.getElementById('captchaError');
-            var isValid = true;
-    
-            // Email validation
-            if (!email || !validateEmail(email)) {
-                emailError.style.display = 'block';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-    
-            // Password validation
-            if (!password) {
-                passwordError.style.display = 'block';
-                isValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            // reCAPTCHA validation
-            var captchaResponse = grecaptcha.getResponse();
-            if (captchaResponse.length === 0) {
-                captchaError.style.display = 'block';
-                isValid = false;
-            } else {
-                captchaError.style.display = 'none';
-            }
-    
-            return isValid; // Return false to prevent form submission if invalid
-        }
-
-        function validateEmail(email) {
-            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-
-
-
-  </script>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div class="footer-links">
+                        <a href="#">Terms of Service</a> | 
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                    
+                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+                    <script>
+                        function validateForm() {
+                            var email = document.getElementById('email').value;
+                            var password = document.getElementById('password').value;
+                            var emailError = document.getElementById('emailError');
+                            var passwordError = document.getElementById('passwordError');
+                            var captchaError = document.getElementById('captchaError');
+                            var isValid = true;
+                    
+                            // Add your validation logic here
+                    
+                            return isValid;
+                        }
+                    
+                        function onSignIn(googleUser) {
+                            var profile = googleUser.getBasicProfile();
+                            var id_token = googleUser.getAuthResponse().id_token;
+                    
+                            // Send the ID token to your server
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'google_signin.php');
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr.onload = function() {
+                                console.log('Signed in as: ' + xhr.responseText);
+                            };
+                            xhr.send('idtoken=' + id_token);
+                        }
+                    </script>
 
 
 

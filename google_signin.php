@@ -1,7 +1,7 @@
 <?php
 require_once 'vendor/autoload.php'; // Assuming you have installed the Google Client Library via Composer
+include 'db_connection.php';
 
-include 'db connection.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

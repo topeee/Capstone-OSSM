@@ -172,8 +172,11 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                <button id="signInButton">Create Account / Sign In</button>
-                <button id="signOutButton">Sign Out</button>
+                <button id="signInButton" class="btn btn-primary">Create Account / Sign In</button>
+                <button id="signOutButton" class="btn btn-secondary">Sign Out</button>
+                <div id="message">
+                    <p>Signed in as: <span id="userName"></span> (<span id="userEmail"></span>)</p>
+                </div>
             
 <fb:login-button 
 scope="public_profile,email"
@@ -202,7 +205,7 @@ onlogin="checkLoginState();">
         <a href="#">Privacy Policy</a>
     </div>
 
-    <script>
+    <script type="module">
         function validateForm() {
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
@@ -244,9 +247,7 @@ onlogin="checkLoginState();">
             return re.test(email);
         }
 
-    </script>
 
-<script type="module">
     // Import the functions you need from the SDKs you need
       
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";

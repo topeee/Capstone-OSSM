@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <metae charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -134,23 +133,19 @@
             background-color: #1da1f2;
         }
         .captcha-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px; 
-    }
-    .error-message {
-        color: red;
-        margin-top: 5px;
-        display: none;
-        text-align: left;
-    }
-
-
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; 
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            display: none;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
-
-    
     <div class="main-content">
         <a href="index.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
@@ -170,81 +165,74 @@
                 <div>
                     <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
                     <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>        
-                    
-                    </form>
-                    <div class="link-container">
-                        <a href="CreateAccount.php" class="link">Create Account</a>
-                        <a href="Forgot password.html" class="link">Forgot Password</a>
-                  
-                  
-                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>        
+            </form>
+            <div class="link-container">
+                <a href="CreateAccount.php" class="link">Create Account</a>
+                <a href="Forgot password.html" class="link">Forgot Password</a>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var captchaError = document.getElementById('captchaError');
+            var captchaResponse = grecaptcha.getResponse();
+            var isValid = true;
 
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                    <div class="footer-links">
-                        <a href="#">Terms of Service</a> | 
-                        <a href="#">Privacy Policy</a>
-                    </div>
-                    
-                
-                    <script>
-                        function validateForm() {
-                            var email = document.getElementById('email').value;
-                            var password = document.getElementById('password').value;
-                            var emailError = document.getElementById('emailError');
-                            var passwordError = document.getElementById('passwordError');
-                            var captchaError = document.getElementById('captchaError');
-                            var captchaResponse = grecaptcha.getResponse();
-                            var isValid = true;
-                    
-                            // Reset error messages
-                            emailError.style.display = 'none';
-                            passwordError.style.display = 'none';
-                            captchaError.style.display = 'none';
-                    
-                            // Email validation
-                            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                                emailError.style.display = 'block';
-                                isValid = false;
-                            }
-                    
-                            // Password validation
-                            if (password.trim() === '') {
-                                passwordError.style.display = 'block';
-                                isValid = false;
-                            }
-                    
-                            // CAPTCHA validation
-                            if (captchaResponse.length === 0) {
-                                captchaError.style.display = 'block';
-                                isValid = false;
-                            }
-                    
-                            return isValid;
-                        }
-                    
-                        function onSignIn(googleUser) {
-                            var profile = googleUser.getBasicProfile();
-                            var id_token = googleUser.getAuthResponse().id_token;
-                    
-                            // Send the ID token to your server
-                            var xhr = new XMLHttpRequest();
-                            xhr.open('POST', 'google_signin.php');
-                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                            xhr.onload = function() {
-                                if (xhr.status === 200) {
-                                    // Redirect to index.php on successful sign-in
-                                    window.location.href = 'index.php';
-                                } else {
-                                    console.log('Sign-in failed: ' + xhr.responseText);
-                                }
-                            };
-                            xhr.send('idtoken=' + id_token);
-                        }
-                    </script>
-            
+            // Reset error messages
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            captchaError.style.display = 'none';
 
+            // Email validation
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Password validation
+            if (password.trim() === '') {
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            // CAPTCHA validation
+            if (captchaResponse.length === 0) {
+                captchaError.style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
+
+            // Send the ID token to your server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'google_signin.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Redirect to index.php on successful sign-in
+                    window.location.href = 'index.php';
+                } else {
+                    console.log('Sign-in failed: ' + xhr.responseText);
+                }
+            };
+            xhr.send('idtoken=' + id_token);
+        }
+    </script>
 </body>
-
 </html>

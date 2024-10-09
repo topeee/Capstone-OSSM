@@ -1,75 +1,51 @@
 <?php
 session_start();
-include 'db_connection.php';
+include 'db_connection.php'; // Include your database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    // reCAPTCHA verification
+    $recaptcha_secret = 'YOUR_SECRET_KEY';
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response");
+    $response_keys = json_decode($response, true);
 
-    // reCAPTCHA secret key
-    $secretKey = '6LdSsC8qAAAAAALv4qGXAlg-_krUe2lT2nsayFs8';
+    if (intval($response_keys["success"]) !== 1) {
+        $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
+        header('Location: login.html');
+        exit();
+    }
 
-    // Verify the reCAPTCHA response
-    $responseKey = $_POST['g-recaptcha-response'];
-    $userIP = $_SERVER['REMOTE_ADDR'];
+    // Validate email and password
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    // Google API verification URL
-    $googleUrl = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+    if ($stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?")) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
 
-    // Get the response from Google API
-    $response = file_get_contents($googleUrl);
-    $responseData = json_decode($response);
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($id, $hashed_password);
+            $stmt->fetch();
 
-    if ($responseData->success) {
-        if (empty($email) || empty($password)) {
-            $_SESSION['error'] = "Please enter both email and password.";
-            header('Location: login.html');
-            exit();
-        } else {
-            $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
-            if ($stmt) {
-                $stmt->bind_param("s", $email);
-                $stmt->execute();
-                $stmt->store_result();
-
-                if ($stmt->num_rows > 0) {
-                    $stmt->bind_result($hashed_password, $is_admin);
-                    $stmt->fetch();
-
-                    if (password_verify($password, $hashed_password)) {
-                        $_SESSION['email'] = $email;
-                        $_SESSION['is_admin'] = $is_admin;
-
-                        // Debugging output
-                        error_log("User is_admin value: " . $is_admin);
-
-                        switch ($is_admin) {
-                            case 1:
-                                header('Location: dashboard.php');
-                                break;
-                            default:
-                                header('Location: index.php');
-                                break;
-                        }
-                        exit();
-                    } else {
-                        $_SESSION['error'] = "Invalid password.";
-                        header('Location: login.html');
-                        exit();
-                    }
-                } else {
-                    $_SESSION['error'] = "No user found with that email.";
-                    header('Location: login.html');
-                    exit();
-                }
+            if (password_verify($password, $hashed_password)) {
+                // Password is correct, set session variables
+                $_SESSION['user_id'] = $id;
+                $_SESSION['email'] = $email;
+                header('Location: index.php');
+                exit();
             } else {
-                $_SESSION['error'] = "Database error: Unable to prepare statement.";
+                $_SESSION['error'] = "Invalid password.";
                 header('Location: login.html');
                 exit();
             }
+        } else {
+            $_SESSION['error'] = "No user found with that email.";
+            header('Location: login.html');
+            exit();
         }
     } else {
-        $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
+        $_SESSION['error'] = "Database error: Unable to prepare statement.";
         header('Location: login.html');
         exit();
     }
@@ -78,29 +54,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: login.html');
     exit();
 }
-
-
-
-// create Client Request to access Google API
-$client = new Google_Client();
-$client->setClientId($clientID);
-$client->setClientSecret($clientSecret);
-$client->setRedirectUri($redirectUri);
-$client->addScope("email");
-$client->addScope("profile");
-
-// authenticate code from Google OAuth Flow
-if (isset($_GET['code'])) {
-  $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-  $client->setAccessToken($token['access_token']);
-
-  // get profile info
-  $google_oauth = new Google_Service_Oauth2($client);
-  $google_account_info = $google_oauth->userinfo->get();
-  $email =  $google_account_info->email;
-  $name =  $google_account_info->name;
-
-}
 ?>
-
-
+<!DOCTYPE html>

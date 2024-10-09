@@ -6,7 +6,7 @@ include 'db_connection.php';
 require_once 'vendor/autoload.php'; // Path to the Google API PHP Client Library
 
 // Initialize Google Client
-$client = new Google_Client(['client_id' => 'YOUR_CLIENT_ID']); // Specify the CLIENT_ID of the app that accesses the backend
+$client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']); // Specify the CLIENT_ID of the app that accesses the backend
 
 // Check connection
 if ($conn->connect_error) {

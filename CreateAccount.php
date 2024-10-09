@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_token = $_POST['idtoken'];
 
         // Verify the ID token
-        $client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']);
         $payload = $client->verifyIdToken($id_token);
         if ($payload) {
             $userid = $payload['sub'];
@@ -378,20 +377,30 @@ $conn->close();
             noPreview.style.display = "block";
             removeButton.style.display = "none";
         }
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            var id_token = googleUser.getAuthResponse().id_token;
+     
 
-            // Send the ID token to your server
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'google_signin.php');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                console.log('Signed in as: ' + xhr.responseText);
-            };
-            xhr.send('idtoken=' + id_token);
-            
-        }
+
+        document.getElementById("register").addEventListener("click", function() {
+		  var email =  document.getElementById("email").value;
+		  var password = document.getElementById("password").value;
+		  //For new registration
+		  createUserWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert("Registration successfully!!");
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    // ..
+		    console.log(errorMessage);
+		    alert(error);
+		  });		  		  
+	  });
+
     </script>
 
 </body>

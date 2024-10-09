@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'db_connection.php';
+
+
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 

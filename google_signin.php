@@ -1,65 +1,47 @@
 <?php
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php'; // Assuming you have installed the Google Client Library via Composer
 
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
+include 'db connection.php';
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Initialize Firebase
-$serviceAccount = ServiceAccount::fromJsonFile('path/to/your/firebase_credentials.json');
-$firebase = (new Factory)
-    ->withServiceAccount($serviceAccount)
-    ->create();
-
-$database = $firebase->getDatabase();
-
-// Get the ID token sent from the client
-$id_token = $_POST['idtoken'];
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Verify the ID token
-$client = new Google_Client(['client_id' => 'YOUR_GOOGLE_CLIENT_ID']);
+$id_token = $_POST['idtoken'];
+$client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']);  // Specify the CLIENT_ID of the app that accesses the backend
 $payload = $client->verifyIdToken($id_token);
+
 if ($payload) {
-    $userid = $payload['sub'];
-    $first_name = $payload['given_name'];
-    $last_name = $payload['family_name'];
+    $google_id = $payload['sub'];
+    $name = $payload['name'];
     $email = $payload['email'];
+    $profile_pic = $payload['picture'];
 
-    // Database connection
-    $servername = "your_servername";
-    $username = "your_username";
-    $password = "your_password";
-    $dbname = "your_database_name";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Check if email already exists
-    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    // Check if user already exists
+    $stmt = $conn->prepare("SELECT id FROM users WHERE google_id = ?");
+    $stmt->bind_param("s", $google_id);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->store_result();
 
-    if ($result->num_rows > 0) {
-        echo "An account with this email already exists. Please use a different email.";
+    if ($stmt->num_rows > 0) {
+        // User exists, update information
+        $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, profile_pic = ? WHERE google_id = ?");
+        $stmt->bind_param("ssss", $name, $email, $profile_pic, $google_id);
     } else {
-        // Insert user data into the database
-        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, google_id) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $first_name, $last_name, $email, $userid);
-
-        if ($stmt->execute()) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
+        // New user, insert information
+        $stmt = $conn->prepare("INSERT INTO users (google_id, name, email, profile_pic) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $google_id, $name, $email, $profile_pic);
     }
 
+    $stmt->execute();
     $stmt->close();
-    $conn->close();
+
+    echo "User information saved successfully.";
 } else {
-    // Invalid ID token
-    echo "Invalid ID token";
+    echo "Invalid ID token.";
 }
+
+$conn->close();
 ?>

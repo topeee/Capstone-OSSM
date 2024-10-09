@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
-
+include 'google_signin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);

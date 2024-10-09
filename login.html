@@ -172,15 +172,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>        
 
-                <button id="signInButton" class="btn btn-primary">SIGN IN WITH GOOGLE</button>
-                <div id="message">
-                    <p>Signed in as: <span id="userName"></span> (<span id="userEmail"></span>)</p>
-                </div>
-            
-<fb:login-button 
-scope="public_profile,email"
-onlogin="checkLoginState();">
-</fb:login-button>
+               
                 
             </form>
             <div class="link-container">
@@ -204,7 +196,7 @@ onlogin="checkLoginState();">
         <a href="#">Privacy Policy</a>
     </div>
 
-    <script type="module">
+    <script>
         function validateForm() {
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
@@ -246,71 +238,6 @@ onlogin="checkLoginState();">
             return re.test(email);
         }
 
-
-    // Import the functions you need from the SDKs you need
-      
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
- import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyANZ7GnqG2Qydfj3a6qgd1aT4FdA_KbYbY",
-      authDomain: "ossm-3558b.firebaseapp.com",
-      databaseURL: "https://ossm-3558b-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "ossm-3558b",
-      storageBucket: "ossm-3558b.appspot.com",
-      messagingSenderId: "760620258725",
-      appId: "1:760620258725:web:319789e94b3f437410444c",
-      measurementId: "G-0BVHK8YCYF"
-    };
-  
-    const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider()
-
-  const signInButton = document.getElementById("signInButton");
-  const signOutButton = document.getElementById("signOutButton");
-  const message = document.getElementById("message");
-  const userName = document.getElementById("userName");
-  const userEmail = document.getElementById("userEmail");
-
-  signOutButton.style.display = "none";
-  message.style.display = "none";
-
-  const userSignIn = async() => {
-    signInWithPopup(auth, provider)
-    .then((result) => {
-        const user = result.user
-        console.log(user);
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message
-    })
-  }
-
-  const userSignOut = async() => {
-    signOut(auth).then(() => {
-        alert("You have signed out successfully!");
-    }).catch((error) => {})
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if(user) {
-      signOutButton.style.display = "block";
-      message.style.display = "block";
-      userName.innerHTML = user.displayName;
-      userEmail.innerHTML = user.email
-    } else {
-      signOutButton.style.display = "none";
-      message.style.display = "none";
-    }
-  })
-
-  signInButton.addEventListener('click', userSignIn);
-  signOutButton.addEventListener('click', userSignOut);
 
 
 

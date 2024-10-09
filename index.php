@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
+require 'vendor/autoload.php';
 
 
 if (isset($_SESSION['email'])) {
@@ -22,6 +23,8 @@ if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

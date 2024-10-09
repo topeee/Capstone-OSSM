@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97275dc79b527c57ec03daae4377792a",
+    "content-hash": "f5ae46796c860e90113e670d5ed8e292",
     "packages": [
         {
             "name": "egeloen/http-adapter",

@@ -5,6 +5,43 @@ include 'db_connection.php';
 
 require_once 'vendor/autoload.php'; // Path to the Google API PHP Client Library
 
+// Initialize Google Client
+$client = new Google_Client(['client_id' => 'YOUR_CLIENT_ID']); // Specify the CLIENT_ID of the app that accesses the backend
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: {$conn->connect_error}");
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if Google Sign-In token is provided
+    if (isset($_POST['idtoken'])) {
+        $id_token = $_POST['idtoken'];
+
+        // Verify the ID token
+        $payload = $client->verifyIdToken($id_token);
+        if ($payload) {
+            $userid = $payload['sub'];
+            $first_name = $payload['given_name'];
+            $last_name = $payload['family_name'];
+            $email = $payload['email'];
+
+            // Automatically fill the form with Google login data
+            echo "<script>
+                document.getElementById('firstname').value = '{$first_name}';
+                document.getElementById('lastname').value = '{$last_name}';
+                document.getElementById('email').value = '{$email}';
+                document.getElementById('cfrm-email').value = '{$email}';
+            </script>";
+
+            // Check if email already exists
+            // Add your logic here to check if the email already exists in the database
+        } else {
+            echo "Invalid ID token.";
+        }
+    }
+}
+
 
 
 
@@ -408,7 +445,24 @@ $conn->close();
 		    alert(error);
 		  });		  		  
 	  });
+      function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
 
+            // Send the ID token to your server
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'CreateAccount.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // The server will respond with a script to fill the form fields
+                    document.body.innerHTML += xhr.responseText;
+                } else {
+                    console.log('Sign-in failed: ' + xhr.responseText);
+                }
+            };
+            xhr.send('idtoken=' + id_token);
+        }
     </script>
 
 </body>

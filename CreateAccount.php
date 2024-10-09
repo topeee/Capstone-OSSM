@@ -10,7 +10,7 @@ require_once 'vendor/autoload.php'; // Path to the Google API PHP Client Library
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: {$conn->connect_error}");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,6 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $last_name = $payload['family_name'];
             $email = $payload['email'];
 
+            // Automatically fill the form with Google login data
+            echo "<script>
+                document.getElementById('firstname').value = '{$first_name}';
+                document.getElementById('lastname').value = '{$last_name}';
+                document.getElementById('email').value = '{$email}';
+                document.getElementById('cfrm-email').value = '{$email}';
+            </script>";
+
             // Check if email already exists
             $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
@@ -34,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($result->num_rows > 0) {
                 echo "An account with this email already exists. Please use a different email.";
-            } else {
+                    echo "Error: {$stmt->error}";
                 // Insert user data into the database
                 $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, google_id) VALUES (?, ?, ?, ?)");
                 $stmt->bind_param("ssss", $first_name, $last_name, $email, $userid);

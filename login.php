@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: login.html');
                     exit();
                 }
-                $stmt->close();
+    
             } else {
                 $_SESSION['error'] = "Database error: Unable to prepare statement.";
                 header('Location: login.html');

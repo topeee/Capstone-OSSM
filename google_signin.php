@@ -1,7 +1,7 @@
 <?php
-require_once 'vendor/autoload.php'; // Assuming you have installed the Google Client Library via Composer
-include 'db_connection.php';
-
+session_start();
+require_once 'vendor/autoload.php'; // Assuming you have installed the Google Client Library via 
+include 'db_connection.php'; // Include your database connection file
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -38,7 +38,13 @@ if ($payload) {
     $stmt->execute();
     $stmt->close();
 
-    echo "User information saved successfully.";
+    // Create a session token
+    $_SESSION['user_id'] = $google_id;
+    $_SESSION['email'] = $email;
+
+    // Redirect to index.php
+    header('Location: index.php');
+    exit();
 } else {
     echo "Invalid ID token.";
 }

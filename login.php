@@ -4,7 +4,7 @@ include 'db_connection.php'; // Include your database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // reCAPTCHA verification
-    $recaptcha_secret = 'YOUR_SECRET_KEY';
+    $recaptcha_secret = '6LfWpF0qAAAAABvDpYi8rTxS9PEIEy37jCTCQ21t';
     $recaptcha_response = $_POST['g-recaptcha-response'];
     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response");
     $response_keys = json_decode($response, true);
@@ -55,4 +55,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
-<!DOCTYPE html>

@@ -1,53 +1,55 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php'; // Assuming you have installed the Google Client Library via 
-include 'db_connection.php'; // Include your database connection file
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'db_connection.php';
+require_once 'vendor/autoload.php'; // Include the Google API PHP Client Library
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Function to verify Google ID token
+function verifyGoogleToken($id_token) {
+    $client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']);
+    $payload = $client->verifyIdToken($id_token);
+    return $payload;
 }
 
-// Verify the ID token
-$id_token = $_POST['idtoken'];
-$client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']);  // Specify the CLIENT_ID of the app that accesses the backend
-$payload = $client->verifyIdToken($id_token);
+// Handle Google login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idtoken'])) {
+    $id_token = $_POST['idtoken'];
+    $payload = verifyGoogleToken($id_token);
 
-if ($payload) {
-    $google_id = $payload['sub'];
-    $name = $payload['name'];
-    $email = $payload['email'];
-    $profile_pic = $payload['picture'];
+    if ($payload) {
+        $email = $payload['email'];
+        $first_name = $payload['given_name'];
 
-    // Check if user already exists
-    $stmt = $conn->prepare("SELECT id FROM users WHERE google_id = ?");
-    $stmt->bind_param("s", $google_id);
-    $stmt->execute();
-    $stmt->store_result();
+        // Check if the user exists in the database
+        $query = "SELECT * FROM users WHERE email = ?";
+        if ($stmt = $conn->prepare($query)) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-    if ($stmt->num_rows > 0) {
-        // User exists, update information
-        $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, profile_pic = ? WHERE google_id = ?");
-        $stmt->bind_param("ssss", $name, $email, $profile_pic, $google_id);
+            if ($result->num_rows > 0) {
+                // User exists, update session
+                $_SESSION['email'] = $email;
+                $_SESSION['first_name'] = $first_name;
+            } else {
+                // User does not exist, insert into database
+                $insert_query = "INSERT INTO users (email, first_name) VALUES (?, ?)";
+                if ($insert_stmt = $conn->prepare($insert_query)) {
+                    $insert_stmt->bind_param("ss", $email, $first_name);
+                    $insert_stmt->execute();
+                    $insert_stmt->close();
+
+                    // Update session
+                    $_SESSION['email'] = $email;
+                    $_SESSION['first_name'] = $first_name;
+                }
+            }
+            $stmt->close();
+        }
+        echo json_encode(['status' => 'success', 'message' => 'Login successful']);
     } else {
-        // New user, insert information
-        $stmt = $conn->prepare("INSERT INTO users (google_id, name, email, profile_pic) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $google_id, $name, $email, $profile_pic);
+        echo json_encode(['status' => 'error', 'message' => 'Invalid ID token']);
     }
-
-    $stmt->execute();
-    $stmt->close();
-
-    // Create a session token
-    $_SESSION['user_id'] = $google_id;
-    $_SESSION['email'] = $email;
-
-    // Redirect to index.php
-    header('Location: index.php');
-    exit();
 } else {
-    echo "Invalid ID token.";
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
 }
-
-$conn->close();
 ?>

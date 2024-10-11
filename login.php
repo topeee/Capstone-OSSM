@@ -20,26 +20,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $response = file_get_contents($googleUrl);
     $responseData = json_decode($response);
 
-    if ($responseData->success) {
-        if (empty($email) || empty($password)) {
+    switch (true) {
+        case !$responseData->success:
+            $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
+            header('Location: login.html');
+            exit();
+    
+        case empty($email) || empty($password):
             $_SESSION['error'] = "Please enter both email and password.";
             header('Location: login.html');
             exit();
-        } else {
+    
+        default:
             $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
             if ($stmt) {
                 $stmt->bind_param("s", $email);
                 $stmt->execute();
                 $stmt->store_result();
-
+    
                 if ($stmt->num_rows > 0) {
                     $stmt->bind_result($hashed_password, $is_admin);
                     $stmt->fetch();
-
+    
                     if (password_verify($password, $hashed_password)) {
                         $_SESSION['email'] = $email;
                         $_SESSION['is_admin'] = $is_admin;
-
+    
                         if ($is_admin) {
                             header('Location: dashboard.php');
                         } else {
@@ -62,12 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header('Location: login.html');
                 exit();
             }
-        }
-    } else {
-        // reCAPTCHA failed
-        $_SESSION['error'] = "reCAPTCHA verification failed. Please try again.";
-        header('Location: login.html');
-        exit();
     }
 } else {
     $_SESSION['error'] = "Invalid request method.";

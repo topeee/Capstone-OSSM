@@ -52,4 +52,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idtoken'])) {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
 }
-?>

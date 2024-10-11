@@ -148,72 +148,14 @@
             text-align: left;
         }
     </style>
-    <script>
-        function validateForm() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var emailError = document.getElementById('emailError');
-            var passwordError = document.getElementById('passwordError');
-            var isValid = true;
-
-            // Reset error messages
-            emailError.style.display = 'none';
-            passwordError.style.display = 'none';
-
-            // Email validation
-            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                emailError.style.display = 'block';
-                isValid = false;
-            }
-
-            // Password validation
-            if (password.trim() === '') {
-                passwordError.style.display = 'block';
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            var id_token = googleUser.getAuthResponse().id_token;
-
-            // Send the ID token to your server
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'login.php');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Redirect to index.php on successful sign-in
-                    window.location.href = 'index.php';
-                } else {
-                    console.log('Sign-in failed: ' + xhr.responseText);
-                }
-            };
-            xhr.send('idtoken=' + id_token);
-        }
-
-        function triggerGoogleSignIn() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signIn().then(onSignIn);
-        }
-
-        function initGoogleSignIn() {
-            gapi.load('auth2', function() {
-                gapi.auth2.init();
-            });
-        }
-        
-    </script>
 </head>
-<body onload="initGoogleSignIn()">
+<body>
     <div class="main-content">
         <a href="index.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
         <div class="form-container">
-            <form action="login.php" method="POST" onsubmit="return validateForm();">
+            <form action="login.php" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -225,8 +167,6 @@
                     <div id="passwordError" class="error-message">Please enter your password.</div>
                 </div>
                 <div>
-                    <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-                    <div id="captchaError" class="error-message">Please complete the CAPTCHA.</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>        
             </form>
@@ -234,7 +174,6 @@
                 <a href="CreateAccount.php" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>
             </div>
-            <a href="#" onclick="triggerGoogleSignIn(); return false;" class="google-signin-link btn btn-danger mt-3">Sign in with Google</a>
             <div class="footer-links">
                 <a href="#">Terms of Service</a> | 
                 <a href="#">Privacy Policy</a>

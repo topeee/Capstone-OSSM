@@ -1,47 +1,4 @@
-<?php
-session_start();
-include 'db_connection.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Debugging: Print the POST data
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    // Check if email and password are set
-    if (empty($email) || empty($password)) {
-        $error = "Email and password are required.";
-    } else {
-        // Prepare and execute the query
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-            // Verify the password
-            if (password_verify($password, $user['password'])) {
-                // Set session variables
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['loggedin'] = true;
-                // Redirect to a protected page
-                header("Location: index.php");
-                exit;
-            } else {
-                $error = "Invalid password.";
-            }
-        } else {
-            $error = "No user found with that email.";
-        }
-        $stmt->close();
-        $conn->close();
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,6 +177,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+    <?php
+    
+include 'db_connection.php';
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+        
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Prepare and bind
+            $stmt = $conn->prepare("SELECT password FROM users WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($hashed_password);
+                $stmt->fetch();
+
+                if (password_verify($password, $hashed_password)) {
+                    echo "<div class='alert alert-success mt-3'>Login successful!</div>";
+                } else {
+                    echo "<div class='alert alert-danger mt-3'>Invalid email or password.</div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger mt-3'>Invalid email or password.</div>";
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
+        ?>
     </body>
     </html>

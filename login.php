@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include 'db_connection.php';
@@ -7,37 +6,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Assuming you want to remove the undefined variable check
-    if (true) {
-        if (empty($email) || empty($password)) {
-            $_SESSION['error'] = "Please enter both email and password.";
-            header('Location: login.html');
-            exit();
-        } else {
-            $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
-            if ($stmt) {
-                $stmt->bind_param("s", $email);
-                $stmt->execute();
-                $stmt->store_result();
+    if (empty($email) || empty($password)) {
+        $_SESSION['error'] = "Please enter both email and password.";
+        header('Location: login.html');
+        exit();
+    } else {
+        $stmt = $conn->prepare("SELECT password_hash, role FROM users WHERE email = ?");
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
 
-                if ($stmt->num_rows > 0) {
-                    $stmt->bind_result($hashed_password);
-                    $stmt->fetch();
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($hashed_password, $role);
+                $stmt->fetch();
 
-                    if (password_verify($password, $hashed_password)) {
-                        $_SESSION['email'] = $email;
-                        header('Location: index.php');
-                        exit();
+                if (password_verify($password, $hashed_password)) {
+                    $_SESSION['email'] = $email;
+                    if ($role === 'admin') {
+                        header('Location: dashboard.php');
                     } else {
-                        $_SESSION['error'] = "Invalid password.";
-                        header('Location: login.html');
-                        exit();
+                        header('Location: index.php');
                     }
+                    exit();
                 } else {
-                    $_SESSION['error'] = "No user found with that email.";
+                    $_SESSION['error'] = "Invalid password.";
                     header('Location: login.html');
                     exit();
                 }
+            } else {
+                $_SESSION['error'] = "No user found with that email.";
+                header('Location: login.html');
+                exit();
             }
         }
     }

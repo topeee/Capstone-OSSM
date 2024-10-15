@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-// Check if the user is logged in and is an admin
-if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
-    // Redirect to login page
-    header('Location: login.html');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +39,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || $_SESSION['is
 <body>
 <div class="main-menu">
 	<header class="header">
-	<div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
+	<div class="container-fluid"><a class="navbar-brand" href="dashboard.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
 	<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -155,7 +144,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || $_SESSION['is
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers"></i><span>Page</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="page-starter.html">Starter Page</a></li>
-						<li><a href="page-login.html">Login</a></li>
+						<li><a href="page-login.php">Login</a></li>
 						<li><a href="page-register.html">Register</a></li>
 						<li><a href="page-recoverpw.html">Recover Password</a></li>
 						<li><a href="page-lock-screen.html">Lock Screen</a></li>

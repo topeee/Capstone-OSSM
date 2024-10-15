@@ -8,48 +8,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Please enter both email and password.";
-        header('Location: login.html');
-        exit();
     } else {
-        $stmt = $conn->prepare("SELECT password_hash, role FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
         if ($stmt) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($hashed_password, $role);
+                $stmt->bind_result($hashed_password, $is_admin);
                 $stmt->fetch();
 
                 if (password_verify($password, $hashed_password)) {
                     $_SESSION['email'] = $email;
-                    if ($role === 'admin') {
+                    $_SESSION['role'] = $is_admin ? 'admin' : 'user'; // Set the user's role based on is_admin
+
+                    if ($is_admin) {
                         header('Location: dashboard.php');
                     } else {
-                        header('Location: index.php');
+                        header('Location: home.php');
                     }
                     exit();
                 } else {
                     $_SESSION['error'] = "Invalid password.";
-                    header('Location: login.html');
-                    exit();
                 }
             } else {
                 $_SESSION['error'] = "No user found with that email.";
-                header('Location: login.html');
-                exit();
             }
         }
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -200,11 +189,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="main-content">
-        <a href="index.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
+        <a href="home.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
         <div class="form-container">
-            <form action="login.php" method="POST">
+            <form action="" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -249,7 +238,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             var password = document.getElementById('password').value;
             var emailError = document.getElementById('emailError');
             var passwordError = document.getElementById('passwordError');
-            var captchaError = document.getElementById('captchaError');
             var isValid = true;
     
             // Email validation

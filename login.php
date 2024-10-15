@@ -1,6 +1,5 @@
 
 <?php
-
 session_start();
 include 'db_connection.php';
 
@@ -8,38 +7,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Assuming $responseData is defined somewhere before this block
-    if ($responseData->success) {
+    // Assuming you want to remove the undefined variable check
+    if (true) {
         if (empty($email) || empty($password)) {
             $_SESSION['error'] = "Please enter both email and password.";
             header('Location: login.html');
             exit();
         } else {
-            $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
+            $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email = ?");
             if ($stmt) {
                 $stmt->bind_param("s", $email);
                 $stmt->execute();
                 $stmt->store_result();
 
                 if ($stmt->num_rows > 0) {
-                    $stmt->bind_result($hashed_password, $is_admin);
+                    $stmt->bind_result($hashed_password);
                     $stmt->fetch();
 
                     if (password_verify($password, $hashed_password)) {
                         $_SESSION['email'] = $email;
-                        $_SESSION['is_admin'] = $is_admin;
-
-                        // Debugging output
-                        error_log("User is_admin value: " . $is_admin);
-
-                        switch ($is_admin) {
-                            case 1:
-                                header('Location: dashboard.php');
-                                break;
-                            default:
-                                header('Location: index.php');
-                                break;
-                        }
+                        header('Location: index.php');
                         exit();
                     } else {
                         $_SESSION['error'] = "Invalid password.";
@@ -51,16 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: login.html');
                     exit();
                 }
-            } else {
-                $_SESSION['error'] = "Database error: Unable to prepare statement.";
-                header('Location: login.html');
-                exit();
             }
         }
-    } else {
-        $_SESSION['error'] = "Captcha verification failed.";
-        header('Location: login.html');
-        exit();
     }
 }
 ?>
@@ -68,12 +47,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -200,16 +184,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #1da1f2;
         }
         .captcha-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px; 
-        }
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; 
+    }
         .error-message {
-            color: red;
-            margin-top: 5px;
-            display: none;
-            text-align: left;
-        }
+        color: red;
+        margin-top: 5px;
+        display: none;
+        text-align: left;
+    }
+
+
     </style>
 </head>
 <body>
@@ -219,7 +205,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p></p>
         <div class="form-container">
             <form action="login.php" method="POST">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -231,35 +216,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div id="passwordError" class="error-message">Please enter your password.</div>
                 </div>
                 <div>
+                   
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>        
+                <button type="submit" class="btn btn-primary">Login</button>
+               
+                
             </form>
             <div class="link-container">
-                <a href="CreateAccount.php" class="link">Create Account</a>
+                <a href="Create Account.html" class="link">Create Account</a>
                 <a href="Forgot password.html" class="link">Forgot Password</a>
             </div>
-            <div class="footer-links">
-                <a href="#">Terms of Service</a> | 
-                <a href="#">Privacy Policy</a>
+            <div class="social-login-container">
+                <a href="#" class="facebook" aria-label="Login with Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="gmail" aria-label="Login with Gmail">
+                    <i class="bi bi-google"></i>
+                </a>
+                <a href="#" class="x" aria-label="Login with X">
+                    <i class="bi bi-twitter"></i>
+                </a>
             </div>
         </div>
+    <div class="footer-links">
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Privacy Policy</a>
     </div>
 
     <script>
-        const signUpButton=document.getElementById('signUpButton');
-const signInButton=document.getElementById('signInButton');
-const signInForm=document.getElementById('signIn');
-const signUpForm=document.getElementById('signup');
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var captchaError = document.getElementById('captchaError');
+            var isValid = true;
+    
+            // Email validation
+            if (!email || !validateEmail(email)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+    
+            // Password validation
+            if (!password) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
 
-signUpButton.addEventListener('click',function(){
-    signInForm.style.display="none";
-    signUpForm.style.display="block";
-})
-signInButton.addEventListener('click', function(){
-    signInForm.style.display="block";
-    signUpForm.style.display="none";
-})
+    
+            return isValid; // Return false to prevent form submission if invalid
+        }
+
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
     </script>
-   
-    </body>
-    </html>
+    
+</body>
+</html>

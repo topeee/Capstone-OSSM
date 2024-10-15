@@ -1,4 +1,70 @@
 
+<?php
+
+session_start();
+include 'db_connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Assuming $responseData is defined somewhere before this block
+    if ($responseData->success) {
+        if (empty($email) || empty($password)) {
+            $_SESSION['error'] = "Please enter both email and password.";
+            header('Location: login.html');
+            exit();
+        } else {
+            $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
+            if ($stmt) {
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->store_result();
+
+                if ($stmt->num_rows > 0) {
+                    $stmt->bind_result($hashed_password, $is_admin);
+                    $stmt->fetch();
+
+                    if (password_verify($password, $hashed_password)) {
+                        $_SESSION['email'] = $email;
+                        $_SESSION['is_admin'] = $is_admin;
+
+                        // Debugging output
+                        error_log("User is_admin value: " . $is_admin);
+
+                        switch ($is_admin) {
+                            case 1:
+                                header('Location: dashboard.php');
+                                break;
+                            default:
+                                header('Location: index.php');
+                                break;
+                        }
+                        exit();
+                    } else {
+                        $_SESSION['error'] = "Invalid password.";
+                        header('Location: login.html');
+                        exit();
+                    }
+                } else {
+                    $_SESSION['error'] = "No user found with that email.";
+                    header('Location: login.html');
+                    exit();
+                }
+            } else {
+                $_SESSION['error'] = "Database error: Unable to prepare statement.";
+                header('Location: login.html');
+                exit();
+            }
+        }
+    } else {
+        $_SESSION['error'] = "Captcha verification failed.";
+        header('Location: login.html');
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,6 +219,7 @@
         <p></p>
         <div class="form-container">
             <form action="login.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -177,43 +244,22 @@
             </div>
         </div>
     </div>
-    <?php
-    
-include 'db_connection.php';
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    <script>
+        const signUpButton=document.getElementById('signUpButton');
+const signInButton=document.getElementById('signInButton');
+const signInForm=document.getElementById('signIn');
+const signUpForm=document.getElementById('signup');
 
-        
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // Prepare and bind
-            $stmt = $conn->prepare("SELECT password FROM users WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->store_result();
-
-            if ($stmt->num_rows > 0) {
-                $stmt->bind_result($hashed_password);
-                $stmt->fetch();
-
-                if (password_verify($password, $hashed_password)) {
-                    echo "<div class='alert alert-success mt-3'>Login successful!</div>";
-                } else {
-                    echo "<div class='alert alert-danger mt-3'>Invalid email or password.</div>";
-                }
-            } else {
-                echo "<div class='alert alert-danger mt-3'>Invalid email or password.</div>";
-            }
-
-            $stmt->close();
-            $conn->close();
-        }
-        ?>
+signUpButton.addEventListener('click',function(){
+    signInForm.style.display="none";
+    signUpForm.style.display="block";
+})
+signInButton.addEventListener('click', function(){
+    signInForm.style.display="block";
+    signUpForm.style.display="none";
+})
+    </script>
+   
     </body>
     </html>

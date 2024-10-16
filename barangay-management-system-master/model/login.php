@@ -1,5 +1,6 @@
 <?php
-include "../server/server.php";
+session_start();
+include "db_connection.php";
 
 $username = $conn->real_escape_string($_POST["username"]);
 $password = $conn->real_escape_string($_POST["password"]);
@@ -8,7 +9,8 @@ if (!$username || !$password) {
 	$_SESSION["message"] = "Username or password is empty!";
 	$_SESSION["status"] = "danger";
 
-	header("location: ../login.php");
+	$conn->close();
+	exit();
 	return $conn->close();
 }
 

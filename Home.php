@@ -2,13 +2,6 @@
 session_start();
 include 'db_connection.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$email = $_SESSION['email'];
 
 // Fetch the user's first name from the database
 $query = "SELECT first_name FROM users WHERE email = ?";
@@ -31,7 +24,6 @@ if ($stmt = $conn->prepare($query)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <meta name="google-site-verification" content="Nm8ZJfVMJl6DFmA-otP2soEfb3gz3LBtW0GLCwwOZtM" />
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">

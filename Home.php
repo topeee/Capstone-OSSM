@@ -2,31 +2,26 @@
 session_start();
 include 'db_connection.php';
 
-
-if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-
-    // Fetch the user's first name from the database
-    $query = "SELECT first_name FROM users WHERE email = ?";
-    if ($stmt = $conn->prepare($query)) {
-        $stmt->bind_param("s", $email); // Assuming email is a string
-        $stmt->execute();
-        $stmt->bind_result($first_name);
-        $stmt->fetch();
-        $stmt->close();
-    } else {
-        // Handle query preparation error
-        die("Database query failed: " . $conn->error);
-    }
-} else {
-    $first_name = 'Guest';
-}
+// Check if the user is logged in
 if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
 
+$email = $_SESSION['email'];
 
+// Fetch the user's first name from the database
+$query = "SELECT first_name FROM users WHERE email = ?";
+if ($stmt = $conn->prepare($query)) {
+    $stmt->bind_param("s", $email); // Assuming email is a string
+    $stmt->execute();
+    $stmt->bind_result($first_name);
+    $stmt->fetch();
+    $stmt->close();
+} else {
+    // Handle query preparation error
+    die("Database query failed: " . $conn->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -13,7 +13,7 @@ if ($_SESSION['role'] === 'is_admin') {
     header('Location: dashboard.php');
     exit();
 } else {
-    header('Location: home.php');
+    header('Location: Home.php');
     exit();
 }
 ?>

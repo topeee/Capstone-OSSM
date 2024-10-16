@@ -18,8 +18,11 @@ if (isset($_SESSION['email'])) {
 } else {
     $first_name = 'Guest';
 }
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
 
- 
 
 ?>
 <!DOCTYPE html>

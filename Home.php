@@ -14,6 +14,9 @@ if (isset($_SESSION['email'])) {
         $stmt->bind_result($first_name);
         $stmt->fetch();
         $stmt->close();
+    } else {
+        // Handle query preparation error
+        die("Database query failed: " . $conn->error);
     }
 } else {
     $first_name = 'Guest';

@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("sssssssssssssss", $first_name, $last_name, $middle_name, $suffix, $dob, $gender, $mobile_number, $tel_number, $email, $house_number, $street, $subdivision, $barangay, $password_hash, $idDocumentPath);
 
             if ($stmt->execute()) {
-                header("Location: login.html");
+                header("Location: login.php");
                 exit();
             } else {
                 echo "Error: " . $stmt->error;
@@ -204,7 +204,7 @@ $conn->close();
 
         <div class="form-container">
             <div class="form-container">
-                <form class="row g-3" action="create_account.php" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="CreateAccount.php" method="POST" enctype="multipart/form-data">
 
                     <div class="col-md-6 form-floating">
                         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
@@ -373,7 +373,7 @@ $conn->close();
                 </form>
             <div class="footer">
                 Already have an account?
-                <a href="login.html" class="link">Sign In Here!</a>
+                <a href="login.php" class="link">Sign In Here!</a>
             </div>
         </div>
        

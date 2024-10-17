@@ -213,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
             <div class="link-container">
                 <a href="CreateAccount.php" class="link">Create Account</a>
-                <a href="Forgot password.html" class="link">Forgot Password</a>
+                <a href="Forgot password.php" class="link">Forgot Password</a>
             </div>
             <div class="social-login-container">
                 <a href="#" class="facebook" aria-label="Login with Facebook">

@@ -1,3 +1,77 @@
+<?php
+include 'db_connection.php';
+session_start();
+$email = $_SESSION['email'] ?? ''; // Assuming email is stored in session
+
+$query = "SELECT first_name FROM users WHERE email = ?";
+if ($stmt = $conn->prepare($query)) {
+    $stmt->bind_param("s", $email); // Assuming email is a string
+    $stmt->execute();
+    $stmt->bind_result($first_name);
+    $stmt->fetch();
+    $stmt->close();
+}
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
+    $lastName = $_POST['lastName'];
+    $gender = $_POST['gender'];
+    $civilstatus = $_POST['civilstatus'];
+    $dob = $_POST['dob'];
+    $tele = $_POST['tele'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $workPhone = $_POST['workPhone'];
+    $SSS = $_POST['SSS'];
+    $GSIS = $_POST['GSIS'];
+    $PhilHealth = $_POST['PhilHealth'];
+    $PAGIBIG = $_POST['PAGIBIG'];
+    $guardianFname = $_POST['guardianFname'] ?? null;
+    $guardianLname = $_POST['guardianLname'] ?? null;
+    $guardianMname = $_POST['guardianMname'] ?? null;
+    $guardianNumber = $_POST['guardianNumber'] ?? null;
+    $careFname = $_POST['careFname'] ?? null;
+    $careLname = $_POST['careLname'] ?? null;
+    $careMname = $_POST['careMname'] ?? null;
+    $careNumber = $_POST['careNumber'] ?? null;
+    $ngoOrgAff = $_POST['ngoOrgAff'];
+    $ngoContact = $_POST['ngoContact'];
+    $ngoOfficeAddress = $_POST['ngoOfficeAddress'];
+    $ngoTelNo = $_POST['ngoTelNo'];
+    $pwdOrgAff = $_POST['pwdOrgAff'];
+    $pwdOrgContact = $_POST['pwdOrgContact'];
+    $pwdOrgOffice = $_POST['pwdOrgOffice'];
+    $pwdOrgTelNo = $_POST['pwdOrgTelNo'];
+    $civpolAff = $_POST['civpolAff'];
+    $civpolContact = $_POST['civpolContact'];
+    $civpolOfficeAddress = $_POST['civpolOfficeAddress'];
+    $civpolTelNo = $_POST['civpolTelNo'];
+    // Validate required fields
+    $requiredFields = [
+        'firstName', 'middleName', 'lastName', 'gender', 'civilstatus', 'dob', 'tele', 'phone', 'email', 'workPhone', 
+        'PWDId', 'SSS', 'GSIS', 'PhilHealth', 'PAGIBIG', 'ngoOrgAff', 'ngoContact', 'ngoOfficeAddress', 'ngoTelNo', 
+        'pwdOrgAff', 'pwdOrgContact', 'pwdOrgOffice', 'pwdOrgTelNo', 'civpolAff', 'civpolContact', 'civpolOfficeAddress', 'civpolTelNo'
+    ];
+
+    foreach ($requiredFields as $field) {
+        if (empty($_POST[$field])) {
+            die("Error: The field $field is required.");
+        }
+    }
+
+    // Insert data into the database
+    $stmt = $conn->prepare("INSERT INTO pwd_applications (first_name, middle_name, last_name, gender, civil_status, dob, tele, phone, email, work_phone, PWDId, PWDIdNumber, PWDethnicGroup, pwdDiagnosis, education, refNo, SSS, GSIS, PhilHealth, PAGIBIG, guardian_fname, guardian_lname, guardian_mname, guardian_number, care_fname, care_lname, care_mname, care_number, ngo_org_aff, ngo_contact, ngo_office_address, ngo_tel_no, pwd_org_aff, pwd_org_contact, pwd_org_office, pwd_org_tel_no, civpol_aff, civpol_contact, civpol_office_address, civpol_tel_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssssssssssssssssssssssssssssssssss", $firstName, $middleName, $lastName, $gender, $civilstatus, $dob, $tele, $phone, $email, $workPhone, $PWDId, $PWDIdNumber, $PWDethnicGroup, $pwdDiagnosis, $education, $refNo, $SSS, $GSIS, $PhilHealth, $PAGIBIG, $guardianFname, $guardianLname, $guardianMname, $guardianNumber, $careFname, $careLname, $careMname, $careNumber, $ngoOrgAff, $ngoContact, $ngoOfficeAddress, $ngoTelNo, $pwdOrgAff, $pwdOrgContact, $pwdOrgOffice, $pwdOrgTelNo, $civpolAff, $civpolContact, $civpolOfficeAddress, $civpolTelNo);
+    $stmt->execute();
+    $stmt->close();
+}
+
+?>
 <!DOCTYPE html>
     <html>
     <head>
@@ -19,13 +93,13 @@
     <body>
       <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand" href="Home.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
           </a>
           <div class="d-flex align-items-center ms-auto">
-            <span class="username">Hello, Username</span>
-            <div class="dropdown-center ms-3">
+          <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
+          <div class="dropdown-center ms-3">
               <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
               </a>
@@ -97,26 +171,26 @@
                         A separate application must be filed for each person seeking assistance. This is for PWD Assistance Only.
                     </p>
     
-                    <form>
+                    <form method="POST" action="">
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" required>
+                                <select class="form-select" id="gender" name="gender" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -124,7 +198,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" required>
+                                <select class="form-select" id="civilstatus" name="civilstatus" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="self">Married</option>
                                     <option value="spouse">Widowed</option>
@@ -132,29 +206,29 @@
                             </div>                            
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="tele" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
+                                <input type="tel" class="form-control" id="tele" name="tele" placeholder="(916) 345-6783" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="workPhone" class="form-label">Work Phone</label>
-                                <input type="tel" class="form-control" id="workPhone" placeholder="(916) 345-0000 x123" required>
+                                <input type="tel" class="form-control" id="workPhone" name="workPhone" placeholder="(916) 345-0000 x123" required>
                             </div>
                         </div>
     
@@ -853,14 +927,15 @@
               $("#prev-btn").hide();
           } else {
               $("#prev-btn").show();
+              }
+          
+              if (currentSection === sections.length - 1) {
+                  $("#next-btn").text("Submit");
+              } else {
+                  $("#next-btn").text("Next");
+              }
           }
       
-          if (currentSection === sections.length - 1) {
-              $("#next-btn").text("Submit");
-          } else {
-              $("#next-btn").text("Next");
-          }
-      }
       
       // Function to update icons in the progress bar
       function updateIcon(index, state) {
@@ -926,7 +1001,7 @@
               }
           }
       
-          // If form is valid, proceed to the next section
+          // If form is valid, proceed to the next section or submit the form
           if (currentSection < sections.length - 1) {
               $(sections[currentSection]).hide();
               updateIcon(currentSection, "fill");
@@ -937,6 +1012,9 @@
               $(sections[currentSection]).show();
               updateButtons();
               updateProgress();
+          } else if (currentSection === sections.length - 1) {
+              // Submit the form
+              currentForm.submit();
           }
       });
       

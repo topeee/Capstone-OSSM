@@ -368,8 +368,8 @@ $conn->close();
                             </label>
                         </div>
                     </div>
-                    <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-                    <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+<!-- <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
+                    <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>-->
                 </form>
             <div class="footer">
                 Already have an account?

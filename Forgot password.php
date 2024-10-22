@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>  
+        body {
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional: Add background to content for better visibility */
+            border-radius: 10px; /* Optional: Add rounded corners */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        .btn-primary, .btn-secondary {
+            width: 100%;
+        }
+        .resend-button {
+            margin-top: 10px;
+        }
+        h2, h1, h6 {
+            margin: 10px 0; /* Adjust spacing between text elements */
+        }
+        .error-message {
+            color: red;
+            display: none; /* Hidden by default */
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <img src="logo.png" alt="Welcome Image" class="img-fluid mb-4 logo">
+        <h2>One-Stop San Mateo</h2>
+        <h1>Forgot Password</h1>
+        <h6>We will send a code to your email to reset your password.</h6>
+
+        <div class="form-container">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                <label for="emailInput">Email address</label>
+                <div class="error-message" id="errorMessage"></div> <!-- Error message -->
+            </div>
+            <button type="button" class="btn btn-primary" id="sendButton" onclick="sendCode()">Send</button>
+            <div class="resend-button" id="resendContainer" style="display:none;">
+                <button type="button" class="btn btn-secondary" id="resendButton" onclick="resendCode()">Resend Code</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendCode() {
+            let emailInput = document.getElementById('emailInput').value;
+            let errorMessage = document.getElementById('errorMessage');
+            let sendButton = document.getElementById('sendButton');
+            let resendContainer = document.getElementById('resendContainer');
+
+            if (emailInput === "") {
+                // Show error message if email is empty
+                errorMessage.textContent = "Please type an email address.";
+                errorMessage.style.display = 'block';
+            } else if (!emailInput.includes("@gmail.com") && !emailInput.includes("@hotmail.com")) {
+                // Show error message if email does not contain @gmail.com or @hotmail.com
+                errorMessage.textContent = "Please enter a valid email address with @gmail.com or @hotmail.com.";
+                errorMessage.style.display = 'block';
+            } else {
+                // Hide error message if a valid email is provided
+                errorMessage.style.display = 'none';
+
+                // Disable send button and show resend button immediately
+                sendButton.disabled = true;
+                resendContainer.style.display = 'block';
+            }
+        }
+
+        function resendCode() {
+            let sendButton = document.getElementById('sendButton');
+            let resendContainer = document.getElementById('resendContainer');
+
+            // Re-enable send button, hide resend button
+            sendButton.disabled = false;
+            resendContainer.style.display = 'none';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

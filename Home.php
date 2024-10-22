@@ -235,7 +235,7 @@ if ($stmt = $conn->prepare($query)) {
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
                     </div>
                     <div class="modal-body">
-                    <a href="citizenID.html">
+                    <a href="Citizen-ID-Landing-Page.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>

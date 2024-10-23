@@ -38,7 +38,7 @@ include 'db_connection.php';
         $conn->close();
     }
 
-include 'header.html';
+include 'header.php';
       ?>
 
 <!DOCTYPE html>

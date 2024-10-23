@@ -2,7 +2,7 @@
 include 'db_connection.php';
 session_start();
 
-include 'header.html';
+include 'header.php';
 
 $email = $_SESSION['email'] ?? ''; // Assuming email is stored in session
 

@@ -1,19 +1,8 @@
 <?php
 session_start();
 include 'db_connection.php';
-include 'header.html';
-// Fetch the user's first name from the database
-$query = "SELECT first_name FROM users WHERE email = ?";
-if ($stmt = $conn->prepare($query)) {
-    $stmt->bind_param("s", $email); // Assuming email is a string
-    $stmt->execute();
-    $stmt->bind_result($first_name);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    // Handle query preparation error
-    die("Database query failed: " . $conn->error);
-}
+include 'header.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

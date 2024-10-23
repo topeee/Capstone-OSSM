@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session
-include 'header.html';
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

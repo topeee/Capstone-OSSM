@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
+include 'header.php';
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 
@@ -26,6 +27,7 @@ if ($stmt = $conn->prepare($query)) {
 } else {
     echo "Error preparing statement.";
 }
+
 
 ?>
 
@@ -175,23 +177,7 @@ if ($stmt = $conn->prepare($query)) {
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.html">
-                <img src="logo.png" alt="Logo" class="navbar-brand-logo">
-                <span>OSSM</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav ms-auto">
-                    <span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
-                    <a class="nav-link" href="#"><img src="" alt="Burger Icon" class="Hamburger-Icon"></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+
 
     <!-- Main Container -->
     <div class="container">

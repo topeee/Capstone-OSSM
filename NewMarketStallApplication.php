@@ -96,7 +96,7 @@ include 'header.php';
         }
 
         .market-image {
-            width: 100%;
+            width: 200%;
             max-width: 1000px;
             height: auto;
             display: none;

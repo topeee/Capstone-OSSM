@@ -5,6 +5,14 @@ include 'db_connection.php';
 
 require_once 'vendor/autoload.php'; // Path to the Google API PHP Client Library
 
+// Step 1: Install PHPMailer using Composer
+// Run this command in your terminal
+// composer require phpmailer/phpmailer
+
+// Step 2: Include PHPMailer classes
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 // Initialize Google Client
 $client = new Google_Client(['client_id' => '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com']); // Specify the CLIENT_ID of the app that accesses the backend
 
@@ -79,15 +87,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($result->num_rows > 0) {
                 echo "An account with this email already exists. Please use a different email.";
-                    echo "Error: {$stmt->error}";
+                echo "Error: {$stmt->error}";
+            } else {
                 // Insert user data into the database
                 $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, google_id) VALUES (?, ?, ?, ?)");
+                
+                // Step 4: Send an email using PHPMailer
+                $mail = new PHPMailer(true);
+                try {
+                    //Server settings
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.example.com'; // Set the SMTP server to send through
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'onestopsanmateo@gmail.com'; // SMTP username
+                    $mail->Password = 'jquo qdjt faah duvl'; // SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+
+                    //Recipients
+                    $mail->setFrom('onestopsanmateo@gmail.com', 'Mailer');
+                    $mail->addAddress($email, "{$first_name} {$last_name}");
+
+                    // Content
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Welcome to Our Service';
+                    $mail->Body    = "Hi {$first_name},<br>Thank you for signing up!";
+
+                    $mail->send();
+                    echo 'Message has been sent';
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
                 $stmt->bind_param("ssss", $first_name, $last_name, $email, $userid);
 
                 if ($stmt->execute()) {
-                    echo "New record created successfully";
+                    echo "<script>
+                    document.getElementById('successModalLabel').innerText = 'Account Created';
+                    document.querySelector('.modal-body').innerText = 'Your account has been successfully created.';
+                    $('#successModal').modal('show');
+                </script>";
                 } else {
-                    echo "Error: " . $stmt->error;
+                    echo "Error: {$stmt->error}";
                 }
             }
 
@@ -368,9 +408,50 @@ $conn->close();
                             </label>
                         </div>
                     </div>
-<!-- <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>
-                    <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>-->
+<!-- <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>-->
+                    <button type="submit" class="btn btn-secondary">CREATE ACCOUNT</button>
                 </form>
+
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    An account with this email already exists. Please use a different email.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Account Created</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Your account has been successfully created.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
             <div class="footer">
                 Already have an account?
                 <a href="login.php" class="link">Sign In Here!</a>

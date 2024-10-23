@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
+include 'header.php';
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 
@@ -16,6 +17,18 @@ if (isset($_SESSION['email'])) {
 } else {
     $first_name = 'Guest';
 }
+$query = "SELECT first_name, last_name, middle_name, suffix, dob, gender, tel_number, mobile_number, subdivision, house_number, street, barangay FROM users WHERE email = ?";
+if ($stmt = $conn->prepare($query)) {
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->bind_result($first_name, $last_name, $middle_name, $suffix, $dob, $tel_number, $gender, $mobile_number, $subdivision, $house_number, $street, $barangay);
+    $stmt->fetch();
+    $stmt->close();
+} else {
+    echo "Error preparing statement.";
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -164,23 +177,7 @@ if (isset($_SESSION['email'])) {
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.html">
-                <img src="logo.png" alt="Logo" class="navbar-brand-logo">
-                <span>OSSM</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav ms-auto">
-                    <span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
-                    <a class="nav-link" href="#"><img src="" alt="Burger Icon" class="Hamburger-Icon"></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+
 
     <!-- Main Container -->
     <div class="container">
@@ -226,80 +223,24 @@ if (isset($_SESSION['email'])) {
                     </tbody>
                 </table>
             </div>
-            <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Retrieve the form data
-                $first_name = $_POST['firstname'];
-                $last_name = $_POST['lastname'];
-                $middle_name = $_POST['middlename'];
-                $suffix = $_POST['suffix-dropdown'];
-                $dob = $_POST['dob'];
-                $gender = $_POST['gender-dropdown'];
-                $email = $_POST['email'];
-                $mn = $_POST['mn'];
-                $tn = $_POST['tn'];
-                $street = $_POST['street'];
-                $house = $_POST['house#'];
-                $subdivision = $_POST['sbd/vilg'];
-                $barangay = $_POST['barangay-dropdown'];
-                $oldPassword = $_POST['old_password'];
-                $newPassword = $_POST['new_password'];
-                $confirmPassword = $_POST['confirm_password'];
-
-                // Update the user's profile information
-                $query = "UPDATE users SET first_name = ?, last_name = ?, middle_name = ?, suffix = ?, dob = ?, gender = ?, email = ?, mobile_number = ?, tel_number = ?, street = ?, house_number = ?, subdivision_village = ?, barangay = ? WHERE email = ?";
-                if ($stmt = $conn->prepare($query)) {
-                    $stmt->bind_param("ssssssssssssss", $firstname, $lastname, $middlename, $suffix, $dob, $gender, $email, $mn, $tn, $street, $house, $subdivision, $barangay, $email);
-                    $stmt->execute();
-                    $stmt->close();
-                }
-
-                // Update the user's password if a new password is provided
-                if (!empty($newPassword) && $newPassword === $confirmPassword) {
-                    // Verify the old password before updating
-                    $query = "SELECT password FROM users WHERE email = ?";
-                    if ($stmt = $conn->prepare($query)) {
-                        $stmt->bind_param("s", $email);
-                        $stmt->execute();
-                        $stmt->bind_result($password);
-                        $stmt->fetch();
-                        $stmt->close();
-
-                        // Verify the old password
-                        if (password_verify($oldPassword, $password)) {
-                            // Update the password
-                            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-                            $query = "UPDATE users SET password = ? WHERE email = ?";
-                            if ($stmt = $conn->prepare($query)) {
-                                $stmt->bind_param("ss", $hashedPassword, $email);
-                                $stmt->execute();
-                                $stmt->close();
-                            }
-                        }
-                    }
-                }
-
-                // Redirect the user to the updated profile page
-                header("Location: account_profile.php");
-                exit();
-            }
-            ?>
+    
+        
             <h5>PERSONAL INFORMATION</h5><br>
             <form class="row g-3" action="" method="POST">
                 <div class="col-md-3 form-floating">    
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required disabled>
                     <label for="firstname"><?php echo htmlspecialchars($first_name); ?></label>
                 </div>
                 <div class="col-md-3 form-floating">
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
-                    <label for="lastname"><?php echo htmlspecialchars($first_name); ?></label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required disabled >
+                    <label for="lastname"><?php echo htmlspecialchars($last_name); ?></label>
                 </div>
                 <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name">
-                    <label for="middlename"><?php echo htmlspecialchars($first_name); ?></label>
+                    <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" required disabled >
+                    <label for="middlename"><?php echo htmlspecialchars($middle_name); ?></label>
                 </div>
                 <div class="col-md-2 form-floating">
-                    <select class="form-select" id="suffix-dropdown" name="suffix-dropdown">
+                    <select class="form-select" id="suffix-dropdown" name="suffix-dropdown" disabled>
                         <option value="" selected>Select a suffix</option>
                         <option value="Jr">Jr.</option>
                         <option value="Sr">Sr.</option>
@@ -309,47 +250,55 @@ if (isset($_SESSION['email'])) {
                         <option value="V">V</option>
                     </select>
                     <label for="suffix-dropdown">Suffix</label>
+                    <?php echo htmlspecialchars($suffix); ?>
                 </div>
 
                 <div class="col-md-6 form-floating">
-                    <input type="date" class="form-control" id="dob" name="dob" required>
-                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob" required disabled>
+                    <label for="dob">Date of Birth  <?php echo htmlspecialchars($dob); ?>  </label>
+                  
                 </div>
                 <div class="col-md-6 form-floating">
-                    <select class="form-select" id="gender-dropdown" name="gender-dropdown" required>
+                    <select class="form-select" id="gender-dropdown" name="gender-dropdown" required disabled>
                         <option value="" selected>Select a gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Prefer not to say">Prefer not to say</option>
+                  
                     </select>
-                    <label for="gender-dropdown">Gender</label>
+                    <label for="gender-dropdown">Gender <?php echo htmlspecialchars($gender); ?></label>
+                   
                 </div>
                 <div class="col-md-4 form-floating">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                    <label for="email">Email</label>
+                    <label for="email">Email    <?php echo htmlspecialchars($email); ?> </label>
+                 
                 </div>
                 <div class="col-md-4 form-floating">
-                    <input type="tel" class="form-control" id="mn" name="mn" placeholder="Mobile Number" required>
-                    <label for="mn">Mobile Number</label>
+                    <input type="tel" class="form-control" id="mn" name="mn" placeholder="Mobile Number" required disabled>
+                    <label for="mn">Mobile Number  <?php echo htmlspecialchars( $mobile_number); ?> </label>
+                   
                 </div>
                 <div class="col-md-4 form-floating">
                     <input type="text" class="form-control" id="tn" name="tn" placeholder="Tel Number">
-                    <label for="tn">Tel Number</label>    
+                    <label for="tn">Tel Number  <?php echo htmlspecialchars($tel_number); ?>  </label>    
+                                 
+                <div class="col-md-2 form-floating">
+                    <input type="text" class="form-control" id="street" name="street" placeholder="Street" >
+                    <label for="street">Street  <?php echo htmlspecialchars($street); ?></label>
+                  
                 </div>
                 <div class="col-md-2 form-floating">
-                    <input type="text" class="form-control" id="street" name="street" placeholder="Street" required>
-                    <label for="street">Street</label>
-                </div>
-                <div class="col-md-2 form-floating">
-                    <input type="text" class="form-control" id="house#" name="house#" placeholder="House #" required>
-                    <label for="house#">House #</label>
-                </div>
+                    <input type="text" class="form-control" id="house#" name="house#" placeholder="House #" >
+                    <label for="house#">House # <?php echo htmlspecialchars($house_number); ?></label>
+                
                 <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="sbd/vilg" name="sbd/vilg" placeholder="Subdivision or Village">
+                    <input type="text" class="form-control" id="sbd/vilg" name="sbd/vilg" placeholder="Subdivision or Village" disabled>
                     <label for="sbd/vilg">Subdivision or Village</label>
+                    <?php echo htmlspecialchars($subdivision); ?>
                 </div>
                 <div class="col-md-4 form-floating">
-                    <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" required>
+                    <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" >
                         <option value="" selected>Select a barangay</option>
                         <option value="Ampid I">Ampid I</option>
                         <option value="Ampid II">Ampid II</option>

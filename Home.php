@@ -1,20 +1,8 @@
 <?php
 session_start();
 include 'db_connection.php';
+include 'header.php';
 
-
-// Fetch the user's first name from the database
-$query = "SELECT first_name FROM users WHERE email = ?";
-if ($stmt = $conn->prepare($query)) {
-    $stmt->bind_param("s", $email); // Assuming email is a string
-    $stmt->execute();
-    $stmt->bind_result($first_name);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    // Handle query preparation error
-    die("Database query failed: " . $conn->error);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,19 +20,6 @@ if ($stmt = $conn->prepare($query)) {
     <title>Homepage</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg">
-        <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
-            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
-                <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <div class="e-services col-xl-6 text-center mx-auto">
         <h2>E-SERVICES</h2>
@@ -235,7 +210,7 @@ if ($stmt = $conn->prepare($query)) {
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
                     </div>
                     <div class="modal-body">
-                    <a href="citizenID.html">
+                    <a href="Citizen-ID-Landing-Page.html">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>

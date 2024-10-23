@@ -87,8 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($result->num_rows > 0) {
                 echo "An account with this email already exists. Please use a different email.";
-                echo "Error: {$stmt->error}";
-            } else {
+                    echo "Error: {$stmt->error}";
                 // Insert user data into the database
                 $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, google_id) VALUES (?, ?, ?, ?)");
                 
@@ -111,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Content
                     $mail->isHTML(true);
                     $mail->Subject = 'Welcome to Our Service';
-                    $mail->Body    = "Hi {$first_name},<br>Thank you for signing up!";
+                    $mail->Body    = 'Hi ' . $first_name . ',<br>Thank you for signing up!';
 
                     $mail->send();
                     echo 'Message has been sent';
@@ -121,13 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("ssss", $first_name, $last_name, $email, $userid);
 
                 if ($stmt->execute()) {
-                    echo "<script>
-                    document.getElementById('successModalLabel').innerText = 'Account Created';
-                    document.querySelector('.modal-body').innerText = 'Your account has been successfully created.';
-                    $('#successModal').modal('show');
-                </script>";
+                    echo "New record created successfully";
                 } else {
-                    echo "Error: {$stmt->error}";
+                    echo "Error: " . $stmt->error;
                 }
             }
 
@@ -409,7 +404,7 @@ $conn->close();
                         </div>
                     </div>
 <!-- <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>-->
-                    <button type="submit" class="btn btn-secondary">CREATE ACCOUNT</button>
+                    <button type="submit" class="signup">CREATE ACCOUNT</button>
                 </form>
 
 

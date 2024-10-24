@@ -44,12 +44,13 @@ function sendemail_verify($name, $email, $verify_token)
     $mail->Subject = "Email Verification From Gaurav";
 
     // Email template
-    $email_template = "
-    <h2>You Have Registered With Our Verification Method</h2>
-    <h5>Verify your email address to login with the link below</h5>
-    <br><br/>
-    <a href='http://onestopsanmateo.online/verify-email.php?token=$verify_token'>Click Me</a>
-    ";
+    // Load the email template from an external HTML file
+    $email_template = file_get_contents('emailtemplate.html');
+    
+    // Replace placeholders in the template with actual values
+    $email_template = str_replace('{{name}}', $name, $email_template);
+    $email_template = str_replace('{{verify_token}}', $verify_token, $email_template);
+    
     $mail->Body = $email_template;
 
     // Send the email
@@ -96,8 +97,6 @@ if (isset($_POST['register-btn'])) {
     $subdivision = $_POST['sbd/vilg'];
     $barangay = $_POST['barangay-dropdown'];
     $password = $_POST['password'];
-    $name = $_POST['firstname'];
-    $password = $_POST['password'];
     $verify_token = md5(rand()); // Generate a random verification token
 
     // Validate the password
@@ -106,36 +105,37 @@ if (isset($_POST['register-btn'])) {
         header("Location: CreateAccount.php");
         exit();
     }
-// Check if the email already exists in the database
-$check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
-$check_email_query_run = mysqli_query($conn, $check_email_query);
-if (mysqli_num_rows($check_email_query_run) > 0) {
-    $_SESSION['status'] = "Email id already exists";
-    header("Location: CreateAccount.php");
-} else {
-    // Insert the user data into the users table
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token) 
-    VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$password_hash', '$verify_token')";
 
-    $query_run = mysqli_query($conn, $query);
-    if ($query_run) {
-        // Send the email verification link
-        sendemail_verify($name, $email, $verify_token);
-        $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
+    // Check if the email already exists in the database
+    $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
+    $check_email_query_run = mysqli_query($conn, $check_email_query);
+    if (mysqli_num_rows($check_email_query_run) > 0) {
+        $_SESSION['status'] = "Email id already exists";
         header("Location: CreateAccount.php");
     } else {
-        $_SESSION['status'] = "Registration Failed!";
-        header("Location: CreateAccount.php");
-    }
-}}
-
- 
-      
         // Hash the password
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-       
+        // Insert the user data into the users table
+        $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token) 
+        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$password_hash', '$verify_token')";
+
+        $query_run = mysqli_query($conn, $query);
+        if ($query_run) {
+            // Send the email verification link
+            sendemail_verify($first_name, $email, $verify_token);
+            $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
+            header("Location: CreateAccount.php");
+        } else {
+            $_SESSION['status'] = "Registration Failed!";
+            header("Location: CreateAccount.php");
+        }
+    }
+
+    // Close the statement and connection if they exist
+    if (isset($stmt)) {
         $stmt->close();
-        $conn->close();
+    }
+    $conn->close();
+}
 ?>

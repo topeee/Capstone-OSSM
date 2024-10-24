@@ -1,21 +1,6 @@
-
 <?php
-
-if(isset($_SESSION['status']))
-{
-    ?>
-    <div class="alert alert-danger">
-        <h5><?= $_SESSION['status'];?></h5>
-    </div>
-    <?php
-    unset($_SESSION['status']);
-
-}
-
+session_start(); // Ensure the session is started at the beginning of the file
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,22 +44,26 @@ if(isset($_SESSION['status']))
      data-size="large"
      data-logo_alignment="left">
 </div>
-
-
+<?php
+    if (isset($_SESSION['status'])) {
+        ?>
+        <div class="alert alert-danger">
+            <h5><?= $_SESSION['status']; ?></h5>
+        </div>
+        <script>
+            // Redirect to login.php after 5 seconds
+            setTimeout(function() {
+                window.location.href = 'login.php';
+            }, 5000);
+        </script>
+        <?php
+        unset($_SESSION['status']);
+    }
+    ?>
         <div class="form-container">
+        
             <div class="form-container">
-            <?php
-                    if(isset($_SESSION['status']))
-                    {
-                        ?>
-                        <div class="alert alert-danger">
-                            <h5><?= $_SESSION['status'];?></h5>
-                        </div>
-                        <?php
-                        unset($_SESSION['status']);
-                
-                    }
-                    ?>
+          
                 <form class="row g-3" id="registerForm"action="code.php" method="POST" enctype="multipart/form-data">
 
                     <div class="col-md-6 form-floating">

@@ -230,6 +230,7 @@ session_start(); // Ensure the session is started at the beginning of the file
                     </div>
 <!-- <div class="g-recaptcha" data-sitekey="6LdSsC8qAAAAAOoSY6EIMpbTt2g3UeqimI5Igu6h"></div>-->
 <button type="submit"class="btn btn-primary" name="register-btn"id="submitBtn">Register Now</button>
+<div id="loader" class="loader" style="display: none;"></div>
 </form>
 
 <!-- Bootstrap Modal -->
@@ -251,7 +252,7 @@ session_start(); // Ensure the session is started at the beginning of the file
             </div>
         </div>
     </div>
-
+ <div id="loader" class="loader" style="display: none;"></div>
 
             <div class="footer">
                 Already have an account?
@@ -265,6 +266,15 @@ session_start(); // Ensure the session is started at the beginning of the file
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+
+document.getElementById('registerForm').addEventListener('submit', function() {
+    var submitBtn = document.getElementById('submitBtn');
+    var loader = document.getElementById('loader');
+    
+    submitBtn.style.display = 'none';
+    loader.style.display = 'block';
+});
+
         function previewId() {
 
             var file = document.getElementById("validId").files[0];

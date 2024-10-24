@@ -20,7 +20,7 @@ require 'vendor/autoload.php';
  * @param string $email The recipient's email address
  * @param string $verify_token The token used for email verification
  */
-function sendemail_verify($name, $email, $verify_token)
+function sendemail_verify($name, $email, $verify_token, $last_name)
 {
     $mail = new PHPMailer(true);
     // $mail->SMTPDebug = 2; // Enable verbose debug output
@@ -36,23 +36,22 @@ function sendemail_verify($name, $email, $verify_token)
     $mail->Port = 587; // TCP port to connect to
 
     // Email sender and recipient configuration
-    $mail->setFrom("onestopsanmateo@gmail.com", $name);
+    $mail->setFrom("onestopsanmateo@gmail.com", $name, $last_name);
     $mail->addAddress($email);
 
     // Email content configuration
     $mail->isHTML(true); // Set email format to HTML
-    $mail->Subject = "Email Verification From Gaurav";
+    $mail->Subject = "Email Verification From One Stop San Mateo";
 
     // Email template
-    // Load the email template from an external HTML file
-    $email_template = file_get_contents('emailtemplate.html');
-    
-    // Replace placeholders in the template with actual values
-    $email_template = str_replace('{{name}}', $name, $email_template);
-    $email_template = str_replace('{{verify_token}}', $verify_token, $email_template);
-    
-    $mail->Body = $email_template;
-
+     
+      $email_template = "
+      <h2>You Have Registered With Our Verification Method</h2>
+      <h5>Verify your email address to login with the link below</h5>
+      <br><br/>
+      <a href='http://onestopsanmateo.online/verify-email.php?token=$verify_token'>Click Me</a>
+      ";
+      $mail->Body = $email_template;
     // Send the email
     $mail->send();
     // echo 'Message has been sent';

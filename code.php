@@ -131,10 +131,7 @@ if (isset($_POST['register-btn'])) {
         }
     }
 
-    // Close the statement and connection if they exist
-    if (isset($stmt)) {
-        $stmt->close();
-    }
+    // Close the database connection
     $conn->close();
 }
 ?>

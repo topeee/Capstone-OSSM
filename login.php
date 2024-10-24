@@ -10,14 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Please enter both email and password.";
     } else {
-        $stmt = $conn->prepare("SELECT password, password_hash, is_admin FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
         if ($stmt) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($hashed_password, $is_admin);
+                $stmt->bind_result($password, $is_admin);
                 $stmt->fetch();
 
                 if (password_verify($password, $hashed_password)) {
@@ -34,10 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['error'] = "Invalid password.";
                 }
             } else {
-                $_SESSION['error'] = "No user found with that email.";
+                $_SESSION['error'] = "No account found with that email.";
             }
+            $stmt->close();
+        } else {
+            $_SESSION['error'] = "Database error: Unable to prepare statement.";
         }
     }
+    header('Location: login.php');
+    exit();
 }
 ?>
 

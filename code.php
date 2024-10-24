@@ -16,11 +16,11 @@ require 'vendor/autoload.php';
 /**
  * Sends an email verification link to the user's email address
  *
- * @param string $name The name of the recipient
+ * @param string $first_name The name of the recipient
  * @param string $email The recipient's email address
  * @param string $verify_token The token used for email verification
  */
-function sendemail_verify($name, $email, $verify_token)
+function sendemail_verify($first_name, $email, $verify_token)
 {
     $mail = new PHPMailer(true);
     // $mail->SMTPDebug = 2; // Enable verbose debug output
@@ -36,7 +36,7 @@ function sendemail_verify($name, $email, $verify_token)
     $mail->Port = 587; // TCP port to connect to
 
     // Email sender and recipient configuration
-    $mail->setFrom("onestopsanmateo@gmail.com", $name);
+    $mail->setFrom("onestopsanmateo@gmail.com", $first_name);
     $mail->addAddress($email);
 
     // Email content configuration
@@ -81,7 +81,7 @@ if (isset($_POST['register-btn'])) {
             die("Error: Missing required field '$field'.");
         }
     }
-    $name = $_POST['firstname'];
+    
     $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
     $middle_name = $_POST['middlename'];
@@ -122,7 +122,7 @@ if (isset($_POST['register-btn'])) {
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {
             // Send the email verification link
-            sendemail_verify($name, $email, $verify_token);
+            sendemail_verify($first_name, $email, $verify_token);
             $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
             header("Location: CreateAccount.php");
         } else {

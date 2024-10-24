@@ -4,16 +4,6 @@ session_start();
 
 include 'header.php';
 
-$email = $_SESSION['email'] ?? ''; // Assuming email is stored in session
-
-$query = "SELECT first_name FROM users WHERE email = ?";
-if ($stmt = $conn->prepare($query)) {
-    $stmt->bind_param("s", $email); // Assuming email is a string
-    $stmt->execute();
-    $stmt->bind_result($first_name);
-    $stmt->fetch();
-    $stmt->close();
-}
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

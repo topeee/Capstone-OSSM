@@ -123,7 +123,7 @@ if (isset($_POST['register-btn'])) {
         if ($query_run) {
             // Send the email verification link
             sendemail_verify($first_name, $email, $verify_token);
-            $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
+            $_SESSION['success'] = "Registration Successful! The link has been sent to your email address";
             header("Location: CreateAccount.php");
         } else {
             $_SESSION['status'] = "Registration Failed!";

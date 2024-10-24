@@ -26,7 +26,7 @@ if ($stmt = $conn->prepare($query)) {
 <html>
 
 <body>
-<header>
+
 
 <nav class="navbar navbar-dark navbar-expand-lg">
     <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
@@ -43,7 +43,7 @@ if ($stmt = $conn->prepare($query)) {
 </nav>
 
 
-</header>
+
 
 
     

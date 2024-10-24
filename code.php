@@ -81,7 +81,7 @@ if (isset($_POST['register-btn'])) {
             die("Error: Missing required field '$field'.");
         }
     }
-
+    $name = $_POST['firstname'];
     $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
     $middle_name = $_POST['middlename'];
@@ -122,7 +122,7 @@ if (isset($_POST['register-btn'])) {
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {
             // Send the email verification link
-            sendemail_verify($first_name, $email, $verify_token);
+            sendemail_verify($name, $email, $verify_token);
             $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
             header("Location: CreateAccount.php");
         } else {

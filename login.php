@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -9,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Please enter both email and password.";
     } else {
-        $stmt = $conn->prepare("SELECT password_hash, is_admin FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT password, password_hash, is_admin FROM users WHERE email = ?");
         if ($stmt) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -192,8 +193,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="home.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
+
+     
         <div class="form-container">
-            <form action="" method="POST">
+            <form action="" method="POST">   <?php
+    if (isset($_SESSION['status'])) {
+        ?>
+        <div class="alert alert-danger">
+            <h5><?= $_SESSION['status']; ?></h5>
+        </div>
+        <?php
+        unset($_SESSION['status']);
+    }
+    ?>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" required>

@@ -1,3 +1,22 @@
+
+<div class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+            <?php
+                    if(isset($_SESSION['status']))
+                    {
+                        ?>
+                        <div class="alert alert-success">
+                            <h5><?= $_SESSION['status'];?></h5>
+                        </div>
+                        <?php
+                        unset($_SESSION['status']);
+                
+                    }
+                    ?>
+            
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,59 +72,28 @@
     </style>
 </head>
 <body>
-    <div class="main-content">
+<div class="main-content">
         <img src="logo.png" alt="Welcome Image" class="img-fluid mb-4 logo">
         <h2>One-Stop San Mateo</h2>
         <h1>Forgot Password</h1>
         <h6>We will send a code to your email to reset your password.</h6>
 
         <div class="form-container">
+            <form action="password_reset_code.php" method="POST">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-                <label for="emailInput">Email address</label>
+                <input type="email" class="form-control" id="emailIn" name="email" placeholder="name@example.com" required>
+                <label for="emailIn">Email address</label>
                 <div class="error-message" id="errorMessage"></div> <!-- Error message -->
             </div>
-            <button type="button" class="btn btn-primary" id="sendButton" onclick="sendCode()">Send</button>
+            <button type="submit" class="btn btn-primary" name="password_reset_link">Send Password Link</button>
             <div class="resend-button" id="resendContainer" style="display:none;">
                 <button type="button" class="btn btn-secondary" id="resendButton" onclick="resendCode()">Resend Code</button>
             </div>
+            </form>
         </div>
-    </div>
+        </div>
 
-    <script>
-        function sendCode() {
-            let emailInput = document.getElementById('emailInput').value;
-            let errorMessage = document.getElementById('errorMessage');
-            let sendButton = document.getElementById('sendButton');
-            let resendContainer = document.getElementById('resendContainer');
-
-            if (emailInput === "") {
-                // Show error message if email is empty
-                errorMessage.textContent = "Please type an email address.";
-                errorMessage.style.display = 'block';
-            } else if (!emailInput.includes("@gmail.com") && !emailInput.includes("@hotmail.com")) {
-                // Show error message if email does not contain @gmail.com or @hotmail.com
-                errorMessage.textContent = "Please enter a valid email address with @gmail.com or @hotmail.com.";
-                errorMessage.style.display = 'block';
-            } else {
-                // Hide error message if a valid email is provided
-                errorMessage.style.display = 'none';
-
-                // Disable send button and show resend button immediately
-                sendButton.disabled = true;
-                resendContainer.style.display = 'block';
-            }
-        }
-
-        function resendCode() {
-            let sendButton = document.getElementById('sendButton');
-            let resendContainer = document.getElementById('resendContainer');
-
-            // Re-enable send button, hide resend button
-            sendButton.disabled = false;
-            resendContainer.style.display = 'none';
-        }
-    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

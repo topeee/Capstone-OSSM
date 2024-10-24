@@ -167,7 +167,7 @@ include 'header.php';
                         <i class="bi bi-arrow-clockwise card-icon"></i>
                         <h5 class="card-title">Renewal of Hawker Permit</h5>
                         <p class="card-text">Renew your existing hawker permit easily online.</p>
-                        <a href="RenewHawker.html" class="btn btn-secondary">Renew Now</a>
+                        <a href="RenewHawker.php" class="btn btn-secondary">Renew Now</a>
                     </div>
                 </div>
                 
@@ -184,8 +184,8 @@ include 'header.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <button class="btn btn-primary btn-lg transparent-btn" id="temporaryVendingSiteBtn" onclick="window.location.href='TemporaryVendingSite.html';">Temporary Vending Site</button>
-                    <button class="btn btn-secondary btn-lg transparent-btn" id="specialEventSiteBtn" onclick="window.location.href='SpecialEventSite.html';">Special Event Site</button>
+                    <button class="btn btn-primary btn-lg transparent-btn" id="temporaryVendingSiteBtn" onclick="window.location.href='TemporaryVendingSite.php';">Temporary Vending Site</button>
+                    <button class="btn btn-secondary btn-lg transparent-btn" id="specialEventSiteBtn" onclick="window.location.href='SpecialEventSite.php';">Special Event Site</button>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="img/png" href="logo.png">
-    <title>PWD Application</title>
+    <title>Business Applciation Permit (Special)</title>
 </head>
 
 <style>
@@ -156,6 +156,23 @@ html, body {
     color: #007bff; /* Optional: change color on hover */
 }
 
+.custom-blockquote, .custom-authorization, .custom-notes{
+    background-color: #d1ecf1; /* Sky Blue */
+    padding: 20px;
+    border-left: 5px solid #007bff; /* You can change this to a darker shade if preferred */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-link {
+    color: #007bff; /* Bootstrap primary blue */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the text bold */
+}
+
+.custom-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
 
 </style>
 <body>
@@ -173,7 +190,7 @@ html, body {
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                        <li><a class="dropdown-item" href="trasaac_history.html">History Transaction</a></li>
                         <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
                     </ul>
                 </div>
@@ -196,172 +213,181 @@ html, body {
 
         <div class="card">
                     <div class="card-header fs-5">
-                        Citizen ID Application
+                        Appy for Business Permit (Special)
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0 fs-3">
-                            <p>Ang Citizen ID ay isang patunay na dokumento na ang isang indibidwal ay nakatira sa nasabing munisipalidad.</p>
+                            <p>Before applying for special business permit make sure to secure the following requirements below:</p>
                         </blockquote>
+                        <br>
+
+                        <blockquote class="custom-blockquote mb-3">
+                            <h2>TERM / SPECIAL PERMIT APPLICATION</h2>
+                            <div class="title">
+                                <p>For short-term company operations, special permit is needed. A few examples are sporting events, concerts, stage shows, TV and film productions, sporting events, promotional events, and seasonal activities like carnivals (limited to 14 days), bingo games, and cockfights (limited to 1-3 days per year).</p>
+                            </div>
+                        </blockquote>
+
                         <br>
                         <blockquote class="fs-5">
-                            <p>Ikaw ba ay:</p>
-                            <ul>
-                                <li>Kasalukuyang nakatira sa nasabing munisipalidad?</li>
-                                <li>Nangangailangan ng pangsuporta na dokumento?</li>
-                            </ul>
+                            <h2>Application Requirements:</h2>
+                            <p class="required" style="color: red;">* Required</p> 
+                            <ol>
+                                <li>Request letter to the head of the business licensing and permit department.</li>
+                                <li>Venue Lease Agreement from the venue's proprietor.</li>
+                                <li>If an applicant is a foreign national, the Bureau of Immigration may issue a Special Working Permit (SWP) (where appropriate)</li>
+                                <li>Mayor's Permit as Promoter; DTI; SEC</li>
+                                <li>When necessary, a special permit for seasonal operations from the city councilor</li>
+                            </ol>   
+                            <br><br>
+
+                            <blockquote class="custom-blockquote mb-3">
+                                <h2>General Instructions:</h2>
+                                <ol>
+                                    <li>Complete the application form (upper case/capital letters only) by checking the relevant boxes, typing, and/or printing. The applicant must fill out all relevant data fields and information in a clear and comprehensive manner.</li>
+                                    <li>Please make sure that EVERY needed document is correctly connected and complete EVERY required field. Completed application forms and/or requirements will not be processed and will be returned to the applicant.</li>
+                                </ol>
+                            </blockquote>                            
+                        
+                            <blockquote class="custom-authorization mb-3">
+                                <h2>Authorization Form:</h2>
+                                <p>To ensure that your application is handled by an authorized person, please obtain this <a href="Authorization Letter.pdf" download="Authorization Letter.pdf" class="custom-link">Authorization Form</a> and proceed as instructed below:</p>
+                                <ol>
+                                    <li>Verify that the owner has signed the document.</li>
+                                    <li>Scan the signed form and Valid IDs of the owner and the representative.</li>
+                                </ol>
+                            </blockquote>                                                      
+
                         </blockquote>
                         <br>
-                        <blockquote>
-                            <p class="fw-bold fs-4">Documentary Requirements para sa Online Appointment</p>
-                            <p class="fst-italic fs-6">(Dalhin ang 1 original and 1 photocopy ng bawat isa sa araw ng appointment)</p>
-                            <ul class="fs-5">
-                                <li>Barangay Certificate of Indigency (Purpose: Citizen ID Application)</li>
-                                <li>Pruweba na ikaw ay nakatira sa nasabing munisipalidad (i.e: Bills with current address, or any documents that has your address)</li>
-                            </ul>
-                        </blockquote>
                     </div>
-
-                    <br>
-
-
-                    
+                        <!-- Frequently ask questions -->
                         <div class="card border-light mb-3" style="max-width: 100%; width: 60rem;">
-                            <div class="card-header fs-3 fw-bold text-center">FAQs on CITIZEN ID APPLICATION</div>
+                            <div class="card-header fs-3 fw-bold text-center">FAQs on Applying for a Business Permit Online in the Philippines:</div>
                             <div class="accordion" id="accordionOSSM">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size: 1rem;">
+                                            What is a business permit?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
+                                        <div class="accordion-body" style="font-size: 1.15rem;">
+                                            A business is allowed to operate under the jurisdiction of the local government unit (LGU) with the issuance of a business permit, also known as a mayor's permission. It guarantees that your company corresponds to all applicable local rules and ordinances.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 2 Frequently ask questions -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: 1rem;">
-                                            What is the minimum age for Citizen ID Application?
+                                            Can I apply for a business permit online?
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
                                         <div class="accordion-body" style="font-size: 1.15rem;">
-                                            To qualify, an individual must be at least 16 years old and above.</div>
+                                            Yes, a lot of local government units (LGUs) in the Philippines provide online services for applying for business permits via their official websites or online portals.
+                                        </div>
                                     </div>
                                 </div>
-
-
+                                <!-- 3 Frequently ask questions -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-size: 55%;">
-                                            What would be the purpose of the Citizen ID?
+                                            How do I apply for a business permit online?
                                         </button>
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
                                         <div class="accordion-body" style="font-size: 115%;">
-                                            Citizen ID will act as a secondary ID to support the documents needed for a primary ID. Also, this ID will be the identification that an individual is living in the vicinity of the said municipality.
+                                            <ol>
+                                                <li>Go to San Mateo's official website</li>
+                                                <li>Log-in or Sign-up to with your account details</li>
+                                                <li>Fill out the form depending on your business permit type (new, special, amendment, and renewal)</li>
+                                                <li>Upload the needed documents</li>
+                                                <li>Wait for the confirmation of your application via your gmail account</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
-
-
+                                <!-- 4 Frequently ask questions -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="font-size: 55%;">
-                                            How can an individual apply for Citizen ID?
+                                            What are the fees for business permit?
                                         </button>
                                     </h2>
                                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
                                         <div class="accordion-body" style="font-size: 115%;">
-                                            To apply, you need to visit your local social welfare office or apply online through the official local government portal. You will be required to submit documentation such as proof of address, and other relevant documents.
-                                            <br><br>
-                                            Upang mag-apply, kailangan mong pumunta sa iyong lokal na tanggapan ng kagalingang panlipunan o mag-apply online sa opisyal na portal ng lokal na gobyerno. Kakailanganin mong magsumite ng mga dokumento tulad ng patunay ng tirahan, at iba pang kaugnay na mga dokumento.
+                                            The type, scale, and location of the firm all affect the cost of the business permit. There can be additional costs associated with waste, sanitation, and fire safety. Usually, the application procedure involves the calculation of these expenses.
                                         </div>
                                     </div>
                                 </div>
+                                <!-- 5 Frequently ask questions -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="font-size: 55%;">
+                                            How long does it take to get a business permit online?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
+                                        <div class="accordion-body" style="font-size: 115%;">
+                                            Depending on the performance of the online system and the accuracy of your criteria, the processing period varies by LGU but typically takes three to five business days.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 6 Frequently ask questions -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="font-size: 55%;">
+                                            Can I renew my business permit online?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
+                                        <div class="accordion-body" style="font-size: 115%;">
+                                            Yes, our website provide online business permit renewal services. The procedure is the same as filing for a new permit, although updated paperwork, such verification of tax payments and clearances, is typically needed.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 7 Frequently ask questions -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSev" aria-expanded="false" aria-controls="collapseSev" style="font-size: 55%;">
+                                            What happens if I operate without business permit?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSev" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
+                                        <div class="accordion-body" style="font-size: 115%;">
+                                            If you operate your business without a proper business permit, you risk fines, penalties, or even shutdown. Obtaining the required permits is a must before beginning activities.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 8 Frequently ask questions -->
+                                <div class="accordion-item mb-3">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEig" aria-expanded="false" aria-controls="collapseEig" style="font-size: 55%;">
+                                            How do I know if my application is succuessful?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseEig" class="accordion-collapse collapse" data-bs-parent="#accordionOSSM">
+                                        <div class="accordion-body" style="font-size: 115%;">
+                                            As soon as your application is reviewed and accepted, you will receive a confirmation via email or online. 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="agreement">
+                                        <div class="radio-option">
+                                            <input type="checkbox" id="userag" name="userag" required>
+                                            <label for="userag">I confirm I have read and agree to the San Mateo's Online Busisness Application Guidelines</label>
+                                        </div>
+                                </div>
                             </div>
                         </div>
-                    
                     <br>
                     
-                        <div class="guide-  container">
-                            <h2 class="guide-title">What papers need to apply? See the step by step guide</h2>
-                            
-                            <div class="card-body">
-                                <div class="step">
-                                    <p class="fw-bold fs-4 step-title">Step 1: Enter Basic Information</p>
-                                    <ul class="step-content">
-                                        <li>First Name</li>
-                                        <li>Middle Name</li>
-                                        <li>Last Name</li>
-                                        <li>Suffix if applicable</li>
-                                        <li>Gender</li>
-                                        <li>Date of Birth</li>
-                                        <li>Birth of Birth</li>
-                                        <li>Nationality</li>
-                                        <li>Social Welfare (if applicable)</li>
-                                        <li>Occupation</li>
-                                        <li>Religion</li>
-                                        <li>Civil Status</li>
-                                    </ul>
-                                </div>
-                    
-                                <div class="step">
-                                    <p class="fw-bold fs-4 step-title">Step 2: Enter Parent Information</p>
-                                    <ul class="step-content">
-                                        <li>Mother's First Name</li>
-                                        <li>Mother's Middle Name</li>
-                                        <li>Mother's Maiden Name</li>
-                                        <li>Educational Attainment</li>
-                                        <br>
-                                        <li>Father's First Name</li>
-                                        <li>Father's Middle Name</li>
-                                        <li>Father's Last Name</li>
-                                        <li>Suffix (If applicable)</li>
-                                    </ul>
-                                </div>
-                    
-                                <div class="step">
-                                    <p class="fw-bold fs-4 step-title">Step 3: Address Information</p>
-                                    <ul class="step-content">
-                                        <li>Present Address</li>
-                                        <ul>
-                                            <li>House Number</li>
-                                            <li>Street</li>
-                                            <li>Subdivision or Village</li>
-                                            <li>Barangay</li>
-                                        </ul>
-                                        <br>
-                                        <li>Permanent Address</li>
-                                        <ul>
-                                            <li>YES: Same as Present Address?</li>
-                                            <ul>
-                                                <li>The form will be automatically filled out</li>
-                                            </ul>
-                                            <li>NO:</li>
-                                            <ul>
-                                                <li>House Number</li>
-                                                <li>Street</li>
-                                                <li>Subdivision or Village</li>
-                                                <li>Barangay</li>
-                                            </ul>
-                                        </ul>
-                                    </ul>
-                                </div>
-                    
-                                <div class="step">
-                                    <p class="fw-bold fs-4 step-title">Step 4: Summary of Information</p>
-                                    <ul class="step-content">
-                                        <li>All of Information Displayed Categorically</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="step">
-                                    <p class="fw-bold fs-4 step-title"> Step 5: Submit Information</p>
-                                    <ul class="step-content">
-                                        <li>Submit Information</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                     <div class="wrap">
-                        <a href="Citizen-ID-Application-Form.html">
-                            <button class="button">Apply Now?</button>
-                        </a>
+                        <button id="applyButton" class="button" onclick="checkAgreement()">Apply Now?</button>
                     </div>
-
-                      <br>
+                <br>
             </div>
         </div>
     </main>
@@ -404,6 +430,19 @@ html, body {
     </footer>
 
     <script>
+        
+        // Function to check if the checkbox is checked
+        function checkAgreement() {
+            // Check if the checkbox is checked
+            if (document.getElementById('userag').checked) {
+                // If checked, navigate to the new page
+                window.location.href = 'SpecialBusinessPermitApplication.php';
+            } else {
+                // If not checked, show an alert
+                alert('Please confirm that you have read and agree to the guidelines.');
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             // First popover
             const popoverBtn1 = document.getElementById('popoverBtn1');

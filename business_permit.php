@@ -387,7 +387,7 @@ html, body {
                         </div>
                     <br>
                     <div class="wrap">
-                            <button class="button" onclick="window.location.href='NewBusinessPermit Application.html'">Apply Now?</button>
+                            <button class="button" onclick="window.location.href='NewBusinessPermit Application.php'">Apply Now?</button>
                     </div>
 
                       <br>

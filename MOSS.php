@@ -157,11 +157,11 @@ include 'header.php';
                     <h3>Pamilihang Lungsod</h3>
                     <p>May-ari ka na ba ng stall sa palengke o naghahanap ka ba ng mauupahan sa isang pamilihan sa lungsod?</p>
                     <p>Pumili ng Transaksyon:</p>
-                    <a class="btn" href="NewMarketStallApplication.html">Submit an Application (New)</a>
-                    <a class="btn" href="ViewStatusMOSS.html">See the status of your Application</a>
-                    <a class="btn" href="MarketLeaseMOSS.html">Manage Market Lease</a>
-                    <a class="btn" href="MarketLeaseMOSS.html">Pay rent</a>
-                    <a class="btn" href="MarketLeaseMOSS.html">See for Market Violation</a>
+                    <a class="btn" href="NewMarketStallApplication.php">Submit an Application (New)</a>
+                    <a class="btn" href="ViewStatusMOSS.php">See the status of your Application</a>
+                    <a class="btn" href="MarketLeaseMOSS.php">Manage Market Lease</a>
+                    <a class="btn" href="MarketLeaseMOSS.php">Pay rent</a>
+                    <a class="btn" href="MarketLeaseMOSS.php">See for Market Violation</a>
                 </div>
             </div>
 
@@ -171,11 +171,11 @@ include 'header.php';
                     <h3>Mga Pribadong Pamilihan / Talipapa</h3>
                     <p>Ikaw ba ay isang pribadong merkado o Talipapa operator o isang kasalukuyang pribadong merkado o Talipapa vendor?</p>
                     <p>Pumili ng Transaksyon:</p>
-                    <a class="btn" href="obtain_market_franchise.html" data-bs-toggle="modal" data-bs-target="#franchiseModal">Obtain a Market Franchise</a>
-                    <a class="btn" href="Homepage.html">Get a Market Business Permit by Applying</a>
-                    <a class="btn" href="ManagePrivateMarket.html">Manage the Talipapa/Private Market Operator</a>
-                    <a class="btn" href="ManageTalipapaVendors.html">Manage Private Market/Talipapa Vendors</a>
-                    <a class="btn" href="ManagePrivateMarket.html">Look for Market Violation</a>
+                    <a class="btn" href="obtain_market_franchise.php" data-bs-toggle="modal" data-bs-target="#franchiseModal">Obtain a Market Franchise</a>
+                    <a class="btn" href="Homepage.php">Get a Market Business Permit by Applying</a>
+                    <a class="btn" href="ManagePrivateMarket.php">Manage the Talipapa/Private Market Operator</a>
+                    <a class="btn" href="ManageTalipapaVendors.php">Manage Private Market/Talipapa Vendors</a>
+                    <a class="btn" href="ManagePrivateMarket.php">Look for Market Violation</a>
                 </div>
             </div>
 
@@ -185,11 +185,11 @@ include 'header.php';
                     <h3>Hawkers</h3>
                     <p>Ikaw ba ay isang itinerant o mobile vendor na nagbebenta ng mga kalakal sa labas ng mga pamilihan ng lungsod, sa mga bangketa, o sa iba pang mga lugar o bakuran na pag-aari ng gobyerno?</p>
                     <p>Pumili ng Transaksyon:</p>
-                    <a class="btn" href="ObtainHawkerPermit.html">Obtain a Hawker Permit</a>
-                    <a class="btn" href="HawkerViewStatus.html">See the status of your Application</a>
-                    <a class="btn" href="HawkerRegisterAssociation.html">Sign up for the Hawker Association</a>
-                    <a class="btn" href="MangeHawkerAccount.html">Manage Hawker Account</a>
-                    <a class="btn" href="MangeHawkerAccount.html">Look for Market Violation</a>
+                    <a class="btn" href="ObtainHawkerPermit.php">Obtain a Hawker Permit</a>
+                    <a class="btn" href="HawkerViewStatus.php">See the status of your Application</a>
+                    <a class="btn" href="HawkerRegisterAssociation.php">Sign up for the Hawker Association</a>
+                    <a class="btn" href="MangeHawkerAccount.php">Manage Hawker Account</a>
+                    <a class="btn" href="MangeHawkerAccount.php">Look for Market Violation</a>
                 </div>
             </div>
         </div>
@@ -206,7 +206,7 @@ include 'header.php';
                 <div class="modal-body">
                     <h6>Follow these steps to become a market operator:</h6>
                     <ol class="list-unstyled">
-                        <li class="mb-3"><strong>Step 1:</strong> Your application for a business permit must be submitted: <a href="businessPermitType.html" class="text-primary" style="text-decoration: underline;">Click here for the application form</a>.</li>
+                        <li class="mb-3"><strong>Step 1:</strong> Your application for a business permit must be submitted: <a href="businessPermitType.php" class="text-primary" style="text-decoration: underline;">Click here for the application form</a>.</li>
                         
                         <li class="mb-3"><strong>Step 2:</strong> Upload the necessary files.</li>
                         <li class="mb-3"><strong>Step 3:</strong> Submit in the form.</li>

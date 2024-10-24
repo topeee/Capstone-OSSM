@@ -3,9 +3,6 @@ session_start(); // Start the session
 include 'header.php';
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

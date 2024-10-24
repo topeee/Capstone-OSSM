@@ -28,15 +28,15 @@ function sendemail_verify($first_name, $email, $verify_token)
     $mail->SMTPAuth = true; // Enable SMTP authentication
 
     // SMTP server configuration
-    $mail->Host = "smtp.gmail.com";
-    $mail->Username = "onestopsanmateo@gmail.com";
-    $mail->Password = "jquo qdjt faah duvl";
+    $mail->Host = "smtp.hostinger.com";
+    $mail->Username = "contactus@onestopsanmateo.online";
+    $mail->Password = "8#a8C;[y:GO";
 
     $mail->SMTPSecure = "tls"; // Enable TLS encryption
     $mail->Port = 587; // TCP port to connect to
 
     // Email sender and recipient configuration
-    $mail->setFrom("onestopsanmateo@gmail.com", $first_name);
+    $mail->setFrom("contactus@onestopsanmateo.online", $first_name);
     $mail->addAddress($email);
 
     // Email content configuration
@@ -96,6 +96,7 @@ if (isset($_POST['register-btn'])) {
     $subdivision = $_POST['sbd/vilg'];
     $barangay = $_POST['barangay-dropdown'];
     $password = $_POST['password'];
+    $hashed_password = $_POST['password'];
     $verify_token = md5(rand()); // Generate a random verification token
 
     // Validate the password
@@ -113,17 +114,17 @@ if (isset($_POST['register-btn'])) {
         header("Location: CreateAccount.php");
     } else {
         // Hash the password
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert the user data into the users table
         $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token) 
-        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$password_hash', '$verify_token')";
+        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$hashed_password', '$verify_token')";
 
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {
             // Send the email verification link
             sendemail_verify($first_name, $email, $verify_token);
-            $_SESSION['success'] = "Registration Successful! The link has been sent to your email address";
+            $_SESSION['status'] = "Registration Successful! The link has been sent to your email address";
             header("Location: CreateAccount.php");
         } else {
             $_SESSION['status'] = "Registration Failed!";

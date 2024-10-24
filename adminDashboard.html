@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body { 
+            
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            overflow-x: hidden;
+            transition: background 0.5s;
+            background: #0066b2;
+        }
+
+        .dashboard-text {
+            color: black;
+            padding: 10px 20px;
+            text-align: left;
+            position: fixed;
+            top: 0;
+            left: 300px;
+            width: calc(100% - 300px);
+            z-index: 1;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 70px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s, width 0.3s;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background:#89CFF0;
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-x: hidden;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: width 0.3s, backdrop-filter 0.3s;
+        }
+
+
+        .sidenav img {
+            width: 130px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            transition: width 0.3s;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .sidenav h2 {
+            color: white;
+            margin: 0;
+            padding: 15px;
+            font-size: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s;
+        }
+
+        .sidenav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, opacity 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidenav a i {
+            margin-right: 15px;
+            font-size: 22px;
+        }
+
+        .sidenav a:hover {
+            background-color: #0000FF;
+        }
+
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            padding-top: 10%;
+            transition: margin-left 0.3s;
+        }
+
+        .container-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .container {
+            width: calc(25% - 30px);
+            height: 220px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            font-size: 20px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+            color: black;
+            text-align: center;
+            position: relative; /* Allows positioning of the number inside */
+
+        }
+
+        .number {
+            position: absolute;
+            bottom: 10px; /* Adjusts the vertical position */
+            right: 10px;  /* Adjusts the horizontal position */
+            font-size: 23px;
+            font-weight: 100;
+            color: #0000FF; /* Number color */
+}
+
+        .container i {
+            margin-right: 10px;
+            font-size: 26px;
+            color: #0000FF;
+        }
+
+        .container:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #000000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logout i {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
+        .logout:hover {
+            color: #ff3333;
+        }
+
+        .switch {
+            position: absolute;
+            top: 20px;
+            right: 120px; /* Adjust this value based on your layout */
+            font-size: 17px;
+            display: inline-block;
+            width: 4em;
+            height: 2em;
+        }
+
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            --background: #2c2c54;
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--background);
+            transition: 0.5s;
+            border-radius: 30px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            left: 10%;
+            bottom: 15%;
+            background: #fff;
+            transition: 0.5s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        input:checked + .slider {
+            background-color: #6f42c1;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(100%);
+        }
+
+        body.dark-mode {
+            background: #0a2351;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dashboard-text {
+            color: #ff6b6b;
+        }
+
+        body.dark-mode .sidenav {
+            background: #0039a6;
+            border-right: 1px solid rgba(50, 50, 50, 0.5);
+        }
+
+        body.dark-mode .sidenav a {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .sidenav a:hover {
+            background-color: rgb(21, 147, 231);
+        }
+
+        body.dark-mode .main-content {
+            color: white;
+        }
+
+        body.dark-mode .container {
+            background: rgba(4, 140, 177, 0.96);
+            border: 1px solid rgba(60, 60, 60, 0.6);
+            color: white; /* Set text color to white */
+        }
+
+        body.dark-mode .container:hover {
+            background: rgba(60, 60, 60, 0.9);
+        }
+
+        body.dark-mode .logout {
+            color: #ff6b6b;
+        }
+
+        body.dark-mode .logout:hover {
+            color: #ff3333;
+        }
+
+        /* Style the navigation bar */
+        .navbar {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            width: 280px; /* Adjust the width as needed */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Box shadow for depth */
+            padding: 15px; /* Padding */
+        }
+
+        /* Dropdown button styles */
+        .dropdown-btn {
+            background-color: #007bff; /* Button color */
+            color: #ffffff; /* Text color */
+            border: none; /* Remove border */
+            padding: 12px 20px; /* Padding */
+            text-align: left; /* Align text to the left */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size */
+            border-radius: 8px; /* Rounded corners */
+            margin-bottom: 10px; /* Space between buttons */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth background change and scale */
+            display: flex; /* Use flex to align icon */
+            justify-content: space-between; /* Space between text and icon */
+            align-items: center; /* Center items vertically */
+        }
+
+        /* Change button background on hover */
+        .dropdown-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.02); /* Slightly scale up on hover */
+        }
+
+        /* Dropdown content (hidden by default) */
+        .dropdown-content {
+            display: none; /* Hidden by default */
+            background-color: #3172d3; /* Background color */
+            position: relative; /* Relative position */
+            border-radius: 8px; /* Rounded corners */
+            margin-top: 5px; /* Space above dropdown */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+            opacity: 0; /* Start with opacity 0 */
+            transform: translateY(-10px); /* Start slightly above */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Animation for dropdown */
+        }
+
+        /* Show dropdown when active */
+        .dropdown-content.show {
+            display: block; /* Show the dropdown */
+            opacity: 1; /* Fade in */
+            transform: translateY(0); /* Move to original position */
+        }
+
+        /* Dropdown link styles */
+        .dropdown-content a {
+            color: #343a40; /* Link color */
+            padding: 10px 15px; /* Padding */
+            text-decoration: none; /* Remove underline */
+            display: block; /* Make links block elements */
+            border-bottom: 1px solid #e9ecef; /* Divider line */
+            transition: background-color 0.3s; /* Smooth background change */
+        }
+
+        /* Change dropdown link background on hover */
+        .dropdown-content a:hover {
+            background-color: #e9ecef; /* Hover background color */
+        }
+
+        /* Dropdown icon styles */
+        .dropdown-icon {
+            transition: transform 0.3s; /* Smooth rotation transition */
+        }
+
+        /* Rotate icon when dropdown is open */
+        .dropdown-icon.rotated {
+            transform: rotate(180deg); /* Rotate icon */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="sidenav">
+        <img src="logo.png" alt="Logo">
+        <h2>Admin Dashboard</h2>
+        
+        <div class="navbar">
+            <button class="dropdown-btn" onclick="toggleDropdown('homeDropdown', this)">
+                <i class="fa-solid fa-home"></i> Home
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+           
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('servicesDropdown', this)">
+                <i class="fa-solid fa-users"></i> Brgy Officials
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+          
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('aboutDropdown', this)">
+                <i class="fa-solid fa-users-cog"></i> Brgy Staff
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+          
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('contactDropdown', this)">
+                <i class="fa-solid fa-address-card"></i> Residence Record
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+         
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('violationDropdown', this)">
+                <i class="fa-solid fa-file-alt"></i> Violation Management
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="violationDropdown" class="dropdown-content">
+                <a href="#">OVR Payment</a>
+                
+            </div>
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('socialServicesDropdown', this)">
+                <i class="fa-solid fa-file-invoice"></i> Social Services
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="socialServicesDropdown" class="dropdown-content">
+                <a href="#">Senior Citizen Application</a>
+                <a href="#">PWD Application</a>
+                <a href="#">Solo Parent Application</a>
+            </div>
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('educationalSupportDropdown', this)">
+                <i class="fa-solid fa-file-invoice"></i> Educational Support
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="educationalSupportDropdown" class="dropdown-content">
+                <a href="#">Scholarship Application</a>
+            </div>
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('economicSupportDropdown', this)">
+                <i class="fa-solid fa-file-invoice"></i> Economic & Investment Support
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="economicSupportDropdown" class="dropdown-content">
+                <a href="#">Occupational Permit</a>
+                <a href="#">Business Permit</a>
+                <a href="#">Tricycle Permit</a>
+                <a href="#">Real Property</a
+                <a href="#">Market One-StopS-Sop</a>
+            </div>
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('healthServicesDropdown', this)">
+                <i class="fa-solid fa-file-invoice"></i> Health Services
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="healthServicesDropdown" class="dropdown-content">
+                <a href="#">Medical Records</a>
+                <a href="#">Death Certificate</a>
+                
+            </div>
+        
+            <button class="dropdown-btn" onclick="toggleDropdown('citizenIDDropdown', this)">
+                <i class="fa-solid fa-file-invoice"></i> Citizen ID
+                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </button>
+            <div id="citizenIDDropdown" class="dropdown-content">
+                <a href="#">Citizen ID</a>
+                <a href="#">QSSM Query Portal</a>
+          
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="dashboard-text">
+        
+    </div>
+
+    <div class="main-content">
+        <h1>SERVICES</h1>
+        <div class="container-group">
+        <div class="container"><i class="fa-solid fa-users"></i> POPULATION <span class="number">300</span></div>
+            <div class="container"><i class="fa-solid fa-male"></i> MALE<span class="number">150</span></div>
+            <div class="container"><i class="fa-solid fa-female"></i> FEMALE 3<span class="number">150</span></div>
+            <div class="container"><i class="fa-solid fa-vote-yea"></i> VOTERS<span class="number">200</span></div>
+            <div class="container"><i class="fa-solid fa-ban"></i> NON-VOTERS<span class="number">100</span></div>
+            <div class="container"><i class="fa-solid fa-map-marker-alt"></i> PUROK<span class="number">7</span></div>
+            <div class="container"><i class="fa-solid fa-clipboard-list"></i> BLOTTER RECORDS<span class="number">0</span></div>
+            <div class="container"><i class="fa-solid fa-male"></i> UNDERWEIGHT <span class="number">10</span></div>
+            <div class="container"><i class="fa-solid fa-wheelchair"></i> PERSON WITH DISABILITY<span class="number">10</span></div>
+            <div class="container"><i class="fa-solid fa-user-alt"></i> SENIOR CITIZEN<span class="number">50</span></div>
+            <div class ="container"><i class="fa-solid fa-folder-open"></i> REQUESTED DOCUMENT<span class="number">1</span></div>
+        </div>
+    </div>
+
+    <div class="toggle-btn"><i class="fas fa-bars"></i></div>
+
+    <div class="logout"><i class="fas fa-sign-out-alt"></i> Logout</div>
+
+    <label class="switch">
+        <input type="checkbox" onclick="document.body.classList.toggle('dark-mode')">
+        <span class="slider"></span>
+    </label>
+
+    <script>
+
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const sidenav = document.querySelector('.sidenav');
+        const mainContent = document.querySelector('.main-content');
+        const dashboardText = document.querySelector('.dashboard-text');
+        const logout = document.querySelector('.logout');
+        const modeToggle = document.getElementById('modeToggle');
+        
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('collapsed');
+        });
+
+        modeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+
+
+
+        function toggleDropdown(dropdownId, button) {
+        // Get the dropdown content element
+        const dropdownContent = document.getElementById(dropdownId);
+        
+        // Toggle the display property
+        dropdownContent.classList.toggle("show");
+
+        // Rotate the dropdown icon
+        const icon = button.querySelector('.dropdown-icon');
+        icon.classList.toggle('rotated');
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            const icons = document.getElementsByClassName("dropdown-icon");
+            
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                    icons[i].classList.remove('rotated');
+                }
+            }
+        }
+    };
+
+    </script>
+
+</body>
+</html>

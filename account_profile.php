@@ -272,7 +272,6 @@ if ($stmt = $conn->prepare($query)) {
                 <div class="col-md-4 form-floating">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                     <label for="email">Email    <?php echo htmlspecialchars($email); ?> </label>
-                 
                 </div>
                 <div class="col-md-4 form-floating">
                     <input type="tel" class="form-control" id="mn" name="mn" placeholder="Mobile Number" required disabled>

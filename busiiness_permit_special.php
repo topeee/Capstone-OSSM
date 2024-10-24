@@ -436,7 +436,7 @@ html, body {
             // Check if the checkbox is checked
             if (document.getElementById('userag').checked) {
                 // If checked, navigate to the new page
-                window.location.href = 'SpecialBusinessPermitApplication.html';
+                window.location.href = 'SpecialBusinessPermitApplication.php';
             } else {
                 // If not checked, show an alert
                 alert('Please confirm that you have read and agree to the guidelines.');

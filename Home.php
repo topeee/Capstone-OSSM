@@ -59,7 +59,7 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="ovr-payment.html">
+                    <a href="ovr.php">
                         <div class="inside-card mb-4">
                             <img src="VIOLATION.png" class="card-img-top" alt="OVR Icon">
                             <h5 class="card-title">OVR Payment</h5>
@@ -81,19 +81,19 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="Solo Parent Landing Page.html">
+                    <a href="Solo Parent Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>
                         </div>
                     </a>
-                    <a href="PWD-landing-page.html">
+                    <a href="PWD-landing-page.php">
                         <div class="inside-card mb-4">
                             <img src="PWD.png" class="card-img-top" alt="PWD Icon">
                             <h5 class="card-title">PWD Application</h5>
                         </div>
                     </a>
-                    <a href="Solo Parent Landing Page.html">
+                    <a href="Solo Parent Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Solo Parent.png" class="card-img-top" alt="Solo Parent Icon">
                             <h5 class="card-title">Solo Parent Application</h5>
@@ -115,7 +115,7 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="Scholarship Application Landing Page.html">
+                    <a href="Scholarship Application Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Scholar.png" class="card-img-top" alt="Scholar Icon">
                             <h5 class="card-title">Scholarship Application</h5>
@@ -137,31 +137,31 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="Occupational permit.html">
+                    <a href="Occupational permit.php">
                         <div class="inside-card mb-4">
                             <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
                             <h5 class="card-title">Occupational Permit</h5>
                         </div>
                     </a>
-                    <a href="business-apply.html">    
+                    <a href="businessPermitType.php">    
                         <div class="inside-card mb-4">
                             <img src="Business.png" class="card-img-top" alt="Business Icon">
                             <h5 class="card-title">Business Permit</h5>
                         </div>
                     </a>
-                    <a href="tricpermit-apply.html">
+                    <a href="tricpermit-apply.php">
                         <div class="inside-card mb-4">
                             <img src="Tricycle.png" class="card-img-top" alt="Tricycle Icon">
                             <h5 class="card-title">Tricycle Permit</h5>
                         </div>
                     </a>
-                    <a href="rpt-apply.html">
+                    <a href="rpt-apply.php">
                         <div class="inside-card mb-4">
                             <img src="RPT.png" class="card-img-top" alt="RPT Icon">
                             <h5 class="card-title">Real Property</h5>
                         </div>
                     </a>
-                    <a href="market-apply.html">
+                    <a href="market-apply.php">
                         <div class="inside-card mb-4">
                             <img src="Market.png" class="card-img-top" alt="Market Icon">
                             <h5 class="card-title">Market One-Stop Shop</h5>
@@ -183,13 +183,13 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
                 </div>
                 <div class="modal-body">
-                <a href="Medical Record Form.html">
+                <a href="Medical Record Form.php">
                     <div class="inside-card mb-4">
                         <img src="_Medical.png" class="card-img-top" alt="Medical Icon">
                         <h5 class="card-title">Medical Records</h5>
                     </div>
                 </a>
-                <a href="Death Certificate.html">
+                <a href="Death Certificate.php">
                     <div class="inside-card mb-4">
                         <img src="_death.png" class="card-img-top" alt="Death Icon">
                         <h5 class="card-title">Death Certificate</h5>
@@ -210,13 +210,13 @@ include 'header.php';
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
                     </div>
                     <div class="modal-body">
-                    <a href="Citizen-ID-Landing-Page.html">
+                    <a href="Citizen-ID-Landing-Page.php">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>
                         </div>
                     </a>
-                    <a href="query.html">
+                    <a href="query.php">
                         <div class="inside-card mb-4">
                             <img src="Query.png" class="card-img-top" alt="Query Icon">
                             <h5 class="card-title">OSSM Query Portal</h5>
@@ -231,7 +231,7 @@ include 'header.php';
         </div>
 <br>
         <div class="Appoinment">
-            <a href="Appointment_form.html"> <div class="appointment">Book an Appointment</div></a>
+            <a href="Appointment_form.php"> <div class="appointment">Book an Appointment</div></a>
         </div>
 
 <footer>
@@ -270,6 +270,7 @@ include 'header.php';
         </div>
     </div>
 </footer>
+
 </body>
 
 </html>

@@ -159,6 +159,7 @@ html, body {
 
 </style>
 <body>
+    
     <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
@@ -172,9 +173,9 @@ html, body {
                         <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="#">History Transaction</a></li>
-                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                        <li><a class="dropdown-item logout-item" href="login.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -356,7 +357,7 @@ html, body {
                         </div>
 
                     <div class="wrap">
-                        <a href="Citizen-ID-Application-Form.html">
+                        <a href="Citizen-ID-Application-Form.php">
                             <button class="button">Apply Now?</button>
                         </a>
                     </div>

@@ -126,7 +126,7 @@ include 'header.php';
         <div class="card-body">
           <h4 class="card-title">New Permit</h4>
           <p class="card-text">To formally register and begin operating your firm, apply for a new business permit. Make sure that your business operations are in accordance with local rules and obtain the required authorization.</p>
-          <a href="business_permit.html" class="btn btn-primary w-25 h-25">Apply Now</a>
+          <a href="business_permit.php" class="btn btn-primary w-25 h-25">Apply Now</a>
         </div>
     </div>
 
@@ -228,7 +228,7 @@ include 'header.php';
           <h4 class="card-title">Special Permit</h4>
           <p class="card-text">Already submitted your online Occupational Permit Application? <br>
             View the status of your application here:</p>
-            <a href="busiiness_permit_special.html" class="btn btn-primary w-25 h-25">Apply Now</a>
+            <a href="busiiness_permit_special.php" class="btn btn-primary w-25 h-25">Apply Now</a>
         </div>
     </div>
 
@@ -329,7 +329,7 @@ include 'header.php';
         <div class="card-body">
           <h4 class="card-title">Tack On-going Applications</h4>
           <p class="card-text">Provides you with up-to-date information on the status of your business permit in real time, allowing you to see every stage of the procedure. Keep yourself updated on deadlines for submission, necessary paperwork, and any outstanding tasks so you can monitor your progress and prevent setbacks.</p>
-          <a href="TrackOngoingApplicationBP.html" class="btn btn-primary w-25 h-25">Apply Now</a>
+          <a href="TrackOngoingApplicationBP.php" class="btn btn-primary w-25 h-25">Apply Now</a>
         </div>
     </div>
 

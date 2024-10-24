@@ -30,7 +30,7 @@ function send_password_reset($get_name, $get_email,$token){
     <h2>You Have Registered With Our Verification Method</h2>
     <h5>You are receiving this email because we received a password reset request from your account</h5>
     <br><br/>
-    <a href='http://onestopsanmateo.online/LoginSystem/password_change.php?token=$token&email=$get_email'>Click Me </a>
+    <a href='http://onestopsanmateo.online/password_change.php?token=$token&email=$get_email'>Click Me </a>
     ";
     $mail->Body =$email_template;
     $mail->send();

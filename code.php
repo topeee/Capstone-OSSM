@@ -20,7 +20,7 @@ require 'vendor/autoload.php';
  * @param string $email The recipient's email address
  * @param string $verify_token The token used for email verification
  */
-function sendemail_verify($name, $email, $verify_token, $last_name)
+function sendemail_verify($name, $email, $verify_token)
 {
     $mail = new PHPMailer(true);
     // $mail->SMTPDebug = 2; // Enable verbose debug output
@@ -36,7 +36,7 @@ function sendemail_verify($name, $email, $verify_token, $last_name)
     $mail->Port = 587; // TCP port to connect to
 
     // Email sender and recipient configuration
-    $mail->setFrom("onestopsanmateo@gmail.com", $name, $last_name);
+    $mail->setFrom("onestopsanmateo@gmail.com", $name);
     $mail->addAddress($email);
 
     // Email content configuration

@@ -84,6 +84,12 @@ include 'header.php';
                             <i class="bi bi-check-square"></i>
                         </a>
                     </li>
+                    <li class="progress-item" data-target="other-information">
+                        <a href="#">
+                            Other Information
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
                     <li class="progress-item" data-target="familyComposition">
                         <a href="#">
                             Family Composition
@@ -108,13 +114,17 @@ include 'header.php';
                         A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
                     </p>
     
-                    <form action="Solo Parent Application.php" method="post">
-                    <div class="row mb-3">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="precinct" class="form-label">Precinct #</label>
+                                <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
+                            </div>
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="middleName" class="form-label">Middle Name</label>
                                 <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
                             </div>
@@ -125,7 +135,7 @@ include 'header.php';
                         </div>
     
                         <div class="row mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="gender" class="form-label">Gender</label>
                                 <select class="form-select" id="gender" required>
                                     <option value="" disabled selected>Choose...</option>
@@ -133,17 +143,22 @@ include 'header.php';
                                     <option value="female">Female</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
                                 <select class="form-select" id="civilstatus" required>
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="self">Self</option>
-                                    <option value="spouse">Spouse</option>
+                                    <option value="self">Single</option>
+                                    <option value="spouse">Married</option>
+                                    <option value="spouse">Widowed</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
                                 <input type="date" class="form-control" id="dob" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="birthPlace" class="form-label">Birth Place</label>
+                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
                             </div>
                         </div>
     
@@ -163,11 +178,27 @@ include 'header.php';
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="Email" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="workPhone" class="form-label">Work Phone</label>
-                                <input type="tel" class="form-control" id="workPhone" placeholder="(916) 345-0000 x123" required>
+                            <div class="col-md-2">
+                                <label for="bloodType" class="form-label">Blood Type</label>
+                                <select class="form-select" id="bloodType" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="religion" class="form-label">Religion</label>
+                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
                             </div>
                         </div>
+
+                        
     
                         <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
                             <br><br>
@@ -179,8 +210,7 @@ include 'header.php';
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-                <form action="Solo Parent Application.php" method="post">
-
+                    <form>
                         <h4>Sectoral Information</h4>
                         <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                         <div class="row mb-3">
@@ -228,48 +258,21 @@ include 'header.php';
                             </div>
     
                             <div class="col-md-6">
-                                <label for="problems" class="form-label">Problems of Solo Parent</label>
+                                <label for="problems" class="form-label">Problems/Needs of Solo Parent</label>
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="input-group control-group after-add-more">
-                                            <input type="text" name="problems[]" class="form-control" placeholder="Describe Problem" required>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                                <div class="copy-fields hide">
-                                    <div class="control-group input-group" style="margin-top:10px">
-                                        <input type="text" name="problems[]" class="form-control" placeholder="Describe Problem" required>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <br>
-    
-                            <div class="col-md-6">
-                                <label for="needs" class="form-label">Needs of Solo Parent</label>
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="input-group control-group after-add-more">
-                                            <input type="text" name="needs[]" class="form-control" placeholder="Describe Needs" required>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                                <div class="copy-fields hide">
-                                    <div class="control-group input-group" style="margin-top:10px">
-                                        <input type="text" name="needs[]" class="form-control" placeholder="Describe Needs" required>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                            <select class="form-select" id="probneeds" required>
+                                                <option value="" disabled selected>Select Problem/Need</option>
+                                                <option value="leaveBenefits">Leave Benefits</option>
+                                                <option value="flexiTime">Flexi-Time at Work</option>
+                                                <option value="medicalCare">Medical Care</option>
+                                                <option value="employment">Employment</option>
+                                                <option value="additionalIncome">Additional Income</option>
+                                                <option value="housingShelter">Housing and Shelter</option>
+                                                <option value="educationChildren">Education of Children/Child</option>
+                                                <option value="educationChildren">Others:</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -280,7 +283,12 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label for="familyResources" class="form-label">Family Resources</label>
-                                    <input type="text" class="form-control" id="familyResources" placeholder="Describe Resources" required>
+                                    <select class="form-select" id="familyResources" required>
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="employed">Employed</option>
+                                        <option value="selfEmployed">Self-Employed</option>
+                                        <option value="others">Others</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
@@ -301,11 +309,108 @@ include 'header.php';
                     </form>
                 </div>
     
+                <div class="form-section" id="other-information" style="display: none;">
+                    <form>    
+                        <h4>Other Information</h4>
+                        <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="yearsOfStay" class="form-label">No. of Year/s</label>
+                                <input type="number" class="form-control" id="yearsOfStay" placeholder="Years" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="monthsOfStay" class="form-label">No. of Month/s</label>
+                                <input type="number" class="form-control" id="monthsOfStay" placeholder="Months" required>
+                            </div>
+                        </div>
+                        <p style="font-size: 20px; font-weight: bold;">Current Address:</p>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="lotNumber" class="form-label">LOT#</label>
+                                <input type="text" class="form-control" id="lotNumber" placeholder="LOT#" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="blkNumber" class="form-label">BLK#</label>
+                                <input type="text" class="form-control" id="blkNumber" placeholder="BLK#" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="street" class="form-label">STREET / SUBDIVISION</label>
+                                <input type="text" class="form-control" id="street" placeholder="STREET / SUBDIVISION" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="barangay" class="form-label">BARANGAY</label>
+                                <input type="text" class="form-control" id="barangay" placeholder="BARANGAY" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label class="form-label">4 P's Member</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsNo" value="no" required>
+                                    <label class="form-check-label" for="fourPsNo">No</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsYes" value="yes" required>
+                                    <label class="form-check-label" for="fourPsYes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fourPsId" class="form-label">ID#</label>
+                                <input type="text" class="form-control" id="fourPsId" placeholder="Enter ID Number" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">PhilHealth Member</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthNo" value="no" required>
+                                    <label class="form-check-label" for="philHealthNo">No</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthYes" value="yes" required>
+                                    <label class="form-check-label" for="philHealthYes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="philHealthId" class="form-label">ID#</label>
+                                <input type="text" class="form-control" id="philHealthId" placeholder="Enter ID Number" required>
+                            </div>
+                        </div>
+                        <p style="font-size: 20px; font-weight: bold;">In case of emergency, please notify:</p>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="emergencyFirstName" class="form-label">Emergency First Name</label>
+                                <input type="text" class="form-control" id="emergencyFirstName" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="emergencyMiddleName" class="form-label">Emergency Middle Name</label>
+                                <input type="text" class="form-control" id="emergencyMiddleName" placeholder="Middle Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="emergencyLastName" class="form-label">Emergency Last Name</label>
+                                <input type="text" class="form-control" id="emergencyLastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="emergencyContactNumber" class="form-label">Contact Number/s</label>
+                                <input type="tel" class="form-control" id="emergencyContactNumber" placeholder="Contact Number/s" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emergencyRelationship" class="form-label">Relationship</label>
+                                <input type="text" class="form-control" id="emergencyRelationship" placeholder="Relationship" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="emergencyAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 
                     <!-- Family Composition Section -->
                     <div class="form-section" id="familyComposition" style="display: none;">
-                    <form action="Solo Parent Application.php" method="post">
-   
+                        <form>    
                             <h4>Family Composition</h4>
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -599,7 +704,6 @@ include 'header.php';
     </footer>
 
     <script>
-        
       // Toggle the visibility of the progress sidebar
       $("#progress-button").click(function() {
           $("#progress-menu").toggleClass('hidden-xs');
@@ -698,8 +802,8 @@ include 'header.php';
       
       // Navigation button logic
       let currentSection = 0;
-      const sections = ["#basic-information-section", "#sectoral-section", "#familyComposition", "#section4", "#section5"];
-      
+      const sections = ["#basic-information-section", "#sectoral-section", "#other-information", "#familyComposition", "#section4"];
+
       $("#prev-btn").click(function() {
           if (currentSection > 0) {
               $(sections[currentSection]).hide();  // Hide current section
@@ -737,22 +841,20 @@ include 'header.php';
           $(".progress-item").eq(currentSection).addClass("active");  // Add active class to current item
       }
       
-    // Function to update the Next/Previous buttons
-    function updateButtons() {
-        if (currentSection === 0) {
-          $("#prev-btn").hide();
-        } else {
-          $("#prev-btn").show();
-        }
-    
-        if (currentSection === sections.length - 1) {
-          $("#next-btn").text("Submit");
-          $("#next-btn").attr("type", "submit"); // Change button type to submit on the last section
-        } else {
-          $("#next-btn").text("Next");
-          $("#next-btn").attr("type", "button"); // Change button type to button for other sections
-        }
-    }
+      // Function to update the Next/Previous buttons
+      function updateButtons() {
+          if (currentSection === 0) {
+              $("#prev-btn").hide();
+          } else {
+              $("#prev-btn").show();
+          }
+      
+          if (currentSection === sections.length - 1) {
+              $("#next-btn").text("Submit");
+          } else {
+              $("#next-btn").text("Next");
+          }
+      }
       
       // Function to update icons in the progress bar
       function updateIcon(index, state) {
@@ -827,8 +929,9 @@ include 'header.php';
               $(sections[currentSection]).show();
               updateButtons();
               updateProgress();
-          }
-      });
+            }
+            
+});
       
       
       

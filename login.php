@@ -1,8 +1,38 @@
 <?php
 session_start();
-
+// Include configuration file 
+require_once 'config.php'; 
+ 
+// Include User library file 
+require_once 'User.class.php'; 
+ 
 include 'db_connection.php';
+$authUrl = $gClient->createAuthUrl(); 
 
+$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="login-btn">Sign in with Google</a>'; 
+
+ 
+if(isset($_GET['code'])){ 
+    $gClient->authenticate($_GET['code']); 
+    $_SESSION['token'] = $gClient->getAccessToken(); 
+    header('Location: ' . filter_var(GOOGLE_REDIRECT_URL, FILTER_SANITIZE_URL)); 
+} 
+ 
+if(isset($_SESSION['token'])){ 
+    $gClient->setAccessToken($_SESSION['token']); 
+} 
+ 
+if($gClient->getAccessToken()){ 
+    // Get user profile data from google 
+    $gpUserProfile = $google_oauthV2->userinfo->get(); 
+     
+    // Initialize User class 
+    $user = new User(); 
+}
+
+
+
+      //  //  //  //  //  //  //  //  //  //  //
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -232,16 +262,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="CreateAccount.php" class="link">Create Account</a>
                 <a href="Forgot password.php" class="link">Forgot Password</a>
             </div>
-            <div class="social-login-container">
-                <a href="#" class="facebook" aria-label="Login with Facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="gmail" aria-label="Login with Gmail">
-                    <i class="bi bi-google"></i>
-                </a>
-                <a href="#" class="x" aria-label="Login with X">
-                    <i class="bi bi-twitter"></i>
-                </a>
+            <?php echo $output; ?>
+                
             </div>
         </div>
     <div class="footer-links">

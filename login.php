@@ -1,36 +1,36 @@
 <?php
 session_start();
 // Include configuration file 
-require_once 'config.php'; 
+//require_once 'config.php'; 
  
 // Include User library file 
-require_once 'User.class.php'; 
+//require_once 'User.class.php'; 
  
 include 'db_connection.php';
-$authUrl = $gClient->createAuthUrl(); 
+//$authUrl = $gClient->createAuthUrl(); 
 
-$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="login-btn">Sign in with Google</a>'; 
+//$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="login-btn">Sign in with Google</a>'; 
 
  
-if(isset($_GET['code'])){ 
-    $gClient->authenticate($_GET['code']); 
-    $_SESSION['token'] = $gClient->getAccessToken(); 
-    header('Location: ' . filter_var(GOOGLE_REDIRECT_URL, FILTER_SANITIZE_URL)); 
-} 
+//if(isset($_GET['code'])){ 
+   // $gClient->authenticate($_GET['code']); 
+    //$_SESSION['token'] = $gClient->getAccessToken(); 
+    //header('Location: ' . filter_var(GOOGLE_REDIRECT_URL, FILTER_SANITIZE_URL)); 
+//} 
  
-if(isset($_SESSION['token'])){ 
-    $gClient->setAccessToken($_SESSION['token']); 
-} 
+//if(isset($_SESSION['token'])){ 
+    //$gClient->setAccessToken($_SESSION['token']); 
+//} 
  
-if($gClient->getAccessToken()){ 
+//if($gClient->getAccessToken()){ 
     // Get user profile data from google 
-    $gpUserProfile = $google_oauthV2->userinfo->get(); 
+   // $gpUserProfile = $google_oauthV2->userinfo->get(); 
      
     // Initialize User class 
-    $user = new User(); 
-}
+   // $user = new User(); 
+//}
 
-
+//<?php echo $output;
 
       //  //  //  //  //  //  //  //  //  //  //
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -262,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="CreateAccount.php" class="link">Create Account</a>
                 <a href="Forgot password.php" class="link">Forgot Password</a>
             </div>
-            <?php echo $output; ?>
+
                 
             </div>
         </div>

@@ -29,6 +29,6 @@ $gClient->setClientId(GOOGLE_CLIENT_ID);
 $gClient->setClientSecret(GOOGLE_CLIENT_SECRET);
 $gClient->setRedirectUri(GOOGLE_REDIRECT_URL);
 
-$google_oauthV2 = new Client($gClient);
+$google_oauthV2 = new Google_Service_Oauth2($gClient);
 
 

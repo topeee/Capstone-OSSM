@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session
-require_once 'config.php'; 
+
 
 // Destroy the session and remove all session variables
 session_unset();

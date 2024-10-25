@@ -21,7 +21,7 @@ define('GOOGLE_REDIRECT_URL', 'https://onestopsanmateo.online/');
 if(!session_id()){
     session_start();
 }
-require_once 'vendor\google\auth\src\OAuth2.php';
+require_once 'vendor\google';
 // Call Google API
 $gClient = new Google_Client();
 $gClient->setApplicationName('Login to onestopsanmateo.com');

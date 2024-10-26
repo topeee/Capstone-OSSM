@@ -71,7 +71,7 @@ include 'header.php';
         </button>
 
         <!-- Sidebar -->
-        <div class="col-md-3 col-12 progress-sidebar" style="max-width: 300px;">
+        <div id="progress-menu" class="col-md-3 progress-sidebar hidden-xs" style="background-color: rgb(227, 249, 255);">
             <h4 class="text-center">Progress</h4>
             <ul>
                 <li class="progress-item active" data-target="basic-information-section">
@@ -93,7 +93,7 @@ include 'header.php';
         </div>
 
         <!-- Main Content -->
-            <main class="col-md-9 col-12 p-4 mx-auto" style="width: calc(100% - 300px); background-color: rgb(227, 249, 255);">
+            <main class="col-md-9 col-12 p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
                             <!-- Main form -->
                             <div class="col-md-9">
                                 <!-- Basic Information Section -->

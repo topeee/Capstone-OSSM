@@ -149,7 +149,7 @@ include 'header.php';
                             <h5 class="card-title">Business Permit</h5>
                         </div>
                     </a>
-                    <a href="tricpermit-apply.php">
+                    <a href="Tricycle Permit application.php">
                         <div class="inside-card mb-4">
                             <img src="Tricycle.png" class="card-img-top" alt="Tricycle Icon">
                             <h5 class="card-title">Tricycle Permit</h5>
@@ -161,7 +161,7 @@ include 'header.php';
                             <h5 class="card-title">Real Property</h5>
                         </div>
                     </a>
-                    <a href="market-apply.php">
+                    <a href="MOSS.php">
                         <div class="inside-card mb-4">
                             <img src="Market.png" class="card-img-top" alt="Market Icon">
                             <h5 class="card-title">Market One-Stop Shop</h5>

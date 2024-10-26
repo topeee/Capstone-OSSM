@@ -64,46 +64,36 @@ include 'header.php';
 
     
     <div class="container-fluid" style="min-height: 100vh;">
-        <div class="row">
-            <!-- Button to toggle progress sidebar for mobile -->
-            <button id="progress-button" class="btn btn-primary mb-3 d-md-none">
-                Toggle Progress
-            </button>
+    <div class="row" style="height: 100%;">
+        <!-- Button to toggle progress sidebar for mobile -->
+        <button id="progress-button" class="btn btn-primary mb-3 d-md-none">
+            Toggle Progress
+        </button>
 
-            <!-- Sidebar -->
-            <div class="col-md-3 progress-sidebar">
-                <h4 class="text-center">Progress</h4>
-                <ul>
-                    <li class="progress-item active" data-target="basic-information-section">
-                        <a href="#">
-                            Basic Information <i class="bi bi-check-square-fill"></i>
-                        </a>
-                    </li>
-                    <li class="progress-item" data-target="sectoral-section">
-                        <a href="#">
-                            Sectoral Information <i class="bi bi-check-square"></i>
-                        </a>
-                    </li>
-                    <li class="progress-item" data-target="other-information">
-                        <a href="#">
-                            Other Information <i class="bi bi-check-square"></i>
-                        </a>
-                    </li>
-                    <li class="progress-item" data-target="familyComposition">
-                        <a href="#">
-                            Family Composition <i class="bi bi-check-square"></i>
-                        </a>
-                    </li>
-                    <li class="progress-item" data-target="section4">
-                        <a href="#">
-                            Summary of Information <i class="bi bi-check-square"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <!-- Sidebar -->
+        <div class="col-md-3 col-12 progress-sidebar" style="max-width: 300px;">
+            <h4 class="text-center">Progress</h4>
+            <ul>
+                <li class="progress-item active" data-target="basic-information-section">
+                    <a href="#">Basic Information <i class="bi bi-check-square-fill"></i></a>
+                </li>
+                <li class="progress-item" data-target="sectoral-section">
+                    <a href="#">Sectoral Information <i class="bi bi-check-square"></i></a>
+                </li>
+                <li class="progress-item" data-target="other-information">
+                    <a href="#">Other Information <i class="bi bi-check-square"></i></a>
+                </li>
+                <li class="progress-item" data-target="familyComposition">
+                    <a href="#">Family Composition <i class="bi bi-check-square"></i></a>
+                </li>
+                <li class="progress-item" data-target="section4">
+                    <a href="#">Summary of Information <i class="bi bi-check-square"></i></a>
+                </li>
+            </ul>
+        </div>
 
-                <!-- Main Content -->
-                <main class="col-md-9 p-4" style="background-color: rgb(227, 249, 255);">
+        <!-- Main Content -->
+            <main class="col-md-9 col-12 p-4 mx-auto" style="width: calc(100% - 300px); background-color: rgb(227, 249, 255);">
                             <!-- Main form -->
                             <div class="col-md-9">
                                 <!-- Basic Information Section -->

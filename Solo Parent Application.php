@@ -63,7 +63,7 @@ include 'header.php';
     <body>
 
     
-      <div class="container">
+    <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -666,7 +666,10 @@ include 'header.php';
                     </div>
                 </div>
             </main>
+        </div>
+    </div>
 
+        
     <br>
     <br>
       <footer>

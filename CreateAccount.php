@@ -50,12 +50,7 @@ session_start(); // Ensure the session is started at the beginning of the file
         <div class="alert alert-danger">
             <h5><?= $_SESSION['status']; ?></h5>
         </div>
-        <script>
-            // Redirect to login.php after 5 seconds
-            setTimeout(function() {
-                window.location.href = 'login.php';
-            }, 5000);
-        </script>
+      
         <?php
         unset($_SESSION['status']);
     }

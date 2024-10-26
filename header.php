@@ -25,10 +25,7 @@ if ($stmt = $conn->prepare($query)) {
 
 <html>
 
-<body>
-
-
-<nav class="navbar navbar-dark navbar-expand-lg">
+<header><nav class="navbar navbar-dark navbar-expand-lg">
     <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
         <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>
             <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
@@ -41,6 +38,9 @@ if ($stmt = $conn->prepare($query)) {
         </div>
     </div>
 </nav>
+</header>
+
+
 
 
 

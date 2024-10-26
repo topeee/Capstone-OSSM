@@ -16,11 +16,11 @@ require 'vendor/autoload.php';
 /**
  * Sends an email verification link to the user's email address
  *
- * @param string $name The name of the recipient
+ * @param string $first_name The name of the recipient
  * @param string $email The recipient's email address
  * @param string $verify_token The token used for email verification
  */
-function sendemail_verify($name, $email, $verify_token, $last_name)
+function sendemail_verify($first_name, $email, $verify_token)
 {
     $mail = new PHPMailer(true);
     // $mail->SMTPDebug = 2; // Enable verbose debug output
@@ -28,15 +28,15 @@ function sendemail_verify($name, $email, $verify_token, $last_name)
     $mail->SMTPAuth = true; // Enable SMTP authentication
 
     // SMTP server configuration
-    $mail->Host = "smtp.gmail.com";
-    $mail->Username = "onestopsanmateo@gmail.com";
-    $mail->Password = "jquo qdjt faah duvl";
+    $mail->Host = "smtp.hostinger.com";
+    $mail->Username = "contactus@onestopsanmateo.online";
+    $mail->Password = "8#a8C;[y:GO";
 
     $mail->SMTPSecure = "tls"; // Enable TLS encryption
     $mail->Port = 587; // TCP port to connect to
 
     // Email sender and recipient configuration
-    $mail->setFrom("onestopsanmateo@gmail.com", $name, $last_name);
+    $mail->setFrom("contactus@onestopsanmateo.online", $first_name);
     $mail->addAddress($email);
 
     // Email content configuration
@@ -81,7 +81,7 @@ if (isset($_POST['register-btn'])) {
             die("Error: Missing required field '$field'.");
         }
     }
-
+    
     $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
     $middle_name = $_POST['middlename'];
@@ -96,6 +96,7 @@ if (isset($_POST['register-btn'])) {
     $subdivision = $_POST['sbd/vilg'];
     $barangay = $_POST['barangay-dropdown'];
     $password = $_POST['password'];
+    $hashed_password = $_POST['password'];
     $verify_token = md5(rand()); // Generate a random verification token
 
     // Validate the password
@@ -113,11 +114,11 @@ if (isset($_POST['register-btn'])) {
         header("Location: CreateAccount.php");
     } else {
         // Hash the password
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert the user data into the users table
         $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token) 
-        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$password_hash', '$verify_token')";
+        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$hashed_password', '$verify_token')";
 
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {
@@ -131,10 +132,7 @@ if (isset($_POST['register-btn'])) {
         }
     }
 
-    // Close the statement and connection if they exist
-    if (isset($stmt)) {
-        $stmt->close();
-    }
+    // Close the database connection
     $conn->close();
 }
 ?>

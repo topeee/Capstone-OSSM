@@ -366,7 +366,7 @@ html, body {
                         </div>
 
                     <div class="wrap">
-                        <a href="Solo Parent Application.html">
+                        <a href="Solo Parent Application.php">
                             <button class="button">Apply Now?</button>
                         </a>
                     </div>

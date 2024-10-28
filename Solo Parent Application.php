@@ -3,39 +3,37 @@
 include 'db_connection.php';
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve form data
-        $firstName = $_POST['firstName'];
-        $middleName = $_POST['middleName'];
-        $lastName = $_POST['lastName'];
-        $gender = $_POST['gender'];
+        $FirstName = $_POST['firstName'];
+        $MiddleName = $_POST['middleName'];
+        $LastName = $_POST['lastName'];
+        $Religion = $_POST['religion'];
+        $Gender = $_POST['gender'];
+        $BloodType = $_POST['bloodType'];
+        $BirthPlace = $_POST['birthPlace'];
+        $BirthDate = $_POST['dob'];
         $civilstatus = $_POST['civilstatus'];
-        $dob = $_POST['dob'];
-        $tele = $_POST['tele'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
-        $workPhone = $_POST['workPhone'];
+        $CivilStatus = $_POST['civilstatus'];
+        $PrecintNumber = $_POST['precinct'];
     
-        // Prepare a SQL query
-        $stmt = $conn->prepare("INSERT INTO SoloParentApplication (first_name, middle_name, last_name, gender, civil_status, dob, tele, phone, email, work_phone) 
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssss", $firstName, $middleName, $lastName, $gender, $civilstatus, $dob, $tele, $phone, $email, $workPhone);
+        $sql = "INSERT INTO solo_parents (first_name, middle_name, last_name, religion, gender, blood_type, birth_place, birth_date, civil_status, precinct_number) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+// Prepare the statement
+$stmt = $conn->prepare($sql);
 
-        // Execute the query
-        if ($stmt->execute()) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
+// Bind the form data to the prepared statement
+$stmt->bind_param("ssssssssss", $FirstName, $MiddleName, $LastName, $Religion, $Gender, $BloodType, $BirthPlace, $BirthDate, $CivilStatus, $PrecintNumber);
 
-        // Close the statement
-        $stmt->close();
-    
-        // Close the connection
-        $conn->close();
+ // Execute the prepared statement
+ if ($stmt->execute()) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $stmt->error;
+}
+       
+$stmt->close();
+$conn->close();
+   
     }
 
 include 'header.php';

@@ -11,11 +11,10 @@ include 'db_connection.php';
         $BloodType = $_POST['bloodType'];
         $BirthPlace = $_POST['birthPlace'];
         $BirthDate = $_POST['dob'];
-        $civilstatus = $_POST['civilstatus'];
         $CivilStatus = $_POST['civilstatus'];
         $PrecintNumber = $_POST['precinct'];
     
-        $sql = "INSERT INTO solo_parents (first_name, middle_name, last_name, religion, gender, blood_type, birth_place, birth_date, civil_status, precinct_number) 
+        $sql = "INSERT INTO SoloParent_ApplicationForm_PrimaryInfo (FirstName, MiddleName, LastName, Religion, Gender, BloodType, BirthPlace, BirthDate, PrecintNumber, precinct_number) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Prepare the statement
@@ -101,7 +100,7 @@ include 'header.php';
                                     A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
                                 </p>
                 
-                                <form>
+                                <form id="soloParentForm" action="Solo Parent Application.php" method="POST">
                                     <div class="row mb-3">
                                         <div class="col-md-2">
                                             <label for="precinct" class="form-label">Precinct #</label>
@@ -197,8 +196,8 @@ include 'header.php';
                 
                             <!-- Sectoral Information Section -->
                             <div class="form-section" id="sectoral-section" style="display: none;">
-                                <form>
-                                    <h4>Sectoral Information</h4>
+                            <form id="soloParentForm" action="Solo Parent Application.php" method="POST">
+                            <h4>Sectoral Information</h4>
                                     <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                                     <div class="row mb-3">
                                         <div class="col-md-4">
@@ -297,8 +296,8 @@ include 'header.php';
                             </div>
                 
                             <div class="form-section" id="other-information" style="display: none;">
-                                <form>    
-                                    <h4>Other Information</h4>
+                            <form id="soloParentForm" action="Solo Parent Application.php" method="POST">
+                            <h4>Other Information</h4>
                                     <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
@@ -397,7 +396,7 @@ include 'header.php';
                             
                                 <!-- Family Composition Section -->
                                 <div class="form-section" id="familyComposition" style="display: none;">
-                                    <form>    
+                                <form id="soloParentForm" action="Solo Parent Application.php" method="POST">
                                         <h4>Family Composition</h4>
                                         <div class="panel panel-default">
                                             <div class="panel-body">
@@ -880,7 +879,20 @@ include 'header.php';
               $('#idImageUpload').removeAttr('required');
           }
       });
-      
+      $("#next-btn").click(function() {
+            if (currentSection < sections.length - 1) {
+                $(sections[currentSection]).hide();
+                currentSection++;
+                $(sections[currentSection]).show();
+                if (currentSection === sections.length - 1) {
+                    $("#next-btn").text("Submit");
+                    $("#next-btn").attr("type", "submit");
+                    populateSummary();
+                } else {
+                    $("#next-btn").text("Next");
+                }
+            }
+        });
       // Validate only the visible form elements when clicking next
       $("#next-btn").click(function() {
           const currentForm = $(sections[currentSection]).find('form')[0];

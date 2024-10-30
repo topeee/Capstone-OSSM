@@ -1,6 +1,4 @@
-<?php
-session_start(); // Ensure the session is started at the beginning of the file
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,25 +23,10 @@ session_start(); // Ensure the session is started at the beginning of the file
         <h2>MUNICIPAL GOVERNMENT OF</h2>
         <h1>SAN MATEO RIZAL</h1>
         <h6>Create New OSSM Account</h6>
+        <?php
 
-        <div id="g_id_onload"
-     data-client_id="64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-callback="onestopsanmeto.online"
-     data-nonce=""
-     data-auto_select="true"
-     data-itp_support="true">
-</div>
+?>
 
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="rectangular"
-     data-theme="outline"
-     data-text="signin_with"
-     data-size="large"
-     data-logo_alignment="left">
-</div>
 <?php
     if (isset($_SESSION['status'])) {
         ?>
@@ -62,7 +45,7 @@ session_start(); // Ensure the session is started at the beginning of the file
                 <form class="row g-3" id="registerForm"action="code.php" method="POST" enctype="multipart/form-data">
 
                     <div class="col-md-6 form-floating">
-                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First"  required>
                         <label for="firstname"><span style="color: red;">*</span> First name </label>
                     </div>
                     <div class="col-md-6 form-floating">

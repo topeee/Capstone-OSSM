@@ -1,7 +1,9 @@
 <?php
 session_start();
-include 'db_connection.php';
 include 'header.php';
+
+
+
 
 ?>
 <!DOCTYPE html>

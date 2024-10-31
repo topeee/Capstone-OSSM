@@ -58,8 +58,8 @@ include 'header.php';
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg">
-        <div class="container-fluid">
+      <nav class="navbar navbar-dark navbar-expand-lg" >
+        <div class="container-fluid" style="display: none;">
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
@@ -70,7 +70,7 @@ include 'header.php';
               <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-end" s>
                 <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
                 <li><a class="dropdown-item" href="#">History Transaction</a></li>
                 <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
@@ -911,7 +911,7 @@ include 'header.php';
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "first page.html";
+        window.location.href = "Solo Parent Form.html";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();

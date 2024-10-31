@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Add your existing CSS styles here */
+        /* Add your existing CSS styles here */
         /* Global Styles */
         body { 
-            
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: black;
@@ -51,7 +53,6 @@
             transition: width 0.3s, backdrop-filter 0.3s;
         }
 
-
         .sidenav img {
             width: 130px;
             margin-bottom: 20px;
@@ -61,7 +62,7 @@
         }
 
         .sidenav h2 {
-            color: white;
+            color: black;
             margin: 0;
             padding: 15px;
             font-size: 20px;
@@ -126,7 +127,6 @@
             color: black;
             text-align: center;
             position: relative; /* Allows positioning of the number inside */
-
         }
 
         .number {
@@ -136,7 +136,7 @@
             font-size: 23px;
             font-weight: 100;
             color: #0000FF; /* Number color */
-}
+        }
 
         .container i {
             margin-right: 10px;
@@ -172,13 +172,12 @@
         .switch {
             position: absolute;
             top: 20px;
-            right: 120px; /* Adjust this value based on your layout */
+            right: 150px; /* Adjust this value based on your layout */
             font-size: 17px;
             display: inline-block;
             width: 4em;
             height: 2em;
         }
-
 
         .switch input {
             opacity: 0;
@@ -212,7 +211,7 @@
             transition: 0.5s;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        
+
         input:checked + .slider {
             background-color: #6f42c1;
         }
@@ -239,6 +238,10 @@
             color: #e0e0e0;
         }
 
+        body.dark-mode .sidenav h2 {
+            color: #e0e0e0;
+        }
+
         body.dark-mode .sidenav a:hover {
             background-color: rgb(21, 147, 231);
         }
@@ -254,7 +257,7 @@
         }
 
         body.dark-mode .container:hover {
-            background: rgba(60, 60, 60, 0.9);
+            background: rgba(13, 1, 55, 0.9);
         }
 
         body.dark-mode .logout {
@@ -264,261 +267,263 @@
         body.dark-mode .logout:hover {
             color: #ff3333;
         }
-
-        /* Style the navigation bar */
-        .navbar {
-            display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            width: 280px; /* Adjust the width as needed */
+        /* Style for the chart container */
+        .chart-container {
+            width: 50%;
+            height: 300px; /* Adjust height as needed */
+            margin-top: 20px; /* Space above the chart */
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Box shadow for depth */
-            padding: 15px; /* Padding */
+            padding: 20px; /* Inner padding */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
         }
 
-        /* Dropdown button styles */
-        .dropdown-btn {
-            background-color: #007bff; /* Button color */
-            color: #ffffff; /* Text color */
-            border: none; /* Remove border */
-            padding: 12px 20px; /* Padding */
-            text-align: left; /* Align text to the left */
-            cursor: pointer; /* Pointer cursor on hover */
-            font-size: 16px; /* Font size */
-            border-radius: 8px; /* Rounded corners */
-            margin-bottom: 10px; /* Space between buttons */
-            transition: background-color 0.3s, transform 0.2s; /* Smooth background change and scale */
-            display: flex; /* Use flex to align icon */
-            justify-content: space-between; /* Space between text and icon */
-            align-items: center; /* Center items vertically */
+        #applicationChart {
+            width: 100%; /* Make chart responsive */
+            height: auto; /* Maintain aspect ratio */
         }
 
-        /* Change button background on hover */
-        .dropdown-btn:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: scale(1.02); /* Slightly scale up on hover */
-        }
-
-        /* Dropdown content (hidden by default) */
-        .dropdown-content {
+        /* Modal Styles */
+        .modal {
             display: none; /* Hidden by default */
-            background-color: #3172d3; /* Background color */
-            position: relative; /* Relative position */
-            border-radius: 8px; /* Rounded corners */
-            margin-top: 5px; /* Space above dropdown */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Box shadow */
-            opacity: 0; /* Start with opacity 0 */
-            transform: translateY(-10px); /* Start slightly above */
-            transition: opacity 0.3s ease, transform 0.3s ease; /* Animation for dropdown */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
         }
 
-        /* Show dropdown when active */
-        .dropdown-content.show {
-            display: block; /* Show the dropdown */
-            opacity: 1; /* Fade in */
-            transform: translateY(0); /* Move to original position */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Dropdown link styles */
-        .dropdown-content a {
-            color: #343a40; /* Link color */
-            padding: 10px 15px; /* Padding */
-            text-decoration: none; /* Remove underline */
-            display: block; /* Make links block elements */
-            border-bottom: 1px solid #e9ecef; /* Divider line */
-            transition: background-color 0.3s; /* Smooth background change */
+        .modal-container-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        /* Change dropdown link background on hover */
-        .dropdown-content a:hover {
-            background-color: #e9ecef; /* Hover background color */
+        .modal-container {
+            width: calc(33.33% - 20px);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background: rgba(75, 192, 192, 0.5); /* Adjust color */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            color: black;
+            text-align: center;
         }
-
-        /* Dropdown icon styles */
-        .dropdown-icon {
-            transition: transform 0.3s; /* Smooth rotation transition */
-        }
-
-        /* Rotate icon when dropdown is open */
-        .dropdown-icon.rotated {
-            transform: rotate(180deg); /* Rotate icon */
-        }
-
 
     </style>
 </head>
 <body>
 
-    <div class="sidenav">
-        <img src="logo.png" alt="Logo">
-        <h2>Admin Dashboard</h2>
-        
-        <div class="navbar">
-            <button class="dropdown-btn" onclick="toggleDropdown('homeDropdown', this)">
-                <i class="fa-solid fa-home"></i> Home
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-           
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('servicesDropdown', this)">
-                <i class="fa-solid fa-users"></i> Brgy Officials
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-          
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('aboutDropdown', this)">
-                <i class="fa-solid fa-users-cog"></i> Brgy Staff
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-          
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('contactDropdown', this)">
-                <i class="fa-solid fa-address-card"></i> Residence Record
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-         
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('violationDropdown', this)">
-                <i class="fa-solid fa-file-alt"></i> Violation Management
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="violationDropdown" class="dropdown-content">
-                <a href="#">OVR Payment</a>
-                
-            </div>
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('socialServicesDropdown', this)">
-                <i class="fa-solid fa-file-invoice"></i> Social Services
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="socialServicesDropdown" class="dropdown-content">
-                <a href="#">Senior Citizen Application</a>
-                <a href="#">PWD Application</a>
-                <a href="#">Solo Parent Application</a>
-            </div>
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('educationalSupportDropdown', this)">
-                <i class="fa-solid fa-file-invoice"></i> Educational Support
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="educationalSupportDropdown" class="dropdown-content">
-                <a href="#">Scholarship Application</a>
-            </div>
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('economicSupportDropdown', this)">
-                <i class="fa-solid fa-file-invoice"></i> Economic & Investment Support
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="economicSupportDropdown" class="dropdown-content">
-                <a href="#">Occupational Permit</a>
-                <a href="#">Business Permit</a>
-                <a href="#">Tricycle Permit</a>
-                <a href="#">Real Property</a
-                <a href="#">Market One-StopS-Sop</a>
-            </div>
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('healthServicesDropdown', this)">
-                <i class="fa-solid fa-file-invoice"></i> Health Services
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="healthServicesDropdown" class="dropdown-content">
-                <a href="#">Medical Records</a>
-                <a href="#">Death Certificate</a>
-                
-            </div>
-        
-            <button class="dropdown-btn" onclick="toggleDropdown('citizenIDDropdown', this)">
-                <i class="fa-solid fa-file-invoice"></i> Citizen ID
-                <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-            </button>
-            <div id="citizenIDDropdown" class="dropdown-content">
-                <a href="#">Citizen ID</a>
-                <a href="#">QSSM Query Portal</a>
-          
-            </div>
+<div class="sidenav">
+    <img src="logo.png" alt="Logo">
+    <h2>Admin Panel</h2>
+    <a href="#" data-content="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="#" data-content="users"><i class="fas fa-users"></i> Users</a>
+    <a href="#" data-content="services"><i class="fas fa-file-alt"></i> E-SERVICES</a>
+    <a href="#" data-content="settings"><i class="fas fa-cogs"></i> Settings</a>
+    <a href="#" data-content="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</div>
 
-        </div>
-        
-    </div>
-
-    <div class="dashboard-text">
-        
-    </div>
-
-    <div class="main-content">
-        <h1>SERVICES</h1>
+<div class="main-content">
+    <h1>Admin Dashboard</h1>
+    
+    <!-- Content Sections -->
+    <div id="dashboard-content" class="content-section">
         <div class="container-group">
-        <div class="container"><i class="fa-solid fa-users"></i> POPULATION <span class="number">300</span></div>
-            <div class="container"><i class="fa-solid fa-male"></i> MALE<span class="number">150</span></div>
-            <div class="container"><i class="fa-solid fa-female"></i> FEMALE 3<span class="number">150</span></div>
-            <div class="container"><i class="fa-solid fa-vote-yea"></i> VOTERS<span class="number">200</span></div>
-            <div class="container"><i class="fa-solid fa-ban"></i> NON-VOTERS<span class="number">100</span></div>
-            <div class="container"><i class="fa-solid fa-map-marker-alt"></i> PUROK<span class="number">7</span></div>
-            <div class="container"><i class="fa-solid fa-clipboard-list"></i> BLOTTER RECORDS<span class="number">0</span></div>
-            <div class="container"><i class="fa-solid fa-male"></i> UNDERWEIGHT <span class="number">10</span></div>
-            <div class="container"><i class="fa-solid fa-wheelchair"></i> PERSON WITH DISABILITY<span class="number">10</span></div>
-            <div class="container"><i class="fa-solid fa-user-alt"></i> SENIOR CITIZEN<span class="number">50</span></div>
-            <div class ="container"><i class="fa-solid fa-folder-open"></i> REQUESTED DOCUMENT<span class="number">1</span></div>
+            <div class="container" id="new-applications">
+                <i class="fas fa-plus-circle"></i> NEW APPLICATION
+                <div class="number" id="new-count">10</div>
+            </div>
+            <div class="container" id="ongoing-applications">
+                <i class="fas fa-spinner"></i> ON-GOING APPLICATION
+                <div class="number" id="ongoing-count">5</div>
+            </div>
+            <div class="container" id="application-list">
+                <i class="fas fa-list"></i> APPLICATION FORM LIST
+                <div class="number" id="list-count">30</div>
+            </div>
+            <div class="container" id="requested-documents">
+                <i class="fas fa-file"></i> REQUESTED DOCUMENTS
+                <div class="number" id="requested-count">3</div>
+            </div>
+        </div>
+
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <canvas id="applicationChart"></canvas>
         </div>
     </div>
 
-    <div class="toggle-btn"><i class="fas fa-bars"></i></div>
+    <div id="users-content" class="content-section" style="display: none;">
+        <h2>Users Section</h2>
 
-    <div class="logout"><i class="fas fa-sign-out-alt"></i> Logout</div>
+    </div>
 
-    <label class="switch">
-        <input type="checkbox" onclick="document.body.classList.toggle('dark-mode')">
-        <span class="slider"></span>
-    </label>
+    <div id="services-content" class="content-section" style="display: none;">
+        <h2>E-Services Section</h2>
+        <div class="container-group">
+            <div class="container">
+                <i class="fas fa-file-upload"></i> Violation Management
+                <div class="number">5</div>
+            </div>
+            <div class="container">
+                <i class="fas fa-file-download"></i> Social Services
+                <div class="number">12</div>
+            </div>
+            <div class="container">
+                <i class="fas fa-check-circle"></i> Educational Support
+                <div class="number">8</div>
+            </div>
+            <div class="container">
+                <i class="fas fa-times-circle"></i> Economic & Investment Support
+                <div class="number">2</div>
+            </div>
+            <div class="container">
+                <i class="fas fa-sync"></i> Health Services
+                <div class="number">6</div>
+            </div>
+            <div class="container">
+                <i class="fas fa-info-circle"></i> Citizen ID
+                <div class="number">4</div>
+            </div>
+        </div>
+    </div>
 
-    <script>
+    <!-- Modal Structure -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Service Details</h2>
+            <div class="modal-container-group">
+                <div class="modal-container">
+                    <i class="fas fa-file-upload"></i> Violation Management
+                    <div class="number">Details about Violation Management</div>
+                </div>
+                <div class="modal-container">
+                    <i class="fas fa-file-download"></i> Social Services
+                    <div class="number">Details about Social Services</div>
+                </div>
+                <div class="modal-container">
+                    <i class="fas fa-check-circle"></i> Educational Support
+                    <div class="number">Details about Educational Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        const toggleBtn = document.querySelector('.toggle-btn');
-        const sidenav = document.querySelector('.sidenav');
-        const mainContent = document.querySelector('.main-content');
-        const dashboardText = document.querySelector('.dashboard-text');
-        const logout = document.querySelector('.logout');
-        const modeToggle = document.getElementById('modeToggle');
-        
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('collapsed');
-        });
+    <div id="settings-content" class="content-section" style="display: none;">
+        <h2>Settings Section</h2>
+        <p>This is where settings content will be displayed.</p>
+    </div>
 
-        modeToggle.addEventListener('change', () => {
-            document.body.classList.toggle('dark-mode');
-        });
+    <div id="logout-content" class="content-section" style="display: none;">
+        <h2>Logout Section</h2>
+        <p>You have logged out.</p>
+    </div>
+</div>
 
-
-
-
-        function toggleDropdown(dropdownId, button) {
-        // Get the dropdown content element
-        const dropdownContent = document.getElementById(dropdownId);
-        
-        // Toggle the display property
-        dropdownContent.classList.toggle("show");
-
-        // Rotate the dropdown icon
-        const icon = button.querySelector('.dropdown-icon');
-        icon.classList.toggle('rotated');
-    }
-
-    // Close dropdown if clicked outside
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropdown-btn')) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            const icons = document.getElementsByClassName("dropdown-icon");
+<script>
+        // Sidebar navigation functionality
+        document.querySelectorAll('.sidenav a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
             
-            for (let i = 0; i < dropdowns.length; i++) {
-                const openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                    icons[i].classList.remove('rotated');
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Get the content to display based on data-content attribute
+            const contentId = this.getAttribute('data-content');
+            const activeContent = document.getElementById(`${contentId}-content`);
+
+            // Show the corresponding content section
+            if (activeContent) {
+                activeContent.style.display = 'block';
+            }
+        });
+    });
+
+    // Initialize the chart
+    const ctx = document.getElementById('applicationChart').getContext('2d');
+    const applicationChart = new Chart(ctx, {
+        type: 'bar', // Change to 'line' for line chart
+        data: {
+            labels: ['New Applications', 'Ongoing Applications', 'Application Form List', 'Requested Documents'],
+            datasets: [{
+                label: 'Number of Applications',
+                data: [10, 5, 30, 3], // Use the current counts for dynamic data
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(54, 162, 235, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
         }
-    };
+    });
 
-    </script>
+    // Modal functionality
+const modal = document.getElementById('serviceModal');
+const closeModal = document.querySelector('.close');
 
+// Function to open modal
+function openModal() {
+    modal.style.display = 'block';
+}
+
+// Function to close modal
+function closeModalFunction() {
+    modal.style.display = 'none';
+}
+
+// Event listener for closing modal
+closeModal.addEventListener('click', closeModalFunction);
+
+// Event listeners for E-Services cards
+const eServiceCards = document.querySelectorAll('#services-content .container');
+eServiceCards.forEach(card => {
+    card.addEventListener('click', openModal);
+});
+
+// Close modal when clicking outside of it
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        closeModalFunction();
+    }
+});
+
+</script>
 </body>
 </html>

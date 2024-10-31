@@ -1,36 +1,59 @@
-<?php
+<?php 
 session_start();
-// Include configuration file 
-//require_once 'config.php'; 
- 
-// Include User library file 
-//require_once 'User.class.php'; 
- 
+require_once 'config.php';
 include 'db_connection.php';
-//$authUrl = $gClient->createAuthUrl(); 
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $client->setAccessToken($token['access_token']);
+  
+    // get profile info
+    $google_oauth = new Google_Service_Oauth2($client);
+    $google_account_info = $google_oauth->userinfo->get();
+    $userinfo = [
+      'email' => $google_account_info['email'],
+      'first_name' => $google_account_info['givenName'],
+      'last_name' => $google_account_info['familyName'],
+      'gender' => $google_account_info['gender'],
+      'name' => $google_account_info['name'],
+      'picture' => $google_account_info['picture'],
+      'verifiedEmail' => $google_account_info['verifiedEmail'],
+      'token' => $google_account_info['id'],
+    ];
+  
+    // checking if user is already exists in database
+    $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      // user is exists
+      $userinfo = mysqli_fetch_assoc($result);
+      $token = $userinfo['token'];
+    } else {
+      // user is not exists
+      $sql = "INSERT INTO users (email, first_name, last_name, gender, name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$userinfo['token']}')";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $token = $userinfo['token'];
+      } else {
+        echo "User is not created";
+        die();
+      }
+    }
 
-//$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="login-btn">Sign in with Google</a>'; 
+  // Store email in session
+  $_SESSION['email'] = $userinfo['email'];
 
- 
-//if(isset($_GET['code'])){ 
-   // $gClient->authenticate($_GET['code']); 
-    //$_SESSION['token'] = $gClient->getAccessToken(); 
-    //header('Location: ' . filter_var(GOOGLE_REDIRECT_URL, FILTER_SANITIZE_URL)); 
-//} 
- 
-//if(isset($_SESSION['token'])){ 
-    //$gClient->setAccessToken($_SESSION['token']); 
-//} 
- 
-//if($gClient->getAccessToken()){ 
-    // Get user profile data from google 
-   // $gpUserProfile = $google_oauthV2->userinfo->get(); 
-     
-    // Initialize User class 
-   // $user = new User(); 
-//}
+  // Redirect to the same page to remove the code parameter from URL
+  header('Location: Home.php');
+  exit();
+}
 
-//<?php echo $output;
+if (isset($_SESSION['user_token'])) {
+  header("Location: Home.php");
+  exit();
+}
+
+   
+
 
       //  //  //  //  //  //  //  //  //  //  //
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -75,7 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -228,8 +250,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="home.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
+        <?php
 
-     
+
+if (isset($_SESSION['user_token'])) {
+    header("Location: Home.php");
+  } else {
+    echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
+  }
+
+?>
         <div class="form-container">
             <form action="" method="POST">   <?php
     if (isset($_SESSION['status'])) {
@@ -262,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="CreateAccount.php" class="link">Create Account</a>
                 <a href="Forgot password.php" class="link">Forgot Password</a>
             </div>
-
+     
                 
             </div>
         </div>

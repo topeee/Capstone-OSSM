@@ -973,9 +973,7 @@ main {
                                 <button type="button" class="btn btn-success" onclick="addFieldGroup()">+</button>
                                 <button type="button" class="btn btn-danger ml-2" onclick="removeFieldGroup()">-</button>
                             </div>
-                            <!-- Description of Business -->
-                            
-
+                          
                         </div>
                     </div>
 

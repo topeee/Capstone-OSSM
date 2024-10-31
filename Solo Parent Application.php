@@ -58,600 +58,557 @@ include 'header.php';
 
     </head>
     <body>
-
-    
-<div class="container-fluid" style="min-height: 100vh;">
-    <div class="row" style="height: 100%;">
-        <!-- Button to toggle progress sidebar for mobile -->
-        <button id="progress-button" class="btn btn-primary mb-3 d-md-none">
-            Toggle Progress
-        </button>
-
-        <!-- Sidebar -->
-        <div class="col-md-3 col-12 progress-sidebar" style="max-width: 300px;">
-            <h4 class="text-center">Progress</h4>
-            <ul>
-                <li class="progress-item active" data-target="basic-information-section">
-                    <a href="#">Basic Information <i class="bi bi-check-square-fill"></i></a>
-                </li>
-                <li class="progress-item" data-target="sectoral-section">
-                    <a href="#">Sectoral Information <i class="bi bi-check-square"></i></a>
-                </li>
-                <li class="progress-item" data-target="other-information">
-                    <a href="#">Other Information <i class="bi bi-check-square"></i></a>
-                </li>
-                <li class="progress-item" data-target="familyComposition">
-                    <a href="#">Family Composition <i class="bi bi-check-square"></i></a>
-                </li>
-                <li class="progress-item" data-target="section4">
-                    <a href="#">Summary of Information <i class="bi bi-check-square"></i></a>
-                </li>
-            </ul>
+      <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.php">
+            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
+            <span class="brand-name">OSSM</span>
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="username">Hello, Username</span>
+            <div class="dropdown-center ms-3">
+              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </nav>
 
-        <!-- Main Content -->
-        <main class="col-md-9 col-12 p-4 mx-auto" style="width: calc(100% - 300px); background-color: rgb(227, 249, 255);">
-                        <!-- Main form -->
-                        <div class="col-md-9">
-                            <!-- Basic Information Section -->
-                            <div class="form-section" id="basic-information-section">
-                                <h4>Basic Information</h4>
-                                <p class="alert alert-info">
-                                    A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
-                                </p>
-                
-                                <form>
-                                    <div class="row mb-3">
-                                        <div class="col-md-2">
-                                            <label for="precinct" class="form-label">Precinct #</label>
-                                            <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="firstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="middleName" class="form-label">Middle Name</label>
-                                            <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="lastName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
-                                        </div>
-                                    </div>
-                
-                                    <div class="row mb-3">
-                                        <div class="col-md-2">
-                                            <label for="gender" class="form-label">Gender</label>
-                                            <select class="form-select" id="gender" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="civilstatus" class="form-label">Civil Status</label>
-                                            <select class="form-select" id="civilstatus" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="self">Single</option>
-                                                <option value="spouse">Married</option>
-                                                <option value="spouse">Widowed</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="dob" class="form-label">Date of Birth</label>
-                                            <input type="date" class="form-control" id="dob" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="birthPlace" class="form-label">Birth Place</label>
-                                            <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
-                                        </div>
-                                    </div>
-                
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="tele" class="form-label">Telephone Number</label>
-                                            <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="phone" class="form-label">Phone Number</label>
-                                            <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
-                                        </div>
-                                    </div>
-                
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="bloodType" class="form-label">Blood Type</label>
-                                            <select class="form-select" id="bloodType" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="A+">A+</option>
-                                                <option value="A-">A-</option>
-                                                <option value="B+">B+</option>
-                                                <option value="B-">B-</option>
-                                                <option value="AB+">AB+</option>
-                                                <option value="AB-">AB-</option>
-                                                <option value="O+">O+</option>
-                                                <option value="O-">O-</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="religion" class="form-label">Religion</label>
-                                            <input type="text" class="form-control" id="religion" placeholder="Religion" required>
-                                        </div>
-                                    </div>
-
-                                    
-                
-                                    <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
-                                        <br><br>
-                                        <i class="bi bi-info-circle-fill"></i>       
-                                            If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
-                                    </div>
-                                </form>
+    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+      <div class="container">
+        <div class="row">
+            <!-- Button to toggle progress sidebar -->
+            <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
+    
+            <!-- Sidebar -->
+            <div id="progress-menu" class="col-md-3 progress-sidebar hidden-xs" style="background-color: rgb(227, 249, 255);">
+                <h4 class="text-center">Progress</h4>
+                <ul>
+                    <li class="progress-item active" data-target="basic-information-section">
+                        <a href="#">
+                            Basic Information
+                            <i class="bi bi-check-square-fill"></i>
+                        </a>
+                    </li>
+                    <li class="progress-item" data-target="sectoral-section">
+                        <a href="#">
+                            Sectoral Information
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
+                    <li class="progress-item" data-target="other-information">
+                        <a href="#">
+                            Other Information
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
+                    <li class="progress-item" data-target="familyComposition">
+                        <a href="#">
+                            Family Composition
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
+                    <li class="progress-item" data-target="section4">
+                        <a href="#">
+                            Summary of Information
+                            <i class="bi bi-check-square"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Main form -->
+            <div class="col-md-9">
+                <!-- Basic Information Section -->
+                <div class="form-section" id="basic-information-section">
+                    <h4>Basic Information</h4>
+                    <p class="alert alert-info">
+                        A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
+                    </p>
+    
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="precinct" class="form-label">Precinct #</label>
+                                <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
                             </div>
-                
-                            <!-- Sectoral Information Section -->
-                            <div class="form-section" id="sectoral-section" style="display: none;">
-                                <form>
-                                    <h4>Sectoral Information</h4>
-                                    <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="soloParentId" id="yesOption" value="yes" required>
-                                                <label class="form-check-label" for="yesOption">
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="soloParentId" id="noOption" value="no" required>
-                                                <label class="form-check-label" for="noOption">
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                
-                                    <div id="yesFields" style="display: none;">
-                                        <div class="mb-3">
-                                            <label for="soloParentIdNumber" class="form-label">Solo Parent ID Number</label>
-                                            <input type="text" class="form-control" id="soloParentIdNumber" placeholder="Enter ID Number" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="idImageUpload" class="form-label">Upload Solo Parent ID</label>
-                                            <input type="file" class="form-control" id="idImageUpload" required>
-                                        </div>
-                                    </div>
-                
-                                    <div id="noFields" style="display: none;">
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="soloParentClassification" class="form-label">Solo Parent Classification</label>
-                                                <input type="text" class="form-control" id="soloParentClassification" placeholder="Classification" required>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="monthlyIncome" class="form-label">Monthly Income</label>
-                                                <input type="number" class="form-control" id="monthlyIncome" placeholder="Enter Monthly Income" required>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="totalIncome" class="form-label">Total Income</label>
-                                                <input type="number" class="form-control" id="totalIncome" placeholder="Enter Total Income" required>
-                                            </div>
-                                        </div>
-                
-                                        <div class="col-md-6">
-                                            <label for="problems" class="form-label">Problems/Needs of Solo Parent</label>
-                                            <div class="panel panel-default">
-                                                <div class="panel-body">
-                                                    <div class="input-group control-group after-add-more">
-                                                        <select class="form-select" id="probneeds" required>
-                                                            <option value="" disabled selected>Select Problem/Need</option>
-                                                            <option value="leaveBenefits">Leave Benefits</option>
-                                                            <option value="flexiTime">Flexi-Time at Work</option>
-                                                            <option value="medicalCare">Medical Care</option>
-                                                            <option value="employment">Employment</option>
-                                                            <option value="additionalIncome">Additional Income</option>
-                                                            <option value="housingShelter">Housing and Shelter</option>
-                                                            <option value="educationChildren">Education of Children/Child</option>
-                                                            <option value="educationChildren">Others:</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                
-                                        <br>
-                
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="familyResources" class="form-label">Family Resources</label>
-                                                <select class="form-select" id="familyResources" required>
-                                                    <option value="" disabled selected>Choose...</option>
-                                                    <option value="employed">Employed</option>
-                                                    <option value="selfEmployed">Self-Employed</option>
-                                                    <option value="others">Others</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="education" class="form-label">Educational Attainment</label>
-                                                <select class="form-select" id="education" required>
-                                                    <option value="" disabled selected>Choose...</option>
-                                                    <option value="elementary">Elementary</option>
-                                                    <option value="highSchool">High School</option>
-                                                    <option value="college">College</option>
-                                                    <option value="graduate">Graduate</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="company" class="form-label">Name Of Company/Agent</label>
-                                                <input type="text" class="form-control" id="company" placeholder="Company Name" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-md-4">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                             </div>
-                
-                            <div class="form-section" id="other-information" style="display: none;">
-                                <form>    
-                                    <h4>Other Information</h4>
-                                    <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="yearsOfStay" class="form-label">No. of Year/s</label>
-                                            <input type="number" class="form-control" id="yearsOfStay" placeholder="Years" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="monthsOfStay" class="form-label">No. of Month/s</label>
-                                            <input type="number" class="form-control" id="monthsOfStay" placeholder="Months" required>
-                                        </div>
-                                    </div>
-                                    <p style="font-size: 20px; font-weight: bold;">Current Address:</p>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-3">
-                                            <label for="lotNumber" class="form-label">LOT#</label>
-                                            <input type="text" class="form-control" id="lotNumber" placeholder="LOT#" required>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="blkNumber" class="form-label">BLK#</label>
-                                            <input type="text" class="form-control" id="blkNumber" placeholder="BLK#" required>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="street" class="form-label">STREET / SUBDIVISION</label>
-                                            <input type="text" class="form-control" id="street" placeholder="STREET / SUBDIVISION" required>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="barangay" class="form-label">BARANGAY</label>
-                                            <input type="text" class="form-control" id="barangay" placeholder="BARANGAY" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-md-2">
-                                            <label class="form-label">4 P's Member</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsNo" value="no" required>
-                                                <label class="form-check-label" for="fourPsNo">No</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsYes" value="yes" required>
-                                                <label class="form-check-label" for="fourPsYes">Yes</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="fourPsId" class="form-label">ID#</label>
-                                            <input type="text" class="form-control" id="fourPsId" placeholder="Enter ID Number" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="form-label">PhilHealth Member</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthNo" value="no" required>
-                                                <label class="form-check-label" for="philHealthNo">No</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthYes" value="yes" required>
-                                                <label class="form-check-label" for="philHealthYes">Yes</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="philHealthId" class="form-label">ID#</label>
-                                            <input type="text" class="form-control" id="philHealthId" placeholder="Enter ID Number" required>
-                                        </div>
-                                    </div>
-                                    <p style="font-size: 20px; font-weight: bold;">In case of emergency, please notify:</p>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label for="emergencyFirstName" class="form-label">Emergency First Name</label>
-                                            <input type="text" class="form-control" id="emergencyFirstName" placeholder="First Name" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="emergencyMiddleName" class="form-label">Emergency Middle Name</label>
-                                            <input type="text" class="form-control" id="emergencyMiddleName" placeholder="Middle Name" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="emergencyLastName" class="form-label">Emergency Last Name</label>
-                                            <input type="text" class="form-control" id="emergencyLastName" placeholder="Last Name" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label for="emergencyContactNumber" class="form-label">Contact Number/s</label>
-                                            <input type="tel" class="form-control" id="emergencyContactNumber" placeholder="Contact Number/s" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="emergencyRelationship" class="form-label">Relationship</label>
-                                            <input type="text" class="form-control" id="emergencyRelationship" placeholder="Relationship" required>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label for="emergencyAddress" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-md-2">
+                                <label for="middleName" class="form-label">Middle Name</label>
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
                             </div>
-                            
-                                <!-- Family Composition Section -->
-                                <div class="form-section" id="familyComposition" style="display: none;">
-                                    <form>    
-                                        <h4>Family Composition</h4>
-                                        <div class="panel panel-default">
-                                            <div class="panel-body">
-                                                <div class="row input-group control-group after-add-more-family">
-                                                    <!-- Family Member Name -->
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="familyResources" class="form-label">Name</label>
-                                                        <input type="text" name="familyName[]" class="form-control" placeholder="Name" required>
-                                                    </div>
-                                
-                                                    <!-- Birthdate -->
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="familyResources" class="form-label">Birthdate</label>
-                                                        <input type="date" name="familyBirthdate[]" class="form-control" placeholder="Birthdate" required>
-                                                    </div>
-                                
-                                                    <!-- Status -->
-                                                    <div class="col-md-2 mb-3">
-                                                        <label for="familyResources" class="form-label">Civil Status</label>
-                                                        <select name="familyStatus[]" class="form-select" required>
-                                                            <option value="" disabled selected>Status</option>
-                                                            <option value="single">Single</option>
-                                                            <option value="married">Married</option>
-                                                            <option value="widowed">Widowed</option>
-                                                        </select>
-                                                    </div>
-                                
-                                                    <!-- PWD Status -->
-                                                    <div class="col-md-2 mb-3">
-                                                        <label for="familyResources" class="form-label">PWD</label>
-                                                        <select name="familyPwdStatus[]" class="form-select" required>
-                                                            <option value="" disabled selected>PWD</option>
-                                                            <option value="yes">Yes</option>
-                                                            <option value="no">No</option>
-                                                        </select>
-                                                    </div>
-                                
-                                                    <!-- Relationship -->
-                                                    <div class="col-md-2 mb-3">
-                                                        <label for="familyResources" class="form-label">Relationship</label>
-                                                        <input type="text" name="familyRelationship[]" class="form-control" placeholder="Relationship" required>
-                                                    </div>
-                                                </div>
-                                
-                                                <!-- Studying or Employed -->
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Currently Studying?</label>
-                                                        <select name="familyStudying[]" class="form-select currently-studying" required>
-                                                            <option value="" disabled selected>Choose...</option>
-                                                            <option value="yes">Yes</option>
-                                                            <option value="no">No</option>
-                                                        </select>
-                                                        <input type="text" name="gradeLevel[]" class="form-control grade-level mt-2" placeholder="Grade Level" style="display: none;" required>
-                                                    </div>
-                                
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Currently Employed?</label>
-                                                        <select name="familyEmployed[]" class="form-select currently-employed" required>
-                                                            <option value="" disabled selected>Choose...</option>
-                                                            <option value="yes">Yes</option>
-                                                            <option value="no">No</option>
-                                                        </select>
-                                                        <input type="text" name="occupation[]" class="form-control occupation mt-2" placeholder="Occupation" style="display: none;" required>
-                                                        <input type="number" name="monthlyIncome[]" class="form-control monthly-income mt-2" placeholder="Monthly Income" style="display: none;" required>
-                                                    </div>
-                                                </div>
-                                
-                                                <!-- Add/Remove Buttons -->
-                                                <div class="input-group-btn mb-3">
-                                                    <button class="btn btn-success add-more-family" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="duplicate-family hide">
-                                            <div class="row control-group input-group" style="margin-top:10px">
-                                                <!-- Family Member Name -->
-                                                <div class="col-md-3 mb-3">
-                                                    <label for="familyResources" class="form-label">Name</label>
-                                                    <input type="text" name="familyName[]" class="form-control" placeholder="Name" required>
-                                                </div>
-                                
-                                                <!-- Birthdate -->
-                                                <div class="col-md-3 mb-3">
-                                                    <label for="familyResources" class="form-label">Birthdate</label>
-                                                    <input type="date" name="familyBirthdate[]" class="form-control" placeholder="Birthdate" required>
-                                                </div>
-                                
-                                                <!-- Status -->
-                                                <div class="col-md-2 mb-3">
-                                                    <label for="familyResources" class="form-label">Civil Status</label>
-                                                    <select name="familyStatus[]" class="form-select" required>
-                                                        <option value="" disabled selected>Status</option>
-                                                        <option value="single">Single</option>
-                                                        <option value="married">Married</option>
-                                                        <option value="widowed">Widowed</option>
-                                                    </select>
-                                                </div>
-                                
-                                                <!-- PWD Status -->
-                                                <div class="col-md-2 mb-3">
-                                                    <label for="familyResources" class="form-label">PWD</label>
-                                                    <select name="familyPwdStatus[]" class="form-select" required>
-                                                        <option value="" disabled selected>PWD</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="no">No</option>
-                                                    </select>
-                                                </div>
-                                
-                                                <!-- Relationship -->
-                                                <div class="col-md-2 mb-3">
-                                                    <label for="familyResources" class="form-label">Relationship</label>
-                                                    <input type="text" name="familyRelationship[]" class="form-control" placeholder="Relationship" required>
-                                                </div>
-                                
-                                                <!-- Studying or Employed -->
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Currently Studying?</label>
-                                                        <select name="familyStudying[]" class="form-select currently-studying" required>
-                                                            <option value="" disabled selected>Choose...</option>
-                                                            <option value="yes">Yes</option>
-                                                            <option value="no">No</option>
-                                                        </select>
-                                                        <input type="text" name="gradeLevel[]" class="form-control grade-level mt-2" placeholder="Grade Level" style="display: none;" required>
-                                                    </div>
-                                
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Currently Employed?</label>
-                                                        <select name="familyEmployed[]" class="form-select currently-employed" required>
-                                                            <option value="" disabled selected>Choose...</option>
-                                                            <option value="yes">Yes</option>
-                                                            <option value="no">No</option>
-                                                        </select>
-                                                        <input type="text" name="occupation[]" class="form-control occupation mt-2" placeholder="Occupation" style="display: none;" required>
-                                                        <input type="number" name="monthlyIncome[]" class="form-control monthly-income mt-2" placeholder="Monthly Income" style="display: none;" required>
-                                                    </div>
-                                                </div>
-                                
-                                                <!-- Remove Button -->
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger remove-family" type="button">Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>    
-                                </div>
-                            
-                
-                            <!-- Section 4: User Summary Section -->
-                            <div class="form-section" id="section4" style="display: none;">
-                                <h4>User Summary</h4>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Category</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Name:</strong></td>
-                                            <td id="summaryName"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Gender:</strong></td>
-                                            <td id="summaryGender"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Civil Status:</strong></td>
-                                            <td id="summaryCivilStatus"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Date of Birth:</strong></td>
-                                            <td id="summaryDob"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Telephone:</strong></td>
-                                            <td id="summaryTele"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Phone:</strong></td>
-                                            <td id="summaryPhone"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Email:</strong></td>
-                                            <td id="summaryEmail"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Work Phone:</strong></td>
-                                            <td id="summaryWorkPhone"></td>
-                                        </tr>
-                                        <tr id="soloParentIdRow" style="display: none;">
-                                            <td><strong>Solo Parent ID:</strong></td>
-                                            <td id="summarySoloParentId"></td>
-                                        </tr>
-                                        <tr id="idImageRow" style="display: none;">
-                                            <td><strong>ID Image:</strong></td>
-                                            <td id="summaryIdImage"></td>
-                                        </tr>
-                                        <tr id="soloParentClassificationRow" style="display: none;">
-                                            <td><strong>Solo Parent Classification:</strong></td>
-                                            <td id="summarySoloParentClassification"></td>
-                                        </tr>
-                                        <tr id="monthlyIncomeRow" style="display: none;">
-                                            <td><strong>Monthly Income:</strong></td>
-                                            <td id="summaryMonthlyIncome"></td>
-                                        </tr>
-                                        <tr id="totalIncomeRow" style="display: none;">
-                                            <td><strong>Total Income:</strong></td>
-                                            <td id="summaryTotalIncome"></td>
-                                        </tr>
-                                        <tr id="problemsRow" style="display: none;">
-                                            <td><strong>Problems:</strong></td>
-                                            <td id="summaryProblems"></td>
-                                        </tr>
-                                        <tr id="needsRow" style="display: none;">
-                                            <td><strong>Needs:</strong></td>
-                                            <td id="summaryNeeds"></td>
-                                        </tr>
-                                        <tr id="familyResourcesRow" style="display: none;">
-                                            <td><strong>Family Resources:</strong></td>
-                                            <td id="summaryFamilyResources"></td>
-                                        </tr>
-                                        <tr id="educationRow" style="display: none;">
-                                            <td><strong>Educational Attainment:</strong></td>
-                                            <td id="summaryEducation"></td>
-                                        </tr>
-                                        <tr id="companyRow" style="display: none;">
-                                            <td><strong>Company Name:</strong></td>
-                                            <td id="summaryCompany"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Family Members:</strong></td>
-                                            <td id="summaryFamilyMembers"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                            </div>
-                
-                
-                            <!-- Navigation Buttons -->
-                            <div class="navigation-buttons">
-                                <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-                                <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+                            <div class="col-md-4">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
-                    </div>
+    
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender" onchange="genderChange()" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="civilstatus" class="form-label">Civil Status</label>
+                                <select class="form-select" id="civilstatus" onchange="civilChange()" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Widowed">Widowed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="birthPlace" class="form-label">Birth Place</label>
+                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
+                            </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="telephone" class="form-label">Telephone Number</label>
+                                <input type="tel" class="form-control" id="telephone" placeholder="(916) 345-6783" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                            </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="bloodType" class="form-label">Blood Type</label>
+                                <select class="form-select" id="bloodType" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="religion" class="form-label">Religion</label>
+                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
+                            </div>
+                        </div>
+
+                        
+    
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                            <br><br>
+                              <i class="bi bi-info-circle-fill"></i>       
+                                If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
+                          </div>
+                    </form>
                 </div>
-            </main>
+    
+                <!-- Sectoral Information Section -->
+                <div class="form-section" id="sectoral-section" style="display: none;">
+                    <form>
+                        <h4>Sectoral Information</h4>
+                        <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="soloParentId" id="yesOption" value="yes" required>
+                                    <label class="form-check-label" for="yesOption">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="soloParentId" id="noOption" value="no" required>
+                                    <label class="form-check-label" for="noOption">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div id="yesFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="soloParentIdNumber" class="form-label">Solo Parent ID Number</label>
+                                <input type="text" class="form-control" id="soloParentIdNumber" placeholder="Enter ID Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="idImageUpload" class="form-label">Upload Solo Parent ID</label>
+                                <input type="file" class="form-control" id="idImageUpload" required>
+                            </div>
+                        </div>
+    
+                        <div id="noFields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="soloParentClassification" class="form-label">Solo Parent Classification</label>
+                                    <select class="form-select" id="soloParentClassification" required>
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Individually Paying">Individually Paying</option>
+                                        <option value="Life time">Lifetime</option>
+                                        <option value="Ofw">OFW</option>
+                                        <option value="Employed">Employed</option>
+                                        <option value="Private">Private</option>
+                                        <option value="Government">Government</option>
+                                        <option value="Sponsored">Sponsored</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="familyResources" class="form-label">Family Resources</label>
+                                    <select class="form-select" id="familyResources" required>
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="employed">Employed</option>
+                                        <option value="selfEmployed">Self-Employed</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="education" class="form-label">Educational Attainment</label>
+                                    <select class="form-select" id="education" required>
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="elementary">Elementary</option>
+                                        <option value="highSchool">High School</option>
+                                        <option value="college">College</option>
+                                        <option value="graduate">Graduate</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            
+                            <div class="col-md-6">
+                                <label for="problems" class="form-label">Problems/Needs of Solo Parent</label>
+                                <select class="form-select" id="probneeds" required>
+                                    <option value="" disabled>Select Problem/Need</option>
+                                    <option value="leaveBenefits">Leave Benefits</option>
+                                    <option value="flexiTime">Flexi-Time at Work</option>
+                                    <option value="medicalCare">Medical Care</option>
+                                    <option value="employment">Employment</option>
+                                    <option value="additionalIncome">Additional Income</option>
+                                    <option value="housingShelter">Housing and Shelter</option>
+                                    <option value="educationChildren">Education of Children/Child</option>
+                                    <option value="others">Others:</option>                                 
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                 <input type="text" id="otherProblem" class="form-control mt-2" 
+                                 placeholder="Please specify..." style="display: none;" required>
+                            </div>
+    
+                            <br>
+    
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="company" class="form-label">Name Of Company/Agent</label>
+                                    <input type="text" class="form-control" id="company" placeholder="Company Name" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="officeAddress" class="form-label">Office Address</label>
+                                    <input type="text" class="form-control" id="officeAddress" placeholder="Office Address" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="occupation" class="form-label">Occupation</label>
+                                    <input type="text" class="form-control" id="occupation" placeholder="Occupation" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="monthlyIncome" class="form-label">Monthly Income</label>
+                                    <input type="number" class="form-control" id="monthlyIncome" placeholder="Enter Monthly Income" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tinNumber" class="form-label">TIN Number</label>
+                                    <input type="number" class="form-control" id="tinNumber" placeholder="TIN Number" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sssNumber" class="form-label">SSS Number</label>
+                                    <input type="number" class="form-control" id="sssNumber" placeholder="SSS Number" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="gsisNumber" class="form-label">GSIS Number</label>
+                                    <input type="number" class="form-control" id="gsisNumber" placeholder="GSIS Number" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="form-section" id="other-information" style="display: none;">
+                    <form>    
+                        <h4>Other Information</h4>
+                        <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="yearsOfStay" class="form-label">No. of Year/s</label>
+                                <input type="number" class="form-control" id="yearsOfStay" placeholder="Years" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="monthsOfStay" class="form-label">No. of Month/s</label>
+                                <input type="number" class="form-control" id="monthsOfStay" placeholder="Months" required>
+                            </div>
+                        </div>
+                        <p style="font-size: 20px; font-weight: bold;">Current Address:</p>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="lotNumber" class="form-label">LOT#</label>
+                                <input type="text" class="form-control" id="lotNumber" placeholder="LOT#" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="blkNumber" class="form-label">BLK#</label>
+                                <input type="text" class="form-control" id="blkNumber" placeholder="BLK#" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="street" class="form-label">STREET / SUBDIVISION</label>
+                                <input type="text" class="form-control" id="street" placeholder="STREET / SUBDIVISION" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="barangay" class="form-label">BARANGAY</label>
+                                <input type="text" class="form-control" id="barangay" placeholder="BARANGAY" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label">4 P's Member</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsNo" value="No" onclick="fourPsStatusChange()">
+                                    <label class="form-check-label" for="fourPsNo">No</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsYes" value="Yes" onclick="fourPsStatusChange()">
+                                    <label class="form-check-label" for="fourPsYes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="fourPsId" class="form-label">ID#</label>
+                                <input type="text" class="form-control" id="fourPsId" placeholder="Enter ID Number" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">PhilHealth Member</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthNo" value="No" onclick="philHealthStatusChange()">
+                                    <label class="form-check-label" for="philHealthNo">No</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthYes" value="Yes" onclick="philHealthStatusChange()">
+                                    <label class="form-check-label" for="philHealthYes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="philHealthId" class="form-label">ID#</label>
+                                <input type="text" class="form-control" id="philHealthId" placeholder="Enter ID Number" required>
+                            </div>
+                        </div>
+                        <p style="font-size: 20px; font-weight: bold;">In case of emergency, please notify:</p>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="emergencyFirstName" class="form-label">Emergency First Name</label>
+                                <input type="text" class="form-control" id="emergencyFirstName" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="emergencyMiddleName" class="form-label">Emergency Middle Name</label>
+                                <input type="text" class="form-control" id="emergencyMiddleName" placeholder="Middle Name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="emergencyLastName" class="form-label">Emergency Last Name</label>
+                                <input type="text" class="form-control" id="emergencyLastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="emergencyContactNumber" class="form-label">Contact Number/s</label>
+                                <input type="tel" class="form-control" id="emergencyContactNumber" placeholder="Contact Number/s" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emergencyRelationship" class="form-label">Relationship</label>
+                                <input type="text" class="form-control" id="emergencyRelationship" placeholder="Relationship" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="emergencyAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                    <!-- Family Composition Section -->
+                    <div class="form-section" id="familyComposition" style="display: none;">
+                        <form>    
+                            <h4>Family Composition</h4>
+                                <!-- Input fields for a new family member -->
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <input type="text" id="familyRelationship" class="form-control" placeholder="Relationship">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" id="familyFullName" class="form-control" placeholder="Full Name (Last, First, Middle)">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input type="date" id="familyBirthDate" class="form-control">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <select id="familyCivilStatus" class="form-select">
+                                            <option value="" disabled selected>Civil Status</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Widowed">Widowed</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <select id="familyEducAttainment" class="form-select">
+                                            <option value="" disabled selected>Educ. Attainment</option>
+                                            <option value="na">N/A</option>
+                                            <option value="elementarys">Elementary</option>
+                                            <option value="High School">High School</option>
+                                            <option value="Colleges">College</option>
+                                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                            <option value="Master's Degree">Master's Degree</option>
+                                            <option value="Doctorate">Doctorate</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="familyOccupation" class="form-control" placeholder="Occupation">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
+                                    </div>
+                                </div>
+                        </form>    
+                    </div>
+                
+    
+                    <!-- Section 4: User Summary Section -->
+                <div class="form-section" id="section4" style="display: none;">
+                    <h4>User Summary</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Basic Information -->
+                            <tr><td><strong>Precinct</strong></td><td id="summaryPrecinct"></td></tr>
+                            <tr><td><strong>First Name:</strong></td><td id="summaryFirstName"></td></tr>
+                            <tr><td><strong>Middle Name:</strong></td><td id="summaryMiddleName"></td></tr>
+                            <tr><td><strong>Last Name:</strong></td><td id="summaryLastName"></td></tr>
+                            <tr><td><strong>Gender:</strong></td><td id="summaryGender"></td></tr>
+                            <tr><td><strong>Civil Status:</strong></td><td id="summaryCivilStatus"></td></tr>
+                            <tr><td><strong>Date of Birth:</strong></td><td id="summaryDob"></td></tr>
+                            <tr><td><strong>Birth Place:</strong></td><td id="summaryBirthPlace"></td></tr>
+                            <tr><td><strong>Religion:</strong></td><td id="summaryReligion"></td></tr>
+                            <tr><td><strong>Blood Type:</strong></td><td id="summaryBloodType"></td></tr>
+
+                            <!-- Contact Information -->
+                            <tr><td><strong>Telephone:</strong></td><td id="summaryTele"></td></tr>
+                            <tr><td><strong>Phone:</strong></td><td id="summaryPhone"></td></tr>
+                            <tr><td><strong>Email:</strong></td><td id="summaryEmail"></td></tr>
+
+                            <!-- Solo Parent Information -->
+                            <tr id="soloParentIdRow" style="display: none;">
+                                <td><strong>Solo Parent ID:</strong></td><td id="summarySoloParentId"></td>
+                            </tr>
+                            <tr id="idImageRow" style="display: none;">
+                                <td><strong>ID Image:</strong></td><td id="summaryIdImage"></td>
+                            </tr>
+                            <tr id="soloParentClassificationRow" style="display: none;">
+                                <td><strong>Solo Parent Classification:</strong></td><td id="summarySoloParentClassification"></td>
+                            </tr>
+                            <tr id="monthlyIncomeRow" style="display: none;">
+                                <td><strong>Monthly Income:</strong></td><td id="summaryMonthlyIncome"></td>
+                            </tr>
+
+                            <!-- Company and Employment Information -->
+                            <tr><td><strong>Company Name/Employer Name:</strong></td><td id="summaryCompany"></td></tr>
+                            <tr><td><strong>Office Address:</strong></td><td id="summaryOfficeAddress"></td></tr>
+                            <tr><td><strong>Occupation:</strong></td><td id="summaryOccupation"></td></tr>
+                            <tr><td><strong>TIN Number:</strong></td><td id="summaryTinNumber"></td></tr>
+                            <tr><td><strong>SSS Number:</strong></td><td id="summarySssNumber"></td></tr>
+                            <tr><td><strong>GSIS Number:</strong></td><td id="summaryGsisNumber"></td></tr>
+
+                            <!-- Address and Residency -->
+                            <tr><td><strong>Years of Stay:</strong></td><td id="summaryYearsOfStay"></td></tr>
+                            <tr><td><strong>Months of Stay:</strong></td><td id="summaryMonthsOfStay"></td></tr>
+                            <tr><td><strong>Lot Number:</strong></td><td id="summaryLotNumber"></td></tr>
+                            <tr><td><strong>Block Number:</strong></td><td id="summaryBlkNumber"></td></tr>
+                            <tr><td><strong>Street / Subdivision:</strong></td><td id="summaryStreet"></td></tr>
+                            <tr><td><strong>Barangay:</strong></td><td id="summaryBarangay"></td></tr>
+
+
+                            <!-- 4Ps and PhilHealth Membership -->
+                            <tr><td><strong>4 P's Member:</strong></td><td id="summaryFourPsMember"></td></tr>
+                            <tr><td><strong>4 P's ID:</strong></td><td id="summaryFourPsId"></td></tr>
+                            <tr><td><strong>PhilHealth Member:</strong></td><td id="summaryPhilHealthMember"></td></tr>
+                            <tr><td><strong>PhilHealth ID:</strong></td><td id="summaryPhilHealthId"></td></tr>
+
+                            <!-- Emergency Contact Information -->
+                            <tr><td><strong>Emergency Contact Name:</strong></td><td id="summaryEmergencyName"></td></tr>
+                            <tr><td style="display: none;"></td><td id="summaryemergencyFirstName" style="display: none;"></td></tr>
+                            <tr><td style="display: none;"></td><td id="summaryemergencyMiddleName" style="display: none;"></td></tr>
+                            <tr><td style="display: none;"></td><td id="summaryemergencyLastName" style="display: none;"></td></tr>
+                            <tr><td><strong>Emergency Contact Number:</strong></td><td id="summaryEmergencyContact"></td></tr>
+                            <tr><td><strong>Relationship:</strong></td><td id="summaryEmergencyRelationship"></td></tr>
+                            <tr><td><strong>Emergency Address:</strong></td><td id="summaryEmergencyAddress"></td></tr>
+
+                            <!-- Family Composition -->
+                            <table class="table table-bordered" id="familyTable">
+                                <thead>
+                                    <tr>
+                                        <th>Relationship</th>
+                                        <th>Full Name</th>
+                                        <th>Birth Date</th>
+                                        <th>Civil Status</th>
+                                        <th>Educ. Attainment</th>
+                                        <th>Occupation</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows will be added here -->
+                                </tbody>                         
+                        </tbody>
+                    </table>
+                </div>
+
+
+    
+    
+                <!-- Navigation Buttons -->
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
+                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+                </div>
+    
+            </div>
         </div>
     </div>
+    </main>
 
-        
     <br>
     <br>
       <footer>
@@ -691,323 +648,411 @@ include 'header.php';
         </div>
     </footer>
 
-<script>
-      // Toggle the visibility of the progress sidebar
-      $("#progress-button").click(function() {
-          $("#progress-menu").toggleClass('hidden-xs');
-      });
-      
-      function populateSummary() {
-          // Basic Information
-          const firstName = document.getElementById('firstName').value || 'Not Provided';
-          const middleName = document.getElementById('middleName').value || '';
-          const lastName = document.getElementById('lastName').value || 'Not Provided';
-          document.getElementById('summaryName').innerText = `${firstName} ${middleName} ${lastName}`.trim();
-      
-          document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
-          document.getElementById('summaryCivilStatus').innerText = document.getElementById('civilstatus').value || 'Not Provided';
-          document.getElementById('summaryDob').innerText = document.getElementById('dob').value || 'Not Provided';
-      
-          // Contact Information
-          document.getElementById('summaryTele').innerText = document.getElementById('tele').value || 'Not Provided';
-          document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
-          document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
-          document.getElementById('summaryWorkPhone').innerText = document.getElementById('workPhone').value || 'Not Provided';
-      
-          // Hide all sectoral info rows by default
-          document.getElementById('soloParentIdRow').style.display = 'none';
-          document.getElementById('idImageRow').style.display = 'none';
-          document.getElementById('soloParentClassificationRow').style.display = 'none';
-          document.getElementById('monthlyIncomeRow').style.display = 'none';
-          document.getElementById('totalIncomeRow').style.display = 'none';
-          document.getElementById('problemsRow').style.display = 'none';
-          document.getElementById('needsRow').style.display = 'none';
-          document.getElementById('familyResourcesRow').style.display = 'none';
-          document.getElementById('educationRow').style.display = 'none';
-          document.getElementById('companyRow').style.display = 'none';
-      
-          const soloParentOption = document.querySelector('input[name="soloParentId"]:checked');
-      
-          if (soloParentOption && soloParentOption.value === 'yes') {
-              // Show only Solo Parent ID and ID Image fields for "Yes" option
-              document.getElementById('soloParentIdRow').style.display = 'table-row';
-              document.getElementById('summarySoloParentId').innerText = document.getElementById('soloParentIdNumber').value || 'Not Provided';
-              
-              const idImageUpload = document.getElementById('idImageUpload').value.split('\\').pop();  // Get file name
-              document.getElementById('idImageRow').style.display = 'table-row';
-              document.getElementById('summaryIdImage').innerText = idImageUpload || 'No file uploaded';
-              
-          } else if (soloParentOption && soloParentOption.value === 'no') {
-              // Show only additional fields for "No" option
-              document.getElementById('soloParentClassificationRow').style.display = 'table-row';
-              document.getElementById('summarySoloParentClassification').innerText = document.getElementById('soloParentClassification').value || 'Not Provided';
-              
-              document.getElementById('monthlyIncomeRow').style.display = 'table-row';
-              document.getElementById('summaryMonthlyIncome').innerText = document.getElementById('monthlyIncome').value || 'Not Provided';
-              
-              document.getElementById('totalIncomeRow').style.display = 'table-row';
-              document.getElementById('summaryTotalIncome').innerText = document.getElementById('totalIncome').value || 'Not Provided';
-      
-              const problems = [];
-              document.querySelectorAll('input[name="problems[]"]').forEach((el) => {
-                  if (el.value) {
-                      problems.push(el.value);
-                  }
-              });
-              document.getElementById('problemsRow').style.display = 'table-row';
-              document.getElementById('summaryProblems').innerText = problems.length > 0 ? problems.join(', ') : 'No Problems Added';
-      
-              const needs = [];
-              document.querySelectorAll('input[name="needs[]"]').forEach((el) => {
-                  if (el.value) {
-                      needs.push(el.value);
-                  }
-              });
-              document.getElementById('needsRow').style.display = 'table-row';
-              document.getElementById('summaryNeeds').innerText = needs.length > 0 ? needs.join(', ') : 'No Needs Added';
-      
-              document.getElementById('familyResourcesRow').style.display = 'table-row';
-              document.getElementById('summaryFamilyResources').innerText = document.getElementById('familyResources').value || 'Not Provided';
-      
-              document.getElementById('educationRow').style.display = 'table-row';
-              document.getElementById('summaryEducation').innerText = document.getElementById('education').value || 'Not Provided';
-      
-              document.getElementById('companyRow').style.display = 'table-row';
-              document.getElementById('summaryCompany').innerText = document.getElementById('company').value || 'Not Provided';
-          }
-      
-          // Family Composition (Optional Section)
-          const familyNames = [];
-          document.querySelectorAll('input[name="familyName[]"]').forEach((el) => {
-              if (el.value) {
-                  familyNames.push(el.value);
-              }
-          });
-          document.getElementById('summaryFamilyMembers').innerText = familyNames.length > 0 ? familyNames.join(', ') : 'No Family Members Added';
-      }
-      
-      
-      
-      // Navigation button logic
-      let currentSection = 0;
-      const sections = ["#basic-information-section", "#sectoral-section", "#other-information", "#familyComposition", "#section4"];
+    <script>
+        // Helper function to retrieve the value of an input or show "N/A" if empty
+        const getValue = (id) => {
+            const element = document.getElementById(id);
+            return element ? element.value : 'N/A';
+        };
 
-      $("#prev-btn").click(function() {
-          if (currentSection > 0) {
-              $(sections[currentSection]).hide();  // Hide current section
-              currentSection--;  // Decrement section index
-              $(sections[currentSection]).show();  // Show previous section
-              updateIcon(currentSection + 1, "empty");  // Change icon to empty for the section ahead
-              updateButtons();
-              updateProgress();  // Update the progress bar
-          }
-      });
-      
-      // Progress sidebar click event handler
-      $(".progress-item").click(function() {
-          let targetSection = $(this).data('target');
-      
-          // Hide all sections
-          $(".form-section").hide();
-      
-          // Show the clicked section
-          $("#" + targetSection).show();
-      
-          // Update current section index based on the clicked section
-          currentSection = sections.indexOf("#" + targetSection);
-      
-          // Scroll to top of the section
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-          updateButtons();
-          updateProgress();
-      });
-      
-      // Function to update the active progress bar item
-      function updateProgress() {
-          $(".progress-item").removeClass("active");  // Remove active class from all items
-          $(".progress-item").eq(currentSection).addClass("active");  // Add active class to current item
-      }
-      
-      // Function to update the Next/Previous buttons
-      function updateButtons() {
-          if (currentSection === 0) {
-              $("#prev-btn").hide();
-          } else {
-              $("#prev-btn").show();
-          }
-      
-          if (currentSection === sections.length - 1) {
-              $("#next-btn").text("Submit");
-          } else {
-              $("#next-btn").text("Next");
-          }
-      }
-      
-      // Function to update icons in the progress bar
-      function updateIcon(index, state) {
-          const icon = $(".progress-item").eq(index).find("i");
-          if (state === "fill") {
-              icon.removeClass("bi-check-square").addClass("bi-check-square-fill");  // Change to filled icon
-          } else if (state === "empty") {
-              icon.removeClass("bi-check-square-fill").addClass("bi-check-square");  // Change to empty icon
-          }
-      }
-      
-      // Show/Hide fields based on the radio button selection
-      // Show/Hide fields based on the radio button selection
-      $('input[name="soloParentId"]').on('change', function() {
-          if ($(this).val() === 'yes') {
-              $('#yesFields').show();  // Show ID number and upload fields
-              $('#noFields').hide();   // Hide additional textboxes
-              // Add 'required' back to the visible fields
-              $('#soloParentIdNumber').attr('required', true);
-              $('#idImageUpload').attr('required', true);
-              // Remove 'required' from hidden fields
-              $('#soloParentClassification').removeAttr('required');
-              $('#monthlyIncome').removeAttr('required');
-              $('#totalIncome').removeAttr('required');
-          } else if ($(this).val() === 'no') {
-              $('#noFields').show();   // Show additional textboxes
-              $('#yesFields').hide();  // Hide ID number and upload fields
-              // Add 'required' to the visible fields
-              $('#soloParentClassification').attr('required', true);
-              $('#monthlyIncome').attr('required', true);
-              $('#totalIncome').attr('required', true);
-              // Remove 'required' from hidden fields
-              $('#soloParentIdNumber').removeAttr('required');
-              $('#idImageUpload').removeAttr('required');
-          }
-      });
-      
-      // Validate only the visible form elements when clicking next
-      $("#next-btn").click(function() {
-          const currentForm = $(sections[currentSection]).find('form')[0];
-      
-          // Only validate the visible form elements
-          if (currentForm) {
-              let formIsValid = true; // Flag to check form validity
-              $(currentForm).find('input[required], select[required]').each(function() {
-                  // Remove required for hidden fields
-                  if (!$(this).is(':visible')) {
-                      $(this).removeAttr('required');
-                  }
-      
-                  // Check for invalid fields
-                  if (!this.checkValidity()) {
-                      formIsValid = false;
-                  }
-              });
-      
-              // If the form is not valid, prevent proceeding
-              if (!formIsValid || !currentForm.checkValidity()) {
-                  currentForm.reportValidity();  // Shows validation message
-                  return; // Stops proceeding to the next section
-              }
-          }
-      
-          // If form is valid, proceed to the next section
-          if (currentSection < sections.length - 1) {
-              $(sections[currentSection]).hide();
-              updateIcon(currentSection, "fill");
-              currentSection++;
-              if (currentSection === 3) {
-                  populateSummary();
-              }
-              $(sections[currentSection]).show();
-              updateButtons();
-              updateProgress();
-            }});
-      
-      // Add/Remove dynamic text boxes for Problems and Needs
-      $(document).ready(function() {
-          // Add more functionality
-          $(".add-more").click(function() {
-              var html = $(".copy-fields").html();  // Clone the hidden input fields
-              $(this).closest(".after-add-more").after(html);  // Append the cloned fields after the current set
-          });
-      
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove", function() {
-              $(this).closest(".control-group").remove();  // Remove the input group that contains the clicked remove button
-          });
-      });
-      
-      // Show or hide the grade level field based on "Currently Studying" selection
-      $("body").on("change", ".currently-studying", function() {
-          var gradeLevelInput = $(this).closest(".row").find(".grade-level");
-          if ($(this).val() === "yes") {
-              gradeLevelInput.show();  // Show grade level field if currently studying
-          } else {
-              gradeLevelInput.hide();  // Hide grade level field if not studying
-          }
-      });
-      
-      // Show or hide the occupation and monthly income fields based on "Currently Employed" selection
-      $("body").on("change", ".currently-employed", function() {
-          var occupationInput = $(this).closest(".row").find(".occupation");
-          var monthlyIncomeInput = $(this).closest(".row").find(".monthly-income");
-          if ($(this).val() === "yes") {
-              occupationInput.show();  // Show occupation field if employed
-              monthlyIncomeInput.show();  // Show monthly income field if employed
-          } else {
-              occupationInput.hide();  // Hide occupation field if not employed
-              monthlyIncomeInput.hide();  // Hide monthly income field if not employed
-          }
-      });
-      
-      
-          $(document).ready(function() {
-              // Add more functionality for family composition
-              $(document).on("click", ".add-more-family", function() {
-          var html = $(".duplicate-family").html();
-          $(this).closest(".panel-body").append(html);
-          $(this).closest(".panel-body").find('input, select').last().attr('required', true); // Ensure new fields are required
-          });
-      
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove-family", function() {
-              var row = $(this).closest(".row");
-              if (row.length) {
-                  // Remove required from dynamically removed fields
-                  row.find('input, select').removeAttr('required');
-                  row.remove();
-              } else {
-                  console.log("Error: No row found to remove.");
-              }
-          });
-      
-          // Form submission validation
-          $("form").on("submit", function(event) {
-              var isValid = true;
-              $(this).find('input[required], select[required]').each(function() {
-                  if ($(this).val() === "") {
-                      isValid = false;
-                      $(this).addClass('error');  // Add error class for styling
-                  } else {
-                      $(this).removeClass('error');
-                  }
-              });
-      
-              if (!isValid) {
-                  event.preventDefault();  // Prevent form submission
-                  alert("Please fill out all required fields.");
-              }
-          });
-      });
-      
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove-family", function() {
-          if ($(this).closest(".row").length) {
-              // Remove required from dynamically removed fields
-              $(this).closest(".row").find('input, select').removeAttr('required');
-              $(this).closest(".row").remove();
-          } else {
-              console.log("Error: No row found to remove.");
-          }
-      });
-      
-</script>
+        // Populate the summary section with the values from the form
+        function populateSummary() {
+            // Basic Information
+                document.getElementById('summaryFirstName').innerText = getValue('firstName');
+                document.getElementById('summaryMiddleName').innerText = getValue('middleName');
+                document.getElementById('summaryLastName').innerText = getValue('lastName');
+                localStorage.setItem('summaryFirstName', document.getElementById('summaryFirstName').innerText);
+                localStorage.setItem('summaryMiddleName', document.getElementById('summaryMiddleName').innerText);
+                localStorage.setItem('summaryLastName', document.getElementById('summaryLastName').innerText);    
+
+            document.getElementById('summaryCivilStatus').innerText = getValue('civilstatus');
+            document.getElementById('summaryGender').innerText = getValue('gender');
+
+            document.getElementById('summaryDob').innerText = getValue('dob');
+            localStorage.setItem('summaryDob', document.getElementById('summaryDob').innerText);
+
+            document.getElementById('summaryBirthPlace').innerText = getValue('birthPlace');
+            localStorage.setItem('summaryBirthPlace', document.getElementById('summaryBirthPlace').innerText);
+
+            document.getElementById('summaryReligion').innerText = getValue('religion');
+            localStorage.setItem('summaryReligion', document.getElementById('summaryReligion').innerText);
+
+            document.getElementById('summaryBloodType').innerText = getValue('bloodType');
+            localStorage.setItem('summaryBloodType', document.getElementById('summaryBloodType').innerText);
+
+            document.getElementById('summaryPrecinct').innerText = getValue('precinct'); // Display precinct in the summary
+            localStorage.setItem('summaryPrecinct', document.getElementById('summaryPrecinct').innerText); // Store precinct in localStorage
+
+
+    
+            // Contact Information
+            document.getElementById('summaryTele').innerText = getValue('telephone');
+            localStorage.setItem('summaryTele', document.getElementById('summaryTele').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryPhone').innerText = getValue('phone');
+            localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryEmail').innerText = getValue('email');
+            localStorage.setItem('summaryEmail', document.getElementById('summaryEmail').innerText); // Store precinct in localStorage
+
+    
+            // Solo Parent Information
+            const soloParentOption = document.querySelector('input[name="soloParentId"]:checked');
+            if (soloParentOption && soloParentOption.value === 'yes') {
+                document.getElementById('soloParentIdRow').style.display = 'table-row';
+                document.getElementById('summarySoloParentId').innerText = getValue('soloParentIdNumber');
+                const idImage = document.getElementById('idImageUpload').files[0]?.name || 'N/A';
+                document.getElementById('idImageRow').style.display = 'table-row';
+                document.getElementById('summaryIdImage').innerText = idImage;
+            } else {
+                document.getElementById('soloParentClassificationRow').style.display = 'table-row';
+                document.getElementById('summarySoloParentClassification').innerText = getValue('soloParentClassification');
+                document.getElementById('monthlyIncomeRow').style.display = 'table-row';
+                document.getElementById('summaryMonthlyIncome').innerText = getValue('monthlyIncome');
+                localStorage.setItem('summaryMonthlyIncome', document.getElementById('summaryMonthlyIncome').innerText);
+            }
+    
+            // Employment Information
+            document.getElementById('summaryCompany').innerText = getValue('company');
+            localStorage.setItem('summaryCompany', document.getElementById('summaryCompany').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryOfficeAddress').innerText = getValue('officeAddress');
+            localStorage.setItem('summaryOfficeAddress', document.getElementById('summaryOfficeAddress').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryOccupation').innerText = getValue('occupation');
+            localStorage.setItem('summaryOccupation', document.getElementById('summaryOccupation').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryTinNumber').innerText = getValue('tinNumber');
+            localStorage.setItem('summaryTinNumber', document.getElementById('summaryTinNumber').innerText); // Store precinct in localStorage
+
+            document.getElementById('summarySssNumber').innerText = getValue('sssNumber');
+            localStorage.setItem('summarySssNumber', document.getElementById('summarySssNumber').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryGsisNumber').innerText = getValue('gsisNumber');
+            localStorage.setItem('summaryGsisNumber', document.getElementById('summaryGsisNumber').innerText); // Store precinct in localStorage
+
+    
+            // Address and Residency
+            document.getElementById('summaryLotNumber').innerText = getValue('lotNumber');
+            localStorage.setItem('summaryLotNumber', document.getElementById('summaryLotNumber').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryBlkNumber').innerText = getValue('blkNumber');
+            localStorage.setItem('summaryBlkNumber', document.getElementById('summaryBlkNumber').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryStreet').innerText = getValue('street');
+            localStorage.setItem('summaryStreet', document.getElementById('summaryStreet').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryBarangay').innerText = getValue('barangay');
+            localStorage.setItem('summaryBarangay', document.getElementById('summaryBarangay').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryYearsOfStay').innerText = getValue('yearsOfStay');
+            localStorage.setItem('summaryYearsOfStay', document.getElementById('summaryYearsOfStay').innerText); // Store precinct in localStorage
+
+            document.getElementById('summaryMonthsOfStay').innerText = getValue('monthsOfStay');
+            localStorage.setItem('summaryMonthsOfStay', document.getElementById('summaryMonthsOfStay').innerText); // Store precinct in localStorage
+
+    
+            // 4Ps and PhilHealth Membership
+            const fourPsMember = document.querySelector('input[name="fourPsMember"]:checked')?.value || 'N/A';
+            document.getElementById('summaryFourPsMember').innerText = fourPsMember;
+            if (fourPsMember === 'yes') {
+                document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
+                            localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
+            }
+    
+            const philHealthMember = document.querySelector('input[name="philHealthMember"]:checked')?.value || 'N/A';
+            document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
+            if (philHealthMember === 'yes') {
+                document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
+            }
+    
+            // Emergency Contact Full Name (combined in one step)
+                // Store each part of the emergency contact name individually
+        document.getElementById('summaryemergencyFirstName').innerText = getValue('emergencyFirstName');
+        localStorage.setItem('summaryemergencyFirstName', document.getElementById('summaryemergencyFirstName').innerText);
+
+        document.getElementById('summaryemergencyMiddleName').innerText = getValue('emergencyMiddleName');
+        localStorage.setItem('summaryemergencyMiddleName', document.getElementById('summaryemergencyMiddleName').innerText);
+
+        document.getElementById('summaryemergencyLastName').innerText = getValue('emergencyLastName');
+        localStorage.setItem('summaryemergencyLastName', document.getElementById('summaryemergencyLastName').innerText);
+
+        // Display the full name in summaryEmergencyName
+        const fullName = `${document.getElementById('summaryemergencyFirstName').innerText} ${document.getElementById('summaryemergencyMiddleName').innerText} ${document.getElementById('summaryemergencyLastName').innerText}`.trim();
+        document.getElementById('summaryEmergencyName').innerText = fullName;
+        localStorage.setItem('summaryEmergencyName', fullName);
+
+        // Emergency Contact Number, Relationship, and Address
+        document.getElementById('summaryEmergencyContact').innerText = getValue('emergencyContactNumber');
+        localStorage.setItem('summaryEmergencyContact', document.getElementById('summaryEmergencyContact').innerText);
+
+        document.getElementById('summaryEmergencyRelationship').innerText = getValue('emergencyRelationship');
+        localStorage.setItem('summaryEmergencyRelationship', document.getElementById('summaryEmergencyRelationship').innerText);
+
+        document.getElementById('summaryEmergencyAddress').innerText = getValue('emergencyAddress');
+        localStorage.setItem('summaryEmergencyAddress', document.getElementById('summaryEmergencyAddress').innerText);
+        };
+
+        function civilChange() {
+            const selectedStatus = document.getElementById('civilstatus').value;
+            localStorage.setItem('selectedStatus', selectedStatus);  // Store civil status in localStorage
+        }
+
+        function genderChange() {
+            const selectedGender = document.getElementById('gender').value;
+            localStorage.setItem('selectedGender', selectedGender);  // Store the gender in localStorage
+        }
+
+        function fourPsStatusChange() {
+            const selectedFourPs = document.querySelector('input[name="fourPsMember"]:checked').value;
+            localStorage.setItem('selectedFourPs', selectedFourPs);  // Store 4Ps membership status
+        }
+
+        function philHealthStatusChange() {
+            const selectedPhilHealth = document.querySelector('input[name="philHealthMember"]:checked').value;
+            localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
+        }
+
+
+        function addFamilyRow() {
+        // Get values from input fields
+        const relationship = document.getElementById("familyRelationship").value;
+        const fullName = document.getElementById("familyFullName").value;
+        const birthDate = document.getElementById("familyBirthDate").value;
+        const civilStatus = document.getElementById("familyCivilStatus").value;
+        const educAttainment = document.getElementById("familyEducAttainment").value;
+        const occupation = document.getElementById("familyOccupation").value;
+
+        // Check if all fields are filled
+        if (!relationship || !fullName || !birthDate || !civilStatus || !educAttainment || !occupation) {
+            alert("Please fill in all fields before adding.");
+            return;
+        }
+
+        // Create a new row in the familyTable
+        const table = document.getElementById("familyTable").getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+
+        // Insert cells in the new row
+        newRow.insertCell(0).textContent = relationship;
+        newRow.insertCell(1).textContent = fullName;
+        newRow.insertCell(2).textContent = birthDate;
+        newRow.insertCell(3).textContent = civilStatus;
+        newRow.insertCell(4).textContent = educAttainment;
+        newRow.insertCell(5).textContent = occupation;
+
+        // Add a remove button to the row
+        const removeCell = newRow.insertCell(6);
+        const removeButton = document.createElement("button");
+        removeButton.className = "btn btn-danger";
+        removeButton.textContent = "Remove";
+        removeButton.onclick = function() {
+            table.deleteRow(newRow.rowIndex - 1); // Adjust index due to header row
+        };
+        removeCell.appendChild(removeButton);
+
+        // Clear input fields after adding
+        document.getElementById("familyRelationship").value = "";
+        document.getElementById("familyFullName").value = "";
+        document.getElementById("familyBirthDate").value = "";
+        document.getElementById("familyCivilStatus").value = "";
+        document.getElementById("familyEducAttainment").value = "";
+        document.getElementById("familyOccupation").value = "";
+    }
+
+            // Toggle the visibility of the progress sidebar
+            $("#progress-button").click(function() {
+                $("#progress-menu").toggleClass('hidden-xs');
+            });
+        
+            // Show or hide fields based on "Solo Parent ID" radio selection
+            $('input[name="soloParentId"]').on('change', function() {
+                if ($(this).val() === 'yes') {
+                    $('#yesFields').show();
+                    $('#noFields').hide();
+                    $('#soloParentIdNumber').attr('required', true);
+                    $('#idImageUpload').attr('required', true);
+                    $('#soloParentClassification').removeAttr('required');
+                    $('#monthlyIncome').removeAttr('required');
+                } else {
+                    $('#noFields').show();
+                    $('#yesFields').hide();
+                    $('#soloParentClassification').attr('required', true);
+                    $('#monthlyIncome').attr('required', true);
+                    $('#soloParentIdNumber').removeAttr('required');
+                    $('#idImageUpload').removeAttr('required');
+                }
+            });
+        
+            $(document).ready(function () {
+        // Section references
+        const sections = [
+        "#basic-information-section",
+        "#sectoral-section",
+        "#other-information",
+        "#familyComposition",
+        "#section4"
+    ];
+    let currentSection = 0; // Track the current section index
+
+    // Initialize buttons and sections
+    $(sections[currentSection]).show(); // Show the first section
+    updateButtons();
+    updateProgress();
+
+    // Handle the Next button click
+    $("#next-btn").on('click', function () {
+    const isLastSection = currentSection === sections.length - 1;
+
+    // Check if the current section is `#familyComposition`
+    if (sections[currentSection] === "#familyComposition") {
+        populateSummary(); // Populate the summary if on the family composition section
+    }
+
+    if (isLastSection) {
+        populateSummary(); // Ensure it populates if this is the final submit
+        window.location.href = "first page.html";
+    } else {
+        // Move to the next section
+        $(sections[currentSection]).hide();
+        currentSection++;
+        $(sections[currentSection]).show();
+        updateButtons();
+        updateProgress();
+    }
+});
+
+
+    // Handle the Previous button click
+    $("#prev-btn").on('click', function () {
+        if (currentSection > 0) {
+            $(sections[currentSection]).hide();
+            currentSection--;
+            $(sections[currentSection]).show();
+            updateButtons();
+            updateProgress();
+        }
+    });
+
+    // Function to update the button states
+    function updateButtons() {
+        // Toggle visibility of Previous button
+        $("#prev-btn").toggle(currentSection > 0);
+
+        // Change the Next button text to "Submit" on the last section
+        const isLastSection = currentSection === sections.length - 1;
+        $("#next-btn").text(isLastSection ? "Submit" : "Next");
+    }
+
+    // Function to update the progress bar
+    function updateProgress() {
+        $(".progress-item").removeClass("active");
+        $(".progress-item").eq(currentSection).addClass("active");
+    }
+
+    // Add click functionality to progress items
+    $(".progress-item").click(function () {
+        const targetSection = $(this).data("target");
+        const newIndex = sections.findIndex(section => section === `#${targetSection}`);
+
+        if (newIndex !== -1) {
+            // Hide the current section and show the target section
+            $(sections[currentSection]).hide();
+            currentSection = newIndex;
+            $(sections[currentSection]).show();
+            updateButtons();
+            updateProgress();
+        }
+    });
+
+    $("body").on("click", ".remove-family", function () {
+        $(this).closest(".row").remove();
+    });
+
+    // Toggle other problem input based on selection
+    $("#probneeds").change(function () {
+        const otherInput = $("#otherProblem");
+        otherInput.toggle($(this).val() === 'others');
+        otherInput.attr('required', $(this).val() === 'others');
+    });
+
+    // Toggle employment fields based on family resources selection
+    $("#familyResources").change(function () {
+        toggleEmploymentFields(this.value === 'employed');
+    });
+
+    function toggleEmploymentFields(enabled) {
+        const fields = ['company', 'officeAddress', 'occupation', 'monthlyIncome', 'tinNumber', 'sssNumber', 'gsisNumber'];
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            field.disabled = !enabled;
+            if (!enabled) field.value = '';
+        });
+    }
+
+    // Handle Solo Parent ID logic
+    $('input[name="soloParentId"]').on('change', function () {
+        if ($(this).val() === 'yes') {
+            $('#yesFields').show();
+            $('#noFields').hide();
+            $('#soloParentIdNumber').attr('required', true);
+            $('#idImageUpload').attr('required', true);
+            $('#soloParentClassification').removeAttr('required');
+            $('#monthlyIncome').removeAttr('required');
+        } else {
+            $('#noFields').show();
+            $('#yesFields').hide();
+            $('#soloParentClassification').attr('required', true);
+            $('#monthlyIncome').attr('required', true);
+            $('#soloParentIdNumber').removeAttr('required');
+            $('#idImageUpload').removeAttr('required');
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  // References for "4 P's Member" section
+  const fourPsYes = document.getElementById("fourPsYes");
+  const fourPsNo = document.getElementById("fourPsNo");
+  const fourPsId = document.getElementById("fourPsId");
+
+  // References for "PhilHealth Member" section
+  const philHealthYes = document.getElementById("philHealthYes");
+  const philHealthNo = document.getElementById("philHealthNo");
+  const philHealthId = document.getElementById("philHealthId");
+
+  // Disable ID# fields initially if "No" is selected by default
+  if (fourPsNo.checked) {
+    fourPsId.disabled = true;
+  }
+  if (philHealthNo.checked) {
+    philHealthId.disabled = true;
+  }
+
+  // Event listeners for "4 P's Member" radio buttons
+  fourPsYes.addEventListener("change", function () {
+    fourPsId.disabled = !fourPsYes.checked; // Enable if "Yes" is selected
+  });
+  fourPsNo.addEventListener("change", function () {
+    if (fourPsNo.checked) {
+      fourPsId.disabled = true;
+      fourPsId.value = ""; // Optionally, clear the field
+    }
+  });
+
+  // Event listeners for "PhilHealth Member" radio buttons
+  philHealthYes.addEventListener("change", function () {
+    philHealthId.disabled = !philHealthYes.checked; // Enable if "Yes" is selected
+  });
+  philHealthNo.addEventListener("change", function () {
+    if (philHealthNo.checked) {
+      philHealthId.disabled = true;
+      philHealthId.value = ""; // Optionally, clear the field
+    }
+  });
+});
+
+
+    </script>
 
 </body>
 </html>

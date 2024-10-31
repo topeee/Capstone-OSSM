@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="MSWDO-LAPPY">
+    <title>Registration Form for Persons with Disability</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Cambria, serif;
+            color: black;
+            line-height: 1.5;
+            padding: 20px;
+        }
+        p {
+            font-size: 11pt;
+            font-weight: bold;
+        }
+        .section-header {
+            text-align: center;
+            font-size: 14pt;
+            padding: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+        }
+        td {
+            border: 2px solid black;
+            padding: 8px;
+            vertical-align: top;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .required {
+            color: red;
+        }
+        .input-field {
+            display: inline-block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #000;
+            margin-top: 5px;
+        }
+        .field-group {
+            margin-bottom: 15px;
+        }
+        .field-title {
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+        .checkbox-group label {
+            display: block;
+            margin-top: 5px;
+            font-size: 10pt;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            border-collapse: collapse; /* Ensures borders are collapsed into a single border */
+            width: 100%;
+        }
+
+        th, td {
+            border: 2px solid black; /* Ensures each cell has a border */
+            padding: 5px; /* Ensures consistent padding */
+            text-align: left; /* Aligns text to the left */
+        }
+
+    </style>
+</head>
+<body>
+    <p class="section-header">REGISTRATION FORM FOR PERSONS WITH DISABILITY</p>
+    <div class="container">   
+        <table>
+            <!-- Applicant Information -->
+            <tr>
+                <td colspan= "6" style="text-align: center;">
+                    <input type="radio" id="newApplicant" name="applicationType" value="new">
+                    <label for="newApplicant" class="label">1. NEW APPLICANT</label>
+
+                </td>
+                <td colspan= "6" style="text-align: center;">
+                    <input type="radio" id="renewal" name="applicationType" value="renewal">
+                    <label for="renewal" class="label">RENEWAL</label>
+
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="6">
+                    <span class="label" style="font-size: 14px;">2. PERSON WITH DISABILITY NUMBER (RR-PPMM-BBB-NNNNNNN)</span>
+                    <br>
+                    <br>
+                </td>
+                <td colspan="4">
+                    <span class="label">3. DATE APPLIED</span>
+
+                </td>
+            </tr>
+
+            <!-- Personal Information -->
+            <tr>
+                <td colspan="10">
+                    <span class="label">4. PERSONAL INFORMATION</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span class="label">Last Name</span>
+                    <p style="color: white;">p</p>
+                </td>
+                <td colspan="2">
+                    <span class="label">First Name</span>
+
+                </td>
+                <td colspan="3">
+                    <span class="label">Middle Name</span>
+
+                </td>
+                <td colspan="2">
+                    <span class="label">Suffix</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <span class="label">5. DATE OF BIRTH (mm/dd/yyyy)</span>
+                </td>
+                <td colspan="2">
+                    <span class="label">6. SEX</span><br>
+                        <label><input type="radio" name="sex" value="female"> Female</label>
+                </td>
+                <td colspan="2"><br>
+
+                    <label><input type="radio" name="sex" value="male"> Male</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <span class="label">7. CIVIL STATUS</span>
+                     <br>
+                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="single"><strong> Single</strong></label>
+                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="separated"><strong> Separated</strong></label>
+                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="live_in"><strong> Cohabitation (Live-In)</strong></label>
+                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="married"><strong> Married</strong></label>
+                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="widow"><strong> Widow/er</strong></label>
+                </td>
+            </tr>
+
+            <!-- Disability Information -->
+            <tr>
+                <td colspan="5">
+                    <span class="label">8. TYPE OF DISABILITY</span>
+                    
+                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 0;">
+                        <div style="flex: 1; min-width: 50%; padding: 0;">
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="deaf"> Deaf or Hard of Hearing Disability</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="psychosocial"> Psychosocial Disability</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="intellectual"> Intellectual Disability</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="speech"> Speech and Language Impairment</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="learning"> Learning Disability</label>
+                        </div>
+                        <div style="flex: 1; min-width: 50%; padding: 0;">
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="visual"> Visual Disability</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="mental"> Mental Disability</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="cancer"> Cancer (RA 11215)</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="physical"> Physical Disability (Orthopedic)</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="rare_disease"> Rare Disease (RA 10747)</label>
+                        </div>
+                    </div>
+                </td>
+                
+                <td colspan="5">
+                    <span class="label">9. CAUSE OF DISABILITY</span>
+                    
+                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 0;">
+                        <div style="flex: 1; min-width: 50%; padding: 0;">
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="congenital"> Congenital/Inborn</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="autism"> Autism</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="adhd"> ADHD</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="cerebral_palsy"> Cerebral Palsy</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="down_syndrome"> Down Syndrome</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="others_specify"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 80%;"></label>
+                        </div>
+                        <div style="flex: 1; min-width: 50%; padding: 0;">
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="acquired"> Acquired</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="chronic_illness"> Chronic Illness</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="cerebral_palsy_2"> Cerebral Palsy</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="injury"> Injury</label>
+                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="others_specify_2"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 80%;"></label>
+                        </div>
+                    </div>
+                </td>
+                
+            </tr>
+
+            <!-- Residence Information -->
+            <tr>
+                <td colspan="10">
+                    <span class="label">10. RESIDENCE ADDRESS</span>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="label">House No. And Street</span>
+                    
+                </td>
+                <td colspan="3">
+                    <span class="label">Barangay</span>
+                    
+                </td>
+                <td colspan="2">
+                    <span class="label">Municipality</span>
+                    <br> <span style="color: red;">SAN MATEO</span>
+                </td>
+                <td>
+                    <span class="label">Province</span>
+                    <br> <span style="color: red;">RIZAL
+                </td>
+                <td colspan="2">
+                    <span class="label">Region</span>
+                    <br>  <span style="color: red;">4-A</span>
+                </td>
+            </tr>
+
+            <!-- Contact Details -->
+            <tr>
+                <td colspan="10">
+                    <span class="label">11. CONTACT DETAILS</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="label">Landline No.</span>
+                </td>
+                <td colspan="4">
+                    <span class="label">Mobile No.</span>
+                    
+                </td>
+                <td colspan="4">
+                    <span class="label">E-Mail Address</span>
+                </td>
+            </tr>
+
+            <!-- Educational Attainment -->
+            <table border="1" cellspacing="0" cellpadding="5" style="width: 100%;">
+                <tr>
+                    <td colspan="2">
+                        <span class="label">12. EDUCATIONAL ATTAINMENT:</span> <br>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0;">
+                            <div style="flex: 1; min-width: 50%; padding: 0;">
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="none"> None</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="kindergarten"> Kindergarten</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="elementary"> Elementary</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="junior_high_school"> Junior High School</label>
+                            </div>
+                            <div style="flex: 1; min-width: 50%; padding: 0;">
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="senior_high_school"> Senior High School</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="college"> College</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="vocational"> Vocational</label>
+                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="post_graduate"> Post Graduate</label>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td rowspan="3" style="vertical-align: top;">
+                        <span class="label">14. OCCUPATION:</span> <br>
+                        <label><input type="radio" name="occupation" value="managers"> Managers</label><br>
+                        <label><input type="radio" name="occupation" value="professionals"> Professionals</label><br>
+                        <label><input type="radio" name="occupation" value="technicians"> Technicians And Associate Professionals</label><br>
+                        <label><input type="radio" name="occupation" value="clerical_support"> Clerical Support Workers</label><br>
+                        <label><input type="radio" name="occupation" value="service_sales"> Service And Sales Workers</label><br>
+                        <label><input type="radio" name="occupation" value="skilled_agricultural"> Skilled Agricultural, Forestry And Fishery Workers</label><br>
+                        <label><input type="radio" name="occupation" value="craft_trade"> Craft And Related Trade Workers</label><br>
+                        <label><input type="radio" name="occupation" value="plant_machine_operators"> Plant And Machine Operators And Assemblers</label><br>
+                        <label><input type="radio" name="occupation" value="elementary_occupations"> Elementary Occupations</label><br>
+                        <label><input type="radio" name="occupation" value="armed_forces"> Armed Forces Occupations</label><br>
+                        <label><input type="radio" name="occupation" value="others"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 50%;"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="label">13. STATUS OF EMPLOYMENT:</span> <br>
+                        <label><input type="radio" name="employment_status" value="employed"> Employed</label><br>
+                        <label><input type="radio" name="employment_status" value="unemployed"> Unemployed</label><br>
+                        <label><input type="radio" name="employment_status" value="self_employed"> Self-Employed</label>
+                    </td>
+                    <td>
+                        <span class="label">13b. TYPES OF EMPLOYMENT:</span> <br>
+                        <label><input type="radio" name="employment_type" value="permanent"> Permanent/Regular</label><br>
+                        <label><input type="radio" name="employment_type" value="seasonal"> Seasonal</label><br>
+                        <label><input type="radio" name="employment_type" value="casual"> Casual</label><br>
+                        <label><input type="radio" name="employment_type" value="emergency"> Emergency</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="label">13a. CATEGORY OF EMPLOYMENT:</span> <br>
+                        <label><input type="radio" name="employment_category" value="government"> Government</label><br>
+                        <label><input type="radio" name="employment_category" value="private"> Private</label>
+                    </td>
+                </tr>
+            </table>
+        </table>
+        <table>
+            <!-- Organization Information -->
+            <tr>
+                <td colspan="10">
+                    <span class="label">15. ORGANIZATION INFORMATION</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 26%;"><span class="label">Organization Affiliated:
+                    <br> <p style="color: white;">s</p>
+                </span></td>
+                <td style="width: 25%;"><span class="label">Contact Person:</span></td>
+                <td style="width: 25%;" colspan="4"><span class="label">Office Address:</span></td>
+                <td style="width: 25%;"><span class="label">Tel. Nos.:</span></td>
+            </tr>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td colspan="10">
+                    <span class="label">16. ID REFERENCE NO.: </span>
+                </td>
+            </tr>
+
+            
+                <tr>
+                    <td style="width: 20%;"><span class="label">SSS NO.:<br> <p style="color: white;">s</p></span></td>
+                    <td style="width: 20%;"><span class="label">GSIS NO.:</span></td>
+                    <td style="width: 20%;"><span class="label">PAG-IBIG NO.:</span></td>
+                    <td style="width: 20%;"><span class="label">PSN NO.:</span></td>
+                    <td style="width: 20%;"><span class="label">PHILHEALTH NO.:</span></td>
+                </tr>
+            </table>
+        </table>
+        <table>
+
+            <table border="2" cellpadding="5" cellspacing="0" width="100%">
+                <!-- Family Background -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">17. FAMILY BACKGROUND: </th>
+                    <th>LAST NAME</th>
+                    <th>FIRST NAME</th>
+                    <th>MIDDLE NAME</th>
+                </tr>
+                <tr>
+                    <td>FATHER'S NAME: </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MOTHER'S NAME: </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>For in case of emergency:<br>GUARDIAN: </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Contact No.: </td>
+                    <td colspan="3"></td>
+                </tr>
+                
+                <!-- Accomplished By -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">18. ACCOMPLISHED BY: </th>
+                    <th>LAST NAME</th>
+                    <th>FIRST NAME</th>
+                    <th>MIDDLE NAME</th>
+                </tr>
+                <!-- Applicant Row -->
+                <tr>
+                    <td><input type="checkbox"> APPLICANT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- Guardian Row -->
+                <tr>
+                    <td><input type="checkbox"> GUARDIAN</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- Representative Row -->
+                <tr>
+                    <td><input type="checkbox"> REPRESENTATIVE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Certifying Physician -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">19. NAME OF CERTIFYING PHYSICIAN: <br>License No.:</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Processing Officer -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">20. PROCESSING OFFICER: </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Approving Officer -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">21. APPROVING OFFICER: </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Encoder -->
+                <tr>
+                    <th style="text-align: left; padding-left: 10px;">22. ENCODER: </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            
+        <table>
+
+            <!-- Reporting Unit -->
+            <tr>
+                <td colspan="10">
+                    <span class="label">23. NAME OF REPORTING UNIT</span>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <span class="label">24. CONTROL NO.</span>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

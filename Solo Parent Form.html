@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Parent Application Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jsPDF and html2canvas Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <style>
+    body {
+    background-color: #9ae2ff; /* Bootstrap primary blue */
+    }
+    /* Styles from the 1st page */
+    .form-container {
+      border: 3px solid black;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      background-color: white; /* Keep form content background white */
+    }
+    .header-text {
+      text-align: center;
+      font-weight: bold;
+    }
+    .photo-box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      text-align: center;
+      vertical-align: middle;
+      float: right;
+    }
+    .photo-box p {
+      margin-top: 55px;
+      font-size: 20px;
+    }
+    .field-label {
+      font-weight: bold;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .field-line {
+      display: inline-block;
+      border-bottom: 1px solid black;
+      width: 60%;
+      height: 20px;
+    }
+    .section-title {
+      font-weight: bold;
+      padding-top: 10px;
+    }
+    .address-contacts-table {
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+    .address-contacts-table td {
+      border: 1px solid black;
+    }
+
+    /* Styles from the 2nd page */
+    .form-box {
+      border: 2px solid black;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+    }
+    .row-border {
+      border: 1px solid black;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .signature-box, .thumb-box {
+      border: 1px solid black;
+      height: 100px;
+    }
+    .thumb-box {
+      width: 100px;
+    }
+    .remarks-box {
+      border: 1px solid black;
+      height: 50px;
+    }
+    .table-bordered td, .table-bordered th {
+      border: 1px solid black;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .table td {
+      height: 50px;
+    }
+    h5 {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+    .black-bar {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .thin-rows td {
+    height: 30px; /* Adjust as needed */
+    padding: 5px; /* Optional: reduce padding to make it even thinner */
+    }
+    .button-card {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      width: 250px;
+      transform: translateY(-50%);
+      padding: 20px;
+      border: 2px solid black;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-card button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Content from the 1st page -->
+  <div class="container form-container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="D:\User Files\OneDrive\Desktop\testing\Picture1.png" alt="Republic of the Philippines" style="height: 130px; width: auto;">
+        <h4>APPLICATION FORM FOR SOLO PARENT</h4>
+      </div>
+    </div>
+
+      
+  <div class="container form-container">
+    <div class="row">
+      <div class="col-9">
+        <div class="mb-3">
+          <span class="field-label">DATE OF ATTENDED ORIENTATION/ VENUE:</span>
+          <span class="field-line"></span> <br>
+          <span class="field-label">DATE FILED:</span> <br>
+          <span class="field-line"></span> <br>
+          <span class="field-label">CONTROL NO:</span> <br>
+          <span class="field-line"></span> <br>
+          <span class="field-label">SOLO PARENT CATEGORY:</span> <br>
+          <span class="field-line"></span>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="photo-box">
+          <br>
+          <p>PHOTO 2x2</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12 section-title">
+        PRIMARY INFORMATION:
+      </div>
+      <div class="col-12">
+        <table class="table table-bordered">
+          <tbody>
+            <div class="form-section" style="border: 1px solid black; padding-right: 15px; padding-left: 15px; margin-top: 20px;">
+              <div class="row">
+                <!-- First row for Precinct, First, Middle, Last Name -->
+                <div class="col-2 precinct-field" style="border: 1px solid black; border-top: none; border-left: none; width: 200px; height: 50px;">
+                  <strong>Precinct #:</strong>
+                </div>
+                <div class="col-3" style="border: 1px solid black; border-top: none; border-right: none; border-left: none; width: 200px; height: 50px;">
+                  <strong>First Name:</strong>
+                </div>
+                <div class="col-3" style="border: 1px solid black; border-top: none; border-right: none; width: 200px; height: 50px;">
+                  <strong>Middle Name:</strong>
+                </div>
+                <div class="col-4" style="border: 1px solid black; border-top: none; border-right: none; width: 200px; height: 50px;">
+                  <strong>Last Name:</strong>
+                </div>
+              </div>
+  
+              <div class="row mt-3">
+                <!-- Second row for Religion, Gender, Birthdate -->
+                <div class="col-4"><strong>Religion:</strong> <p>________________________________</p></div>
+                <div class="col-4 text-center"><strong>Gender:</strong> <br>
+                  <input type="radio" name="gender" id="male"> Male
+                  <input type="radio" name="gender" id="female"> Female
+                </div>
+                <div class="col-4"><strong>Birth Date:</strong> <span style="font-size: 0.7em; font-style: italic;">(MONTH/DD/YYYY)</span> <p>________________________________</p></div>
+              </div>
+  
+              <div class="row">
+                <!-- Third row for Blood Type, Civil Status, Birthplace -->
+                <div class="col-4"><strong>Blood Type:</strong> <br> <p>________________________________</p></div>
+                <div class="col-4 text-center"><strong>Civil Status:</strong> <br>
+                  <input type="radio" name="status" id="single"> Single
+                  <input type="radio" name="status" id="widowed"> Widowed <br>
+                  <input type="radio" name="status" id="married"> Married
+                </div>
+                <div class="col-4"><strong>Birth Place:</strong> <br> <p>________________________________</p></div>
+              </div>
+            </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 section-title">
+        <strong>ADDRESS & CONTACTS:</strong>
+      </div>
+      <div class="col-12">
+        <table class="table address-contacts-table">
+          <tbody>
+            <tr>
+                <td colspan="4"><strong>LENGTH OF STAY IN SAN MATEO RIZAL:</strong>
+                    <br> <div style="text-align: center;">(No. of Year/s) ______________ (No. of Month/s) ______________ </div></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <strong>Current Address:</strong>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 20%;">
+                            <p style="border-bottom: 1px solid black; padding-bottom: 45px; margin: 0; text-align: center;"></p>
+                            <strong style="margin-top: 5px;">LOT#</strong>
+                        </div>
+                        <div style="width: 20%;">
+                            <p style="border-bottom: 1px solid black; padding-bottom: 45px; margin: 0; text-align: center;"></p>
+                            <strong style="margin-top: 5px;">BLK#</strong>
+                        </div>
+                        <div style="width: 40%;">
+                            <p style="border-bottom: 1px solid black; padding-bottom: 45px; margin: 0; text-align: center;"></p>
+                            <strong style="margin-top: 5px;">STREET / SUBDIVISION</strong>
+                        </div>
+                        <div style="width: 20%;">
+                            <p style="border-bottom: 1px solid black; padding-bottom: 45px; margin: 0; text-align: center;"></p>
+                            <strong style="margin-top: 5px;">BARANGAY</strong>
+                        </div>
+                    </div>
+                </td>
+            </tr>                               
+            <tr>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>LANDLINE:</strong>
+                </td>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>MOBILE 1:</strong>
+                </td>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>MOBILE 2:</strong>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>EMAIL ADDRESS:</strong>
+                </td>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>FACEBOOK ACCOUNT:</strong>
+                </td>
+                <td style="vertical-align: top; text-align: left; font-size: 0.8em; padding: 0; height: 60px;">
+                    <strong>TWITTER ACCOUNT:</strong>
+                </td>
+            </tr>                                            
+        </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 section-title">
+        OTHER INFORMATION:
+      </div>
+      <div class="col-12">
+        <div>
+          <div>4 P's Member:
+              <input type="radio" name="4ps" id="no" style="margin-left: 55px;"> No 
+              <input type="radio" name="4ps" id="yes" style="margin-left: 15px;"> Yes; ID#: __________________________
+          </div>
+      </div>
+      <div>
+          <div>PhilHealth Member:
+              <input type="radio" name="philhealth" id="no" style="margin-left: 15px;"> No 
+              <input type="radio" name="philhealth" id="yes" style="margin-left: 15px;"> Yes; ID#: ___________________________
+          </div>
+      </div>        
+      <br>
+      <div>
+          <div style="display: flex; gap: 20px;">Membership Category:
+                  <label><input type="checkbox" id="individual"> Individually Paying</label>
+                  <label><input type="checkbox" id="lifetime"> Lifetime</label>
+                  <label><input type="checkbox" id="ofw"> OFW</label>
+                  <label><input type="checkbox" id="employed"> Employed</label>
+              </div>
+              <!-- Second row aligned with first row -->
+              <div style="display: flex; gap: 20px; padding-left: 180px;">
+                  <label><input type="checkbox" id="private"> Private</label>
+                  <label><input type="checkbox" id="government"> Government</label>
+                  <label><input type="checkbox" id="sponsored"> Sponsored</label>
+              </div>
+          </div>
+      </div>
+      
+      
+      <br>
+          <div>
+              Employed:
+              <input type="radio" name="employed" id="no" style="margin-left: 115px;"> No
+              <input type="radio" name="employed" id="yes" style="margin-left: 50px;">
+              <span>If Yes; kindly give the following information.</span>
+              <br><br> <!-- Added an extra line break for more space -->
+              Name of Employer: ______________________________________________________
+          </div>            
+      </div>
+    </div>
+  
+
+      <!-- Content from the 2nd page -->
+      <div class="form-box">
+        <div class="row mb-3 row-border">
+          <div class="col-md-12">
+            Office Address: _____________________________________________________________________ <br> 
+            Occupation: _______________________________   Monthly Income: ___________________________ <br>
+            TIN #: _____________________ SSS #: _____________________ GSIS #: _____________________
+          </div>
+        </div>
+
+        <h6>I. FAMILY INFORMATION</h6>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width: 10%;">Relationship</th>
+              <th style="width: 35%;">Full Name<br>
+                <h6 style="font-size: 10px; font-style: italic;">(Last Name, First Name, Middle Name)</h6>
+              </th>
+              <th style="width: 20%;">Birth Date</th>
+              <th style="width: 20%;">Civil Status</th>
+              <th style="width: 20%;">Educ. Attainment</th>
+              <th style="width: 15%;">Occupation</th>
+            </tr>
+          </thead>
+          <tbody class="table table-bordered thin-rows">
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+
+        <h6>II. NEEDS/PROBLEMS OF SOLO PARENT</h6>
+        <div class="row" style="padding-left: 15px; padding-right: 15px;">
+          <div class="col-md-6" style="padding-left: 40px;">
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="leaveBenefits">
+              <label for="leaveBenefits" class="form-check-label">LEAVE BENEFITS</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="flexiTime">
+              <label for="flexiTime" class="form-check-label">FLEXI-TIME AT WORK</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="medicalCare">
+              <label for="medicalCare" class="form-check-label">MEDICAL CARE</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="employment">
+              <label for="employment" class="form-check-label">EMPLOYMENT</label>
+            </div>
+          </div>
+        
+          <div class="col-md-6" style="padding-left: 10px;">
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="additionalIncome">
+              <label for="additionalIncome" class="form-check-label">ADDITIONAL INCOME</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="housingShelter">
+              <label for="housingShelter" class="form-check-label">HOUSING AND SHELTER</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="education">
+              <label for="education" class="form-check-label">EDUCATION OF CHILDREN/CHILD</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-check-input" id="others">
+              <label for="others" class="form-check-label">OTHERS:_________________</label>
+              <span style="text-decoration: underline; margin-left: 10px; width: 100px; display: inline-block;"></span>
+            </div>
+          </div>
+        
+          <div class="row mt-2" style="padding-left: 15px;">
+            <div class="col-md-12">
+              <strong>REMARKS:</strong> 
+              ___________________________________________________________________________________
+              ________________________________________________________________________________________________
+            </div>
+          </div>
+        </div>
+        
+
+
+        <h6 style="margin-top: 20px; margin-bottom: 15px;">III. SOURCE/S OF INCOME</h6>
+        <table style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 0;">
+              <label for="employed" style="display: inline-block; padding-left: 25px;">
+                <input type="radio" name="incomeSource" id="employed" style="margin-right: 10px; vertical-align: middle;">
+                EMPLOYED
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0;">
+              <label for="selfEmployed" style="display: inline-block; padding-left: 25px;">
+                <input type="radio" name="incomeSource" id="selfEmployed" style="margin-right: 10px; vertical-align: middle;">
+                SELF-EMPLOYED
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0;">
+              <label for="othersIncome" style="display: inline-block; padding-left: 25px;">
+                <input type="radio" name="incomeSource" id="othersIncome" style="margin-right: 10px; vertical-align: middle;">
+                OTHERS: <span style="text-decoration: underline; margin-left: 10px; width: 150px; display: inline-block;"></span>
+              </label>
+            </td>
+          </tr>
+        </table>
+
+          <!-- Emergency Contact Section -->
+        <h6>In case of emergency, please notify:</h6>
+        <table class="table table-bordered" style="width: 100%; table-layout: fixed;">
+          <tr class="thin-rows">
+            <td style="width: 33%; height: 30px; font-size: 14px; font-weight: bold;">FIRST NAME:</td>
+            <td style="width: 33%; height: 30px; font-size: 14px; font-weight: bold; ">MIDDLE NAME:</td>
+            <td style="width: 33%; height: 30px; font-size: 14px; font-weight: bold;">LAST NAME:</td>
+          </tr>
+          </tr>
+          <tr>
+            <td style="height: 30px;"></td>
+            <td style="height: 30px;"></td>
+            <td style="height: 30px;"></td>
+          </tr>
+          <tr class="thin-rows">
+            <td colspan="2" style="height: 30px; font-size: 14px; text-align: left; font-weight: bold;">CONTACT NUMBER/S:</td>
+            <td style="height: 30px; font-size: 14px; text-align: left; font-weight: bold;">RELATIONSHIP:</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="height: 50px; font-weight: bold; font-size: 14px; text-align: left; ">ADDRESS:</td>
+            </tr>
+        </table>
+
+        <p style="text-align: center; font-size: 14px; padding: 15  px;"> 
+          I hereby that the information given above is true and correct. I further understand that any misinterpretation that may have 
+          made will be subjected to criminal and civil liabilities provided for by existing laws.
+        </p>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+          <!-- Signature Section -->
+          <div style="text-align: center;">
+            <div style="border-bottom: 2px solid black; width: 300px; margin-top: 165px;"></div>
+            <span style="font-size: 14px;">Signature above Printed Name</span>
+            <br />
+            <strong>SOLO PARENT</strong>
+          </div>
+
+            <!-- Date Section -->
+            <div style="text-align: center;">
+              <div style="border-bottom: 2px solid black; width: 200px; margin-top: 140px;"></div>
+              <span style="font-weight: bold; font-size: 14px;">Date:</span>
+            </div>
+
+            <!-- Thumb Mark Section -->
+            <div style="text-align: center;">
+              <div style="border: 2px solid black; width: 150px; height: 150px; margin-bottom: 0;"></div>
+              <span style="font-weight: bold; font-size: 14px;">Thumb Mark (Right)</span>
+            </div>
+          </div>
+              
+          <br>
+
+          <div class="black-bar">TO BE FILLED-UP BY THE LOCAL GOVERNMENT OF SAN MATEO</div>
+          <!-- Two-column table below the black bar -->
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+              <td style="width: 40%; border: 1px solid black; padding: 10px; vertical-align: top; font-size: 13px; font-weight: bolder;">
+                Assessed by:<br><br><br>
+                <div style="border-top: 1px solid black; margin: 5px 0; text-align: center;"></div>
+                <div style="text-align: center; font-size: 12px;">
+                  SIGNATURE ABOVE PRINTED NAME / DATE<br>
+                  <strong>SOCIAL WORKER</strong>
+                </div>
+              </td>
+              <td style="width: 60%; border: 1px solid black; padding: 10px; vertical-align: top; font-size: 13px; font-weight: bolder;">
+                STATUS:
+                <br>
+                <br>
+                <input type="radio" id="approved" name="status" style="margin-right: 5px;">
+                <label for="approved" style="font-size: 14px;">Approved</label>
+                <input type="radio" id="disapproved" name="status" style="margin-right: 5px;">
+                <label for="disapproved" style="font-size: 14px;">Disapproved</label>
+                <br>
+                <br>
+                <div class="col-md-12">
+                  REMARKS: _________________________________________________
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+ <!-- Right-side Button Card -->
+ <div class="button-card">
+  <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
+  <button class="btn btn-success" id="downloadBtn">Submit and Download</button>
+  <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
+</div>
+
+
+<script>
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+    try {
+      const { jsPDF } = window.jspdf;
+
+      const element = document.querySelector('.form-container');
+      const canvas = await html2canvas(element, { scale: 2 });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      // Add the first page
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Add more pages if needed
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight; // Move to next page
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Solo_Parent_Application_Form.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('An error occurred while generating the PDF. Check console for details.');
+    }
+  });
+
+  function handleSubmit() {
+    alert('Form Submitted');
+  }
+
+  function handlePrint() {
+    window.print();
+  }
+</script>
+</body>
+</html>

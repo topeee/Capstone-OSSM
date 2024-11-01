@@ -321,7 +321,7 @@ include 'header.php';
                                 <label for="familyResources" class="form-label">Family Resources</label>
                                     <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
                                         <option value="" disabled selected>Choose...</option>
-                                        <option value="Employed">Employed</option>
+                                        <option value="Employeds">Employed</option>
                                         <option value="Self-Employed">Self-Employed</option>
                                         <option value="Others">Others</option>
                                     </select>
@@ -887,7 +887,7 @@ include 'header.php';
             const selectedResource = document.getElementById('familyResources').value;
             localStorage.setItem('selectedFamilyResource', selectedResource);  // Store the family resource in localStorage
         }
-        
+
         function fourPsStatusChange() {
             const selectedFourPs = document.querySelector('input[name="fourPsMember"]:checked').value;
             localStorage.setItem('selectedFourPs', selectedFourPs);  // Store 4Ps membership status
@@ -1114,7 +1114,7 @@ function saveFamilyData() {
 
     // Toggle employment fields based on family resources selection
     $("#familyResources").change(function () {
-        toggleEmploymentFields(this.value === 'Employed');
+        toggleEmploymentFields(this.value === 'Employeds');
     });
 
     function toggleEmploymentFields(enabled) {

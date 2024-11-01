@@ -428,7 +428,7 @@
           <tr>
             <td style="padding: 0;">
               <label for="employed" style="display: inline-block; padding-left: 25px;">
-                <input type="radio" name="familyResource" id="employed" value="Employed" style="margin-right: 10px; vertical-align: middle;">
+                <input type="radio" name="familyResource" id="employed" value="Employeds" style="margin-right: 10px; vertical-align: middle;">
                 EMPLOYED
               </label>
             </td>
@@ -683,7 +683,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const selectedResource = localStorage.getItem('selectedFamilyResource');  // Retrieve stored family resource
     
-    if (selectedResource === 'Employed') {
+    if (selectedResource === 'Employeds') {
         document.getElementById('employed').checked = true;
     } else if (selectedResource === 'Self-Employed') {
         document.getElementById('selfEmployed').checked = true;

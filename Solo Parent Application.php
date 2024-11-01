@@ -56,6 +56,49 @@ include 'header.php';
       <link rel="icon" type="img/png" href="logo.png">
       <title>Solo Parent Application</title>
 
+      <style>
+        /* Custom Dropdown Styling */
+.dropdown dt a {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: #495057;
+  background-color: #ffffff;
+  text-align: left;
+}
+
+.dropdown dd ul {
+  display: none;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
+
+.mutliSelect ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mutliSelect li {
+  padding: 5px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.mutliSelect li:last-child {
+  border-bottom: none;
+}
+
+.hida {
+  color: #6c757d;
+}
+
+      </style>
     </head>
     <body>
       <nav class="navbar navbar-dark navbar-expand-lg" >
@@ -80,7 +123,7 @@ include 'header.php';
         </div>
       </nav>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+      <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -263,11 +306,11 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label for="soloParentClassification" class="form-label">Solo Parent Classification</label>
-                                    <select class="form-select" id="soloParentClassification" required>
+                                    <select class="form-select" id="soloParentClassification" onchange="classificationChange()" required>
                                         <option value="" disabled selected>Choose...</option>
                                         <option value="Individually Paying">Individually Paying</option>
-                                        <option value="Life time">Lifetime</option>
-                                        <option value="Ofw">OFW</option>
+                                        <option value="Lifetime">Lifetime</option>
+                                        <option value="OFW">OFW</option>
                                         <option value="Employed">Employed</option>
                                         <option value="Private">Private</option>
                                         <option value="Government">Government</option>
@@ -276,12 +319,12 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-4">
                                     <label for="familyResources" class="form-label">Family Resources</label>
-                                    <select class="form-select" id="familyResources" required>
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="employed">Employed</option>
-                                        <option value="selfEmployed">Self-Employed</option>
-                                        <option value="others">Others</option>
-                                    </select>
+                                        <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="Employed">Employed</option>
+                                            <option value="Self-Employed">Self-Employed</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
@@ -297,20 +340,33 @@ include 'header.php';
     
                             
                             <div class="col-md-6">
-                                <label for="problems" class="form-label">Problems/Needs of Solo Parent</label>
-                                <select class="form-select" id="probneeds" required>
-                                    <option value="" disabled>Select Problem/Need</option>
-                                    <option value="leaveBenefits">Leave Benefits</option>
-                                    <option value="flexiTime">Flexi-Time at Work</option>
-                                    <option value="medicalCare">Medical Care</option>
-                                    <option value="employment">Employment</option>
-                                    <option value="additionalIncome">Additional Income</option>
-                                    <option value="housingShelter">Housing and Shelter</option>
-                                    <option value="educationChildren">Education of Children/Child</option>
-                                    <option value="others">Others:</option>                                 
-                                </select>
+                                <div class="col-md-6">
+                                    <label for="probneeds" class="form-label">Problems/Needs of Solo Parent</label>
+                                    <dl class="dropdown" style="width: 350px;">
+                                        <dt>
+                                            <a href="#">
+                                                <span class="hida">Select Problem/Need</span>
+                                                <p class="multiSel"></p>
+                                            </a>
+                                        </dt>
+                                        <dd>
+                                            <div class="mutliSelect">
+                                                <ul>
+                                                    <li><input id="leaveBenefits" type="checkbox" value="Leave Benefits" /><label for="leaveBenefits">Leave Benefits</label></li>
+                                                    <li><input id="flexiTime" type="checkbox" value="Flexi-Time at Work" /><label for="flexiTime">Flexi-Time at Work</label></li>
+                                                    <li><input id="medicalCare" type="checkbox" value="Medical Care" /><label for="medicalCare">Medical Care</label></li>
+                                                    <li><input id="employment" type="checkbox" value="Employment" /><label for="employment">Employment</label></li>
+                                                    <li><input id="additionalIncome" type="checkbox" value="Additional Income" /><label for="additionalIncome">Additional Income</label></li>
+                                                    <li><input id="housingShelter" type="checkbox" value="Housing and Shelter" /><label for="housingShelter">Housing and Shelter</label></li>
+                                                    <li><input id="educationChildren" type="checkbox" value="Education of Children/Child" /><label for="educationChildren">Education of Children/Child</label></li>
+                                                    <li><input id="others" type="checkbox" value="Others" /><label for="others">Others</label></li>
+                                                    </select>
+                                                </ul>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
                             </div>
-
                             <div class="col-md-6">
                                  <input type="text" id="otherProblem" class="form-control mt-2" 
                                  placeholder="Please specify..." style="display: none;" required>
@@ -394,12 +450,12 @@ include 'header.php';
                             <div class="col-md-3">
                                 <label class="form-label">4 P's Member</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsNo" value="No" onclick="fourPsStatusChange()">
-                                    <label class="form-check-label" for="fourPsNo">No</label>
+                                    <input type="radio" name="fourPsMember" id="fourPsNo" value="No" onclick="fourPsStatusChange()">
+                                    <label for="fourPsNo">No</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fourPsMember" id="fourPsYes" value="Yes" onclick="fourPsStatusChange()">
-                                    <label class="form-check-label" for="fourPsYes">Yes</label>
+                                    <input type="radio" name="fourPsMember" id="fourPsYes" value="Yes" onclick="fourPsStatusChange()">
+                                    <label for="fourPsYes">Yes</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -409,12 +465,12 @@ include 'header.php';
                             <div class="col-md-3">
                                 <label class="form-label">PhilHealth Member</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthNo" value="No" onclick="philHealthStatusChange()">
-                                    <label class="form-check-label" for="philHealthNo">No</label>
+                                    <input type="radio" name="philHealthMember" id="philHealthNo" value="No" onclick="philHealthStatusChange()">
+                                    <label for="philHealthNo">No</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="philHealthMember" id="philHealthYes" value="Yes" onclick="philHealthStatusChange()">
-                                    <label class="form-check-label" for="philHealthYes">Yes</label>
+                                    <input type="radio" name="philHealthMember" id="philHealthYes" value="Yes" onclick="philHealthStatusChange()">
+                                    <label for="philHealthYes">Yes</label>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -530,20 +586,14 @@ include 'header.php';
                             <tr><td><strong>Email:</strong></td><td id="summaryEmail"></td></tr>
 
                             <!-- Solo Parent Information -->
-                            <tr id="soloParentIdRow" style="display: none;">
-                                <td><strong>Solo Parent ID:</strong></td><td id="summarySoloParentId"></td>
-                            </tr>
-                            <tr id="idImageRow" style="display: none;">
-                                <td><strong>ID Image:</strong></td><td id="summaryIdImage"></td>
-                            </tr>
-                            <tr id="soloParentClassificationRow" style="display: none;">
-                                <td><strong>Solo Parent Classification:</strong></td><td id="summarySoloParentClassification"></td>
-                            </tr>
-                            <tr id="monthlyIncomeRow" style="display: none;">
-                                <td><strong>Monthly Income:</strong></td><td id="summaryMonthlyIncome"></td>
-                            </tr>
+                            <tr><td><strong>Solo Parent ID:</strong></td><td id="summarySoloParentId"></td></tr>
+                            <tr><td><strong>ID Image:</strong></td><td id="summaryIdImage"></td></tr>
+                            <tr><td><strong>Solo Parent Classification:</strong></td><td id="summarySoloParentClassification"></td></tr>
+                            <tr><td><strong>Monthly Income:</strong></td><td id="summaryMonthlyIncome"></td></tr>
+                            <tr><td><strong>Problem/Needs:</strong></td><td id="summaryProbNeeds"></td></tr>
 
                             <!-- Company and Employment Information -->
+                            <tr><td><strong>Source Of Income:</strong></td><td id="summaryFamilyResources"></td></tr>
                             <tr><td><strong>Company Name/Employer Name:</strong></td><td id="summaryCompany"></td></tr>
                             <tr><td><strong>Office Address:</strong></td><td id="summaryOfficeAddress"></td></tr>
                             <tr><td><strong>Occupation:</strong></td><td id="summaryOccupation"></td></tr>
@@ -697,21 +747,20 @@ include 'header.php';
 
     
             // Solo Parent Information
-            const soloParentOption = document.querySelector('input[name="soloParentId"]:checked');
-            if (soloParentOption && soloParentOption.value === 'yes') {
-                document.getElementById('soloParentIdRow').style.display = 'table-row';
-                document.getElementById('summarySoloParentId').innerText = getValue('soloParentIdNumber');
-                const idImage = document.getElementById('idImageUpload').files[0]?.name || 'N/A';
-                document.getElementById('idImageRow').style.display = 'table-row';
-                document.getElementById('summaryIdImage').innerText = idImage;
-            } else {
-                document.getElementById('soloParentClassificationRow').style.display = 'table-row';
-                document.getElementById('summarySoloParentClassification').innerText = getValue('soloParentClassification');
-                document.getElementById('monthlyIncomeRow').style.display = 'table-row';
-                document.getElementById('summaryMonthlyIncome').innerText = getValue('monthlyIncome');
-                localStorage.setItem('summaryMonthlyIncome', document.getElementById('summaryMonthlyIncome').innerText);
-            }
+            document.getElementById('summarySoloParentId').innerText = getValue('soloParentIdNumber');
+            document.getElementById('summaryIdImage').innerText = getValue('idImageUpload');
     
+            document.getElementById('summarySoloParentClassification').innerText = getValue('soloParentClassification');
+            localStorage.setItem('summarySoloParentClassification', document.getElementById('summarySoloParentClassification').innerText);
+
+            document.getElementById('summaryFamilyResources').innerText = getValue('familyResources');
+            localStorage.setItem('summaryFamilyResources', document.getElementById('summaryFamilyResources').innerText);
+
+            document.getElementById('summaryMonthlyIncome').innerText = getValue('monthlyIncome');
+            localStorage.setItem('summaryMonthlyIncome', document.getElementById('summaryMonthlyIncome').innerText);
+
+            
+
             // Employment Information
             document.getElementById('summaryCompany').innerText = getValue('company');
             localStorage.setItem('summaryCompany', document.getElementById('summaryCompany').innerText); // Store precinct in localStorage
@@ -757,17 +806,18 @@ include 'header.php';
             document.getElementById('summaryFourPsMember').innerText = fourPsMember;
             if (fourPsMember === 'yes') {
                 document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
-                            localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
+                localStorage.setItem('selectedFourPs', selectedFourPs);  // Store PhilHealth membership status
+
             }
     
             const philHealthMember = document.querySelector('input[name="philHealthMember"]:checked')?.value || 'N/A';
             document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
             if (philHealthMember === 'yes') {
                 document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
+                localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
             }
     
             // Emergency Contact Full Name (combined in one step)
-                // Store each part of the emergency contact name individually
         document.getElementById('summaryemergencyFirstName').innerText = getValue('emergencyFirstName');
         localStorage.setItem('summaryemergencyFirstName', document.getElementById('summaryemergencyFirstName').innerText);
 
@@ -793,6 +843,31 @@ include 'header.php';
         localStorage.setItem('summaryEmergencyAddress', document.getElementById('summaryEmergencyAddress').innerText);
         };
 
+                // Function to update the summary of selected checkboxes
+        function updateSelectedNeeds() {
+            // Select all checkboxes in the "Problems/Needs" section
+            const checkboxes = document.querySelectorAll('.mutliSelect input[type="checkbox"]');
+            const selectedNeeds = [];
+
+            // Loop through checkboxes and add checked values to the array
+            checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedNeeds.push(checkbox.value);
+            }
+            });
+
+            // Update the summary field with the selected values
+            document.getElementById('summaryProbNeeds').innerText = selectedNeeds.join(', ') || "None selected";
+        }
+
+        // Add change event listeners to each checkbox
+        document.querySelectorAll('.mutliSelect input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedNeeds);
+        });
+
+        // Initialize the summary on page load
+        document.addEventListener('DOMContentLoaded', updateSelectedNeeds);
+
         function civilChange() {
             const selectedStatus = document.getElementById('civilstatus').value;
             localStorage.setItem('selectedStatus', selectedStatus);  // Store civil status in localStorage
@@ -801,6 +876,16 @@ include 'header.php';
         function genderChange() {
             const selectedGender = document.getElementById('gender').value;
             localStorage.setItem('selectedGender', selectedGender);  // Store the gender in localStorage
+        }
+
+        function classificationChange() {
+            const selectedClassification = document.getElementById('soloParentClassification').value;
+            localStorage.setItem('selectedFamilyClassification', selectedClassification);  // Store the classification in localStorage
+        }
+
+        function familyResourcesChange() {
+            const selectedResource = document.getElementById('familyResources').value;
+            localStorage.setItem('selectedFamilyResource', selectedResource);  // Store the family resource in localStorage
         }
 
         function fourPsStatusChange() {
@@ -813,52 +898,103 @@ include 'header.php';
             localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
         }
 
+        function storeProblemNeeds() {
+            const selectedProblem = document.getElementById('probneeds').value;
+            // Get existing problems from localStorage or initialize an empty array
+            const storedProblems = JSON.parse(localStorage.getItem('selectedProblems')) || [];
+            
+            if (!storedProblems.includes(selectedProblem)) {
+                storedProblems.push(selectedProblem);  // Add new problem if not already stored
+            }
 
-        function addFamilyRow() {
-        // Get values from input fields
-        const relationship = document.getElementById("familyRelationship").value;
-        const fullName = document.getElementById("familyFullName").value;
-        const birthDate = document.getElementById("familyBirthDate").value;
-        const civilStatus = document.getElementById("familyCivilStatus").value;
-        const educAttainment = document.getElementById("familyEducAttainment").value;
-        const occupation = document.getElementById("familyOccupation").value;
-
-        // Check if all fields are filled
-        if (!relationship || !fullName || !birthDate || !civilStatus || !educAttainment || !occupation) {
-            alert("Please fill in all fields before adding.");
-            return;
+            localStorage.setItem('selectedProblems', JSON.stringify(storedProblems));  // Store in localStorage
         }
 
-        // Create a new row in the familyTable
-        const table = document.getElementById("familyTable").getElementsByTagName("tbody")[0];
-        const newRow = table.insertRow();
+        // Solo Parent Application.html script
+        document.querySelectorAll('.mutliSelect input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let selectedNeeds = [];
+                document.querySelectorAll('.mutliSelect input[type="checkbox"]:checked').forEach(checkedBox => {
+                    selectedNeeds.push(checkedBox.id);
+                });
+                localStorage.setItem('selectedNeeds', JSON.stringify(selectedNeeds));
+            });
+        });
 
-        // Insert cells in the new row
-        newRow.insertCell(0).textContent = relationship;
-        newRow.insertCell(1).textContent = fullName;
-        newRow.insertCell(2).textContent = birthDate;
-        newRow.insertCell(3).textContent = civilStatus;
-        newRow.insertCell(4).textContent = educAttainment;
-        newRow.insertCell(5).textContent = occupation;
+                
 
-        // Add a remove button to the row
-        const removeCell = newRow.insertCell(6);
-        const removeButton = document.createElement("button");
-        removeButton.className = "btn btn-danger";
-        removeButton.textContent = "Remove";
-        removeButton.onclick = function() {
-            table.deleteRow(newRow.rowIndex - 1); // Adjust index due to header row
-        };
-        removeCell.appendChild(removeButton);
+        function addFamilyRow() {
+    // Get values from input fields
+    const relationship = document.getElementById("familyRelationship").value;
+    const fullName = document.getElementById("familyFullName").value;
+    const birthDate = document.getElementById("familyBirthDate").value;
+    const civilStatus = document.getElementById("familyCivilStatus").value;
+    const educAttainment = document.getElementById("familyEducAttainment").value;
+    const occupation = document.getElementById("familyOccupation").value;
 
-        // Clear input fields after adding
-        document.getElementById("familyRelationship").value = "";
-        document.getElementById("familyFullName").value = "";
-        document.getElementById("familyBirthDate").value = "";
-        document.getElementById("familyCivilStatus").value = "";
-        document.getElementById("familyEducAttainment").value = "";
-        document.getElementById("familyOccupation").value = "";
+    // Check if all fields are filled
+    if (!relationship || !fullName || !birthDate || !civilStatus || !educAttainment || !occupation) {
+        alert("Please fill in all fields before adding.");
+        return;
     }
+
+    // Create a new row in the familyTable
+    const table = document.getElementById("familyTable").getElementsByTagName("tbody")[0];
+    const newRow = table.insertRow();
+
+    // Insert cells in the new row
+    newRow.insertCell(0).textContent = relationship;
+    newRow.insertCell(1).textContent = fullName;
+    newRow.insertCell(2).textContent = birthDate;
+    newRow.insertCell(3).textContent = civilStatus;
+    newRow.insertCell(4).textContent = educAttainment;
+    newRow.insertCell(5).textContent = occupation;
+
+    // Add a remove button to the row
+    const removeCell = newRow.insertCell(6);
+    const removeButton = document.createElement("button");
+    removeButton.className = "btn btn-danger";
+    removeButton.textContent = "Remove";
+    removeButton.onclick = function() {
+        table.deleteRow(newRow.rowIndex - 1); // Adjust index due to header row
+        saveFamilyData(); // Save changes to localStorage
+    };
+    removeCell.appendChild(removeButton);
+
+    // Save data to localStorage
+    saveFamilyData();
+
+    // Clear input fields after adding
+    document.getElementById("familyRelationship").value = "";
+    document.getElementById("familyFullName").value = "";
+    document.getElementById("familyBirthDate").value = "";
+    document.getElementById("familyCivilStatus").value = "";
+    document.getElementById("familyEducAttainment").value = "";
+    document.getElementById("familyOccupation").value = "";
+}
+
+// Function to save family table data to localStorage
+function saveFamilyData() {
+    const familyData = [];
+    const rows = document.querySelectorAll("#familyTable tbody tr");
+
+    rows.forEach(row => {
+        const cells = row.getElementsByTagName("td");
+        if (cells.length > 5) {
+            familyData.push({
+                relationship: cells[0].textContent,
+                fullName: cells[1].textContent,
+                birthDate: cells[2].textContent,
+                civilStatus: cells[3].textContent,
+                educAttainment: cells[4].textContent,
+                occupation: cells[5].textContent
+            });
+        }
+    });
+
+    localStorage.setItem("familyData", JSON.stringify(familyData));
+}
+
 
             // Toggle the visibility of the progress sidebar
             $("#progress-button").click(function() {
@@ -911,7 +1047,7 @@ include 'header.php';
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "Solo Parent Form.html";
+        window.location.href = "first page.html";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();
@@ -978,7 +1114,7 @@ include 'header.php';
 
     // Toggle employment fields based on family resources selection
     $("#familyResources").change(function () {
-        toggleEmploymentFields(this.value === 'employed');
+        toggleEmploymentFields(this.value === 'Employed');
     });
 
     function toggleEmploymentFields(enabled) {
@@ -1049,6 +1185,31 @@ document.addEventListener("DOMContentLoaded", function () {
       philHealthId.value = ""; // Optionally, clear the field
     }
   });
+});
+
+$(document).ready(function() {
+    $(".dropdown dt a").on('click', function() {
+        $(".dropdown dd ul").slideToggle('fast');
+    });
+
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $(".dropdown dd ul").hide();
+    });
+
+    $('.mutliSelect input[type="checkbox"]').on('click', function() {
+        var title = $(this).val() + ",";
+        if ($(this).is(':checked')) {
+            var html = '<span title="' + title + '">' + title + '</span>';
+            $('.multiSel').append(html);
+            $(".hida").hide();
+        } else {
+            $('span[title="' + title + '"]').remove();
+            if ($('.multiSel').children().length == 0) {
+                $(".hida").show();
+            }
+        }
+    });
 });
 
 

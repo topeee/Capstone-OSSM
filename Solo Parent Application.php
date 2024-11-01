@@ -318,13 +318,13 @@ include 'header.php';
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="familyResources" class="form-label">Family Resources</label>
-                                        <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
-                                            <option value="" disabled selected>Choose...</option>
-                                            <option value="Employed">Employed</option>
-                                            <option value="Self-Employed">Self-Employed</option>
-                                            <option value="Others">Others</option>
-                                        </select>
+                                <label for="familyResources" class="form-label">Family Resources</label>
+                                    <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Employed">Employed</option>
+                                        <option value="Self-Employed">Self-Employed</option>
+                                        <option value="Others">Others</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
@@ -887,7 +887,7 @@ include 'header.php';
             const selectedResource = document.getElementById('familyResources').value;
             localStorage.setItem('selectedFamilyResource', selectedResource);  // Store the family resource in localStorage
         }
-
+        
         function fourPsStatusChange() {
             const selectedFourPs = document.querySelector('input[name="fourPsMember"]:checked').value;
             localStorage.setItem('selectedFourPs', selectedFourPs);  // Store 4Ps membership status

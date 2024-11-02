@@ -24,7 +24,7 @@ include 'header.php';
     <body>
       <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand" href="index.php" style="display: none">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
           </a>
@@ -72,7 +72,7 @@ include 'header.php';
                             <i class="bi bi-check-square"></i>
                         </a>
                     </li>
-                    <li class="progress-item" data-target="identification">
+                    <li class="progress-item" data-target="identificationSection">
                         <a href="#">
                             Identification
                             <i class="bi bi-check-square"></i>
@@ -100,37 +100,34 @@ include 'header.php';
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
                             </div>
                             <div class="col-md-4">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" >
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
                             </div>
                         </div>
                       
                         <div class="row mb-3">
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <label for="birthPlace" class="form-label">Birth Place</label>
-                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
+                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" >
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <label for="birthdate" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" id="birthdate" placeholder="Birth date" required>
+                                <input type="date" class="form-control" id="birthdate" placeholder="Birth date" >
                           </div>
-                          <div class="col-md-4">
-                            <label for="age" class="form-label">Age</label>
-                                <input type="text" class="form-control" id="age" placeholder="Age" required>
-                          </div>
+                          
                         </div>
 
                         <div class="row mb-3">
                           <div class="col-md-4">
                               <label for="gender" class="form-label">Gender</label>
-                              <select class="form-select" id="gender" required>
+                              <select class="form-select" id="gender" >
                                   <option value="" disabled selected>Choose...</option>
                                   <option value="male">Male</option>
                                   <option value="female">Female</option>
@@ -138,33 +135,37 @@ include 'header.php';
                           </div>
                           <div class="col-md-4">
                               <label for="civilstatus" class="form-label">Civil Status</label>
-                              <select class="form-select" id="civilstatus" required>
+                              <select class="form-select" id="civilstatus" >
                                   <option value="" disabled selected>Choose...</option>
                                   <option value="self">Self</option>
                                   <option value="spouse">Spouse</option>
                               </select>
                           </div>
                           <div class="col-md-4">
-                            <label for="bloodType" class="form-label">Blood Type</label>
-                            <input type="text" class="form-control" id="bloodType" placeholder="Blood Type" required>
+                            <label for="age" class="form-label">Age</label>
+                                <input type="text" class="form-control" id="age" placeholder="Age" >
                           </div>
                         </div>
                         
                         <div class="row mb-3">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                               <label for="address" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="address" placeholder="Address" required>
+                              <input type="text" class="form-control" id="address" placeholder="Address" >
                             </div>
+                            <div class="col-md-6">
+                                <label for="occupation" class="form-label">Occupation</label>
+                                <input type="text" class="form-control" id="occupation" placeholder="Address" >
+                              </div>
                         </div>
 
                         <div class="row mb-3">
                           <div class="col-md-6">
                               <label for="tele" class="form-label">Telephone Number</label>
-                              <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
+                              <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" >
                           </div>
                           <div class="col-md-6">
                               <label for="phone" class="form-label">Phone Number</label>
-                              <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                              <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
                           </div>
                         </div>
                       
@@ -181,19 +182,39 @@ include 'header.php';
                       <form>
                           <h4>Sectoral Information</h4>
                           
-                          <!-- Educational Attainment -->
-                          <div class="row mb-3">
-                              <div class="col-md-6">
-                                  <label for="education" class="form-label"><h5>Educational Attainment</h5></label>
-                                  <select class="form-select" id="education" required>
-                                      <option value="" disabled selected>Choose...</option>
-                                      <option value="elementary">Elementary</option>
-                                      <option value="highSchool">High School</option>
-                                      <option value="college">College</option>
-                                      <option value="graduate">Graduate</option>
-                                  </select>
-                              </div>
-                          </div>
+                            <h5>Answer Only if Replacement</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="reasonReplacement" class="form-label"><h5>Reason for Replacement</h5></label>
+                                    <input type="text" id="reasonReplacement" class="form-control" placeholder="Reason" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lossDate" class="form-label"><h5>If loss, when</h5></label>
+                                    <input type="date" id="lossDate"  class="form-control" placeholder="" >
+                                </div>
+                            </div>
+                            
+                            <h5>In Case of Emergency, Notify:</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="emergencyFirstNames" class="form-label"><h5>First Name</h5></label>
+                                    <input type="text" id="emergencyFirstNames" class="form-control" placeholder="First Name" >
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="emergencyMiddleName" class="form-label"><h5>Middle Name</h5></label>
+                                    <input type="text" id="emergencyMiddleNames" class="form-control" placeholder="Middle Name" >
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="emergencyLastName" class="form-label"><h5>Last Name</h5></label>
+                                    <input type="text" id="emergencyLastNames" class="form-control" placeholder="Last Name" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="emergencyContact" class="form-label"><h5>Contact No</h5></label>
+                                    <input type="number" id="emergencyContact" class="form-control" placeholder="Contact" >
+                                </div>
+                            </div>
+                            
+                          
                   
                           <!-- Employment History -->
                           <h5>Employment History</h5>
@@ -201,15 +222,15 @@ include 'header.php';
                               <div class="row mb-3">
                                   <div class="col-md-4">
                                       <label for="companyName" class="form-label">Company Name</label>
-                                      <input type="text" name="companyName[]" class="form-control" placeholder="Company Name" required>
+                                      <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" >
                                   </div>
                                   <div class="col-md-4">
                                       <label for="jobTitle" class="form-label">Job Title</label>
-                                      <input type="text" name="jobTitle[]" class="form-control" placeholder="Job Title" required>
+                                      <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" >
                                   </div>
                                   <div class="col-md-4">
                                       <label for="yearsWorked" class="form-label">Years Worked</label>
-                                      <input type="number" name="yearsWorked[]" class="form-control" placeholder="Years Worked" required>
+                                      <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" >
                                   </div>
                               </div>
                           </div>
@@ -228,17 +249,17 @@ include 'header.php';
                           <div class="row mb-3 align-items-end">
                               <div class="col-md-4">
                                   <label for="companyName" class="form-label">Company Name</label>
-                                  <input type="text" name="companyName[]" class="form-control" placeholder="Company Name" required>
+                                  <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" >
                               </div>
                               <div class="col-md-4">
                                   <label for="jobTitle" class="form-label">Job Title</label>
-                                  <input type="text" name="jobTitle[]" class="form-control" placeholder="Job Title" required>
+                                  <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" >
                               </div>
                               <div class="col-md-4">
                                   <label for="yearsWorked" class="form-label">Years Worked</label>
-                                  <input type="number" name="yearsWorked[]" class="form-control" placeholder="Years Worked" required>
+                                  <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" >
                               </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="margin-top: 10px;">
                                     <button class="btn btn-danger remove-employment" type="button">Remove</button>
                                 </div>
                             </div>
@@ -251,182 +272,76 @@ include 'header.php';
                     <div class="form-section" id="familyComposition" style="display: none;">
                         <form>    
                             <h4>Family Composition</h4>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="row input-group control-group after-add-more-family">
-                                        <!-- Family Member Name -->
-                                        <div class="col-md-3 mb-3">
-                                            <label for="familyResources" class="form-label">Name</label>
-                                            <input type="text" name="familyName[]" class="form-control" placeholder="Name" required>
-                                        </div>
-                    
-                                        <!-- Birthdate -->
-                                        <div class="col-md-3 mb-3">
-                                            <label for="familyResources" class="form-label">Birthdate</label>
-                                            <input type="date" name="familyBirthdate[]" class="form-control" placeholder="Birthdate" required>
-                                        </div>
-                    
-                                        <!-- Status -->
-                                        <div class="col-md-2 mb-3">
-                                            <label for="familyResources" class="form-label">Civil Status</label>
-                                            <select name="familyStatus[]" class="form-select" required>
-                                                <option value="" disabled selected>Status</option>
-                                                <option value="single">Single</option>
-                                                <option value="married">Married</option>
-                                                <option value="widowed">Widowed</option>
-                                            </select>
-                                        </div>
-                    
-                                        <!-- PWD Status -->
-                                        <div class="col-md-2 mb-3">
-                                            <label for="familyResources" class="form-label">PWD</label>
-                                            <select name="familyPwdStatus[]" class="form-select" required>
-                                                <option value="" disabled selected>PWD</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-                                        </div>
-                    
-                                        <!-- Relationship -->
-                                        <div class="col-md-2 mb-3">
-                                            <label for="familyResources" class="form-label">Relationship</label>
-                                            <input type="text" name="familyRelationship[]" class="form-control" placeholder="Relationship" required>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Studying or Employed -->
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>Currently Studying?</label>
-                                            <select name="familyStudying[]" class="form-select currently-studying" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-                                            <input type="text" name="gradeLevel[]" class="form-control grade-level mt-2" placeholder="Grade Level" style="display: none;" required>
-                                        </div>
-                    
-                                        <div class="col-md-6 mb-3">
-                                            <label>Currently Employed?</label>
-                                            <select name="familyEmployed[]" class="form-select currently-employed" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-                                            <input type="text" name="occupation[]" class="form-control occupation mt-2" placeholder="Occupation" style="display: none;" required>
-                                            <input type="number" name="monthlyIncome[]" class="form-control monthly-income mt-2" placeholder="Monthly Income" style="display: none;" required>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Add/Remove Buttons -->
-                                    <div class="input-group-btn mb-3">
-                                        <button class="btn btn-success add-more-family" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="duplicate-family hide">
-                                <div class="row control-group input-group" style="margin-top:10px">
-                                    <!-- Family Member Name -->
+                                <!-- Input fields for a new family member -->
+                                <div class="row">
                                     <div class="col-md-3 mb-3">
-                                        <label for="familyResources" class="form-label">Name</label>
-                                        <input type="text" name="familyName[]" class="form-control" placeholder="Name" required>
+                                        <input type="text" id="familyRelationship" class="form-control" placeholder="Relationship">
                                     </div>
-                    
-                                    <!-- Birthdate -->
-                                    <div class="col-md-3 mb-3">
-                                        <label for="familyResources" class="form-label">Birthdate</label>
-                                        <input type="date" name="familyBirthdate[]" class="form-control" placeholder="Birthdate" required>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" id="familyFullName" class="form-control" placeholder="Full Name (Last, First, Middle)">
                                     </div>
-                    
-                                    <!-- Status -->
                                     <div class="col-md-2 mb-3">
-                                        <label for="familyResources" class="form-label">Civil Status</label>
-                                        <select name="familyStatus[]" class="form-select" required>
-                                            <option value="" disabled selected>Status</option>
-                                            <option value="single">Single</option>
-                                            <option value="married">Married</option>
-                                            <option value="widowed">Widowed</option>
+                                        <input type="text" id="familyBirthDate" class="form-control" placeholder="Age">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <select id="familyCivilStatus" class="form-select">
+                                            <option value="" disabled selected>Civil Status</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Widowed">Widowed</option>
                                         </select>
                                     </div>
-                    
-                                    <!-- PWD Status -->
-                                    <div class="col-md-2 mb-3">
-                                        <label for="familyResources" class="form-label">PWD</label>
-                                        <select name="familyPwdStatus[]" class="form-select" required>
-                                            <option value="" disabled selected>PWD</option>
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
+                                    <div class="col-md-6 mb-3">
+                                        <select id="familyEducAttainment" class="form-select">
+                                            <option value="" disabled selected>Educ. Attainment</option>
+                                            <option value="na">N/A</option>
+                                            <option value="elementarys">Elementary</option>
+                                            <option value="High School">High School</option>
+                                            <option value="Colleges">College</option>
+                                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                            <option value="Master's Degree">Master's Degree</option>
+                                            <option value="Doctorate">Doctorate</option>
                                         </select>
                                     </div>
-                    
-                                    <!-- Relationship -->
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="familyOccupation" class="form-control" placeholder="Occupation">
+                                    </div>
                                     <div class="col-md-2 mb-3">
-                                        <label for="familyResources" class="form-label">Relationship</label>
-                                        <input type="text" name="familyRelationship[]" class="form-control" placeholder="Relationship" required>
-                                    </div>
-                    
-                                    <!-- Studying or Employed -->
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>Currently Studying?</label>
-                                            <select name="familyStudying[]" class="form-select currently-studying" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-                                            <input type="text" name="gradeLevel[]" class="form-control grade-level mt-2" placeholder="Grade Level" style="display: none;" required>
-                                        </div>
-                    
-                                        <div class="col-md-6 mb-3">
-                                            <label>Currently Employed?</label>
-                                            <select name="familyEmployed[]" class="form-select currently-employed" required>
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-                                            <input type="text" name="occupation[]" class="form-control occupation mt-2" placeholder="Occupation" style="display: none;" required>
-                                            <input type="number" name="monthlyIncome[]" class="form-control monthly-income mt-2" placeholder="Monthly Income" style="display: none;" required>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Remove Button -->
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-danger remove-family" type="button">Remove</button>
+                                        <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                            </div>
                         </form>    
                     </div>
                 
                     <!--Identification--> 
-                    <div class="form-section" id="identification" style="display: none;">
+                    <div class="form-section" id="identificationSection" style="display: none;">
                       <form>    
                           <h4>Identification</h4>
 
-
                           <div class="mb-3">
                             <label for="idImageUpload" class="form-label">Digital Copy of Signature</label>
-                            <input type="file" class="form-control" id="signatureImageUpload" required>
+                            <input type="file" class="form-control" id="signatureImageUpload">
                           </div>
                           <div class="mb-3">
                             <label for="idImageUpload" class="form-label">Digital Copy of 1x1 Picture</label>
-                            <input type="file" class="form-control" id="1x1pictureImageUpload" required>
+                            <input type="file" class="form-control" id="1x1pictureImageUpload" >
                           </div>
                           <div class="mb-3">
-                            <label for="idImageUpload" class="form-label">Digital Copy of Left Thumb Mark</label>
-                            <input type="file" class="form-control" id="ltmImageUpload" required>
+                            <label for="idImageUpload" class="form-label">Birth Certificate or Baptismal Certificate</label>
+                            <input type="file" class="form-control" id="ltmImageUpload" >
                           </div>
                           <div class="mb-3">
-                            <label for="idImageUpload" class="form-label">Digital Copy of Right Thumb Mark</label>
-                            <input type="file" class="form-control" id="rtmImageUpload" required>
+                            <label for="idImageUpload" class="form-label">Barangay Certificate of Residency</label>
+                            <input type="file" class="form-control" id="rtmImageUpload" >
                           </div>
                           <div class="mb-3">
-                            <label for="idImageUpload" class="form-label">Digital Copy of Birth Certificate</label>
-                            <input type="file" class="form-control" id="birthCertificateImageUpload" required>
+                            <label for="idImageUpload" class="form-label">Any two (2) Valid Ids (SSS ID, Voter’s Id, Driver’s License, Passport ID, Postal ID)</label>
+                            <input type="file" class="form-control" id="birthCertificateImageUpload" >
                           </div>
                           <div class="mb-3">
                             <label for="idImageUpload" class="form-label">Digital Copy of any valid ID to confirm Age and Residency  </label>
-                            <input type="file" class="form-control" id="validDdImageUpload" required>
+                            <input type="file" class="form-control" id="validDdImageUpload" >
                           </div>
                       </form>
                     </div>
@@ -444,10 +359,9 @@ include 'header.php';
                       </thead>
                       <tbody>
                           <!-- Basic Information -->
-                          <tr>
-                              <td><strong>Name:</strong></td>
-                              <td id="summaryName"></td>
-                          </tr>
+                            <tr><td><strong>First Name:</strong></td><td id="summaryFirstName"></td></tr>
+                            <tr><td><strong>Middle Name:</strong></td><td id="summaryMiddleName"></td></tr>
+                            <tr><td><strong>Last Name:</strong></td><td id="summaryLastName"></td></tr>
                           <tr>
                               <td><strong>Gender:</strong></td>
                               <td id="summaryGender"></td>
@@ -469,12 +383,12 @@ include 'header.php';
                               <td id="summaryAge"></td>
                           </tr>
                           <tr>
-                              <td><strong>Blood Type:</strong></td>
-                              <td id="summaryBloodType"></td>
-                          </tr>
-                          <tr>
                               <td><strong>Address:</strong></td>
                               <td id="summaryAddress"></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Occupation:</strong></td>
+                            <td id="summaryOccupation"></td>
                           </tr>
                           <tr>
                               <td><strong>Telephone:</strong></td>
@@ -484,8 +398,34 @@ include 'header.php';
                               <td><strong>Phone:</strong></td>
                               <td id="summaryPhone"></td>
                           </tr>
+                          
 
                         <!-- Sectoral Information -->
+                        <tr>
+                            <td><strong>Reason for Replacement</strong></td>
+                            <td id="summaryReason"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>If loss, when</strong></td>
+                            <td id="summaryLoss"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>First Name</strong></td>
+                            <td id="summaryEmergencyFirstName"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Middle Name</strong></td>
+                            <td id="summaryEmergencyMiddleName"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Last Name</strong></td>
+                            <td id="summaryEmergencyLastName"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact No.</strong></td>
+                            <td id="summaryEmergencyContact"></td>
+                        </tr>
+                        
                         <tr id="educationRow">
                             <td><strong>Educational Attainment:</strong></td>
                             <td id="summaryEducation"></td>
@@ -494,14 +434,6 @@ include 'header.php';
                             <td><strong>Employment History:</strong></td>
                             <td id="summaryCompany"></td>
                         </tr>
-
-                  
-                          <!-- Family Composition -->
-                          <tr>
-                              <td><strong>Family Members:</strong></td>
-                              <td id="summaryFamilyMembers"></td>
-                          </tr>
-                  
                           <!-- Identification Section -->
                           <tr>
                               <td><strong>Digital Copy of Signature:</strong></td>
@@ -527,6 +459,24 @@ include 'header.php';
                               <td><strong>Digital Copy of Valid ID:</strong></td>
                               <td id="summaryValidIdImage"></td>
                           </tr>
+
+                           <!-- Family Composition -->
+                           <table class="table table-bordered" id="familyTable">
+                            <thead>
+                                <tr>
+                                    <th>Relationship</th>
+                                    <th>Full Name</th>
+                                    <th>Birth Date</th>
+                                    <th>Civil Status</th>
+                                    <th>Occupation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be added here -->
+                            </tbody>   
+                        </table>
+                        </table>    
                       </tbody>
                   </table>
                   
@@ -538,7 +488,6 @@ include 'header.php';
                     <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
                     <button type="button" id="next-btn" class="btn btn-primary">Next</button>
                 </div>
-    
             </div>
         </div>
     </div>
@@ -584,128 +533,203 @@ include 'header.php';
     </footer>
 
     <script>
-      // Toggle the visibility of the progress sidebar
-      $("#progress-button").click(function() {
-          $("#progress-menu").toggleClass('hidden-xs');
-      });
-      
-      function populateSummary() {
+        $(document).ready(function() {
+            showCurrentSection();
+            updateButtons();
+            updateProgress();
+            });
+
+        // Toggle the visibility of the progress sidebar
+        $("#progress-button").click(function() {
+            $("#progress-menu").toggleClass('hidden-xs');
+        });
+        
+    function populateSummary() {
+    const getValue = (id) => document.getElementById(id).value || 'Not Provided';
+
     // Basic Information
-    const firstName = document.getElementById('firstName').value || 'Not Provided';
-    const middleName = document.getElementById('middleName').value || '';
-    const lastName = document.getElementById('lastName').value || 'Not Provided';
-    const birthPlace = document.getElementById('birthPlace').value || 'Not Provided';
-    const birthdate = document.getElementById('birthdate').value || 'Not Provided';
-    const age = document.getElementById('age').value || 'Not Provided';
-    const gender = document.getElementById('gender').value || 'Not Provided';
-    const civilStatus = document.getElementById('civilstatus').value || 'Not Provided';
-    const bloodType = document.getElementById('bloodType').value || 'Not Provided';
-    const address = document.getElementById('address').value || 'Not Provided';
-    const tele = document.getElementById('tele').value || 'Not Provided';
-    const phone = document.getElementById('phone').value || 'Not Provided';
+    document.getElementById('summaryFirstName').innerText = getValue('firstName');
+    localStorage.setItem('summaryFirstName', document.getElementById('summaryFirstName').innerText);
 
-    // Update Summary Table with Basic Information
-    document.getElementById('summaryName').innerText = `${firstName} ${middleName} ${lastName}`;
-    document.getElementById('summaryGender').innerText = gender;
-    document.getElementById('summaryCivilStatus').innerText = civilStatus;
-    document.getElementById('summaryDob').innerText = birthdate;
-    document.getElementById('summaryTele').innerText = tele;
-    document.getElementById('summaryPhone').innerText = phone;
+    document.getElementById('summaryMiddleName').innerText = getValue('middleName');
+    localStorage.setItem('summaryMiddleName', document.getElementById('summaryMiddleName').innerText);
 
-    // Add new fields to the summary for Basic Information
-    document.getElementById('summaryBirthPlace').innerText = birthPlace;
-    document.getElementById('summaryAge').innerText = age;
-    document.getElementById('summaryBloodType').innerText = bloodType;
-    document.getElementById('summaryAddress').innerText = address;
+    document.getElementById('summaryLastName').innerText = getValue('lastName');
+    localStorage.setItem('summaryLastName', document.getElementById('summaryLastName').innerText);
+    
+    document.getElementById('summaryGender').innerText = getValue('gender');
+    localStorage.setItem('summaryGender', document.getElementById('summaryGender').innerText);
 
-    document.getElementById('educationRow').style.display = education ? '' : 'none';
-    document.getElementById('companyRow').style.display = employmentHistory ? '' : 'none';
+    document.getElementById('summaryCivilStatus').innerText = getValue('civilstatus');
+    localStorage.setItem('summaryCivilStatus', document.getElementById('summaryCivilStatus').innerText);
 
+    document.getElementById('summaryDob').innerText = getValue('birthdate');
+    localStorage.setItem('summaryDob', document.getElementById('summaryDob').innerText);
 
-    // Identification Section
-    const signatureImage = document.getElementById('signatureImageUpload').value.split('\\').pop();  // Get file name
-    const pictureImage = document.getElementById('1x1pictureImageUpload').value.split('\\').pop();  // Get file name
-    const ltmImage = document.getElementById('ltmImageUpload').value.split('\\').pop();  // Get file name
-    const rtmImage = document.getElementById('rtmImageUpload').value.split('\\').pop();  // Get file name
-    const birthCertImage = document.getElementById('birthCertificateImageUpload').value.split('\\').pop();  // Get file name
-    const validIdImage = document.getElementById('validDdImageUpload').value.split('\\').pop();  // Get file name
+    document.getElementById('summaryBirthPlace').innerText = getValue('birthPlace');
+    localStorage.setItem('summaryBirthPlace', document.getElementById('summaryBirthPlace').innerText);
 
-    // Update Summary Table with Identification Information
-    document.getElementById('summarySignatureImage').innerText = signatureImage || 'No file uploaded';
-    document.getElementById('summaryPictureImage').innerText = pictureImage || 'No file uploaded';
-    document.getElementById('summaryLtmImage').innerText = ltmImage || 'No file uploaded';
-    document.getElementById('summaryRtmImage').innerText = rtmImage || 'No file uploaded';
-    document.getElementById('summaryBirthCertImage').innerText = birthCertImage || 'No file uploaded';
-    document.getElementById('summaryValidIdImage').innerText = validIdImage || 'No file uploaded';
+    document.getElementById('summaryAge').innerText = getValue('age');
+    localStorage.setItem('summaryAge', document.getElementById('summaryAge').innerText);
+    
+    document.getElementById('summaryAddress').innerText = getValue('address');
+    localStorage.setItem('summaryAddress', document.getElementById('summaryAddress').innerText);
 
-    // Family Composition (Optional Section)
-    const familyNames = [];
-    document.querySelectorAll('input[name="familyName[]"]').forEach((el) => {
-        if (el.value) {
-            familyNames.push(el.value);
+    document.getElementById('summaryOccupation').innerText = getValue('occupation');
+    localStorage.setItem('summaryOccupation', document.getElementById('summaryOccupation').innerText);
+
+    document.getElementById('summaryTele').innerText = getValue('tele');
+    localStorage.setItem('summaryTele', document.getElementById('summaryTele').innerText);
+
+    document.getElementById('summaryPhone').innerText = getValue('phone');
+    localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+    // Sectoral Information
+    document.getElementById('summaryReason').innerText = getValue('reasonReplacement');
+    localStorage.setItem('summaryReason', document.getElementById('summaryReason').innerText);
+
+    document.getElementById('summaryLoss').innerText = getValue('lossDate');
+    localStorage.setItem('summaryLoss', document.getElementById('summaryLoss').innerText);
+
+    // Emergency Contact Information
+    document.getElementById('summaryEmergencyFirstName').innerText = getValue('emergencyFirstNames');
+    localStorage.setItem('summaryEmergencyFirstName', document.getElementById('summaryEmergencyFirstName').innerText);
+
+    document.getElementById('summaryEmergencyMiddleName').innerText = getValue('emergencyMiddleNames');
+    localStorage.setItem('summaryEmergencyMiddleName', document.getElementById('summaryEmergencyMiddleName').innerText);
+
+    document.getElementById('summaryEmergencyLastName').innerText = getValue('emergencyLastNames');
+    localStorage.setItem('summaryEmergencyLastName', document.getElementById('summaryEmergencyLastName').innerText);
+
+    document.getElementById('summaryEmergencyContact').innerText = getValue('emergencyContact');
+    localStorage.setItem('summaryEmergencyContact', document.getElementById('summaryEmergencyContact').innerText);
+
+    // Educational Attainment and Employment History
+    document.getElementById('summaryEducation').innerText = getValue('educAttainment');
+    document.getElementById('summaryCompany').innerText = "See employment history section"; // Placeholder text
+  
+          // Identification Section
+          const getFileName = (id) => document.getElementById(id).value.split('\\').pop() || 'No file uploaded';
+          document.getElementById('summarySignatureImage').innerText = getFileName('signatureImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+          document.getElementById('summaryPictureImage').innerText = getFileName('1x1pictureImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+          document.getElementById('summaryLtmImage').innerText = getFileName('ltmImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+          document.getElementById('summaryRtmImage').innerText = getFileName('rtmImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+          document.getElementById('summaryBirthCertImage').innerText = getFileName('birthCertificateImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+          document.getElementById('summaryValidIdImage').innerText = getFileName('validDdImageUpload');
+          localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
         }
-    });
-    document.getElementById('summaryFamilyMembers').innerText = familyNames.length > 0 ? familyNames.join(', ') : 'No Family Members Added';
-        // Educational Attainment
-    const education = document.getElementById('education').value || 'Not Provided';
-    document.getElementById('summaryEducation').innerText = education;
+      
+        function addFamilyRow() {
+    // Get values from input fields
+    const relationship = document.getElementById("familyRelationship").value;
+    const fullName = document.getElementById("familyFullName").value;
+    const birthDate = document.getElementById("familyBirthDate").value;
+    const civilStatus = document.getElementById("familyCivilStatus").value;
+    const occupation = document.getElementById("familyOccupation").value;
 
-    // Employment History
-    let employmentHistory = '';
-    document.querySelectorAll('input[name="companyName[]"]').forEach((el, index) => {
-        const companyName = el.value || 'Not Provided';
-        const jobTitle = document.querySelectorAll('input[name="jobTitle[]"]')[index].value || 'Not Provided';
-        const yearsWorked = document.querySelectorAll('input[name="yearsWorked[]"]')[index].value || 'Not Provided';
-        employmentHistory += `${companyName} - ${jobTitle} (${yearsWorked} years)<br>`;
-    });
-    document.getElementById('summaryCompany').innerHTML = employmentHistory || 'No Employment History Added';
+    // Check if all fields are filled
+    if (!relationship || !fullName || !birthDate || !civilStatus || !occupation) {
+        alert("Please fill in all fields before adding.");
+        return;
+    }
+
+    // Create a new row in the familyTable
+    const table = document.getElementById("familyTable").getElementsByTagName("tbody")[0];
+    const newRow = table.insertRow();
+
+    // Insert cells in the new row
+    newRow.insertCell(0).textContent = relationship;
+    newRow.insertCell(1).textContent = fullName;
+    newRow.insertCell(2).textContent = birthDate;
+    newRow.insertCell(3).textContent = civilStatus;
+    newRow.insertCell(4).textContent = occupation;
+
+    // Add a remove button to the row
+    const removeCell = newRow.insertCell(5);
+    const removeButton = document.createElement("button");
+    removeButton.className = "btn btn-danger";
+    removeButton.textContent = "Remove";
+    removeButton.onclick = function() {
+        table.deleteRow(newRow.rowIndex - 1); // Adjust index due to header row
+        saveFamilyData(); // Save changes to localStorage
+    };
+    removeCell.appendChild(removeButton);
+
+    // Save data to localStorage
+    saveFamilyData();
+
+    // Clear input fields after adding
+    document.getElementById("familyRelationship").value = "";
+    document.getElementById("familyFullName").value = "";
+    document.getElementById("familyBirthDate").value = "";
+    document.getElementById("familyCivilStatus").value = "";
+    document.getElementById("familyOccupation").value = "";
 }
 
-            
+// Function to save family table data to localStorage
+function saveFamilyData() {
+    const familyData = [];
+    const rows = document.querySelectorAll("#familyTable tbody tr");
+
+    rows.forEach(row => {
+        const cells = row.getElementsByTagName("td");
+        if (cells.length > 4) {
+            familyData.push({
+                relationship: cells[0].textContent,
+                fullName: cells[1].textContent,
+                birthDate: cells[2].textContent,
+                civilStatus: cells[3].textContent,
+                occupation: cells[4].textContent
+            });
+        }
+    });
+
+    localStorage.setItem("familyData", JSON.stringify(familyData));
+}
       
-      // Navigation button logic
-      let currentSection = 0;
-      const sections = ["#basic-information-section", "#sectoral-section", "#familyComposition", "#identification", "#section5"];
+        // Navigation logic
+        let currentSection = 0;
+        const sections = [
+          "#basic-information-section",
+          "#sectoral-section",
+          "#familyComposition",
+          "#identificationSection",
+          "#section5"
+        ];
       
-      $("#prev-btn").click(function() {
-          if (currentSection > 0) {
-              $(sections[currentSection]).hide();  // Hide current section
-              currentSection--;  // Decrement section index
-              $(sections[currentSection]).show();  // Show previous section
-              updateIcon(currentSection + 1, "empty");  // Change icon to empty for the section ahead
-              updateButtons();
-              updateProgress();  // Update the progress bar
-          }
-      });
+        function showCurrentSection() {
+          $(sections.join(',')).hide();
+          $(sections[currentSection]).show();
+        }
       
-      // Progress sidebar click event handler
-      $(".progress-item").click(function() {
-          let targetSection = $(this).data('target');
+        function checkRequiredFields() {
+          const $currentForm = $(sections[currentSection]).find('form');
+          let allValid = true;
       
-          // Hide all sections
-          $(".form-section").hide();
+          $currentForm.find('input[required], select[required]').each(function() {
+              if (!$(this).val()) {
+                  $(this).addClass('error');
+                  allValid = false;
+              } else {
+                  $(this).removeClass('error');
+              }
+          });
       
-          // Show the clicked section
-          $("#" + targetSection).show();
+          return allValid;
+        }
       
-          // Update current section index based on the clicked section
-          currentSection = sections.indexOf("#" + targetSection);
-      
-          // Scroll to top of the section
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-          updateButtons();
-          updateProgress();
-      });
-      
-      // Function to update the active progress bar item
-      function updateProgress() {
-          $(".progress-item").removeClass("active");  // Remove active class from all items
-          $(".progress-item").eq(currentSection).addClass("active");  // Add active class to current item
-      }
-      
-      // Function to update the Next/Previous buttons
-      function updateButtons() {
+        function updateButtons() {
           if (currentSection === 0) {
               $("#prev-btn").hide();
           } else {
@@ -717,149 +741,68 @@ include 'header.php';
           } else {
               $("#next-btn").text("Next");
           }
-      }
+        }
       
-      // Function to update icons in the progress bar
-      function updateIcon(index, state) {
-          const icon = $(".progress-item").eq(index).find("i");
-          if (state === "fill") {
-              icon.removeClass("bi-check-square").addClass("bi-check-square-fill");  // Change to filled icon
-          } else if (state === "empty") {
-              icon.removeClass("bi-check-square-fill").addClass("bi-check-square");  // Change to empty icon
-          }
-      }
-      
-      
-      // Validate only the visible form elements when clicking next
-      $("#next-btn").click(function() {
-          const currentForm = $(sections[currentSection]).find('form')[0];
-      
-          // Only validate the visible form elements
-          if (currentForm) {
-              let formIsValid = true; // Flag to check form validity
-              $(currentForm).find('input[required], select[required]').each(function() {
-                  // Remove required for hidden fields
-                  if (!$(this).is(':visible')) {
-                      $(this).removeAttr('required');
-                  }
-      
-                  // Check for invalid fields
-                  if (!this.checkValidity()) {
-                      formIsValid = false;
-                  }
-              });
-      
-              // If the form is not valid, prevent proceeding
-              if (!formIsValid || !currentForm.checkValidity()) {
-                  currentForm.reportValidity();  // Shows validation message
-                  return; // Stops proceeding to the next section
-              }
-          }
-      
-          // If form is valid, proceed to the next section
-          if (currentSection < sections.length - 1) {
-              $(sections[currentSection]).hide();
-              updateIcon(currentSection, "fill");
-              currentSection++;
-              if (currentSection === 3) {
-                  populateSummary();
-              }
-              $(sections[currentSection]).show();
-              updateButtons();
-              updateProgress();
-          }
-      });
-      
-      // Add functionality for the "Add More" button
-          $(document).ready(function() {
-        // Add more employment history
-        $(".add-more-employment").click(function() {
-            var employmentHtml = $(".employment-history-template").html();
-            $(".employment-history-container").append(employmentHtml);
-        });
+        
+$("#next-btn").on('click', function () {
+    // Check if all required fields are filled in the current section
+    if (!checkRequiredFields()) {
+        alert("Please fill in all required fields before proceeding.");
+        return; // Stop if any required field is missing
+    }
 
-        // Remove employment history entry
-        $("body").on("click", ".remove-employment", function() {
-            $(this).closest(".row").remove();
-        });
-    });
+    if (currentSection === sections.length - 1) {
+        // Redirect to SeniorForm.html if on the last section (Submit action)
+        window.location.href = "Senior Form.html";
+    } else {
+        // Move to the next section
+        $(sections[currentSection]).hide();
+        currentSection++;
+        $(sections[currentSection]).show();
+
+        // If we've reached the Identification section, populate the summary
+        if (sections[currentSection] === "#identificationSection") {
+            populateSummary();
+        }
+
+        updateButtons();
+        updateProgress();
+    }
+});
+
+
+        function updateProgress() {
+            // Remove the active class from all progress items
+            $(".progress-item").removeClass("active");
+
+            // Add the active class to the current section's progress item
+            $(".progress-item").eq(currentSection).addClass("active");
+        }
 
       
-      // Show or hide the grade level field based on "Currently Studying" selection
-      $("body").on("change", ".currently-studying", function() {
-          var gradeLevelInput = $(this).closest(".row").find(".grade-level");
-          if ($(this).val() === "yes") {
-              gradeLevelInput.show();  // Show grade level field if currently studying
-          } else {
-              gradeLevelInput.hide();  // Hide grade level field if not studying
+        $("#prev-btn").on('click', function () {
+          if (currentSection > 0) {
+            currentSection--;
+            showCurrentSection();
+            updateButtons();
+            updateProgress();
           }
-      });
+        });
       
-      // Show or hide the occupation and monthly income fields based on "Currently Employed" selection
-      $("body").on("change", ".currently-employed", function() {
-          var occupationInput = $(this).closest(".row").find(".occupation");
-          var monthlyIncomeInput = $(this).closest(".row").find(".monthly-income");
-          if ($(this).val() === "yes") {
-              occupationInput.show();  // Show occupation field if employed
-              monthlyIncomeInput.show();  // Show monthly income field if employed
-          } else {
-              occupationInput.hide();  // Hide occupation field if not employed
-              monthlyIncomeInput.hide();  // Hide monthly income field if not employed
-          }
-      });
+        // Sidebar navigation
+        $(".progress-item").click(function() {
+            let targetSection = $(this).data('target');
+            $(".form-section").hide();
+            $("#" + targetSection).show();
+            currentSection = sections.indexOf("#" + targetSection);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateButtons();
+            updateProgress();
+        });
       
-      
-          $(document).ready(function() {
-              // Add more functionality for family composition
-              $(document).on("click", ".add-more-family", function() {
-          var html = $(".duplicate-family").html();
-          $(this).closest(".panel-body").append(html);
-          $(this).closest(".panel-body").find('input, select').last().attr('required', true); // Ensure new fields are required
-          });
-      
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove-family", function() {
-              var row = $(this).closest(".row");
-              if (row.length) {
-                  // Remove required from dynamically removed fields
-                  row.find('input, select').removeAttr('required');
-                  row.remove();
-              } else {
-                  console.log("Error: No row found to remove.");
-              }
-          });
-      
-          // Form submission validation
-          $("form").on("submit", function(event) {
-              var isValid = true;
-              $(this).find('input[required], select[required]').each(function() {
-                  if ($(this).val() === "") {
-                      isValid = false;
-                      $(this).addClass('error');  // Add error class for styling
-                  } else {
-                      $(this).removeClass('error');
-                  }
-              });
-      
-              if (!isValid) {
-                  event.preventDefault();  // Prevent form submission
-                  alert("Please fill out all required fields.");
-              }
-          });
-      });
-      
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove-family", function() {
-          if ($(this).closest(".row").length) {
-              // Remove required from dynamically removed fields
-              $(this).closest(".row").find('input, select').removeAttr('required');
-              $(this).closest(".row").remove();
-          } else {
-              console.log("Error: No row found to remove.");
-          }
-      });
-      
+
       </script>
+      
 
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Citizen ID Replacement Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -60,6 +61,22 @@
         li {
             font-size: 18px; /* Consistent font size */
         }
+        .button-card {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        width: 250px;
+        transform: translateY(-50%);
+        padding: 20px;
+        border: 2px solid black;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-card button {
+        width: 100%;
+        margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -72,67 +89,67 @@
         <p style="font-weight: bold; text-align: center;">Senior Citizen’s Replacement ID Form </p>
 
         <div class="form-row">
-            <span class="label">Name:______________________________________________________</span>
+            <span class="label last-field first-field middle-field" >Name:______________________________________________________</span>
 
             <div class="text-center" style="font-size: 20px;">
                 <strong style="margin-right: 100px;">Surname,</strong>
-                <strong style="margin-right: 100px;">First Name,</strong>
-                <strong>Middle Name</strong>
+                <strong style="margin-right: 100px;" >First Name,</strong>
+                <strong >Middle Name</strong>
             </div>
         </div>
 
         <div class="form-row">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="label">Date of Birth:________</span>
+                    <span class="label birth-field">Date of Birth:________</span>
                 </div>
                 <div class="col-md-2">
-                    <span class="label">Age:____</span>
+                    <span class="label age-field">Age:____</span>
                 </div>
                 <div class="col-md-2">
-                    <span class="label">Sex:_____</span>
+                    <span class="label gender-field">Sex:_____</span>
                 </div>
                 <div class="col-md-4">
-                    <span class="label">Civil Status:_________</span>
+                    <span class="label civil-field">Civil Status:_________</span>
                 </div>
             </div>
         </div>
 
         <div class="form-row">
-            <span class="label">Address:____________________________________________________</span>
+            <span class="label address-field">Address:____________________________________________________</span>
             <div class="line"></div>
         </div>
 
         <div class="form-row">
             <div class="row">
                 <div class="col-md-6">
-                    <span class="label">Place of Birth:________________</span>
+                    <span class="label place-field">Place of Birth:________________</span>
                 </div>
                 <div class="col-md-5">
-                    <span class="label">Occupation:________________</span>
+                    <span class="label occupation-field">Occupation:________________</span>
 
                 </div>
             </div>
         </div>
 
         <div class="form-row">
-            <span class="label">Contact Number:________________</span>
+            <span class="label contact-field">Contact Number:________________</span>
 
         </div>
 
         <div class="form-row">
-            <span class="label">Reason for Replacement:________________________________________</span>
+            <span class="label reason-field">Reason for Replacement:________________________________________</span>
         </div>
 
         <div class="form-row">
-            <span class="label">If loss, when:________________________________________________</span>
+            <span class="label loss-field">If loss, when:________________________________________________</span>
         </div>
 
         <div class="form-row">
             <h5><strong>In Case of Emergency, Notify:</strong></h5>
-            <span class="label">Name:______________________________________________________</span>
+            <span class="label emergencyFname-field emergencyMname-field emergencyLname-field">Name:______________________________________________________</span>
 
-            <span class="label">Contact No.:__________________________</span>
+            <span class="label emergencyContact-field">Contact No.:__________________________</span>
 
         </div>
 
@@ -148,43 +165,8 @@
                         <th style="width: 25%;">Occupation</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- 5 Empty Rows -->
-                    <tr>
-                        <td style="height: 50px;"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 50px;"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 50px;"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 50px;"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 50px;"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                <tbody class="table table-bordered thin-rows">
+
                 </tbody>
             </table>
         </div>
@@ -241,8 +223,127 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Right-side Button Card -->
+<div class="button-card">
+ <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
+ <button class="btn btn-success" id="downloadBtn">Submit and Download</button>
+ <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
+</div>
+
+<script>
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+    try {
+      const { jsPDF } = window.jspdf;
+
+      const element = document.querySelector('.form-container');
+      const canvas = await html2canvas(element, { scale: 2 });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      // Add the first page
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Add more pages if needed
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight; // Move to next page
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Solo_Parent_Application_Form.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('An error occurred while generating the PDF. Check console for details.');
+    }
+  });
+
+  function handleSubmit() {
+    alert('Form Submitted');
+  }
+
+  function handlePrint() {
+    window.print();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const firstNameValue = localStorage.getItem('summaryFirstName') || 'N/A';
+    const middleNameValue = localStorage.getItem('summaryMiddleName') || 'N/A';
+    const lastNameValue = localStorage.getItem('summaryLastName') || 'N/A';
+    const dateOfBirthValue = localStorage.getItem('summaryDob') || 'N/A';
+    const placeOfBirthValue = localStorage.getItem('summaryBirthPlace') || 'N/A';
+    const genderValue = localStorage.getItem('summaryGender') || 'N/A';
+    const civilStatusValue = localStorage.getItem('summaryCivilStatus') || 'N/A';
+    const ageValue = localStorage.getItem('summaryAge') || 'N/A';
+    const addressValue = localStorage.getItem('summaryAddress') || 'N/A';
+    const occupationValue = localStorage.getItem('summaryOccupation') || 'N/A';
+    const telephoneNumberValue = localStorage.getItem('summaryTele') || 'N/A';
+    const phoneNumberValue = localStorage.getItem('summaryPhone') || 'N/A';
+    const reasonForReplacementValue = localStorage.getItem('summaryReason') || 'N/A';
+    const lossDateValue = localStorage.getItem('summaryLoss') || 'N/A';
+    const emergencyFirstNameValue = localStorage.getItem('summaryEmergencyFirstName') || 'N/A';
+    const emergencyMiddleNameValue = localStorage.getItem('summaryEmergencyMiddleName') || 'N/A';
+    const emergencyLastNameValue = localStorage.getItem('summaryEmergencyLastName') || 'N/A';
+    const emergencyContactNumberValue = localStorage.getItem('summaryEmergencyContact') || 'N/A';    
+
+    document.querySelector('.last-field, first-field, middle-field').textContent = `Name:_____${lastNameValue}________${firstNameValue}___________${middleNameValue}______`;
+    document.querySelector('.birth-field').textContent = `Date of Birth:  ${dateOfBirthValue}`;
+    document.querySelector('.age-field').textContent = `Age:   ${ageValue}`;
+    document.querySelector('.gender-field').textContent = `Sex: ${genderValue}`;
+    document.querySelector('.civil-field').textContent = `Civil Status: ${civilStatusValue}`;
+    document.querySelector('.address-field').textContent = `Address: ${addressValue}`;
+    document.querySelector('.place-field').textContent = `Place of Birth: ${placeOfBirthValue}`;
+    document.querySelector('.contact-field').textContent = `Contact Number: ${telephoneNumberValue}`;
+    document.querySelector('.occupation-field').textContent = `Occupation: ${occupationValue}`;
+    document.querySelector('.reason-field').textContent = `Reason for Replacement: ${reasonForReplacementValue}`;
+    document.querySelector('.loss-field').textContent = `If loss, when: ${lossDateValue}`;
+    document.querySelector('.emergencyFname-field').textContent = `Name: ${emergencyLastNameValue}_______${emergencyFirstNameValue}___________${emergencyMiddleNameValue}_ `;
+    document.querySelector('.emergencyContact-field').textContent = `Contact No.: ${emergencyContactNumberValue}`;
+
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const familyData = JSON.parse(localStorage.getItem("familyData")) || [];
+    const tableBody = document.querySelector(".thin-rows");
+
+    familyData.forEach(member => {
+        const newRow = document.createElement("tr");
+
+        const relationshipCell = document.createElement("td");
+        relationshipCell.textContent = member.relationship;
+        newRow.appendChild(relationshipCell);
+
+        const fullNameCell = document.createElement("td");
+        fullNameCell.textContent = member.fullName;
+        newRow.appendChild(fullNameCell);
+
+        const birthDateCell = document.createElement("td");
+        birthDateCell.textContent = member.birthDate;
+        newRow.appendChild(birthDateCell);
+
+        const civilStatusCell = document.createElement("td");
+        civilStatusCell.textContent = member.civilStatus;
+        newRow.appendChild(civilStatusCell);
+
+        const occupationCell = document.createElement("td");
+        occupationCell.textContent = member.occupation;
+        newRow.appendChild(occupationCell);
+
+        tableBody.appendChild(newRow);
+    });
+});
+</script>
 </body>
 
 </html>

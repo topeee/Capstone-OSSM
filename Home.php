@@ -83,7 +83,7 @@ include 'header.php';
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
                 <div class="modal-body">
-                    <a href="Solo Parent Landing Page.php">
+                    <a href="Senior Citizen Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>

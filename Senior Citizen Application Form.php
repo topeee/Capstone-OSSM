@@ -22,9 +22,9 @@ include 'header.php';
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg">
+      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php" style="display: none">
+          <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
           </a>

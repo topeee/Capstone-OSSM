@@ -1,17 +1,8 @@
 <?php
-session_start(); // Start the session
-
-
-// Destroy the session and remove all session variables
-session_unset();
+ 
+session_start();
+unset($_SESSION['user_token']);
 session_destroy();
-
-// Redirect to the login page
-header("Location: login.php");
-// Include configuration file 
- 
-
- 
-
+header("Location: index.php");
 exit(); 
 ?>

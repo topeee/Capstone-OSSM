@@ -131,8 +131,53 @@ if (isset($_POST['register-btn'])) {
             header("Location: CreateAccount.php");
         }
     }
+  
+ // get profile info
+ $google_oauth = new Google_Service_Oauth2($client);
+ $google_account_info = $google_oauth->userinfo->get();
+ $userinfo = [
+   'email' => $google_account_info['email'],
+   'first_name' => $google_account_info['firstname'],
+   'last_name' => $google_account_info['lastname'],
+   'gender' => $google_account_info['gender'],
+   'name' => $google_account_info['name'],
+   'picture' => $google_account_info['picture'],
+   'verifiedEmail' => $google_account_info['verifiedEmail'],
+   'token' => $google_account_info['id'],
+ ];
+// authenticate code from Google OAuth Flow
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $client->setAccessToken($token['access_token']);
+  
+   
+  
+    // checking if user is already exists in database
+    $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      // user is exists
+      $userinfo = mysqli_fetch_assoc($result);
+      $token = $userinfo['token'];
+    } else {
+      // user is not exists
+      $sql = "INSERT INTO users (email, first_name, last_name, gender, name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$userinfo['token']}')";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $token = $userinfo['token'];
+      } else {
+        echo "User is not created";
+        die();
+      }
+    }
+}
+
 
     // Close the database connection
     $conn->close();
+
+
+
+
+    
 }
-?>

@@ -1,34 +1,25 @@
 <?php
 
-// Database configuration
+require_once 'vendor/autoload.php';
+include 'db_connection.php';
 
-use Google\AuthHandler\AuthHandlerFactory;
-use Google\Service\AdExchangeBuyerII\Client;
-use Google\Service\Resource;
 
-define('DB_HOST', '153.92.15.26');
-define('DB_USERNAME', 'u271593949_ossmdb');
-define('DB_PASSWORD', 'UcMPAq^5');
-define('DB_NAME', '153.92.15.26');
-define('DB_USER_TBL', 'users');
+// init configuration
+$clientID = '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectUri = 'http://localhost:3000/login.php';
 
-// Google API configuration
-define('GOOGLE_CLIENT_ID', '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com');
-define('GOOGLE_CLIENT_SECRET', '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');
-define('GOOGLE_REDIRECT_URL', 'https://onestopsanmateo.online/');
+// create Client Request to access Google API
+$client = new Google_Client();
+$client->setClientId($clientID);
+$client->setClientSecret($clientSecret);
+$client->setRedirectUri($redirectUri);
+$client->addScope("email");
+$client->addScope("profile");
 
-// Start session
-if(!session_id()){
-    session_start();
-}
-require_once 'vendor\autoload.php';
-// Call Google API
-$gClient = new Google_Client();
-$gClient->setApplicationName('Login to onestopsanmateo.com');
-$gClient->setClientId(GOOGLE_CLIENT_ID);
-$gClient->setClientSecret(GOOGLE_CLIENT_SECRET);
-$gClient->setRedirectUri(GOOGLE_REDIRECT_URL);
 
-$google_oauthV2 = new Google_Service_Oauth2($gClient);
+
+
+
 
 

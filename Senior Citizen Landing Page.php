@@ -394,7 +394,7 @@ html, body {
                         </div>
 
                     <div class="wrap">
-                        <a href="Senior Citizen Application Form.html">
+                        <a href="Senior Citizen Application Form.php">
                             <button class="button">Apply Now?</button>
                         </a>
                     </div>

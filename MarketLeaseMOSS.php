@@ -173,7 +173,7 @@ include 'header.php';
                                         <td>Main Section</td>
                                         <td>001</td>
                                         <td>ACTIVE</td>
-                                        <td>$500</td>
+                                        <td>500</td>
                                         <td>APPROVED</td>
                                         <td>PAID</td>
                                         <td>
@@ -192,7 +192,7 @@ include 'header.php';
                                         <td>East Section</td>
                                         <td>002</td>
                                         <td>INACTIVE</td>
-                                        <td>$700</td>
+                                        <td>700</td>
                                         <td>PENDING</td>
                                         <td>NOT PAID</td>
                                         <td>

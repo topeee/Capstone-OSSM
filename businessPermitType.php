@@ -113,6 +113,117 @@ include 'header.php';
             transform: translateY(-2px);
         }
 
+          /* General Modal Styling */
+    .modal-header {
+        background-color: #007bff; /* Consistent header background */
+        color: #fff; /* White text for headers */
+        text-align: center;
+        border-bottom: none; /* Remove default border */
+    }
+    .modal-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        width: 100%; /* Center title */
+    }
+    .btn-close {
+        color: #fff;
+        opacity: 1;
+    }
+
+    /* Button Styling */
+    .modal-footer .btn {
+        width: 100px;
+        border-radius: 5px;
+    }
+    .modal-footer .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .modal-footer .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    /* Modal Body Styling */
+    .modal-body {
+        padding: 1.5rem;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    /* Form Fields Styling */
+    .modal-body .form-label {
+        font-weight: bold;
+    }
+    
+      /* Centering Modals */
+    .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    /* Animation Effects */
+    .modal.fade .modal-dialog {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Modal Header Styling */
+    .modal-header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        font-size: 2rem; /* Increase font size */
+        width: 100%;
+    }
+
+    .btn-close {
+        color: #fff;
+        opacity: 1;
+    }
+
+    /* Modal Body and Text Styling */
+    .modal-body {
+        padding: 1.5rem;
+        font-size: 1.2rem; /* Larger font size for body */
+        color: #333;
+        font-weight: bold; /* Bold text for body */
+    }
+
+    /* Form Labels */
+    .modal-body .form-label {
+        font-weight: bold;
+        font-size: 1.2rem; /* Larger font size for labels */
+    }
+
+    /* Button Styling */
+    .modal-footer .btn {
+        width: 120px; /* Wider buttons */
+        border-radius: 5px;
+        font-size: 1rem; /* Larger button text */
+        font-weight: bold; /* Bold button text */
+    }
+    .modal-footer .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .modal-footer .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
     </style>
 </head>
 <body>
@@ -132,77 +243,121 @@ include 'header.php';
 
     <br>
 
-    <div class="card text-center w-75 mb-4 mx-auto custom-shadow">
+        <div class="card text-center w-75 mb-4 mx-auto custom-shadow">
         <h5 class="card-header">Option #2</h5>
         <div class="card-body">
-          <h4 class="card-title">Renewal</h4>
-          <p class="card-text">Renew your business permit to guarantee continued adherence to local laws. Make sure you have the licenses you need and avoid penalties by renewing your license before it expires.</p>
-          <a href="#" class="btn btn-primary w-25 h-25" data-bs-toggle="modal" data-bs-target="#renewalModal">Apply Now</a>
+            <h4 class="card-title">Renewal</h4>
+            <p class="card-text">Renew your business permit to guarantee continued adherence to local laws. Make sure you have the licenses you need and avoid penalties by renewing your license before it expires.</p>
+            <a href="#" class="btn btn-primary w-25 h-25" data-bs-toggle="modal" data-bs-target="#taxCheckModal">Apply Now</a>
         </div>
     </div>
 
-           <!-- Renewal Modal -->
-    <div class="modal fade" id="renewalModal" tabindex="-1" aria-labelledby="renewalModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <!-- Tax Check Modal -->
+    <div class="modal fade" id="taxCheckModal" tabindex="-1" aria-labelledby="taxCheckModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title text-center w-100" id="renewalModalLabel">Renewal Form</h3>
+                    <h5 class="modal-title" id="taxCheckModalLabel">Annual Business Tax</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="renewalForm">
-                        <div class="mb-3">
-                            <label for="field1" class="form-label">Mayor's Permit Number:</label>
-                            <input type="text" id="field1" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="field2" class="form-label">Official Receipt No:</label>
-                            <input type="text" id="field2" class="form-control" placeholder="Input (current year) Official Receipt">
-                        </div>
-                        <!-- Link to open validation form -->
-                        <a href="#" id="openValidationForm" style="text-decoration: none; color: #007bff;">Open Validation Form</a>
-                    </form>
+                    <p>Have you already paid your annual business tax?</p>
                 </div>
-                <div class="alert alert-warning text-center" role="alert">
-                    <strong>Important Notice:</strong> Please ensure that all input fields are filled out correctly to avoid any issues with your application.
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="next-btn">Next</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="yesTaxPaidBtn" data-bs-dismiss="modal">Yes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Validation Form -->
-    <div class="container mt-5" id="validationForm" style="display: none;">
-        <h3 class="text-center">Validation Form</h3>
-        <form>
-            <div class="mb-3">
-                <label for="textField1" class="form-label">Text Field 1:</label>
-                <input type="text" id="textField1" class="form-control" required>
+    <!-- Tax Payment Prompt Modal -->
+    <div class="modal fade" id="payTaxPromptModal" tabindex="-1" aria-labelledby="payTaxPromptModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payTaxPromptModalLabel">Pay Business Tax</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Would you like to pay your business tax now?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="NewBusinessPermit Application.php" class="btn btn-primary" role="button">Pay Now!</a>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="textField2" class="form-label">Text Field 2:</label>
-                <input type="text" id="textField2" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="dropdownField" class="form-label">Select an Option:</label>
-                <select id="dropdownField" class="form-select" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Option1">Option 1</option>
-                    <option value="Option2">Option 2</option>
-                    <option value="Option3">Option 3</option>
-                </select>
-            </div>
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" id="previous-btn">Previous</button>
-                <button type="submit" class="btn btn-primary">Validate</button>
-            </div>
-        </form>
+        </div>
     </div>
 
-    <!-- Permit Image Modal -->
+    <!-- Applicant Input Modal -->
+<div class="modal fade" id="applicantInputModal" tabindex="-1" aria-labelledby="applicantInputModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applicantInputModalLabel">Applicant Input</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="applicantForm">
+                    <div class="mb-3">
+                        <label for="mayorsPermitNumber" class="form-label">Mayor's Permit Number:</label>
+                        <input type="text" id="mayorsPermitNumber" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="officialReceiptNo" class="form-label">Official Receipt No:</label>
+                        <input type="text" id="officialReceiptNo" class="form-control">
+                    </div>
+                    <div class="alert alert-warning text-center" role="alert">
+                    <strong>Important Notice:</strong> Please ensure that all input fields are filled out correctly to avoid any issues with your application.
+                    </div>
+                    <p class="text-center mt-3">
+                        <a href="#" id="taxExemptionLink" class="text-decoration-underline text-primary">Does your business qualify for any tax exemptions? Go here.</a>
+                    </p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Validation Modal -->
+<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validationModalLabel">Validation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="validationForm">
+                    <div class="mb-3">
+                        <label for="taxExemptionProgram" class="form-label">Tax Exemption Program:</label>
+                        <select id="taxExemptionProgram" class="form-control">
+                            <option value="program1">Cooperative</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mayorsPermitNumberValidation" class="form-label">Mayor's Permit Number:</label>
+                        <input type="text" id="mayorsPermitNumberValidation" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="officialReceiptNoValidation" class="form-label">Official Receipt No:</label>
+                        <input type="text" id="officialReceiptNoValidation" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Validate</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Permit Imae Modal -->
     <div class="modal fade" id="permitImageModal" tabindex="-1" aria-labelledby="permitImageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -225,9 +380,9 @@ include 'header.php';
     <div class="card text-center w-75 mb-4 mx-auto custom-shadow">
         <h5 class="card-header">Option #3</h5>
         <div class="card-body">
-          <h4 class="card-title">Special Permit</h4>
-          <p class="card-text">Already submitted your online Occupational Permit Application? <br>
-            View the status of your application here:</p>
+        <h4 class="card-title">Special Permit</h4>
+        <p class="card-text">A Special Permit is required for specific activities that may not fall under the standard Occupational Permit. It ensures that applicants meet all necessary regulations and guidelines for their intended operations.</p>
+
             <a href="busiiness_permit_special.php" class="btn btn-primary w-25 h-25">Apply Now</a>
         </div>
     </div>
@@ -237,9 +392,12 @@ include 'header.php';
     <div class="card text-center w-75 mb-4 mx-auto custom-shadow">
         <h5 class="card-header">Option #4</h5>
         <div class="card-body">
-            <h4 class="card-title">Amendment</h4>
-            <p class="card-text">Having trouble doing things online? This might help answer your questions.</p>
-            <a href="#" class="btn btn-primary w-25 h-25" data-bs-toggle="modal" data-bs-target="#renewalModal4">Apply Now</a>
+        <h4 class="card-title">Amendment</h4>
+        <p class="card-text">An Amendment allows applicants to make changes to their existing Occupational Permit. This could include updates to personal information, business details, or any other relevant changes necessary to maintain compliance with regulations.</p>
+        </div>
+
+        <div>
+            <a href="#" class="btn btn-primary w-25 h-25 mb-3" data-bs-toggle="modal" data-bs-target="#renewalModal4">Apply Now</a>
         </div>
     </div>
 
@@ -261,8 +419,6 @@ include 'header.php';
                             <label for="receiptNumberField" class="form-label">Official Receipt No:</label>
                             <input type="text" id="receiptNumberField" name="receiptNumberField" class="form-control" placeholder="Input (current year) Official Receipt">
                         </div>
-                        <!-- Link to open validation form -->
-                        <a href="#" id="openValidationForm" style="text-decoration: none; color: #007bff;">Open Validation Form</a>
                     </form>
                 </div>
                 <div class="alert alert-warning text-center" role="alert">
@@ -274,34 +430,6 @@ include 'header.php';
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Validation Form -->
-    <div class="container mt-5" id="validationForm" style="display: none;">
-        <h3 class="text-center">Validation Form</h3>
-        <form>
-            <div class="mb-3">
-                <label for="validationTextField1" class="form-label">Text Field 1:</label>
-                <input type="text" id="validationTextField1" name="validationTextField1" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="validationTextField2" class="form-label">Text Field 2:</label>
-                <input type="text" id="validationTextField2" name="validationTextField2" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="validationDropdownField" class="form-label">Select an Option:</label>
-                <select id="validationDropdownField" name="validationDropdownField" class="form-select" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Option1">Option 1</option>
-                    <option value="Option2">Option 2</option>
-                    <option value="Option3">Option 3</option>
-                </select>
-            </div>
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" id="previous-btn">Previous</button>
-                <button type="submit" class="btn btn-primary">Validate</button>
-            </div>
-        </form>
     </div>
 
     <!-- Permit Image Modal -->
@@ -377,45 +505,26 @@ include 'header.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-         // Permit images mapping (update this with actual permit numbers and corresponding images)
-    const permitImages = {
-        '12345': 'https://via.placeholder.com/300?text=Permit+12345', // Example image for permit number 12345
-        '67890': 'https://via.placeholder.com/300?text=Permit+67890', // Example image for permit number 67890
-        // Add more permit numbers and image URLs as needed
-    };
+        // Permit images mapping (update this with actual permit numbers and corresponding images)
+        const permitImages = {
+            '12345': 'https://via.placeholder.com/300?text=Permit+12345', // Example image for permit number 12345
+            '67890': 'https://via.placeholder.com/300?text=Permit+67890', // Example image for permit number 67890
+            // Add more permit numbers and image URLs as needed
+        };
 
-    // Handle "Next" button click
-    document.getElementById('next-btn').addEventListener('click', function () {
-        const permitNumber = document.getElementById('field1').value;
-        const permitImage = permitImages[permitNumber];
+        // Handle "Next" button click
+        document.getElementById('next-btn').addEventListener('click', function () {
+            const permitNumber = document.getElementById('field1').value;
+            const permitImage = permitImages[permitNumber];
 
-        if (permitImage) {
-            // Set the image source and show the permit image modal
-            document.getElementById('permitImage').src = permitImage;
-            const permitImageModal = new bootstrap.Modal(document.getElementById('permitImageModal'));
-            permitImageModal.show();
-        } else {
-            alert('Permit number not found. Please enter a valid permit number.');
-        }
-    });
-
-    // Handle opening the validation form modal
-    document.getElementById('openValidationForm').addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default anchor click behavior
-            const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
-            validationModal.show(); // Show the validation modal
-        });
-
-        
-        document.getElementById('openValidationForm').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default anchor behavior
-            document.getElementById('renewalModal').style.display = 'none'; // Hide the renewal modal
-            document.getElementById('validationForm').style.display = 'block'; // Show the validation form
-        });
-
-        document.getElementById('previous-btn').addEventListener('click', function() {
-            document.getElementById('validationForm').style.display = 'none'; // Hide the validation form
-            document.getElementById('renewalModal').style.display = 'block'; // Show the renewal modal
+            if (permitImage) {
+                // Set the image source and show the permit image modal
+                document.getElementById('permitImage').src = permitImage;
+                const permitImageModal = new bootstrap.Modal(document.getElementById('permitImageModal'));
+                permitImageModal.show();
+            } else {
+                alert('Permit number not found. Please enter a valid permit number.');
+            }
         });
 
         //for nummber 4
@@ -440,23 +549,38 @@ include 'header.php';
             }
         });
 
-        // Handle opening the validation form modal
-        document.getElementById('openValidationForm').addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default anchor click behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const taxCheckModal = new bootstrap.Modal(document.getElementById('taxCheckModal'));
+            const payTaxPromptModal = new bootstrap.Modal(document.getElementById('payTaxPromptModal'));
+            const applicantInputModal = new bootstrap.Modal(document.getElementById('applicantInputModal'));
             const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
-            validationModal.show(); // Show the validation modal
+
+            // Show Applicant Input Modal when clicking "Yes" on Tax Check Modal
+            document.getElementById('yesTaxPaidBtn').addEventListener('click', function() {
+                setTimeout(() => {
+                    applicantInputModal.show();
+                }, 300);
+            });
+
+            // Show Tax Payment Prompt Modal when clicking "No" on Tax Check Modal
+            document.querySelector('#taxCheckModal .btn-secondary').addEventListener('click', function() {
+                taxCheckModal.hide();
+                setTimeout(() => {
+                    payTaxPromptModal.show();
+                }, 300);
+            });
+
+            // Show Validation Modal when clicking the tax exemption link in Applicant Input Modal
+            document.getElementById('taxExemptionLink').addEventListener('click', function(event) {
+                event.preventDefault();
+                applicantInputModal.hide();
+                setTimeout(() => {
+                    validationModal.show();
+                }, 300);
+            });
         });
 
-        document.getElementById('openValidationForm').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default anchor behavior
-            document.getElementById('renewalModal4').style.display = 'none'; // Hide the renewal modal
-            document.getElementById('validationForm').style.display = 'block'; // Show the validation form
-        });
-
-        document.getElementById('previous-btn').addEventListener('click', function() {
-            document.getElementById('validationForm').style.display = 'none'; // Hide the validation form
-            document.getElementById('renewalModal4').style.display = 'block'; // Show the renewal modal
-        });
+    
 
     </script>
 </html>

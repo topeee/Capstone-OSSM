@@ -154,14 +154,6 @@ main {
     }
 }
 
-.business-type-section {
-    background-color: #80b1dc;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
       </style>
     </head>
     <body>
@@ -224,11 +216,18 @@ main {
     
             <!-- Main form -->
             <div class="col-md-9">
-                <!-- Basic Information Section -->
+                <!-- Basic Documentary Requirements section -->
             <div class="form-section" id="basic-information-section">
                 <div class="row mb-3">
                     <h2>Basic Documentary Requirements</h2>     
-                    <div class="col-md-8"><h4>Application Type: <span style="color: lightgreen;">Short Term/Special Permit</span></h4></div>
+                    <div class="col-md-6">
+                        <h4>Application Type: <span style="color: lightgreen;">Short Term/Special Permit</span></h4>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Application Date: <span style="color: black;" id="applicationDateSpecial"></span></h4>
+                    </div>
+
                 </div>
                 <br>
                 <form>
@@ -298,7 +297,7 @@ main {
                             <h2>Business Information and Registration</h2>
                         </div>
                         
-                        <div class="business-type-section" style="background-color: #f0f8ff; padding: 20px; border-radius: 8px; margin: 10px;">
+                        <div class="business-type-section" style="padding: 20px; border-radius: 8px; margin: 10px;">
                             <div class="row mb-3 ms-3">
                                 <h5 style="font-weight: 700;">Type of Business:</h5>
                                 <div class="col-md-12 align-items-center">
@@ -1690,6 +1689,9 @@ function addEventEntry() {
               console.log("Error: No row found to remove.");
           }
       });
+
+            // JavaScript to set the current date in the "Application Date" field
+    document.getElementById("applicationDateSpecial").textContent = new Date().toLocaleDateString();
 
 
       </script>

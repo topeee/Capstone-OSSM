@@ -1,8 +1,8 @@
 <?php
 session_start(); // Start the session
-include 'header.php
-';
+include 'header.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,7 @@ include 'header.php
  
 
     <main>
-        <div class="container mt-5">
+        <div class="container mt-5 mb-5">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center">APPLICATION LIST</h3>

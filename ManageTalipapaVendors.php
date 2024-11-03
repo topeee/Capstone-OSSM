@@ -61,9 +61,9 @@ include 'header.php';
 
     <main>
         <div class="container mt-5 mb-5">
-            <div class="card">
+            <div class="card">  
                 <div class="card-body">
-                    <h3 class="card-title text-center">VENDOR ACCOUNT</h3>
+                    <h3 class="card-title text-center">TALIPAPA VENDOR ACCOUNT</h3>
 
                     <!-- Added Search Fields and Button -->
                     <div class="row mb-3 align-items-end">

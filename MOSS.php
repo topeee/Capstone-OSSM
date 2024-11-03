@@ -172,7 +172,7 @@ include 'header.php';
                     <p>Ikaw ba ay isang pribadong merkado o Talipapa operator o isang kasalukuyang pribadong merkado o Talipapa vendor?</p>
                     <p>Pumili ng Transaksyon:</p>
                     <a class="btn" href="obtain_market_franchise.php" data-bs-toggle="modal" data-bs-target="#franchiseModal">Obtain a Market Franchise</a>
-                    <a class="btn" href="Homepage.php">Get a Market Business Permit by Applying</a>
+                    <a class="btn" href="Home.php">Get a Market Business Permit by Applying</a>
                     <a class="btn" href="ManagePrivateMarket.php">Manage the Talipapa/Private Market Operator</a>
                     <a class="btn" href="ManageTalipapaVendors.php">Manage Private Market/Talipapa Vendors</a>
                     <a class="btn" href="ManagePrivateMarket.php">Look for Market Violation</a>

@@ -251,8 +251,16 @@ main {
                 <div class="form-section" id="basic-information-section">
                     <div class="row mb-3">
                         <h2>Basic Documentary Requirements</h2>
-                        <div class="col-md-8"><h4>Application Type: <span style="color: lightgreen;">NEW</span></h4></div>
+                        <div class="col-md-6">
+                            <h4>Application Type: <span style="color: lightgreen;">NEW</span></h4>
+                        </div>
+
+                        <div class="col-md-6">
+                        <h4>Application Date: <span style="color: black;" id="applicationDate"></span></h4>
+                        </div>
+                        
                     </div>
+                    
                     <br>
                     <form>
                         <!-- 1st row -->
@@ -2173,6 +2181,9 @@ main {
               console.log("Error: No row found to remove.");
           }
       });
+
+      // JavaScript to set the current date in the "Application Date" field
+    document.getElementById("applicationDate").textContent = new Date().toLocaleDateString();
 
 
       </script>

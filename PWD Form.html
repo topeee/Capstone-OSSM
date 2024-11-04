@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="MSWDO-LAPPY">
     <title>Registration Form for Persons with Disability</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jsPDF and html2canvas Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
     <style>
         * {
             margin: 0;
@@ -56,7 +65,7 @@
             margin-bottom: 5px;
             font-size: 10pt;
         }
-        .checkbox-group label {
+        .radio-group label {
             display: block;
             margin-top: 5px;
             font-size: 10pt;
@@ -79,6 +88,22 @@
             text-align: left; /* Aligns text to the left */
         }
 
+        .button-card {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      width: 250px;
+      transform: translateY(-50%);
+      padding: 20px;
+      border: 2px solid black;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-card button {
+      width: 100%;
+      margin-top: 10px;
+    }
     </style>
 </head>
 <body>
@@ -102,12 +127,11 @@
             <tr>
                 <td colspan="6">
                     <span class="label" style="font-size: 14px;">2. PERSON WITH DISABILITY NUMBER (RR-PPMM-BBB-NNNNNNN)</span>
-                    <br>
-                    <br>
+                    <p class="pwdID-field"  style="margin: 0px;"></p>
                 </td>
                 <td colspan="4">
                     <span class="label">3. DATE APPLIED</span>
-
+                    <p class="dateapp-field"  style="margin: 0px;"></p>
                 </td>
             </tr>
 
@@ -120,43 +144,52 @@
             <tr>
                 <td colspan="4">
                     <span class="label">Last Name</span>
-                    <p style="color: white;">p</p>
+                    <p class="last-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="2">
                     <span class="label">First Name</span>
-
+                    <p class="first-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="3">
                     <span class="label">Middle Name</span>
-
+                    <p class="middle-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="2">
-                    <span class="label">Suffix</span>
-
+                    <span class="label ">Suffix</span>
+                    <p class="suffix-field" style="margin: 0px;"></p>
                 </td>
             </tr>
             <tr>
                 <td colspan="6">
                     <span class="label">5. DATE OF BIRTH (mm/dd/yyyy)</span>
+                    <p class="dob-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="2">
                     <span class="label">6. SEX</span><br>
-                        <label><input type="radio" name="sex" value="female"> Female</label>
+                    <label><input type="radio" name="sex" value="Female" id="female" style="margin: 0px;"> Female</label>
                 </td>
                 <td colspan="2"><br>
-
-                    <label><input type="radio" name="sex" value="male"> Male</label>
+                    <label><input type="radio" name="sex" value="Male" id="male" style="margin: 0px;"> Male</label>
                 </td>
             </tr>
             <tr>
                 <td colspan="10">
-                    <span class="label">7. CIVIL STATUS</span>
-                     <br>
-                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="single"><strong> Single</strong></label>
-                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="separated"><strong> Separated</strong></label>
-                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="live_in"><strong> Cohabitation (Live-In)</strong></label>
-                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="married"><strong> Married</strong></label>
-                        <label style="margin-right: 40px;"><input type="radio" name="civil_status" value="widow"><strong> Widow/er</strong></label>
+                    <span class="label">7. CIVIL STATUS</span><br>
+                    <label style="margin-right: 40px;">
+                        <input type="radio" name="civil_status" value="Single" id="single"> Single
+                    </label>
+                    <label style="margin-right: 40px;">
+                        <input type="radio" name="civil_status" value="Separated" id="separated"> Separated
+                    </label>
+                    <label style="margin-right: 40px;">
+                        <input type="radio" name="civil_status" value="Cohabitation" id="cohabitation"> Cohabitation (Live-In)
+                    </label>
+                    <label style="margin-right: 40px;">
+                        <input type="radio" name="civil_status" value="Married" id="married"> Married
+                    </label>
+                    <label style="margin-right: 40px;">
+                        <input type="radio" name="civil_status" value="Widow/er" id="widow"> Widow/er
+                    </label>
                 </td>
             </tr>
 
@@ -165,20 +198,20 @@
                 <td colspan="5">
                     <span class="label">8. TYPE OF DISABILITY</span>
                     
-                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 0;">
+                    <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 0;">
                         <div style="flex: 1; min-width: 50%; padding: 0;">
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="deaf"> Deaf or Hard of Hearing Disability</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="psychosocial"> Psychosocial Disability</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="intellectual"> Intellectual Disability</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="speech"> Speech and Language Impairment</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="learning"> Learning Disability</label>
-                        </div>
+                            <label><input type="radio" name="disability_type" value="Deaf or Hard of Hearing Disability" id="deaf"> Deaf or Hard of Hearing Disability</label>
+                            <label><input type="radio" name="disability_type" value="Psychosocial Disability" id="psychosocial"> Psychosocial Disability</label>
+                            <label><input type="radio" name="disability_type" value="Intellectual Disability" id="intellectual"> Intellectual Disability</label>
+                            <label><input type="radio" name="disability_type" value="Speech and Language Impairment" id="speech"> Speech and Language Impairment</label>
+                            <label><input type="radio" name="disability_type" value="Learning Disability" id="learning"> Learning Disability</label>
+                            </div>
                         <div style="flex: 1; min-width: 50%; padding: 0;">
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="visual"> Visual Disability</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="mental"> Mental Disability</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="cancer"> Cancer (RA 11215)</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="physical"> Physical Disability (Orthopedic)</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_type" value="rare_disease"> Rare Disease (RA 10747)</label>
+                            <label><input type="radio" name="disability_type" value="Visual Disability" id="visual"> Visual Disability</label>
+                            <label><input type="radio" name="disability_type" value="Mental Disability" id="mental"> Mental Disability</label>
+                            <label><input type="radio" name="disability_type" value="Cancer (RA 11215)" id="cancer"> Cancer (RA 11215)</label>
+                            <label><input type="radio" name="disability_type" value="Physical Disability (Orthopedic)" id="physical"> Physical Disability (Orthopedic)</label>
+                            <label><input type="radio" name="disability_type" value="Rare Disease (RA 10747)" id="rare"> Rare Disease (RA 10747)</label>
                         </div>
                     </div>
                 </td>
@@ -186,21 +219,21 @@
                 <td colspan="5">
                     <span class="label">9. CAUSE OF DISABILITY</span>
                     
-                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 0;">
+                    <div class="radio-group" style="display: flex; flex-wrap: wrap; gap: 0;">
                         <div style="flex: 1; min-width: 50%; padding: 0;">
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="congenital"> Congenital/Inborn</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="autism"> Autism</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="adhd"> ADHD</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="cerebral_palsy"> Cerebral Palsy</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="down_syndrome"> Down Syndrome</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="others_specify"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 80%;"></label>
+                            <label><input type="radio" name="cause_of_disability" value="Congenital/Inborn" id="congenital"> Congenital/Inborn</label>
+                            <label><input type="radio" name="cause_of_disability" value="Autism" id="autism"> Autism</label>
+                            <label><input type="radio" name="cause_of_disability" value="ADHD" id="adhd"> ADHD</label>
+                            <label><input type="radio" name="cause_of_disability" value="Cerebral Palsy" id="cerebralPalsy"> Cerebral Palsy</label>
+                            <label><input type="radio" name="cause_of_disability" value="Down Syndrome" id="downSyndrome"> Down Syndrome</label>
+                            <label><input type="radio" name="cause_of_disability" value="Others, Specify (Congenital)" id="othersCongenital"> Others, Specify: ______________________</label>
                         </div>
                         <div style="flex: 1; min-width: 50%; padding: 0;">
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="acquired"> Acquired</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="chronic_illness"> Chronic Illness</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="cerebral_palsy_2"> Cerebral Palsy</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="injury"> Injury</label>
-                            <label style="display: block; margin: 0;"><input type="checkbox" name="disability_cause" value="others_specify_2"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 80%;"></label>
+                            <label><input type="radio" name="cause_of_disability" value="Acquired" id="acquired"> Acquired</label>
+                            <label><input type="radio" name="cause_of_disability" value="Chronic Illness" id="chronicIllness"> Chronic Illness</label>
+                            <label><input type="radio" name="cause_of_disability" value="Cerebral Palsy (Acquired)" id="cerebralPalsyAcquired"> Cerebral Palsy</label>
+                            <label><input type="radio" name="cause_of_disability" value="Injury" id="injury"> Injury</label>
+                            <label><input type="radio" name="cause_of_disability" value="Others, Specify (Acquired)" id="othersAcquired"> Others, Specify: _____________________</label>
                         </div>
                     </div>
                 </td>
@@ -216,24 +249,24 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <span class="label">House No. And Street</span>
-                    
+                    <span class="label ">House No. And Street</span>
+                    <p class="house-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="3">
-                    <span class="label">Barangay</span>
-                    
+                    <span class="label ">Baranggay</span>
+                    <p class="Baranggay-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="2">
                     <span class="label">Municipality</span>
-                    <br> <span style="color: red;">SAN MATEO</span>
+                    <br> <span style="color: red;" style="margin: 0px;">SAN MATEO</span>
                 </td>
                 <td>
                     <span class="label">Province</span>
-                    <br> <span style="color: red;">RIZAL
+                    <br> <span style="color: red;" style="margin: 0px;">RIZAL
                 </td>
                 <td colspan="2">
                     <span class="label">Region</span>
-                    <br>  <span style="color: red;">4-A</span>
+                    <br>  <span style="color: red;" style="margin: 0px;">4-A</span>
                 </td>
             </tr>
 
@@ -245,14 +278,16 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <span class="label">Landline No.</span>
+                    <span class="label ">Landline No.</span>
+                    <p class="tele-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="4">
-                    <span class="label">Mobile No.</span>
-                    
+                    <span class="label ">Mobile No.</span>
+                    <p class="phone-field" style="margin: 0px;"></p>
                 </td>
                 <td colspan="4">
-                    <span class="label">E-Mail Address</span>
+                    <span class="label ">E-Mail Address</span>
+                    <p class="email-field" style="margin: 0px;"></p>
                 </td>
             </tr>
 
@@ -263,55 +298,57 @@
                         <span class="label">12. EDUCATIONAL ATTAINMENT:</span> <br>
                         <div style="display: flex; flex-wrap: wrap; gap: 0;">
                             <div style="flex: 1; min-width: 50%; padding: 0;">
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="none"> None</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="kindergarten"> Kindergarten</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="elementary"> Elementary</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="junior_high_school"> Junior High School</label>
-                            </div>
+                                <label><input type="radio" name="education" value="None" id="none"> None</label><br>
+                                <label><input type="radio" name="education" value="Kindergarten" id="kindergarten"> Kindergarten</label><br>
+                                <label><input type="radio" name="education" value="Elementary" id="elementary"> Elementary</label><br>
+                                <label><input type="radio" name="education" value="Junior High School" id="juniorHigh"> Junior High School</label><br>
+                                </div>
                             <div style="flex: 1; min-width: 50%; padding: 0;">
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="senior_high_school"> Senior High School</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="college"> College</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="vocational"> Vocational</label>
-                                <label style="display: block; margin: 0;"><input type="checkbox" name="education" value="post_graduate"> Post Graduate</label>
+                                <label><input type="radio" name="education" value="Senior High School" id="seniorHigh"> Senior High School</label><br>
+                                <label><input type="radio" name="education" value="College" id="college"> College</label><br>
+                                <label><input type="radio" name="education" value="Vocational" id="vocational"> Vocational</label><br>
+                                <label><input type="radio" name="education" value="Post Graduate" id="postGraduate"> Post Graduate</label>
                             </div>
                         </div>
                     </td>
                     
                     <td rowspan="3" style="vertical-align: top;">
                         <span class="label">14. OCCUPATION:</span> <br>
-                        <label><input type="radio" name="occupation" value="managers"> Managers</label><br>
-                        <label><input type="radio" name="occupation" value="professionals"> Professionals</label><br>
-                        <label><input type="radio" name="occupation" value="technicians"> Technicians And Associate Professionals</label><br>
-                        <label><input type="radio" name="occupation" value="clerical_support"> Clerical Support Workers</label><br>
-                        <label><input type="radio" name="occupation" value="service_sales"> Service And Sales Workers</label><br>
-                        <label><input type="radio" name="occupation" value="skilled_agricultural"> Skilled Agricultural, Forestry And Fishery Workers</label><br>
-                        <label><input type="radio" name="occupation" value="craft_trade"> Craft And Related Trade Workers</label><br>
-                        <label><input type="radio" name="occupation" value="plant_machine_operators"> Plant And Machine Operators And Assemblers</label><br>
-                        <label><input type="radio" name="occupation" value="elementary_occupations"> Elementary Occupations</label><br>
-                        <label><input type="radio" name="occupation" value="armed_forces"> Armed Forces Occupations</label><br>
-                        <label><input type="radio" name="occupation" value="others"> Others, Specify: <input type="text" style="border: none; border-bottom: 1px solid #000; width: 50%;"></label>
+                        <label><input type="radio" name="occupation" value="managers" id="managers"> Managers</label><br>
+                        <label><input type="radio" name="occupation" value="professionals" id="professionals"> Professionals</label><br>
+                        <label><input type="radio" name="occupation" value="technicians" id="technicians"> Technicians And Associate Professionals</label><br>
+                        <label><input type="radio" name="occupation" value="clerical" id="clerical"> Clerical Support Workers</label><br>
+                        <label><input type="radio" name="occupation" value="service" id="service"> Service And Sales Workers</label><br>
+                        <label><input type="radio" name="occupation" value="agricultural" id="agricultural"> Skilled Agricultural, Forestry And Fishery Workers</label><br>
+                        <label><input type="radio" name="occupation" value="craft" id="craft"> Craft And Related Trade Workers</label><br>
+                        <label><input type="radio" name="occupation" value="machine" id="machine"> Plant And Machine Operators And Assemblers</label><br>
+                        <label><input type="radio" name="occupation" value="elementary" id="elementary"> Elementary Occupations</label><br>
+                        <label><input type="radio" name="occupation" value="armedForces" id="armedForces"> Armed Forces Occupations</label><br>
+                        <label><input type="radio" name="occupation" value="others" id="others"> Others, Specify: 
+                            <input type="text" style="border: none; border-bottom: 1px solid #000; width: 50%;" id="otherOccupation">
+                        </label>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span class="label">13. STATUS OF EMPLOYMENT:</span> <br>
-                        <label><input type="radio" name="employment_status" value="employed"> Employed</label><br>
-                        <label><input type="radio" name="employment_status" value="unemployed"> Unemployed</label><br>
-                        <label><input type="radio" name="employment_status" value="self_employed"> Self-Employed</label>
+                        <label><input type="radio" name="employment_status" value="employed" id="employed"> Employed</label><br>
+                        <label><input type="radio" name="employment_status" value="unemployed" id="unemployed"> Unemployed</label><br>
+                        <label><input type="radio" name="employment_status" value="selfEmployed" id="selfEmployed"> Self-Employed</label>                    
                     </td>
                     <td>
                         <span class="label">13b. TYPES OF EMPLOYMENT:</span> <br>
-                        <label><input type="radio" name="employment_type" value="permanent"> Permanent/Regular</label><br>
-                        <label><input type="radio" name="employment_type" value="seasonal"> Seasonal</label><br>
-                        <label><input type="radio" name="employment_type" value="casual"> Casual</label><br>
-                        <label><input type="radio" name="employment_type" value="emergency"> Emergency</label>
+                        <label><input type="radio" name="employment_type" value="permanent" id="permanent"> Permanent/Regular</label><br>
+                        <label><input type="radio" name="employment_type" value="seasonal" id="seasonal"> Seasonal</label><br>
+                        <label><input type="radio" name="employment_type" value="casual" id="casual"> Casual</label><br>
+                        <label><input type="radio" name="employment_type" value="emergency" id="emergency"> Emergency</label>                    
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <span class="label">13a. CATEGORY OF EMPLOYMENT:</span> <br>
-                        <label><input type="radio" name="employment_category" value="government"> Government</label><br>
-                        <label><input type="radio" name="employment_category" value="private"> Private</label>
+                        <label><input type="radio" name="employment_category" value="government" id="government"> Government</label><br>
+                        <label><input type="radio" name="employment_category" value="private" id="private"> Private</label>
                     </td>
                 </tr>
             </table>
@@ -325,11 +362,11 @@
             </tr>
             <tr>
                 <td style="width: 26%;"><span class="label">Organization Affiliated:
-                    <br> <p style="color: white;">s</p>
+                    <br> <p class="orgaff-field" style="margin: 0px;" ></p>
                 </span></td>
-                <td style="width: 25%;"><span class="label">Contact Person:</span></td>
-                <td style="width: 25%;" colspan="4"><span class="label">Office Address:</span></td>
-                <td style="width: 25%;"><span class="label">Tel. Nos.:</span></td>
+                <td style="width: 25%;"><span class="label">Contact Person: <p class="contactPerson-field" style="margin: 0px;"></p> </span></td>
+                <td style="width: 25%;" colspan="4"><span class="label">Office Address: <p class="officeAddress-field" style="margin: 0px;"></p> </span></td>
+                <td style="width: 25%;"><span class="label">Tel. Nos.: <p class="telno-field" style="margin: 0px;"></p> </span></td>
             </tr>
             
             <table style="width: 100%; border-collapse: collapse;">
@@ -341,11 +378,11 @@
 
             
                 <tr>
-                    <td style="width: 20%;"><span class="label">SSS NO.:<br> <p style="color: white;">s</p></span></td>
-                    <td style="width: 20%;"><span class="label">GSIS NO.:</span></td>
-                    <td style="width: 20%;"><span class="label">PAG-IBIG NO.:</span></td>
-                    <td style="width: 20%;"><span class="label">PSN NO.:</span></td>
-                    <td style="width: 20%;"><span class="label">PHILHEALTH NO.:</span></td>
+                    <td style="width: 20%;"><span class="label ">SSS NO.:<br> <p class="sss-field" style="margin: 0px;"></span></td>
+                    <td style="width: 20%;"><span class="label ">GSIS NO.: <p class="gsis-field" style="margin: 0px;"></p></span></td>
+                    <td style="width: 20%;"><span class="label ">PAG-IBIG NO.: <p class="pagibig-field" style="margin: 0px;"></p></span></td>
+                    <td style="width: 20%;"><span class="label ">PSN NO.: <p class="psn-field" style="margin: 0px;"></p></span></td>
+                    <td style="width: 20%;"><span class="label ">PHILHEALTH NO.: <p class="philHealth-field" style="margin: 0px;"></p></span></td>
                 </tr>
             </table>
         </table>
@@ -361,25 +398,25 @@
                 </tr>
                 <tr>
                     <td>FATHER'S NAME: </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="fatherlname-field"></td>
+                    <td class="fatherfname-field"></td>
+                    <td class="fathermname-field"></td>
                 </tr>
                 <tr>
                     <td>MOTHER'S NAME: </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="motherlname-field"></td>
+                    <td class="motherfname-field"></td>
+                    <td class="mothermname-field"></td>
                 </tr>
                 <tr>
                     <td>For in case of emergency:<br>GUARDIAN: </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="guardianlname-field"></td>
+                    <td class="guardianfname-field"></td>
+                    <td class="guardianmname-field"></td>
                 </tr>
                 <tr>
                     <td>Contact No.: </td>
-                    <td colspan="3"></td>
+                    <td colspan="3" class="contactguardian-field"></td>
                 </tr>
                 
                 <!-- Accomplished By -->
@@ -391,32 +428,32 @@
                 </tr>
                 <!-- Applicant Row -->
                 <tr>
-                    <td><input type="checkbox"> APPLICANT</td>
+                    <td><input type="checkbox" id="accomplishedByApplicant"> APPLICANT</td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <!-- Guardian Row -->
                 <tr>
-                    <td><input type="checkbox"> GUARDIAN</td>
+                    <td><input type="checkbox" id="accomplishedByGuardian"> GUARDIAN</td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <!-- Representative Row -->
                 <tr>
-                    <td><input type="checkbox"> REPRESENTATIVE</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="checkbox" id="accomplishedByRepresentative"> REPRESENTATIVE</td>
+                    <td class="accomplishedBylname-field"></td>
+                    <td class="accomplishedByfname-field"></td>
+                    <td class="accomplishedBymname-field"></td>
                 </tr>
                 
                 <!-- Certifying Physician -->
                 <tr>
-                    <th style="text-align: left; padding-left: 10px;">19. NAME OF CERTIFYING PHYSICIAN: <br>License No.:</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th style="text-align: left; padding-left: 10px;">19. NAME OF CERTIFYING PHYSICIAN: <br> <p class="physicianLicense-field" style="margin: 0px;">License No.: </p></th>
+                    <td class="physicianlname"></td>
+                    <td class="physicianfname"></td>
+                    <td class="physicianmname"></td>
                 </tr>
                 
                 <!-- Processing Officer -->
@@ -461,5 +498,261 @@
             </tr>
         </table>
     </div>
+ <!-- Right-side Button Card -->
+ <div class="button-card">
+    <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
+    <button class="btn btn-success" id="downloadBtn">Submit and Download</button>
+    <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
+  </div>
+  
+    <script>
+ document.getElementById('downloadBtn').addEventListener('click', async () => {
+    try {
+      const { jsPDF } = window.jspdf;
+
+      const element = document.querySelector('.form-container');
+      const canvas = await html2canvas(element, { scale: 2 });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      // Add the first page
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Add more pages if needed
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight; // Move to next page
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Solo_Parent_Application_Form.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('An error occurred while generating the PDF. Check console for details.');
+    }
+  });
+
+  function handleSubmit() {
+    alert('Form Submitted');
+  }
+
+  function handlePrint() {
+    window.print();
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const pwdIDValue = localStorage.getItem('summaryPWDIdNumber') || 'N/A';
+    const dateAppliedValue = localStorage.getItem('summaryDateApplied') || 'N/A';
+    const lastNameValue = localStorage.getItem('summaryLastName') || 'N/A';
+    const firstNameValue = localStorage.getItem('summaryFirstName') || 'N/A';
+    const middleNameValue = localStorage.getItem('summaryMiddleName') || 'N/A';
+    const suffixValue = localStorage.getItem('summarySuffix') || 'N/A';
+    const dateOfBirthValue = localStorage.getItem('summaryDob') || 'N/A';
+    const housestreetValue = localStorage.getItem('summaryHouseNoStreet') || 'N/A';
+    const barangayValue = localStorage.getItem('summaryBarangay') || 'N/A';
+    const teleValue = localStorage.getItem('summaryTele') || 'N/A';
+    const phoneValue = localStorage.getItem('summaryPhone') || 'N/A';
+    const emailValue = localStorage.getItem('summaryEmail') || 'N/A';
+    const orgAffiliatedValue = localStorage.getItem('summaryOrgAffiliated') || 'N/A';
+    const contactPersonValue = localStorage.getItem('summaryContactPerson') || 'N/A';
+    const officeAddressValue = localStorage.getItem('summaryOfficeAddress') || 'N/A';
+    const telNosValue = localStorage.getItem('summaryTelNos') || 'N/A';
+    const sssNoValue = localStorage.getItem('summarySSS') || 'N/A';
+    const gsisNoValue = localStorage.getItem('summaryGSIS') || 'N/A';
+    const pagibigNoValue = localStorage.getItem('summaryPAGIBIG') || 'N/A';
+    const psnNoValue = localStorage.getItem('summaryPSN') || 'N/A';
+    const philhealthNoValue = localStorage.getItem('summaryPhilHealth') || 'N/A';
+    const fatherLastNameValue = localStorage.getItem('summaryFatherLastName') || 'N/A';
+    const fatherFirstNameValue = localStorage.getItem('summaryFatherFirstName') || 'N/A';
+    const fatherMiddleNameValue = localStorage.getItem('summaryFatherMiddleName') || 'N/A';
+    const motherLastNameValue = localStorage.getItem('summaryMotherLastName') || 'N/A';
+    const motherFirstNameValue = localStorage.getItem('summaryMotherFirstName') || 'N/A';
+    const motherMiddleNameValue = localStorage.getItem('summaryMotherMiddleName') || 'N/A';
+    const guardianLastNameValue = localStorage.getItem('summaryGuardianLastName') || 'N/A';
+    const guardianFirstNameValue = localStorage.getItem('summaryGuardianFirstName') || 'N/A';
+    const guardianMiddleNameValue = localStorage.getItem('summaryGuardianMiddleName') || 'N/A';
+    const guardianContactNoValue = localStorage.getItem('summaryGuardianContactNo') || 'N/A';
+    const applicantLastNameValue = localStorage.getItem('summaryAccomplishedByLastName') || 'N/A';
+    const applicantFirstNameValue = localStorage.getItem('summaryAccomplishedByFirstName') || 'N/A';
+    const applicantMiddleNameValue = localStorage.getItem('summaryAccomplishedByMiddleName') || 'N/A';
+    const physiciaFirstNameValue = localStorage.getItem('summaryPhysicianFirstName') || 'N/A';
+    const physicianMiddleNameValue = localStorage.getItem('summaryPhysicianMiddleName') || 'N/A';
+    const physicianLastNameValue = localStorage.getItem('summaryPhysicianLastName') || 'N/A';
+    const physicianLicenseNoValue = localStorage.getItem('summaryLicenseNo') || 'N/A';
+
+
+    document.querySelector('.pwdID-field').textContent = pwdIDValue;
+    document.querySelector('.dateapp-field').textContent = dateAppliedValue;
+    document.querySelector('.last-field').textContent = lastNameValue;
+    document.querySelector('.first-field').textContent = firstNameValue;
+    document.querySelector('.middle-field').textContent = middleNameValue;
+    document.querySelector('.suffix-field').textContent = suffixValue;
+    document.querySelector('.dob-field').textContent = dateOfBirthValue;
+    document.querySelector('.house-field').textContent = housestreetValue;
+    document.querySelector('.Baranggay-field').textContent = barangayValue;
+    document.querySelector('.tele-field').textContent = teleValue;
+    document.querySelector('.phone-field').textContent = phoneValue;
+    document.querySelector('.email-field').textContent = emailValue;
+    document.querySelector('.orgaff-field').textContent = orgAffiliatedValue;
+    document.querySelector('.contactPerson-field').textContent = contactPersonValue;
+    document.querySelector('.officeAddress-field').textContent = officeAddressValue;
+    document.querySelector('.telno-field').textContent = telNosValue;
+    document.querySelector('.sss-field').textContent = sssNoValue;
+    document.querySelector('.gsis-field').textContent = gsisNoValue;
+    document.querySelector('.pagibig-field').textContent = pagibigNoValue;
+    document.querySelector('.psn-field').textContent = psnNoValue;
+    document.querySelector('.philHealth-field').textContent = philhealthNoValue;
+    document.querySelector('.fatherlname-field').textContent = fatherLastNameValue;
+    document.querySelector('.fatherfname-field').textContent = fatherFirstNameValue;
+    document.querySelector('.fathermname-field').textContent = fatherMiddleNameValue;
+    document.querySelector('.motherlname-field').textContent = motherLastNameValue;
+    document.querySelector('.motherfname-field').textContent = motherFirstNameValue;
+    document.querySelector('.mothermname-field').textContent = motherMiddleNameValue;
+    document.querySelector('.guardianlname-field').textContent = guardianLastNameValue;
+    document.querySelector('.guardianfname-field').textContent = guardianFirstNameValue;
+    document.querySelector('.guardianmname-field').textContent = guardianMiddleNameValue;
+    document.querySelector('.contactguardian-field').textContent = guardianContactNoValue;
+    document.querySelector('.accomplishedBylname-field').textContent = applicantLastNameValue;
+    document.querySelector('.accomplishedByfname-field').textContent = applicantFirstNameValue;
+    document.querySelector('.accomplishedBymname-field').textContent = applicantMiddleNameValue;
+    document.querySelector('.physicianlname').textContent = physicianLastNameValue;
+    document.querySelector('.physicianfname').textContent = physiciaFirstNameValue;
+    document.querySelector('.physicianmname').textContent = physicianMiddleNameValue;
+    document.querySelector('.physicianLicense-field').textContent = `License No.: ${physicianLicenseNoValue}`;
+
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectedGender = localStorage.getItem('selectedGender');  // Retrieve stored gender
+    
+    // Set the radio button based on the stored gender value
+    if (selectedGender === 'Male') {
+        document.getElementById('male').checked = true;
+    } else if (selectedGender === 'Female') {
+        document.getElementById('female').checked = true;
+    }
+    
+    // Retrieve and set Civil Status
+    const selectedCivilStatus = localStorage.getItem('selectedCivilStatus');
+    if (selectedCivilStatus === 'Single') {
+        document.getElementById('single').checked = true;
+    } else if (selectedCivilStatus === 'Separated') {
+        document.getElementById('separated').checked = true;
+    } else if (selectedCivilStatus === 'Cohabitation') {
+        document.getElementById('cohabitation').checked = true;
+    } else if (selectedCivilStatus === 'Married') {
+        document.getElementById('married').checked = true;
+    } else if (selectedCivilStatus === 'Widow/er') {
+        document.getElementById('widow').checked = true;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve and set Type of Disability
+    const selectedDisabilityType = localStorage.getItem('selectedDisabilityType');
+    
+    if (selectedDisabilityType) {
+        // Check the appropriate radio button based on the stored value
+        const disabilityRadio = document.querySelector(`input[name="disability_type"][value="${selectedDisabilityType}"]`);
+        if (disabilityRadio) {
+            disabilityRadio.checked = true;
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve and set Cause of Disability
+    const selectedCause = localStorage.getItem('selectedCauseOfDisability');
+    
+    if (selectedCause) {
+        // Check the appropriate radio button based on the stored value
+        const causeRadio = document.querySelector(`input[name="cause_of_disability"][value="${selectedCause}"]`);
+        if (causeRadio) {
+            causeRadio.checked = true;
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve and set Educational Attainment
+    const selectedEducation = localStorage.getItem('selectedEducationAttainment');
+    
+    if (selectedEducation) {
+        // Check the appropriate radio button based on the stored value
+        const educationRadio = document.querySelector(`input[name="education"][value="${selectedEducation}"]`);
+        if (educationRadio) {
+            educationRadio.checked = true;
+        }
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+        // Status of Employment
+        const selectedStatus = localStorage.getItem('selectedStatus');
+        if (selectedStatus) {
+            document.getElementById(selectedStatus).checked = true;
+        }
+
+        // Types of Employment
+        const selectedType = localStorage.getItem('selectedType');
+        if (selectedType) {
+            document.getElementById(selectedType).checked = true;
+        }
+
+        // Category of Employment
+        const selectedCategory = localStorage.getItem('selectedCategory');
+        if (selectedCategory) {
+            document.getElementById(selectedCategory).checked = true;
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectedOccupation = localStorage.getItem('selectedOccupation');
+
+        if (selectedOccupation) {
+            if (document.getElementById(selectedOccupation)) {
+                document.getElementById(selectedOccupation).checked = true;
+            } else if (selectedOccupation === 'others') {
+                document.getElementById('others').checked = true;
+                // Optional: populate the text input if other occupation details were saved
+                const otherOccupationDetail = localStorage.getItem('otherOccupationDetail');
+                if (otherOccupationDetail) {
+                    document.getElementById('otherOccupation').value = otherOccupationDetail;
+                }
+            }
+        }
+
+        // Optional: Store "Other" occupation details
+        document.getElementById('otherOccupation').addEventListener('input', function() {
+            localStorage.setItem('otherOccupationDetail', this.value);
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const accomplishedBy = localStorage.getItem('accomplishedBy');
+
+        // Set the checkbox based on the stored option
+        if (accomplishedBy === 'applicant') {
+            document.getElementById('accomplishedByApplicant').checked = true;
+        } else if (accomplishedBy === 'guardian') {
+            document.getElementById('accomplishedByGuardian').checked = true;
+        } else if (accomplishedBy === 'representative') {
+            document.getElementById('accomplishedByRepresentative').checked = true;
+        }
+
+        // Populate the name fields for the selected option
+        document.querySelector('.accomplishedBylname-field').textContent = localStorage.getItem('accomplishedByLastName') || '';
+        document.querySelector('.accomplishedByfname-field').textContent = localStorage.getItem('accomplishedByFirstName') || '';
+        document.querySelector('.accomplishedBymname-field').textContent = localStorage.getItem('accomplishedByMiddleName') || '';
+    });
+    </script>
 </body>
 </html>

@@ -84,7 +84,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </head>
     <body>
-     
+      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.php">
+            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
+            <span class="brand-name">OSSM</span>
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="username">Hello, Username</span>
+            <div class="dropdown-center ms-3">
+              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
 
     <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
@@ -126,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <i class="bi bi-check-square"></i>
                         </a>
                     </li>
-                    <li class="progress-item" data-target="summary">
+                    <li class="progress-item" data-target="summarySection">
                         <a href="#">
                             Summary of Information
                             <i class="bi bi-check-square"></i>
@@ -144,64 +164,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         A separate application must be filed for each person seeking assistance. This is for PWD Assistance Only.
                     </p>
     
-                    <form method="POST" action="">
+                    <form>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" >
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
+                            </div>
+                            <div class="col-md-2">
+                                <label for="middleName" class="form-label">Suffix</label>
+                                <select class="form-select" id="suffix" >
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="Jr">Jr</option>
+                                    <option value="Sr">Sr</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                </select>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" name="gender" required>
+                                <select class="form-select" id="gender" onchange="genderChange()">
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" name="civilstatus" required>
+                                <select class="form-select" id="civilstatus" onchange="civilStatusChange()">
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="self">Married</option>
-                                    <option value="spouse">Widowed</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Separated">Separated</option>
+                                    <option value="Cohabitation">Cohabitation (Live-In)</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Widow/er">Widow/er</option>
                                 </select>
                             </div>                            
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" name="dob" required>
+                                <input type="date" class="form-control" id="dob" >
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="tele" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="tele" name="tele" placeholder="(916) 345-6783" required>
+                                <label for="tele" class="form-label">Landline Number</label>
+                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" >
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="workPhone" class="form-label">Work Phone</label>
-                                <input type="tel" class="form-control" id="workPhone" name="workPhone" placeholder="(916) 345-0000 x123" required>
+                                <input type="email" class="form-control" id="email" placeholder="Email" >
                             </div>
                         </div>
     
@@ -221,13 +250,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" required>
+                                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" >
                                     <label class="form-check-label" for="yesOption">
                                         Yes
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" required>
+                                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" >
                                     <label class="form-check-label" for="noOption">
                                         No
                                     </label>
@@ -236,92 +265,129 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
     
                         <div id="yesFields" style="display: none;">
-                            <div class="mb-3">
-                                <label for="PWDIdNumber" class="form-label">PWD ID Number</label>
-                                <input type="text" class="form-control" id="PWDIdNumber" placeholder="Enter ID Number" required>
+
+                            <div class="row mb-3">  
+                                <div class="col-md-6">
+                                    <label for="PWDIdNumber" class="form-label">PERSON WITH DISABILITY NUMBER</label>
+                                    <input type="text" class="form-control" id="PWDIdNumber" placeholder="(RR-PPMM-BBB-NNNNNNN)" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="idImageUpload" class="form-label">DATE APPLIED</label>
+                                    <input type="date" class="form-control" id="PWDidImageUpload" >
+                                </div>
                             </div>
+
                             <div class="mb-3">
                                 <label for="idImageUpload" class="form-label">Upload PWD ID</label>
-                                <input type="file" class="form-control" id="PWDidImageUpload" required>
-                            </div>
-                        </div>
-    
-                        <div id="noFields" style="display: none;">
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="PWDethnicGroup" class="form-label">Ethnic Group</label>
-                                    <input type="text" class="form-control" id="PWDethnicGroup" placeholder="Ethnic Group" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="pwdDiagnosis" class="form-label">Diagnosis</label>
-                                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="education" class="form-label">Educational Attainment</label>
-                                    <select class="form-select" id="education" required>
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="elementary">Elementary</option>
-                                        <option value="highSchool">High School</option>
-                                        <option value="college">College</option>
-                                        <option value="graduate">Graduate</option>
-                                    </select>
-                                </div>
-                            </div>
-    
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="refNo" class="form-label">ID Reference No.</label>
-                                    <input type="text" class="form-control" id="refNo" placeholder="ID Reference No." required>
-                                </div>
+                                <input type="file" class="form-control" id="PWDidImageUpload" >
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="problems" class="form-label">Type of Disabilty</label>
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="input-group control-group after-add-more">
-                                                <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" required>
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                    <div class="copy-fields hide">
-                                        <div class="control-group input-group" style="margin-top:10px">
-                                            <input type="text" name="type[]" class="form-control" placeholder="Type of Disabilty" required>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <label for="disabilityType" class="form-label">Type of Disability</label>
+                                    <select class="form-select" id="disabilityType" onchange="disabilityTypeChange()">
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
+                                        <option value="Psychosocial Disability">Psychosocial Disability</option>
+                                        <option value="Intellectual Disability">Intellectual Disability</option>
+                                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
+                                        <option value="Learning Disability">Learning Disability</option>
+                                        <option value="Visual Disability">Visual Disability</option>
+                                        <option value="Mental Disability">Mental Disability</option>
+                                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
+                                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
+                                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
+                                    </select>
                                 </div>
         
                                 <br>
         
                                 <div class="col-md-6">
                                     <label for="needs" class="form-label">Cause Of Disabilty</label>
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="input-group control-group after-add-more">
-                                                <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" required>
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <select class="form-select" id="causeOfDisability" onchange="causeOfDisabilityChange()">
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Congenital/Inborn">Congenital/Inborn</option>
+                                        <option value="Autism">Autism</option>
+                                        <option value="ADHD">ADHD</option>
+                                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                                        <option value="Down Syndrome">Down Syndrome</option>
+                                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
+                                        <option value="Acquired">Acquired</option>
+                                        <option value="Chronic Illness">Chronic Illness</option>
+                                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
+                                        <option value="Injury">Injury</option>
+                                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
+                                    </select>
+                                </div>  
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="houseNoStreet" class="form-label">House No. and Street</label>
+                                        <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" >
                                     </div>
+                                    <div class="col-md-6">
+                                        <label for="barangay" class="form-label">Barangay</label>
+                                        <input type="text" class="form-control" id="barangay" placeholder="Barangay" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div id="noFields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="pwdDiagnosis" class="form-label">Diagnosis</label>
+                                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" >
+                                </div>
+                            </div>
+    
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="houseNoStreet" class="form-label">House No. and Street</label>
+                                    <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="barangay" class="form-label">Barangay</label>
+                                    <input type="text" class="form-control" id="barangay" placeholder="Barangay" >
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="problems" class="form-label">Type of Disabilty</label>
+                                    <select class="form-select" id="disabilityType" onchange="disabilityTypeChange()">
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
+                                        <option value="Psychosocial Disability">Psychosocial Disability</option>
+                                        <option value="Intellectual Disability">Intellectual Disability</option>
+                                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
+                                        <option value="Learning Disability">Learning Disability</option>
+                                        <option value="Visual Disability">Visual Disability</option>
+                                        <option value="Mental Disability">Mental Disability</option>
+                                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
+                                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
+                                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
+                                    </select>
+                                </div>
         
-                                    <div class="copy-fields hide">
-                                        <div class="control-group input-group" style="margin-top:10px">
-                                            <input type="text" name="cause[]" class="form-control" placeholder="Cause Of Disabilty" required>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <br>
+        
+                                <div class="col-md-6">
+                                    <label for="needs" class="form-label">Cause Of Disabilty</label>
+                                    <select class="form-select" id="causeOfDisability" onchange="causeOfDisabilityChange()">
+                                        <option value="" disabled selected>Choose...</option>
+                                        <option value="Congenital/Inborn">Congenital/Inborn</option>
+                                        <option value="Autism">Autism</option>
+                                        <option value="ADHD">ADHD</option>
+                                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                                        <option value="Down Syndrome">Down Syndrome</option>
+                                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
+                                        <option value="Acquired">Acquired</option>
+                                        <option value="Chronic Illness">Chronic Illness</option>
+                                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
+                                        <option value="Injury">Injury</option>
+                                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
+                                    </select>
                                 </div>    
                             </div>
                         </div>
@@ -333,28 +399,122 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-section" id="government-numbers" style="display: none;">
                             <form>    
                                 <h4>Government Numbers</h4>
-                                
-                                <br>
 
                                 <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="SSS" class="form-label">SSS Number/UMID Number</label>
-                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" required>
+                                    <div class="col-md-3">
+                                        <label for="educationAttainment" class="form-label">Educational Attainment</label>
+                                        <select class="form-select" id="educationAttainment" onchange="educationAttainmentChange()">
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="None">None</option>
+                                            <option value="Kindergarten">Kindergarten</option>
+                                            <option value="Elementary">Elementary</option>
+                                            <option value="Junior High School">Junior High School</option>
+                                            <option value="Senior High School">Senior High School</option>
+                                            <option value="College">College</option>
+                                            <option value="Vocational">Vocational</option>
+                                            <option value="Post Graduate">Post Graduate</option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="GSIS" class="form-label">GSIS Number</label>
-                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" required>
+
+                                    <div class="col-md-3">
+                                            <label for="employmentStatus" class="form-label">Status of Employment</label>
+                                            <select class="form-select" id="employmentStatus" onchange="statusOfEmploymentChange()">
+                                                <option value="" disabled selected>Choose...</option>
+                                                <option value="employed">Employed</option>
+                                                <option value="unemployed">Unemployed</option>
+                                                <option value="selfEmployed">Self-Employed</option>
+                                            </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="employmentType" class="form-label">Types of Employment</label>
+                                        <select class="form-select" id="employmentType" onchange="typesOfEmploymentChange()">
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="permanent">Permanent/Regular</option>
+                                            <option value="seasonal">Seasonal</option>
+                                            <option value="casual">Casual</option>
+                                            <option value="emergency">Emergency</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="employmentCategory" class="form-label">Category of Employment</label>
+                                        <select class="form-select" id="employmentCategory" onchange="categoryOfEmploymentChange()">
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="government">Government</option>
+                                            <option value="private">Private</option>
+                                        </select>
                                     </div>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="occupation" class="form-label">Occupation</label>
+                                        <select class="form-select" id="occupation" onchange="occupationChange()">
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="managers">Managers</option>
+                                            <option value="professionals">Professionals</option>
+                                            <option value="technicians">Technicians And Associate Professionals</option>
+                                            <option value="clerical">Clerical Support Workers</option>
+                                            <option value="service">Service And Sales Workers</option>
+                                            <option value="agricultural">Skilled Agricultural, Forestry And Fishery Workers</option>
+                                            <option value="craft">Craft And Related Trade Workers</option>
+                                            <option value="machine">Plant And Machine Operators And Assemblers</option>
+                                            <option value="elementary">Elementary Occupations</option>
+                                            <option value="armedForces">Armed Forces Occupations</option>
+                                            <option value="others">Others, Specify:</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="occupation" class="form-label">Others</label>
+                                        <input type="text" class="form-control" id="occupation" placeholder="Specify" >
+                                    </div>
+                                </div>
+
+<hr style="margin-top: 20px; margin-bottom: 20px;">
+
+                                <div class="row mb-3">
+                                    <h5>Organization Information</h5>
+                                    <div class="col-md-6">
+                                        <label for="orgAffiliated" class="form-label">Organization Affiliated</label>
+                                        <input type="text" class="form-control" id="orgAffiliated" placeholder="Organization Affiliated" >
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="contactPerson" class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" id="contactPerson" placeholder="Contact Person" >
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="officeAddress" class="form-label">Office Address</label>
+                                        <input type="text" class="form-control" id="officeAddress" placeholder="Office Address" >
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telNos" class="form-label">Tel. Nos.</label>
+                                        <input type="text" class="form-control" id="telNos" placeholder="Tel. Nos." >
+                                    </div>
+                                </div>
+<hr style="margin-top: 20px; margin-bottom: 20px;">
                                 
                                 <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="PhilHealth" class="form-label">PhilHealth Number</label>
-                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" required>
+                                    <div class="col-md-3">
+                                        <label for="SSS" class="form-label">SSS Number/UMID Number</label>
+                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" >
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
+                                        <label for="GSIS" class="form-label">GSIS Number</label>
+                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" >
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="PhilHealth" class="form-label">PhilHealth Number</label>
+                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" >
+                                    </div>
+                                    <div class="col-md-2">
                                         <label for="PAGIBIG" class="form-label">PAGIBIG Number</label>
-                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" required>
+                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" >
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="PSN" class="form-label">PSN Number</label>
+                                        <input type="text" class="form-control" id="PSN" placeholder="PSN Number" >
                                     </div>
                                 </div>
                                 
@@ -364,81 +524,140 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-section" id="contact-information" style="display: none;">
                         <form>    
-                            <h4>Contact Information of Guardian/Caregiver</h4>
-                            
-                            <br>
+                            <h4>Contact Information</h4>
+                            <!-- Father's Name Section -->
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="contactType" id="guardianOption" value="guardian" required>
-                                    <label class="form-check-label" for="guardianOption">
-                                      Guardian
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="contactType" id="caregiverOption" value="caregiver" required>
-                                    <label class="form-check-label" for="caregiverOption">
-                                      Caregiver
-                                    </label>
-                                  </div>
+                                <div class="col-md-4">
+                                    <label for="fatherLastName" class="form-label">Father's Last Name</label>
+                                    <input type="text" class="form-control" id="fatherLastName" placeholder="Father's Last Name">
                                 </div>
-                              </div>
-                                <!-- Guardian Info -->
-                                <div id="guardianInfo" style="display: none;">
-                                    <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="guardianFname" class="form-label">Guardian First Name</label>
-                                        <input type="text" class="form-control" id="guardianFname" placeholder="Guardian First Name">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="guardianLname" class="form-label">Guardian Last Name</label>
-                                        <input type="text" class="form-control" id="guardianLname" placeholder="Guardian Last Name">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="guardianMname" class="form-label">Guardian Middle Name</label>
-                                        <input type="text" class="form-control" id="guardianMname" placeholder="Guardian Middle Name">
-                                    </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="guardianNumber" class="form-label">Guardian Mobile Number</label>
-                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Guardian Mobile Number">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="guardianNumber" class="form-label">Landline</label>
-                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Landline">
-                                    </div>
-                                    </div>
+                                <div class="col-md-4">
+                                    <label for="fatherFirstName" class="form-label">Father's First Name</label>
+                                    <input type="text" class="form-control" id="fatherFirstName" placeholder="Father's First Name">
                                 </div>
-                                
-                                <!-- Caregiver Info -->
-                                <div id="caregiverInfo" style="display: none;">
-                                    <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="careFname" class="form-label">Caregiver First Name</label>
-                                        <input type="text" class="form-control" id="careFname" placeholder="Caregiver First Name">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="careLname" class="form-label">Caregiver Last Name</label>
-                                        <input type="text" class="form-control" id="careLname" placeholder="Caregiver Last Name">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="careMname" class="form-label">Caregiver Middle Name</label>
-                                        <input type="text" class="form-control" id="careMname" placeholder="Caregiver Middle Name">
-                                    </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="careNumber" class="form-label">Caregiver Mobile Number</label>
-                                        <input type="text" class="form-control" id="careNumber" placeholder="Caregiver Mobile Number">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="guardianNumber" class="form-label">Landline</label>
-                                        <input type="text" class="form-control" id="guardianNumber" placeholder="Landline">
-                                    </div>
-                                    </div>
+                                <div class="col-md-4">
+                                    <label for="fatherMiddleName" class="form-label">Father's Middle Name</label>
+                                    <input type="text" class="form-control" id="fatherMiddleName" placeholder="Father's Middle Name">
                                 </div>
-                                                                                        
+                            </div>
+
+                            <!-- Mother's Name Section -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="motherLastName" class="form-label">Mother's Last Name</label>
+                                    <input type="text" class="form-control" id="motherLastName" placeholder="Mother's Last Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="motherFirstName" class="form-label">Mother's First Name</label>
+                                    <input type="text" class="form-control" id="motherFirstName" placeholder="Mother's First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="motherMiddleName" class="form-label">Mother's Middle Name</label>
+                                    <input type="text" class="form-control" id="motherMiddleName" placeholder="Mother's Middle Name">
+                                </div>
+                            </div>
+
+                            <!-- Guardian (Emergency Contact) Section -->
+                            <div class="row mb-3">
+                                <h5>For in case of emergency: Guardian</h5>
+                                <div class="col-md-4">
+                                    <label for="guardianLastName" class="form-label">Guardian Last Name</label>
+                                    <input type="text" class="form-control" id="guardianLastName" placeholder="Guardian Last Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="guardianFirstName" class="form-label">Guardian First Name</label>
+                                    <input type="text" class="form-control" id="guardianFirstName" placeholder="Guardian First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="guardianMiddleName" class="form-label">Guardian Middle Name</label>
+                                    <input type="text" class="form-control" id="guardianMiddleName" placeholder="Guardian Middle Name">
+                                </div>
+                            </div>
+
+                            <h5>Accomplished By:</h5>
+                            <div class="row mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="applicant" id="applicantOption" onchange="accomplishedByChange()">
+                                    <label class="form-check-label" for="applicantOption">APPLICANT</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="guardian" id="guardianOption" onchange="accomplishedByChange()">
+                                    <label class="form-check-label" for="guardianOption">GUARDIAN</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="representative" id="representativeOption" onchange="accomplishedByChange()">
+                                    <label class="form-check-label" for="representativeOption">REPRESENTATIVE</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Conditional Fields for Each Option -->
+                            <div id="applicantFields" class="row mb-3" style="display: none;">
+                                <div class="col-md-4">
+                                    <label for="applicantLastName" class="form-label">Applicant Last Name</label>
+                                    <input type="text" class="form-control" id="applicantLastName" placeholder="Applicant Last Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="applicantFirstName" class="form-label">Applicant First Name</label>
+                                    <input type="text" class="form-control" id="applicantFirstName" placeholder="Applicant First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="applicantMiddleName" class="form-label">Applicant Middle Name</label>
+                                    <input type="text" class="form-control" id="applicantMiddleName" placeholder="Applicant Middle Name">
+                                </div>
+                            </div>
+                            
+                            <div id="guardianFields" class="row mb-3" style="display: none;">
+                                <div class="col-md-4">
+                                    <label for="guardianLastName" class="form-label">Guardian Last Name</label>
+                                    <input type="text" class="form-control" id="guardianLastName" placeholder="Guardian Last Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="guardianFirstName" class="form-label">Guardian First Name</label>
+                                    <input type="text" class="form-control" id="guardianFirstName" placeholder="Guardian First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="guardianMiddleName" class="form-label">Guardian Middle Name</label>
+                                    <input type="text" class="form-control" id="guardianMiddleName" placeholder="Guardian Middle Name">
+                                </div>
+                            </div>
+                            
+                            <div id="representativeFields" class="row mb-3" style="display: none;">
+                                <div class="col-md-4">
+                                    <label for="representativeLastName" class="form-label">Representative Last Name</label>
+                                    <input type="text" class="form-control" id="representativeLastName" placeholder="Representative Last Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="representativeFirstName" class="form-label">Representative First Name</label>
+                                    <input type="text" class="form-control" id="representativeFirstName" placeholder="Representative First Name">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="representativeMiddleName" class="form-label">Representative Middle Name</label>
+                                    <input type="text" class="form-control" id="representativeMiddleName" placeholder="Representative Middle Name">
+                                </div>
+                            </div>
+                            
+
+                            <div class="row mb-3">
+                                    <h5>Name of Certifying Physician</h5>
+                                        <div class="col-md-3">
+                                            <label for="certifyingPhysicianFirstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="certifyingPhysicianFirstName" placeholder="First Name" >
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="certifyingPhysicianMiddleName" class="form-label">Middle Name</label>
+                                            <input type="text" class="form-control" id="certifyingPhysicianMiddleName" placeholder="Middle Name" >
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="certifyingPhysicianLastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="certifyingPhysicianLastName" placeholder="Last Name" >
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="licenseNo" class="form-label">License No.</label>
+                                            <input type="text" class="form-control" id="licenseNo" placeholder="License No." >
+                                        </div>
+                            </div>
+
+                                                                               
                         </form>    
                     </div>
                 
@@ -453,60 +672,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="ngoOrgAff" class="form-label">NGO Organization Affiliation</label>
-                                        <input type="text" class="form-control" id="ngoOrgAff" placeholder="NGO Organization Affiliation" required>
+                                        <input type="text" class="form-control" id="ngoOrgAff" placeholder="NGO Organization Affiliation" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="ngoContact" class="form-label">NGO Contact Person</label>
-                                        <input type="text" class="form-control" id="ngoContact" placeholder="NGO Contact Person" required>
+                                        <input type="text" class="form-control" id="ngoContact" placeholder="NGO Contact Person" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="ngoOfficeAddress" class="form-label">NGO Office Address</label>
-                                        <input type="text" class="form-control" id="ngoOfficeAddress" placeholder="NGO Office Address" required>
+                                        <input type="text" class="form-control" id="ngoOfficeAddress" placeholder="NGO Office Address" >
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="ngoTelNo" class="form-label">NGO Telephone Number</label>
-                                        <input type="text" class="form-control" id="ngoTelNo" placeholder="NGO Telephone Number" required>
+                                        <input type="text" class="form-control" id="ngoTelNo" placeholder="NGO Telephone Number" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="pwdOrgAff" class="form-label">PWD Organization Affiliation</label>
-                                        <input type="text" class="form-control" id="pwdOrgAff" placeholder="PWD Organization Affiliation" required>
+                                        <input type="text" class="form-control" id="pwdOrgAff" placeholder="PWD Organization Affiliation" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="pwdOrgContact" class="form-label">PWD Organization Contact Person</label>
-                                        <input type="text" class="form-control" id="pwdOrgContact" placeholder="PWD Organization Contact Person" required>
+                                        <input type="text" class="form-control" id="pwdOrgContact" placeholder="PWD Organization Contact Person" >
                                     </div>
                                 </div>
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="pwdOrgOffice" class="form-label">PWD Organization Office Address</label>
-                                        <input type="text" class="form-control" id="pwdOrgOffice" placeholder="PWD Organization Office Address" required>
+                                        <input type="text" class="form-control" id="pwdOrgOffice" placeholder="PWD Organization Office Address" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="pwdOrgTelNo" class="form-label">PWD Organization Telephone Number</label>
-                                        <input type="text" class="form-control" id="pwdOrgTelNo" placeholder="PWD Organization Telephone Number" required>
+                                        <input type="text" class="form-control" id="pwdOrgTelNo" placeholder="PWD Organization Telephone Number" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="civpolAff" class="form-label">Civic/Political Affiliation</label>
-                                        <input type="text" class="form-control" id="civpolAff" placeholder="Civic/Political Affiliation" required>
+                                        <input type="text" class="form-control" id="civpolAff" placeholder="Civic/Political Affiliation" >
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="civpolContact" class="form-label">Civic/Political Contact Person</label>
-                                        <input type="text" class="form-control" id="civpolContact" placeholder="Civic/Political Contact Person" required>
+                                        <input type="text" class="form-control" id="civpolContact" placeholder="Civic/Political Contact Person" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="civpolOfficeAddress" class="form-label">Civic/Political Office Address</label>
-                                        <input type="text" class="form-control" id="civpolOfficeAddress" placeholder="Civic/Political Office Address" required>
+                                        <input type="text" class="form-control" id="civpolOfficeAddress" placeholder="Civic/Political Office Address" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="civpolTelNo" class="form-label">Civic/Political Telephone Number</label>
-                                        <input type="text" class="form-control" id="civpolTelNo" placeholder="Civic/Political Telephone Number" required>
+                                        <input type="text" class="form-control" id="civpolTelNo" placeholder="Civic/Political Telephone Number" >
                                     </div>
                                 </div>
                                 
@@ -516,7 +735,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
                 <!-- Section 4: User Summary Section -->
-                    <div class="form-section" id="summary" style="display: none;">
+                    <div class="form-section" id="summarySection" style="display: none;">
                         <h4>User Summary</h4>
                         <table class="table table-bordered">
                             <thead>
@@ -528,8 +747,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <tbody>
                                 <!-- Basic Information -->
                                 <tr>
-                                    <td class="category-cell"><strong>Name:</strong></td>
-                                    <td class="detail-cell" id="summaryName"></td>
+                                    <td><strong>First Name:</strong></td>
+                                    <td id="summaryFirstName">/td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Middle Name:</strong></td>
+                                    <td id="summaryMiddleName">/td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Last Name:</strong></td>
+                                    <td id="summaryLastName">/td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Suffix:</strong></td>
+                                    <td id="summarySuffix"></td>
                                 </tr>
                                 <tr>
                                     <td class="category-cell"><strong>Gender:</strong></td>
@@ -569,23 +800,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <td class="category-cell"><strong>ID Image:</strong></td>
                                     <td class="detail-cell" id="summaryIdImage"></td>
                                 </tr>
-
-                                <!-- If no PWD ID, alternative fields -->
-                                <tr id="ethnicGroupRow" style="display: none;">
-                                    <td class="category-cell"><strong>Ethnic Group:</strong></td>
-                                    <td class="detail-cell" id="summaryEthnicGroup"></td>
-                                </tr>
-                                <tr id="diagnosisRow" style="display: none;">
-                                    <td class="category-cell"><strong>Diagnosis:</strong></td>
-                                    <td class="detail-cell" id="summaryDiagnosis"></td>
-                                </tr>
-                                <tr id="educationRow" style="display: none;">
-                                    <td class="category-cell"><strong>Educational Attainment:</strong></td>
-                                    <td class="detail-cell" id="summaryEducation"></td>
-                                </tr>
-                                <tr id="refNoRow" style="display: none;">
-                                    <td class="category-cell"><strong>Reference No:</strong></td>
-                                    <td class="detail-cell" id="summaryReferene"></td>
+                                <tr id="dateAppliedRow" style="display: none;">
+                                    <td class="category-cell"><strong>Date Applied:</strong></td>
+                                    <td class="detail-cell" id="summaryDateApplied"></td>
                                 </tr>
                                 <tr id="typeRow" style="display: none;">
                                     <td class="category-cell"><strong>Type of Disability:</strong></td>
@@ -595,8 +812,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <td class="category-cell"><strong>Cause of Disability:</strong></td>
                                     <td class="detail-cell" id="summaryCause"></td>
                                 </tr>
+                                <tr id="houseNoStreetRow" style="display: none;">
+                                    <td class="category-cell"><strong>House No. and Street:</strong></td>
+                                    <td class="detail-cell" id="summaryHouseNoStreet"></td>
+                                </tr>
+                                <tr id="barangayRow" style="display: none;">
+                                    <td class="category-cell"><strong>Barangay:</strong></td>
+                                    <td class="detail-cell" id="summaryBarangay"></td>
+                                </tr>
+
+                                <!-- Alternative Fields if no PWD ID -->
+                                <tr id="diagnosisRow" style="display: none;">
+                                    <td class="category-cell"><strong>Diagnosis:</strong></td>
+                                    <td class="detail-cell" id="summaryDiagnosis"></td>
+                                </tr>
 
                                 <!-- Government Numbers -->
+                                <tr>
+                                    <td class="category-cell"><strong>Education Attainment:</strong></td>
+                                    <td class="detail-cell" id="summaryEducationAttainment"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell"><strong>Status of Employment:</strong></td>
+                                    <td class="detail-cell" id="summaryEmploymentStatus"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell"><strong>Type of Employment:</strong></td>
+                                    <td class="detail-cell" id="summaryEmploymentType"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell"><strong>Category of Employment:</strong></td>
+                                    <td class="detail-cell" id="summaryEmploymentCategory"></td>
+                                </tr>
+                                <tr>
+                                    <td class="category-cell"><strong>Occupation:</strong></td>
+                                    <td class="detail-cell" id="summaryOccupation"></td>
+                                </tr>
                                 <tr>
                                     <td class="category-cell"><strong>SSS Number:</strong></td>
                                     <td class="detail-cell" id="summarySSS"></td>
@@ -613,40 +864,110 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <td class="category-cell"><strong>PAGIBIG Number:</strong></td>
                                     <td class="detail-cell" id="summaryPAGIBIG"></td>
                                 </tr>
+                                <tr>
+                                    <td class="category-cell"><strong>PSN Number:</strong></td>
+                                    <td class="detail-cell" id="summaryPSN"></td>
+                                </tr>
 
-                                <!-- Guardian/Caregiver Information -->
+                                <!-- Father's Name Summary -->
                                 <tr>
-                                    <td class="category-cell"><strong>Guardian First Name:</strong></td>
-                                    <td class="detail-cell" id="summaryGuardianFname"></td>
+                                    <td class="category-cell"><strong>Father's Last Name:</strong></td>
+                                    <td class="detail-cell" id="summaryFatherLastName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Guardian Last Name:</strong></td>
-                                    <td class="detail-cell" id="summaryGuardianLname"></td>
+                                    <td class="category-cell"><strong>Father's First Name:</strong></td>
+                                    <td class="detail-cell" id="summaryFatherFirstName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Guardian Middle Name:</strong></td>
-                                    <td class="detail-cell" id="summaryGuardianMname"></td>
+                                    <td class="category-cell"><strong>Father's Middle Name:</strong></td>
+                                    <td class="detail-cell" id="summaryFatherMiddleName"></td>
+                                </tr>
+
+                                <!-- Mother's Name Summary -->
+                                <tr>
+                                    <td class="category-cell"><strong>Mother's Last Name:</strong></td>
+                                    <td class="detail-cell" id="summaryMotherLastName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Guardian Mobile Number:</strong></td>
-                                    <td class="detail-cell" id="summaryGuardianNumber"></td>
+                                    <td class="category-cell"><strong>Mother's First Name:</strong></td>
+                                    <td class="detail-cell" id="summaryMotherFirstName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Caregiver First Name:</strong></td>
-                                    <td class="detail-cell" id="summaryCaregiverFname"></td>
+                                    <td class="category-cell"><strong>Mother's Middle Name:</strong></td>
+                                    <td class="detail-cell" id="summaryMotherMiddleName"></td>
+                                </tr>
+
+                                <!-- Guardian's Name Summary (Emergency Contact) -->
+                                <tr>
+                                    <td class="category-cell"><strong>Guardian's Last Name:</strong></td>
+                                    <td class="detail-cell" id="summaryGuardianLastName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Caregiver Last Name:</strong></td>
-                                    <td class="detail-cell" id="summaryCaregiverLname"></td>
+                                    <td class="category-cell"><strong>Guardian's First Name:</strong></td>
+                                    <td class="detail-cell" id="summaryGuardianFirstName"></td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Caregiver Middle Name:</strong></td>
-                                    <td class="detail-cell" id="summaryCaregiverMname"></td>
+                                    <td class="category-cell"><strong>Guardian's Middle Name:</strong></td>
+                                    <td class="detail-cell" id="summaryGuardianMiddleName"></td>
+                                </tr>
+
+                                <!-- Summary Row for Accomplished By -->
+                                <tr>
+                                    <td><strong>Accomplished By:</strong></td>
+                                    <td id="summaryAccomplishedBy">/td>
+                                </tr>
+
+                                <!-- Summary Rows for Accomplished By Names -->
+                                <tr>
+                                    <td><strong>Accomplished By First Name:</strong></td>
+                                    <td id="summaryAccomplishedByFirstName">/td>
                                 </tr>
                                 <tr>
-                                    <td class="category-cell"><strong>Caregiver Mobile Number:</strong></td>
-                                    <td class="detail-cell" id="summaryCaregiverNumber"></td>
+                                    <td><strong>Accomplished By Middle Name:</strong></td>
+                                    <td id="summaryAccomplishedByMiddleName">/td>
                                 </tr>
+                                <tr>
+                                    <td><strong>Accomplished By Last Name:</strong></td>
+                                    <td id="summaryAccomplishedByLastName">/td>
+                                </tr>>
+
+                                <!-- Certifying Physician Information -->
+                                    <tr id="physicianFirstNameRow" style="display: none;">
+                                        <td class="category-cell"><strong>Physician First Name:</strong></td>
+                                        <td class="detail-cell" id="summaryPhysicianFirstName"></td>
+                                    </tr>
+                                    <tr id="physicianMiddleNameRow" style="display: none;">
+                                        <td class="category-cell"><strong>Physician Middle Name:</strong></td>
+                                        <td class="detail-cell" id="summaryPhysicianMiddleName"></td>
+                                    </tr>
+                                    <tr id="physicianLastNameRow" style="display: none;">
+                                        <td class="category-cell"><strong>Physician Last Name:</strong></td>
+                                        <td class="detail-cell" id="summaryPhysicianLastName"></td>
+                                    </tr>
+                                    <tr id="licenseNoRow" style="display: none;">
+                                        <td class="category-cell"><strong>License No.:</strong></td>
+                                        <td class="detail-cell" id="summaryLicenseNo"></td>
+                                    </tr>
+
+
+                                <!-- Organization Information -->
+                                <tr id="orgAffiliatedRow" style="display: none;">
+                                    <td class="category-cell"><strong>Organization Affiliated:</strong></td>
+                                    <td class="detail-cell" id="summaryOrgAffiliated"></td>
+                                </tr>
+                                <tr id="contactPersonRow" style="display: none;">
+                                    <td class="category-cell"><strong>Contact Person:</strong></td>
+                                    <td class="detail-cell" id="summaryContactPerson"></td>
+                                </tr>
+                                <tr id="officeAddressRow" style="display: none;">
+                                    <td class="category-cell"><strong>Office Address:</strong></td>
+                                    <td class="detail-cell" id="summaryOfficeAddress"></td>
+                                </tr>
+                                <tr id="telNosRow" style="display: none;">
+                                    <td class="category-cell"><strong>Tel. Nos.:</strong></td>
+                                    <td class="detail-cell" id="summaryTelNos"></td>
+                                </tr>
+
 
                                 <!-- Affiliation Information -->
                                 <tr>
@@ -753,273 +1074,445 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </footer>
 
-    <script>
-      // Toggle the visibility of the progress sidebar
-      $("#progress-button").click(function() {
-          $("#progress-menu").toggleClass('d-none');
-      });
-      
-      function populateSummary() {
-    // Basic Information
-    document.getElementById('summaryName').innerText = 
-        `${document.getElementById('firstName').value || 'Not Provided'} ${document.getElementById('middleName').value || ''} ${document.getElementById('lastName').value || 'Not Provided'}`.trim();
-    document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
-    document.getElementById('summaryCivilStatus').innerText = document.getElementById('civilstatus').value || 'Not Provided';
-    document.getElementById('summaryDob').innerText = document.getElementById('dob').value || 'Not Provided';
-    document.getElementById('summaryTele').innerText = document.getElementById('tele').value || 'Not Provided';
-    document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
-    document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
-    document.getElementById('summaryWorkPhone').innerText = document.getElementById('workPhone').value || 'Not Provided';
+<script>
+    // Section IDs
+const sections = [
+    "#basic-information-section", 
+    "#sectoral-section", 
+    "#government-numbers", 
+    "#contact-information", 
+    "#affiliation", 
+    "#summarySection"
+];
 
-    // PWD ID Information
-    const pwdIdOption = document.querySelector('input[name="PWDId"]:checked');
-    if (pwdIdOption && pwdIdOption.value === 'yes') {
-        document.getElementById('pwdIdRow').style.display = 'table-row';
-        document.getElementById('summaryPWDIdNumber').innerText = document.getElementById('PWDIdNumber').value || 'Not Provided';
+let currentSection = 0; // Track the current section
 
-        const idImageUpload = document.getElementById('PWDidImageUpload').value.split('\\').pop();  // Get file name
-        document.getElementById('idImageRow').style.display = 'table-row';
-        document.getElementById('summaryIdImage').innerText = idImageUpload || 'No file uploaded';
-    } else {
-        document.getElementById('ethnicGroupRow').style.display = 'table-row';
-        document.getElementById('summaryEthnicGroup').innerText = document.getElementById('PWDethnicGroup').value || 'Not Provided';
+// Initialize - Show the first section and set buttons/progress
+$(document).ready(function() {
+    $(sections[currentSection]).show(); // Show first section
+    updateButtons();
+    updateProgress();
 
-        document.getElementById('diagnosisRow').style.display = 'table-row';
-        document.getElementById('summaryDiagnosis').innerText = document.getElementById('pwdDiagnosis').value || 'Not Provided';
+    // Next button click handler
+    $("#next-btn").on('click', function() {
+        // Check if we are on the Affiliation section
+        if (sections[currentSection] === "#affiliation") {
+            populateSummary(); // Populate the summary for the next section
+        }
+        
+        if (currentSection < sections.length - 1) { // If not the last section
+            $(sections[currentSection]).hide(); // Hide current section
+            currentSection++; // Move to next section
+            $(sections[currentSection]).show(); // Show next section
+            updateButtons();
+            updateProgress();
+        } else {
+            // If on the last section, submit or redirect as needed
+            window.location.href = "PWD Form.html";
+        }
+    });
 
-        document.getElementById('educationRow').style.display = 'table-row';
-        document.getElementById('summaryEducation').innerText = document.getElementById('education').value || 'Not Provided';
+    // Previous button click handler
+    $("#prev-btn").click(function() {
+        if (currentSection > 0) { // Ensure we're not at the first section
+            $(sections[currentSection]).hide(); // Hide current section
+            currentSection--; // Move to previous section
+            $(sections[currentSection]).show(); // Show previous section
+            updateButtons();
+            updateProgress();
+        }
+    });
 
-        document.getElementById('refNoRow').style.display = 'table-row';
-        document.getElementById('summaryReferene').innerText = document.getElementById('refNo').value || 'Not Provided';
-    }
+    // Sidebar progress item click handler
+    $(".progress-item").click(function() {
+        const targetSection = $(this).data('target');
+        
+        // Find the index of the clicked section in the sections array
+        const targetIndex = sections.indexOf(`#${targetSection}`);
+        
+        if (targetIndex !== -1) {
+            // Hide current section, show target section
+            $(sections[currentSection]).hide();
+            currentSection = targetIndex;
+            $(sections[currentSection]).show();
+            updateButtons();
+            updateProgress();
+        }
+    });
+});
 
-    // Government Numbers
-    document.getElementById('summarySSS').innerText = document.getElementById('SSS').value || 'Not Provided';
-    document.getElementById('summaryGSIS').innerText = document.getElementById('GSIS').value || 'Not Provided';
-    document.getElementById('summaryPhilHealth').innerText = document.getElementById('PhilHealth').value || 'Not Provided';
-    document.getElementById('summaryPAGIBIG').innerText = document.getElementById('PAGIBIG').value || 'Not Provided';
-
-    // Guardian/Caregiver Information (Contact Information Section)
-    document.getElementById('summaryGuardianFname').innerText = document.getElementById('guardianFname').value || 'Not Provided';
-    document.getElementById('summaryGuardianLname').innerText = document.getElementById('guardianLname').value || 'Not Provided';
-    document.getElementById('summaryGuardianMname').innerText = document.getElementById('guardianMname').value || 'Not Provided';
-    document.getElementById('summaryGuardianNumber').innerText = document.getElementById('guardianNumber').value || 'Not Provided';
-
-    document.getElementById('summaryCaregiverFname').innerText = document.getElementById('careFname').value || 'Not Provided';
-    document.getElementById('summaryCaregiverLname').innerText = document.getElementById('careLname').value || 'Not Provided';
-    document.getElementById('summaryCaregiverMname').innerText = document.getElementById('careMname').value || 'Not Provided';
-    document.getElementById('summaryCaregiverNumber').innerText = document.getElementById('careNumber').value || 'Not Provided';
-
-    // NGO and Affiliation Information (Affiliation Section)
-    document.getElementById('summaryngoOrgAff').innerText = document.getElementById('ngoOrgAff').value || 'Not Provided';
-    document.getElementById('summaryngoContact').innerText = document.getElementById('ngoContact').value || 'Not Provided';
-    document.getElementById('summaryngoOfficeAddress').innerText = document.getElementById('ngoOfficeAddress').value || 'Not Provided';
-    document.getElementById('summaryngoTelNo').innerText = document.getElementById('ngoTelNo').value || 'Not Provided';
-
-    document.getElementById('summarypwdOrgAff').innerText = document.getElementById('pwdOrgAff').value || 'Not Provided';
-    document.getElementById('summarypwdOrgContact').innerText = document.getElementById('pwdOrgContact').value || 'Not Provided';
-    document.getElementById('summarypwdOrgOffice').innerText = document.getElementById('pwdOrgOffice').value || 'Not Provided';
-    document.getElementById('summarypwdOrgTelNo').innerText = document.getElementById('pwdOrgTelNo').value || 'Not Provided';
-
-    document.getElementById('summarycivpolAff').innerText = document.getElementById('civpolAff').value || 'Not Provided';
-    document.getElementById('summarycivpolContact').innerText = document.getElementById('civpolContact').value || 'Not Provided';
-    document.getElementById('summarycivpolOfficeAddress').innerText = document.getElementById('civpolOfficeAddress').value || 'Not Provided';
-    document.getElementById('summarycivpolTelNo').innerText = document.getElementById('civpolTelNo').value || 'Not Provided';
+// Function to update the Next/Previous buttons
+function updateButtons() {
+    $("#prev-btn").toggle(currentSection > 0); // Show/Hide Previous button
+    $("#next-btn").text(currentSection === sections.length - 1 ? "Submit" : "Next"); // Change Next to Submit on the last section
 }
 
+// Function to update the active state in the progress sidebar
+function updateProgress() {
+    $(".progress-item").removeClass("active"); // Remove active class from all items
+    $(".progress-item").eq(currentSection).addClass("active"); // Add active class to current item
+}
+
+// Populate summary function to fill summary section with form data
+function populateSummary() {
+    document.getElementById('summaryFirstName').innerText = getValue('firstName');
+    localStorage.setItem('summaryFirstName', document.getElementById('summaryFirstName').innerText);
+
+    document.getElementById('summaryMiddleName').innerText = getValue('middleName');
+    localStorage.setItem('summaryMiddleName', document.getElementById('summaryMiddleName').innerText);
+
+    document.getElementById('summaryLastName').innerText = getValue('lastName');
+    localStorage.setItem('summaryLastName', document.getElementById('summaryLastName').innerText);
+
+    document.getElementById('summarySuffix').innerText = getValue('suffix');
+    localStorage.setItem('summarySuffix', document.getElementById('summarySuffix').innerText);
+
+    document.getElementById('summaryGender').innerText = getValue('gender');
+    localStorage.setItem('summaryGender', document.getElementById('summaryGender').innerText);
+    
+    document.getElementById('summaryCivilStatus').innerText = getValue('civilstatus');
+    localStorage.setItem('summaryCivilStatus', document.getElementById('summaryCivilStatus').innerText);
+
+    document.getElementById('summaryDob').innerText = getValue('dob');
+    localStorage.setItem('summaryDob', document.getElementById('summaryDob').innerText);
+
+    document.getElementById('summaryTele').innerText = getValue('tele');
+    localStorage.setItem('summaryTele', document.getElementById('summaryTele').innerText);
+
+    document.getElementById('summaryPhone').innerText = getValue('phone');
+    localStorage.setItem('summaryPhone', document.getElementById('summaryPhone').innerText);
+
+    document.getElementById('summaryEmail').innerText = getValue('email');
+    localStorage.setItem('summaryEmail', document.getElementById('summaryEmail').innerText);
+    
+    // PWD ID Information
+// PWD ID Information
+const pwdIdOption = document.querySelector('input[name="PWDId"]:checked');
+if (pwdIdOption && pwdIdOption.value === 'yes') {
+    document.getElementById('pwdIdRow').style.display = 'table-row';
+    document.getElementById('summaryPWDIdNumber').innerText = getValue('PWDIdNumber');
+    localStorage.setItem('summaryPWDIdNumber', document.getElementById('summaryPWDIdNumber').innerText);
+
+    
+    // Display date applied
+    document.getElementById('dateAppliedRow').style.display = 'table-row';
+    document.getElementById('summaryDateApplied').innerText = getValue('PWDidImageUpload');
+    localStorage.setItem('summaryDateApplied', document.getElementById('summaryDateApplied').innerText);
+
+    // Display ID image name
+    const idImageUpload = getValue('PWDidImageUpload').split('\\').pop();
+    document.getElementById('idImageRow').style.display = 'table-row';
+    document.getElementById('summaryIdImage').innerText = idImageUpload || 'No file uploaded';
+
+    // Display Type and Cause of Disability
+    document.getElementById('typeRow').style.display = 'table-row';
+    document.getElementById('summaryType').innerText = getValue('disabilityType');
+    localStorage.setItem('summaryType', document.getElementById('summaryType').innerText);
+    
+    document.getElementById('causeRow').style.display = 'table-row';
+    document.getElementById('summaryCause').innerText = getValue('causeOfDisability');
+    localStorage.setItem('summaryCause', document.getElementById('summaryCause').innerText);
+    
+    // Display Address Information
+    document.getElementById('houseNoStreetRow').style.display = 'table-row';
+    document.getElementById('summaryHouseNoStreet').innerText = getValue('houseNoStreet');
+    localStorage.setItem('summaryHouseNoStreet', document.getElementById('summaryHouseNoStreet').innerText);
+
+    document.getElementById('barangayRow').style.display = 'table-row';
+    document.getElementById('summaryBarangay').innerText = getValue('barangay');
+    localStorage.setItem('summaryBarangay', document.getElementById('summaryBarangay').innerText);
+} else {
+    document.getElementById('diagnosisRow').style.display = 'table-row';
+    document.getElementById('summaryDiagnosis').innerText = getValue('pwdDiagnosis');
+    localStorage.setItem('summaryDiagnosis', document.getElementById('summaryDiagnosis').innerText);
 
 
-  
-      // Navigation button logic
-      let currentSection = 0;
-     
-      const sections = [
-            "#basic-information-section", 
-            "#sectoral-section", 
-            "#government-numbers", 
-            "#contact-information", 
-            "#affiliation", 
-            "#summary"
-        ];
+    // Display Address Information
+    document.getElementById('houseNoStreetRow').style.display = 'table-row';
+    document.getElementById('summaryHouseNoStreet').innerText = getValue('houseNoStreet');
+    localStorage.setItem('summaryHouseNoStreet', document.getElementById('summaryHouseNoStreet').innerText);
 
-        // Navigate to the previous section
-        $("#prev-btn").click(function() {
-            if (currentSection > 0) {
-                $(sections[currentSection]).hide();
-                currentSection--;
-                $(sections[currentSection]).show();
-                updateButtons();
-                updateProgress();
+    document.getElementById('barangayRow').style.display = 'table-row';
+    document.getElementById('summaryBarangay').innerText = getValue('barangay');
+    localStorage.setItem('summaryBarangay', document.getElementById('summaryBarangay').innerText);
+}
+
+    document.getElementById('summaryEducationAttainment').innerText = getValue('educationAttainment');
+    localStorage.setItem('summaryEducationAttainment', document.getElementById('summaryEducationAttainment').innerText);
+
+    document.getElementById('summaryEmploymentStatus').innerText = getValue('employmentStatus');
+    localStorage.setItem('summaryEmploymentStatus', document.getElementById('summaryEmploymentStatus').innerText);
+    
+    document.getElementById('summaryEmploymentType').innerText = getValue('employmentType');
+    localStorage.setItem('summaryEmploymentType', document.getElementById('summaryEmploymentType').innerText);
+
+    document.getElementById('summaryEmploymentCategory').innerText = getValue('employmentCategory');
+    localStorage.setItem('summaryEmploymentCategory', document.getElementById('summaryEmploymentCategory').innerText);
+
+    document.getElementById('summaryOccupation').innerText = getValue('occupation');
+    localStorage.setItem('summaryOccupation', document.getElementById('summaryOccupation').innerText);
+
+    // Government Numbers
+    document.getElementById('summarySSS').innerText = getValue('SSS');
+    localStorage.setItem('summarySSS', document.getElementById('summarySSS').innerText);
+
+    document.getElementById('summaryGSIS').innerText = getValue('GSIS');
+    localStorage.setItem('summaryGSIS', document.getElementById('summaryGSIS').innerText);
+
+    document.getElementById('summaryPhilHealth').innerText = getValue('PhilHealth');
+    localStorage.setItem('summaryPhilHealth', document.getElementById('summaryPhilHealth').innerText);
+
+    document.getElementById('summaryPAGIBIG').innerText = getValue('PAGIBIG');
+    localStorage.setItem('summaryPAGIBIG', document.getElementById('summaryPAGIBIG').innerText);
+
+    document.getElementById('summaryPSN').innerText = getValue('PSN');
+    localStorage.setItem('summaryPSN', document.getElementById('summaryPSN').innerText);
+
+    // Father's Name in the Summary
+    document.getElementById('summaryFatherLastName').innerText = getValue('fatherLastName');
+    localStorage.setItem('summaryFatherLastName', document.getElementById('summaryFatherLastName').innerText);
+
+    document.getElementById('summaryFatherFirstName').innerText = getValue('fatherFirstName');
+    localStorage.setItem('summaryFatherFirstName', document.getElementById('summaryFatherFirstName').innerText);
+
+    document.getElementById('summaryFatherMiddleName').innerText = getValue('fatherMiddleName');
+    localStorage.setItem('summaryFatherMiddleName', document.getElementById('summaryFatherMiddleName').innerText);
+
+    // Mother's Name in the Summary
+    document.getElementById('summaryMotherLastName').innerText = getValue('motherLastName');
+    localStorage.setItem('summaryMotherLastName', document.getElementById('summaryMotherLastName').innerText);
+
+    document.getElementById('summaryMotherFirstName').innerText = getValue('motherFirstName');
+    localStorage.setItem('summaryMotherFirstName', document.getElementById('summaryMotherFirstName').innerText);
+
+    document.getElementById('summaryMotherMiddleName').innerText = getValue('motherMiddleName');
+    localStorage.setItem('summaryMotherMiddleName', document.getElementById('summaryMotherMiddleName').innerText);
+
+    // Guardian's Name in the Summary (for Emergency Contact)
+    document.getElementById('summaryGuardianLastName').innerText = getValue('guardianLastName');
+    localStorage.setItem('summaryGuardianLastName', document.getElementById('summaryGuardianLastName').innerText);
+
+    document.getElementById('summaryGuardianFirstName').innerText = getValue('guardianFirstName');
+    localStorage.setItem('summaryGuardianFirstName', document.getElementById('summaryGuardianFirstName').innerText);
+
+    document.getElementById('summaryGuardianMiddleName').innerText = getValue('guardianMiddleName');
+    localStorage.setItem('summaryGuardianMiddleName', document.getElementById('summaryGuardianMiddleName').innerText);
+
+    // Populate Organization Information in Summary
+        document.getElementById('summaryOrgAffiliated').innerText = getValue('orgAffiliated');
+        document.getElementById('summaryContactPerson').innerText = getValue('contactPerson');
+        document.getElementById('summaryOfficeAddress').innerText = getValue('officeAddress');
+        document.getElementById('summaryTelNos').innerText = getValue('telNos');
+
+        // Show the rows in the summary table
+        document.getElementById('orgAffiliatedRow').style.display = 'table-row';
+        document.getElementById('contactPersonRow').style.display = 'table-row';
+        document.getElementById('officeAddressRow').style.display = 'table-row';
+        document.getElementById('telNosRow').style.display = 'table-row';
+
+        // Store Organization Information in localStorage
+        localStorage.setItem('summaryOrgAffiliated', document.getElementById('summaryOrgAffiliated').innerText);
+        localStorage.setItem('summaryContactPerson', document.getElementById('summaryContactPerson').innerText);
+        localStorage.setItem('summaryOfficeAddress', document.getElementById('summaryOfficeAddress').innerText);
+        localStorage.setItem('summaryTelNos', document.getElementById('summaryTelNos').innerText);
+
+
+    // NGO and Affiliation Information (Affiliation Section)
+    document.getElementById('summaryngoOrgAff').innerText = getValue('ngoOrgAff');
+    document.getElementById('summaryngoContact').innerText = getValue('ngoContact');
+    document.getElementById('summaryngoOfficeAddress').innerText = getValue('ngoOfficeAddress');
+    document.getElementById('summaryngoTelNo').innerText = getValue('ngoTelNo');
+
+    document.getElementById('summarypwdOrgAff').innerText = getValue('pwdOrgAff');
+    document.getElementById('summarypwdOrgContact').innerText = getValue('pwdOrgContact');
+    document.getElementById('summarypwdOrgOffice').innerText = getValue('pwdOrgOffice');
+    document.getElementById('summarypwdOrgTelNo').innerText = getValue('pwdOrgTelNo');
+
+    document.getElementById('summarycivpolAff').innerText = getValue('civpolAff');
+    document.getElementById('summarycivpolContact').innerText = getValue('civpolContact');
+    document.getElementById('summarycivpolOfficeAddress').innerText = getValue('civpolOfficeAddress');
+    document.getElementById('summarycivpolTelNo').innerText = getValue('civpolTelNo');
+
+        // Populate Certifying Physician Information in Summary
+    document.getElementById('summaryPhysicianFirstName').innerText = getValue('certifyingPhysicianFirstName');
+    document.getElementById('summaryPhysicianMiddleName').innerText = getValue('certifyingPhysicianMiddleName');
+    document.getElementById('summaryPhysicianLastName').innerText = getValue('certifyingPhysicianLastName');
+    document.getElementById('summaryLicenseNo').innerText = getValue('licenseNo');
+
+    // Show the rows in the summary table
+    document.getElementById('physicianFirstNameRow').style.display = 'table-row';
+    document.getElementById('physicianMiddleNameRow').style.display = 'table-row';
+    document.getElementById('physicianLastNameRow').style.display = 'table-row';
+    document.getElementById('licenseNoRow').style.display = 'table-row';
+
+    // Store Certifying Physician Information in localStorage
+    localStorage.setItem('summaryPhysicianFirstName', document.getElementById('summaryPhysicianFirstName').innerText);
+    localStorage.setItem('summaryPhysicianMiddleName', document.getElementById('summaryPhysicianMiddleName').innerText);
+    localStorage.setItem('summaryPhysicianLastName', document.getElementById('summaryPhysicianLastName').innerText);
+    localStorage.setItem('summaryLicenseNo', document.getElementById('summaryLicenseNo').innerText);
+
+
+// Populate Accomplished By choice
+const accomplishedBy = document.querySelector('input[name="accomplishedBy"]:checked');
+const summaryAccomplishedBy = document.getElementById('summaryAccomplishedBy');
+const summaryAccomplishedByFirstName = document.getElementById('summaryAccomplishedByFirstName');
+const summaryAccomplishedByMiddleName = document.getElementById('summaryAccomplishedByMiddleName');
+const summaryAccomplishedByLastName = document.getElementById('summaryAccomplishedByLastName');
+
+if (accomplishedBy) {
+    const choice = accomplishedBy.value;
+    summaryAccomplishedBy.innerText = choice.charAt(0).toUpperCase() + choice.slice(1);
+
+    // Get the relevant name fields based on choice and populate summary
+    if (choice === 'applicant') {
+        summaryAccomplishedByFirstName.innerText = getValue('applicantFirstName');
+        summaryAccomplishedByMiddleName.innerText = getValue('applicantMiddleName');
+        summaryAccomplishedByLastName.innerText = getValue('applicantLastName');
+    } else if (choice === 'guardian') {
+        summaryAccomplishedByFirstName.innerText = getValue('guardianFirstName');
+        summaryAccomplishedByMiddleName.innerText = getValue('guardianMiddleName');
+        summaryAccomplishedByLastName.innerText = getValue('guardianLastName');
+    } else if (choice === 'representative') {
+        summaryAccomplishedByFirstName.innerText = getValue('representativeFirstName');
+        summaryAccomplishedByMiddleName.innerText = getValue('representativeMiddleName');
+        summaryAccomplishedByLastName.innerText = getValue('representativeLastName');
+    }
+} else {
+    // If no option selected, display "Not Provided"
+    summaryAccomplishedBy.innerText = 'Not Provided';
+    summaryAccomplishedByFirstName.innerText = 'Not Provided';
+    summaryAccomplishedByMiddleName.innerText = 'Not Provided';
+    summaryAccomplishedByLastName.innerText = 'Not Provided';
+}
+
+// Store each summary field in localStorage
+localStorage.setItem('summaryAccomplishedBy', summaryAccomplishedBy.innerText);
+localStorage.setItem('summaryAccomplishedByFirstName', summaryAccomplishedByFirstName.innerText);
+localStorage.setItem('summaryAccomplishedByMiddleName', summaryAccomplishedByMiddleName.innerText);
+localStorage.setItem('summaryAccomplishedByLastName', summaryAccomplishedByLastName.innerText);
+}
+
+        function genderChange() {
+            const selectedGender = document.getElementById('gender').value;
+            localStorage.setItem('selectedGender', selectedGender);  // Store the gender in localStorage
+        }
+
+        function civilStatusChange() {
+            const selectedCivilStatus = document.getElementById('civilstatus').value;
+            localStorage.setItem('selectedCivilStatus', selectedCivilStatus);  // Store the civil status in localStorage
+        }
+
+        function disabilityTypeChange() {
+            const selectedDisabilityType = document.getElementById('disabilityType').value;
+            localStorage.setItem('selectedDisabilityType', selectedDisabilityType);  // Store the disability type in localStorage
+        }
+        function causeOfDisabilityChange() {
+            const selectedCause = document.getElementById('causeOfDisability').value;
+            localStorage.setItem('selectedCauseOfDisability', selectedCause);  // Store the cause of disability in localStorage
+        }
+        function educationAttainmentChange() {
+            const selectedEducation = document.getElementById('educationAttainment').value;
+            localStorage.setItem('selectedEducationAttainment', selectedEducation);  // Store the education attainment in localStorage
+        }
+        function statusOfEmploymentChange() {
+        const selectedStatus = document.getElementById('employmentStatus').value;
+        localStorage.setItem('selectedStatus', selectedStatus);
+        }
+
+        function typesOfEmploymentChange() {
+            const selectedType = document.getElementById('employmentType').value;
+            localStorage.setItem('selectedType', selectedType);
+        }
+
+        function categoryOfEmploymentChange() {
+            const selectedCategory = document.getElementById('employmentCategory').value;
+            localStorage.setItem('selectedCategory', selectedCategory);
+        }
+
+        function occupationChange() {
+        const selectedOccupation = document.getElementById('occupation').value;
+        localStorage.setItem('selectedOccupation', selectedOccupation);
+        }
+
+        function accomplishedByChange() {
+        const selectedOption = document.querySelector('input[name="accomplishedBy"]:checked').value;
+        localStorage.setItem('accomplishedBy', selectedOption);
+
+        if (selectedOption === 'applicant') {
+            saveApplicantName();
+        } else if (selectedOption === 'guardian') {
+            saveGuardianName();
+        } else if (selectedOption === 'representative') {
+            saveRepresentativeName();
+        }
+    }
+
+    function saveApplicantName() {
+        localStorage.setItem('accomplishedByLastName', document.getElementById('applicantLastName').value);
+        localStorage.setItem('accomplishedByFirstName', document.getElementById('applicantFirstName').value);
+        localStorage.setItem('accomplishedByMiddleName', document.getElementById('applicantMiddleName').value);
+    }
+
+    function saveGuardianName() {
+        localStorage.setItem('accomplishedByLastName', document.getElementById('guardianLastName').value);
+        localStorage.setItem('accomplishedByFirstName', document.getElementById('guardianFirstName').value);
+        localStorage.setItem('accomplishedByMiddleName', document.getElementById('guardianMiddleName').value);
+    }
+
+    function saveRepresentativeName() {
+        localStorage.setItem('accomplishedByLastName', document.getElementById('representativeLastName').value);
+        localStorage.setItem('accomplishedByFirstName', document.getElementById('representativeFirstName').value);
+        localStorage.setItem('accomplishedByMiddleName', document.getElementById('representativeMiddleName').value);
+    }
+
+// Helper function to get the value of an element by ID, or 'Not Provided' if empty
+const getValue = (id) => {
+    const element = document.getElementById(id);
+    return element ? (element.value || 'Not Provided') : 'Not Provided';
+};
+
+// Additional form-specific logic, such as showing/hiding fields based on conditions
+$('input[name="PWDId"]').on('change', function() {
+    if ($(this).val() === 'yes') {
+        $('#yesFields').show();
+        $('#noFields').hide();
+    } else {
+        $('#yesFields').hide();
+        $('#noFields').show();
+    }
+});
+$('input[name="contactType"]').change(function() {
+    if (this.value === 'guardian') {
+        $('#guardianInfo').show();
+        $('#caregiverInfo').hide();
+    } else if (this.value === 'caregiver') {
+        $('#guardianInfo').hide();
+        $('#caregiverInfo').show();
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners to the radio buttons
+    document.querySelectorAll('input[name="accomplishedBy"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Hide all fields initially
+            document.getElementById('applicantFields').style.display = 'none';
+            document.getElementById('guardianFields').style.display = 'none';
+            document.getElementById('representativeFields').style.display = 'none';
+            
+            // Show the appropriate fields based on the selected option
+            if (this.value === 'applicant') {
+                document.getElementById('applicantFields').style.display = 'flex';
+            } else if (this.value === 'guardian') {
+                document.getElementById('guardianFields').style.display = 'flex';
+            } else if (this.value === 'representative') {
+                document.getElementById('representativeFields').style.display = 'flex';
             }
         });
-
-                $(document).ready(function() {
-        // Listen for changes to the radio buttons
-        $('input[name="contactType"]').change(function() {
-            if (this.value === 'guardian') {
-            $('#guardianInfo').show();
-            $('#caregiverInfo').hide();
-            } else if (this.value === 'caregiver') {
-            $('#guardianInfo').hide();
-            $('#caregiverInfo').show();
-            }
-        });
-        });
+    });
+});
 
 
-      // Progress sidebar click event handler
-      $(".progress-item").click(function() {
-          let targetSection = $(this).data('target');
-      
-          // Hide all sections
-          $(".form-section").hide();
-      
-          // Show the clicked section
-          $("#" + targetSection).show();
-      
-          // Update current section index based on the clicked section
-          currentSection = sections.indexOf("#" + targetSection);
-      
-          // Scroll to top of the section
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-          updateButtons();
-          updateProgress();
-      });
-      
-      // Function to update the active progress bar item
-      function updateProgress() {
-          $(".progress-item").removeClass("active");  // Remove active class from all items
-          $(".progress-item").eq(currentSection).addClass("active");  // Add active class to current item
-      }
-      
-      // Function to update the Next/Previous buttons
-      function updateButtons() {
-          if (currentSection === 0) {
-              $("#prev-btn").hide();
-          } else {
-              $("#prev-btn").show();
-              }
-          
-              if (currentSection === sections.length - 1) {
-                  $("#next-btn").text("Submit");
-              } else {
-                  $("#next-btn").text("Next");
-              }
-          }
-      
-      
-      // Function to update icons in the progress bar
-      function updateIcon(index, state) {
-          const icon = $(".progress-item").eq(index).find("i");
-          if (state === "fill") {
-              icon.removeClass("bi-check-square").addClass("bi-check-square-fill");  // Change to filled icon
-          } else if (state === "empty") {
-              icon.removeClass("bi-check-square-fill").addClass("bi-check-square");  // Change to empty icon
-          }
-      }
-      
-      // Show/Hide fields based on the radio button selection
-      // Show/Hide fields based on the radio button selection
-      // Show/Hide fields based on the radio button selection (PWD ID)
-        $('input[name="PWDId"]').on('change', function() {
-            if ($(this).val() === 'yes') {
-                $('#yesFields').show();  // Show ID number and upload fields
-                $('#noFields').hide();   // Hide additional fields
-                // Add 'required' back to the visible fields
-                $('#PWDIdNumber').attr('required', true);
-                $('#PWDidImageUpload').attr('required', true);
-                // Remove 'required' from hidden fields
-                $('#PWDethnicGroup').removeAttr('required');
-                $('#pwdDiagnosis').removeAttr('required');
-                $('#refNo').removeAttr('required');
-            } else if ($(this).val() === 'no') {
-                $('#noFields').show();   // Show additional fields
-                $('#yesFields').hide();  // Hide ID number and upload fields
-                // Add 'required' to the visible fields
-                $('#PWDethnicGroup').attr('required', true);
-                $('#pwdDiagnosis').attr('required', true);
-                $('#refNo').attr('required', true);
-                // Remove 'required' from hidden fields
-                $('#PWDIdNumber').removeAttr('required');
-                $('#PWDidImageUpload').removeAttr('required');
-            }
-        });
-
-      
-      // Validate only the visible form elements when clicking next
-      $("#next-btn").click(function() {
-          const currentForm = $(sections[currentSection]).find('form')[0];
-      
-          // Only validate the visible form elements
-          if (currentForm) {
-              let formIsValid = true; // Flag to check form validity
-              $(currentForm).find('input[required], select[required]').each(function() {
-                  // Remove required for hidden fields
-                  if (!$(this).is(':visible')) {
-                      $(this).removeAttr('required');
-                  }
-      
-                  // Check for invalid fields
-                  if (!this.checkValidity()) {
-                      formIsValid = false;
-                  }
-              });
-      
-              // If the form is not valid, prevent proceeding
-              if (!formIsValid || !currentForm.checkValidity()) {
-                  currentForm.reportValidity();  // Shows validation message
-                  return; // Stops proceeding to the next section
-              }
-          }
-      
-          // If form is valid, proceed to the next section or submit the form
-          if (currentSection < sections.length - 1) {
-              $(sections[currentSection]).hide();
-              updateIcon(currentSection, "fill");
-              currentSection++;
-              if (currentSection === 3) {
-                  populateSummary();
-              }
-              $(sections[currentSection]).show();
-              updateButtons();
-              updateProgress();
-          } else if (currentSection === sections.length - 1) {
-              // Submit the form
-              currentForm.submit();
-          }
-      });
-      
-      
-      
-      // Add/Remove dynamic text boxes for Problems and Needs
-      $(document).ready(function() {
-            // Add more functionality for Type of Disability
-            $(".add-more").click(function() {
-                var html = $(".copy-fields").html();
-                $(this).closest(".after-add-more").after(html);
-            });
-
-            // Remove functionality for dynamically added fields
-            $("body").on("click", ".remove", function() {
-                $(this).closest(".control-group").remove();
-            });
-        });
-      
-          
-          // Remove functionality for dynamically added fields
-          $("body").on("click", ".remove-family", function() {
-          if ($(this).closest(".row").length) {
-              // Remove required from dynamically removed fields
-              $(this).closest(".row").find('input, select').removeAttr('required');
-              $(this).closest(".row").remove();
-          } else {
-              console.log("Error: No row found to remove.");
-          }
-      });
-      
-      </script>
+</script>
 
 
 </body>

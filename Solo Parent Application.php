@@ -1,42 +1,6 @@
 <?php
-      session_start(); // Start the session
-include 'db_connection.php';
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $FirstName = $_POST['firstName'];
-        $MiddleName = $_POST['middleName'];
-        $LastName = $_POST['lastName'];
-        $Religion = $_POST['religion'];
-        $Gender = $_POST['gender'];
-        $BloodType = $_POST['bloodType'];
-        $BirthPlace = $_POST['birthPlace'];
-        $BirthDate = $_POST['dob'];
-        $CivilStatus = $_POST['civilstatus'];
-        $PrecintNumber = $_POST['precinct'];
-    
-        $sql = "INSERT INTO SoloParent_ApplicationForm_PrimaryInfo (FirstName, MiddleName, LastName, Religion, Gender, BloodType, BirthPlace, BirthDate, PrecintNumber, precinct_number) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-// Prepare the statement
-$stmt = $conn->prepare($sql);
-
-// Bind the form data to the prepared statement
-$stmt->bind_param("ssssssssss", $FirstName, $MiddleName, $LastName, $Religion, $Gender, $BloodType, $BirthPlace, $BirthDate, $CivilStatus, $PrecintNumber);
-
- // Execute the prepared statement
- if ($stmt->execute()) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $stmt->error;
-}
-       
-$stmt->close();
-$conn->close();
-   
-    }
-
 include 'header.php';
-      ?>
+?>
 
 <!DOCTYPE html>
     <html>
@@ -123,9 +87,10 @@ include 'header.php';
           </div>
         </div>
       </nav>
-
-      <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+      <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
       <div class="container">
+      <form action= "Solo Parent Application DB.php" method="POST" >
+
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -176,30 +141,31 @@ include 'header.php';
                         A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
                     </p>
     
-                    <form>
+                   
+                       
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="precinct" class="form-label">Precinct #</label>
-                                <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
+                                <input type="text" class="form-control" id="precinct" name="precinct" placeholder="Precinct" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" onchange="genderChange()" required>
+                                <select class="form-select" id="gender" name="gender" onchange="genderChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -207,7 +173,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-2">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" onchange="civilChange()" required>
+                                <select class="form-select" id="civilstatus" name="civilstatus" onchange="civilChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -216,33 +182,33 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="birthPlace" class="form-label">Birth Place</label>
-                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
+                                <input type="text" class="form-control" id="birthPlace" name="birthPlace" placeholder="Birth Place" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="telephone" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="telephone" placeholder="(916) 345-6783" required>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="(916) 345-6783" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="bloodType" class="form-label">Blood Type</label>
-                                <select class="form-select" id="bloodType" required>
+                                <select class="form-select" id="bloodType" name="bloodType" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -256,7 +222,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="religion" class="form-label">Religion</label>
-                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
+                                <input type="text" class="form-control" id="religion" name="religion" placeholder="Religion" required>
                             </div>
                         </div>
 
@@ -267,12 +233,13 @@ include 'header.php';
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
                           </div>
-                    </form>
+                   
                 </div>
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-                    <form>
+               
+
                         <h4>Sectoral Information</h4>
                         <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                         <div class="row mb-3">
@@ -409,11 +376,12 @@ include 'header.php';
                                 </div>
                             </div>
                         </div>
-                    </form>
+                
                 </div>
     
                 <div class="form-section" id="other-information" style="display: none;">
-                    <form>    
+             
+    
                         <h4>Other Information</h4>
                         <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
                         <div class="row mb-3">
@@ -508,12 +476,13 @@ include 'header.php';
                                 <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
                             </div>
                         </div>
-                    </form>
+                  
                 </div>
                 
                     <!-- Family Composition Section -->
                     <div class="form-section" id="familyComposition" style="display: none;">
-                        <form>    
+                   
+  
                             <h4>Family Composition</h4>
                                 <!-- Input fields for a new family member -->
                                 <div class="row">
@@ -554,10 +523,10 @@ include 'header.php';
                                         <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                        </form>    
+                
+                            
                     </div>
                 
-    
                     <!-- Section 4: User Summary Section -->
                 <div class="form-section" id="section4" style="display: none;">
                     <h4>User Summary</h4>
@@ -652,13 +621,15 @@ include 'header.php';
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
                     <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+                    <button type="submit" id="next-btn" class="btn btn-primary">Next</button>
                 </div>
     
             </div>
         </div>
     </div>
+    </form>
     </main>
+ 
 
     <br>
     <br>
@@ -1048,7 +1019,7 @@ function saveFamilyData() {
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "Solo Parent Form.html";
+        window.location.href = "Solo Parent Form.php";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();

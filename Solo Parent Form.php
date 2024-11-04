@@ -541,7 +541,11 @@
  <!-- Right-side Button Card -->
  <div class="button-card">
   <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
-  <button class="btn btn-success" id="downloadBtn">Submit and Download</button>
+  <button class="btn btn-success" id="downloadBtn">Download</button>
+
+  <script>
+   
+  </script>
   <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
 </div>
 
@@ -584,8 +588,56 @@
   });
 
   function handleSubmit() {
-    alert('Form Submitted');
-  }
+    const formData = {
+        precinct: localStorage.getItem('summaryPrecinct') || 'N/A',
+        firstName: localStorage.getItem('summaryFirstName') || 'N/A',
+        middleName: localStorage.getItem('summaryMiddleName') || 'N/A',
+        lastName: localStorage.getItem('summaryLastName') || 'N/A',
+        religion: localStorage.getItem('summaryReligion') || 'N/A',
+        dob: localStorage.getItem('summaryDob') || 'N/A',
+        bloodType: localStorage.getItem('summaryBloodType') || 'N/A',
+        birthPlace: localStorage.getItem('summaryBirthPlace') || 'N/A',
+        civilStatus: localStorage.getItem('selectedStatus') || 'N/A',
+        tele: localStorage.getItem('summaryTele') || 'N/A',
+        mobile1: localStorage.getItem('summaryPhone') || 'N/A',
+        email: localStorage.getItem('summaryEmail') || 'N/A',
+        lotNumber: localStorage.getItem('summaryLotNumber') || 'N/A',
+        blkNumber: localStorage.getItem('summaryBlkNumber') || 'N/A',
+        street: localStorage.getItem('summaryStreet') || 'N/A',
+        barangay: localStorage.getItem('summaryBarangay') || 'N/A',
+        yearsOfStay: localStorage.getItem('summaryYearsOfStay') || 'N/A',
+        monthsOfStay: localStorage.getItem('summaryMonthsOfStay') || 'N/A',
+        employer: localStorage.getItem('summaryCompany') || 'N/A',
+        officeAddress: localStorage.getItem('summaryOfficeAddress') || 'N/A',
+        occupation: localStorage.getItem('summaryOccupation') || 'N/A',
+        monthlyIncome: localStorage.getItem('summaryMonthlyIncome') || 'N/A',
+        tinNumber: localStorage.getItem('summaryTinNumber') || 'N/A',
+        sssNumber: localStorage.getItem('summarySssNumber') || 'N/A',
+        gsisNumber: localStorage.getItem('summaryGsisNumber') || 'N/A',
+        emergencyFirstName: localStorage.getItem('summaryemergencyFirstName') || 'N/A',
+        emergencyMiddleName: localStorage.getItem('summaryemergencyMiddleName') || 'N/A',
+        emergencyLastName: localStorage.getItem('summaryemergencyLastName') || 'N/A',
+        emergencyContact: localStorage.getItem('summaryEmergencyContact') || 'N/A',
+        emergencyRelationship: localStorage.getItem('summaryEmergencyRelationship') || 'N/A',
+        emergencyAddress: localStorage.getItem('summaryEmergencyAddress') || 'N/A'
+      };
+     
+
+      $.ajax({
+        url: 'Solo Parent Application DB.php',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+          alert('Form data submitted successfully!');
+          window.location.href = 'Home.php'; // Redirect to home page
+        },
+        error: function(xhr, status, error) {
+          console.error('Error submitting form data:', error);
+          alert('An error occurred while submitting the form data. Check console for details.');
+        }
+      });
+    }
+  
 
   function handlePrint() {
     window.print();

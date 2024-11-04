@@ -1,321 +1,494 @@
-<?php
-session_start(); // Start the session
-include 'header.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Appointment Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="pwd app.css">
-    <link rel="icon" type="img/png" href="logo.png">
-    <title>Appointment Form</title>
-   
+    
     <style>
-        /* Your existing styles here */
-        body {
-            background-color: #f8f9fa;
+        /* Resetting default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        .navbar-brand,
-        .navbar .username {
-            color: #ffffff;
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
         }
 
-        .custom-shadow {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+        .navbar .logo {
+            height: 40px;
+            margin-right: 15px;
         }
 
-        #top-bar {
-            margin-top: 20px;
-            margin-bottom: 20px;
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: auto;
         }
 
-        .small-dropdown {
-            width: 250px;
+        .nav-link {
+            cursor: pointer;
+            color: #ecf0f1;
+            font-size: 18px;
+            text-decoration: none;
         }
 
-        h1 {
-            color: #343a40;
+        .nav-link:hover {
+            color: #3498db;
         }
-        .form-container {
-            background-color: lightblue;
+
+        /* Main Content */
+        .content {
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card:hover {
+            background-color: #2980b9;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Appointment Details Table */
+        .appointment-details {
+            margin-top: 30px;
+        }
+
+        .appointment-details h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .table thead {
+            background-color: blue;
+            color: #ecf0f1;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table-striped tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Appointment Booking Form */
+        .appointment-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ecf0f1;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            margin-top: 50px;
-            margin-bottom: 50px;
         }
-        h2 {
-            font-weight: 700;
-            text-align: center;
+
+        .appointment-form h2 {
             margin-bottom: 20px;
-            color: #333333;
+            color: #2c3e50;
         }
-        .req {
-            color: red;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
+
+        .appointment-form label {
             display: block;
-            margin-bottom: 5px;
-            color: black;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: bold;
         }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .form-group textarea {
-            resize: vertical;
-        }
-        .form-group button {
+
+        .appointment-form input, .appointment-form select, .appointment-form button {
             width: 100%;
             padding: 10px;
-            background-color: rgb(7, 7, 129);
-            border: none;
-            color: white;
+            margin-bottom: 15px;
             border-radius: 4px;
-            cursor: pointer;
+            border: 1px solid #bdc3c7;
             font-size: 16px;
         }
-        .form-group button:hover {
-            background-color: #0326af;
-        }
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.5); 
+
+        .appointment-form input[type="date"], .appointment-form input[type="time"] {
+            padding-right: 10px;
         }
 
-        .navbar-brand-logo {
-            height: 40px; 
-            margin-right: 10px;
-        }
-
-        .username {
-            color: white;
-            margin-right: 15px;
+        .appointment-form button {
+            background-color: #3498db;
+            color: #fff;
             font-weight: bold;
-        }
-
-        .Hamburger-Icon {
-            height: 30px;
-        }
-
-        .toggle-header {
             cursor: pointer;
-            color: #0044ff;
-            font-weight: bold;
-            margin-top: 20px;
+            border: none;
+            transition: background-color 0.3s;
         }
-        @media (max-width: 767px) {
-            body {
-                padding: 20px;
+
+        .appointment-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .appointment-form .hidden {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
             }
         }
 
-        .navbar-brand,
-        .navbar .username {
-            color: #ffffff;
-        }
-
-        .custom-shadow {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        #top-bar {
+        .dashboard-header {
             margin-top: 20px;
-            margin-bottom: 20px;
+            text-align: center; /* Center the text */
+            margin-bottom: 20px; /* Optional: Add some space below the header */
+            color: #2c3e50; /* Optional: Change header color */
+            font-size: 2em; /* Optional: Increase font size */
         }
 
-        .small-dropdown {
-            width: 250px;
+        /* Style for delete button */
+        .delete-btn {
+            background-color: #e74c3c; /* Red background */
+            color: #fff; /* White text */
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
         }
-        .hidden-field {
-            display: none;
+
+        .delete-btn:hover {
+            background-color: #c0392b; /* Darker red on hover */
         }
+
+
 
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="logo.png" alt="Barangay Logo" class="logo">
+        <div class="nav-links">
+            <span class="nav-link" onclick="showDashboard()">Dashboard</span>
+            <span class="nav-link" onclick="showBookAppointment()">Book Appointment</span>
+        </div>
+    </nav>
 
-    <div class="container d-flex align-items-center justify-content-center">
-        <div class="form-container">
-            <h2>Book an Appointment</h2>
-            <form>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="name"><span class="req">*</span>Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="email"><span class="req">*</span>Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="phone">Mobile Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="date"><span class="req">*</span>Preferred Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="time"><span class="req">*</span>Preferred Time</label>
-                        <input type="time" id="time" name="time" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="service"><span class="req">*</span>Service Required</label>
-                        <select id="service" name="service" required onchange="showServiceOptions()">
-                            <option value="">Select a Service</option>
-                            <option value="violation management">Violation Management</option>
-                            <option value="social services">Social Services</option>
-                            <option value="educational support">Educational Support</option>
-                            <option value="economic & investment support">Economic & Investment Support</option>
-                            <option value="health services">Health Services</option>
-                            <option value="citizen id">Citizen ID</option>
-                        </select>
-                    </div>
-                </div>
+    <!-- Main Content -->
+    <h1 class="dashboard-header">User Dashboard</h1>
+    <div class="content" id="dashboardContent">
+        <div class="dashboard-cards">
+            <div class="card" onclick="showAppointmentDetails('Upcoming Appointment')">
+                <h3>Upcoming Appointment</h3>
+                <p id="upcomingCount">0</p>
+            </div>
+            <div class="card" onclick="showAppointmentDetails('Total Appointment')">
+                <h3>Total Appointment</h3>
+                <p id="totalCount">0</p>
+            </div>
+            <div class="card" onclick="showAppointmentDetails('Appointment Today')">
+                <h3>Appointment Today</h3>
+                <p id="todayCount">0</p>
+            </div>
+            <div class="card" onclick="showAppointmentDetails('Finished Appointment')">
+                <h3>Finished Appointment</h3>
+                <p id="finishedCount">0</p>
+            </div>
+        </div>
+    </div>
 
-                <!-- Hidden Fields for Each Service -->
-                <div id="violation-management" class="hidden-field form-group">
-                    <label for="ovr"><span class="req">*</span>OVR Payment</label>
-                    <input type="text" id="ovr" name="ovr" placeholder="OVR Payment" disabled>
-                </div>
 
-                <div id="social-services" class="hidden-field form-group">
-                    <label for="social-service-type"><span class="req">*</span>Select Social Service</label>
-                    <select id="social-service-type" name="social-service-type">
-                        <option value="senior-citizen">Senior Citizen Application</option>
-                        <option value="pwd">PWD Application</option>
-                        <option value="solo-parent">Solo Parent Application</option>
+            <!-- Appointment Details Table -->
+    <div class="appointment-details" id="appointmentDetails">
+        <h3>Appointment Details</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Service</th>
+                    <th>Type of Document</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentTableBody">
+                <!-- Appointment data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Appointment Booking Form -->
+    <div class="content hidden" id="bookAppointmentContent">
+        <div class="appointment-form">
+            <h2>Book a New Appointment</h2>
+            <form id="appointmentForm">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="service">Choose a Service</label>
+                <select name="service" id="service" onchange="showServiceOptions()" required>
+                    <option value="" disabled>Choose a service</option>
+                    <option value="Service 1">Violation Management</option>
+                    <option value="Service 2">Social Services</option>
+                    <option value="Service 3">Educational Support</option>
+                    <option value="Service 4">Economic & Investment Support</option>
+                    <option value="Service 5">Health Services</option>
+                    <option value="Service 6">Citizen ID</option>
+                </select>
+                
+                <div id="serviceOptionsContainer" class="hidden">
+                    <label for="serviceOptions">Type of Document</label>
+                    <select name="serviceOptions" id="serviceOptions">
+                        <!-- Options will be populated based on selected service -->
                     </select>
                 </div>
 
-                <div id="educational-support" class="hidden-field form-group">
-                    <label for="scholarship"><span class="req">*</span>Scholarship Application</label>
-                    <input type="text" id="education-input" name="education" placeholder="Scholarship Application" disabled>
-                </div>
+                <label for="date">Choose Preferred Date</label>
+                <input type="date" name="date" id="date" required>
+                
+                <label for="time">Choose Preferred Time</label>
+                <input type="time" name="time" id="time" required>
 
-                <div id="economic-support" class="hidden-field form-group">
-                    <label for="economic-support-type"><span class="req">*</span>Select Economic Support</label>
-                    <select id="economic-support-type" name="economic-support-type">
-                        <option value="occupational">Occupational Support</option>
-                        <option value="business-permit">Business Permit</option>
-                        <option value="tricycle-permit">Tricycle Permit</option>
-                        <option value="real-property">Real Property</option>
-                        <option value="market-one-stop">Market One Stop Shop</option>
-                    </select>
-                </div>
-
-                <div id="health-services" class="hidden-field form-group">
-                    <label for="health-service-type"><span class="req">*</span>Select Health Service</label>
-                    <select id="health-service-type" name="health-service-type">
-                        <option value="medical-records">Medical Records</option>
-                        <option value="death-certificate">Death Certificate</option>
-                    </select>
-                </div>
-
-                <div id="citizen-id" class="hidden-field form-group">
-                    <label for="citizen-id-type"><span class="req">*</span>Select Citizen ID Service</label>
-                    <select id="citizen-id-type" name="citizen-id-type">
-                        <option value="citizen-id">Citizen ID</option>
-                        <option value="ossm-query">OSSM Query Portal</option>
-                    </select>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="message">Additional Information</label>
-                    <textarea id="message" name="message" rows="4"></textarea>
-                </div>
-                <div class="form-group full-width">
-                    <button type="submit">Submit</button>
-                </div>
+                <button type="button" onclick="bookAppointment()">Book Appointment</button>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-lg-3">
-                    <ul class="list-inline my-2">
-                        <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>
-                        <li class="list-inline-item"><a class="link-secondary" href="#">Services</a></li>
-                        <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
-                    </ul>
-                <div class="col">
-                    <ul class="list-inline my-2">
-                        <li class="list-inline-item me-4">
-                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
-                                </svg></div>
-                        </li>
-                        <li class="list-inline-item me-4">
-                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
-                                </svg></div>
-                        </li>
-                        <li class="list-inline-item">
-                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
-                                </svg></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul class="list-inline my-2">
-                        <li class="list-inline-item"><a class="link-secondary" href="#">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a class="link-secondary" href="#">Terms of Use</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
         function showServiceOptions() {
-            // Hide all hidden fields first
-            document.querySelectorAll('.hidden-field').forEach(function (element) {
-                element.style.display = 'none';
-            });
+            const service = document.getElementById('service').value;
+            const serviceOptionsContainer = document.getElementById('serviceOptionsContainer');
+            const serviceOptions = document.getElementById('serviceOptions');
+            
+            serviceOptions.innerHTML = ''; // Reset options
 
-            // Show the specific field based on the selected service
-            var selectedService = document.getElementById('service').value;
-            if (selectedService === 'violation management') {
-                document.getElementById('violation-management').style.display = 'block';
-            } else if (selectedService === 'social services') {
-                document.getElementById('social-services').style.display = 'block';
-            } else if (selectedService === 'educational support') {
-                document.getElementById('educational-support').style.display = 'block';
-            } else if (selectedService === 'economic & investment support') {
-                document.getElementById('economic-support').style.display = 'block';
-            } else if (selectedService === 'health services') {
-                document.getElementById('health-services').style.display = 'block';
-            } else if (selectedService === 'citizen id') {
-                document.getElementById('citizen-id').style.display = 'block';
+            if (service === 'Service 1') {
+                serviceOptions.innerHTML = `<option value="OVR Payment" selected>OVR Payment</option>`;
+            } else if (service === 'Service 2') {
+                serviceOptions.innerHTML = `
+                    <option value="Senior Citizen Application">Senior Citizen Application</option>
+                    <option value="PWD Application">PWD Application</option>
+                    <option value="Solo Parent Application">Solo Parent Application</option>
+                `;
+            } else if (service === 'Service 3') {
+                serviceOptions.innerHTML = `<option value="Scholarship Application" selected>Scholarship Application</option>`;
+            } else if (service === 'Service 4') {
+                serviceOptions.innerHTML = `
+                    <option value="Occupational Permit">Occupational Permit</option>
+                    <option value="Business Permit">Business Permit</option>
+                    <option value="Tricycle Permit">Tricycle Permit</option>
+                    <option value="Real Property">Real Property</option>
+                    <option value="Market One Stop Shop">Market One Stop Shop</option>
+                `;
+            } else if (service === 'Service 5') {
+                serviceOptions.innerHTML = `
+                    <option value="Medical Records">Medical Records</option>
+                    <option value="Death Certificate">Death Certificate</option>
+                `;
+            } else if (service === 'Service 6') {
+                serviceOptions.innerHTML = `
+                    <option value="Citizen ID">Citizen ID</option>
+                    <option value="OSSM Query Portal">OSSM Query Portal</option>
+                `;
+            }
+
+            serviceOptionsContainer.classList.toggle('hidden', !service);
+        }
+
+
+
+        const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+
+        function showDashboard() {
+            document.getElementById("dashboardContent").classList.remove("hidden");
+            document.getElementById("bookAppointmentContent").classList.add("hidden");
+            updateDashboard();
+        }
+
+        function showBookAppointment() {
+            document.getElementById("dashboardContent").classList.add("hidden");
+            document.getElementById("bookAppointmentContent").classList.remove("hidden");
+            document.getElementById("appointmentDetails").style.display = 'none';
+        }
+
+        // Map service codes to display names
+        const serviceMapping = {
+            "Service 1": "Violation Management",
+            "Service 2": "Social Services",
+            "Service 3": "Educational Support",
+            "Service 4": "Economic & Investment Support",
+            "Service 5": "Health Services",
+            "Service 6": "Citizen ID"
+        };
+
+        //set time ap or pm
+
+        function formatTimeTo12Hour(time) {
+            const [hour, minute] = time.split(':');
+            let period = "AM";
+            let hour12 = parseInt(hour, 10);
+
+            if (hour12 >= 12) {
+                period = "PM";
+                if (hour12 > 12) hour12 -= 12;
+            } else if (hour12 === 0) {
+                hour12 = 12;
+            }
+
+            return `${hour12}:${minute} ${period}`;
+        }
+
+        // code for book appointment
+        function bookAppointment() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const service = document.getElementById("service").value;
+            const serviceName = serviceMapping[service];
+            const serviceOptions = document.getElementById("serviceOptions").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const formattedTime = formatTimeTo12Hour(time); // Convert to 12-hour format with AM/PM
+
+            if (name && email && service && date && time) {
+                appointments.push({
+                    name,
+                    email,
+                    service: serviceName,
+                    serviceOptions,
+                    date,
+                    time: formattedTime // Store formatted time
+                });
+                localStorage.setItem('appointments', JSON.stringify(appointments));
+                document.getElementById("appointmentForm").reset();
+                alert("Appointment booked successfully!");
+                updateDashboard();
+            } else {
+                alert("Please fill in all fields.");
             }
         }
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+fskPFdYkzNfFNsM2Kn2LDztB0OjN" crossorigin="anonymous"></script>
+
+        // for updating dashboard
+        function updateDashboard() {
+            const todayDate = new Date().toLocaleDateString();
+            document.getElementById("totalCount").innerText = appointments.length;
+            document.getElementById("todayCount").innerText = appointments.filter(app => new Date(app.date).toLocaleDateString() === todayDate).length;
+            document.getElementById("upcomingCount").innerText = appointments.filter(app => new Date(app.date) > new Date()).length;
+            document.getElementById("finishedCount").innerText = appointments.filter(app => new Date(app.date) < new Date()).length;
+        }
+
+        function showAppointmentDetails(cardTitle) {
+            const tableBody = document.getElementById("appointmentTableBody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            let filteredAppointments = [];
+            const todayDate = new Date().toLocaleDateString();
+
+            if (cardTitle === 'Upcoming Appointment') {
+                filteredAppointments = appointments.filter(app => new Date(app.date) > new Date());
+            } else if (cardTitle === 'Total Appointment') {
+                filteredAppointments = appointments;
+            } else if (cardTitle === 'Appointment Today') {
+                filteredAppointments = appointments.filter(app => new Date(app.date).toLocaleDateString() === todayDate);
+            } else if (cardTitle === 'Finished Appointment') {
+                filteredAppointments = appointments.filter(app => new Date(app.date) < new Date());
+            }
+
+            filteredAppointments.forEach((appointment, index) => {
+                const row = `<tr>
+                    <td>${appointment.name}</td>
+                    <td>${appointment.email}</td>
+                    <td>${appointment.service}</td>
+                    <td>${appointment.serviceOptions || '-'}</td>
+                    <td>${appointment.date}</td>
+                    <td>${appointment.time}</td>
+                    <td><button class="delete-btn" onclick="deleteAppointment(${index}, '${cardTitle}')">Delete</button></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+
+            document.getElementById("appointmentDetails").style.display = 'block';
+        }
+
+        // for delete option
+        function deleteAppointment(index, cardTitle) {
+            // Find the actual index in the main appointments array
+            const actualIndex = appointments.findIndex((appointment, i) => {
+                if (cardTitle === 'Upcoming Appointment') return new Date(appointment.date) > new Date() && i === index;
+                if (cardTitle === 'Total Appointment') return i === index;
+                if (cardTitle === 'Appointment Today') return new Date(appointment.date).toLocaleDateString() === new Date().toLocaleDateString() && i === index;
+                if (cardTitle === 'Finished Appointment') return new Date(appointment.date) < new Date() && i === index;
+            });
+
+            // Remove the appointment from the appointments array
+            if (actualIndex !== -1) {
+                appointments.splice(actualIndex, 1);
+                localStorage.setItem('appointments', JSON.stringify(appointments)); // Update local storage
+                showAppointmentDetails(cardTitle); // Refresh table with the same category
+                updateDashboard(); // Update dashboard counts
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateDashboard(); // Update dashboard counts on load
+            showAppointmentDetails('Upcoming Appointment'); // Automatically show upcoming appointments initially
+        });
+
+
+    </script>
 </body>
 </html>

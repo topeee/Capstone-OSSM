@@ -101,6 +101,7 @@ include 'header.php';
       </style>
     </head>
     <body>
+        
       <nav class="navbar navbar-dark navbar-expand-lg" >
         <div class="container-fluid" style="display: none;">
           <a class="navbar-brand" href="index.php">

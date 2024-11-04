@@ -1,110 +1,4 @@
-<?php
-      session_start(); // Start the session
-include 'db_connection.php';
 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $precinctNumber = $_POST['precinct'];
-    $firstName = $_POST['firstName'];
-    $middleName = $_POST['middleName'];
-    $lastName = $_POST['lastName'];
-    $religion = $_POST['religion'];
-    $gender = $_POST['gender'];
-    $bloodType = $_POST['bloodType'];
-    $birthPlace = $_POST['birthPlace'];
-    $birthDate = $_POST['dob'];
-    $civilStatus = $_POST['civilstatus'];
-    
-    // Insert into the first table using prepared statements
-    $stmt = $conn->prepare("INSERT INTO TabSoloParent_ApplicationForm_PrimaryInfo (PrecintNumber, FirstName, MiddleName, LastName, Religion, Gender, BloodType, BirthPlace, BirthDate, CivilStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssss", $precinctNumber, $firstName, $middleName, $lastName, $religion, $gender, $bloodType, $birthPlace, $birthDate, $civilStatus);
-    
-    if (!$stmt->execute()) {
-        echo "Error: " . $stmt->error;
-    }
-    $stmt->close();
-    
-    // Data for the second table
-    
-    $is4PsMember = $_POST['Is4PsMember'];
-    $idNumber = $_POST['IDNumber'];
-    $isPhilHealthMember = $_POST['IsPhilHealthMember'];
-    $philHealthNumber = $_POST['PhilHealthNumber'];
-    $membershipCategory = $_POST['MembershipCategory'];
-    $employedOrNot = $_POST['EmployedOrNot'];
-    $nameOfEmployer = $_POST['NameOfEmployer'];
-    $officeAddress = $_POST['OfficeAddress'];
-    $occupation = $_POST['Occupation'];
-    $monthlyIncome = $_POST['MonthlyIncome'];
-    $tinNumber = $_POST['TinNumber'];
-    $sssNumber = $_POST['SSSNumber'];
-    $gsisNumber = $_POST['GSISNumber'];
-    
-    // Insert into the second table
-    $sql = "INSERT INTO SoloParent_ApplicationForm_OtherInfo (Is4PsMember, IDNumber, IsPhilHealthMember, PhilHealthNumber, MembershipCategory, EmployedOrNot, NameOfEmployer, OfficeAddress, Occupation, MonthlyIncome, TinNumber, SSSNumber, GSISNumber) 
-             VALUES ('$is4PsMember', '$idNumber', '$isPhilHealthMember', '$philHealthNumber', '$membershipCategory', '$employedOrNot', '$nameOfEmployer', '$officeAddress', '$occupation', '$monthlyIncome', '$tinNumber', '$sssNumber', '$gsisNumber')";
-    
-    if (!mysqli_query($conn, $sql)) {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    // Data for the third table
-    
-    // Data for the third table
-    $relationship = $_POST['Relationship'];
-    $lastName = $_POST['LastName'];
-    $firstName = $_POST['FirstName'];
-    $middleName = $_POST['MiddleName'];
-    $birthDate = $_POST['BirthDate'];
-    $civilStatus = $_POST['CivilStatus'];
-    $educationalAttainment = $_POST['EducationalAttainment'];
-    $occupation = $_POST['Occupation'];
-    $needsOrProblemsOfSoloParent = $_POST['NeedsOrProblemsOfSoloParent'];
-    $remarks = $_POST['Remarks'];
-    $sourceOfIncome = $_POST['SourceOfIncome'];
-    $emergencyPersonFirstName = $_POST['EmergencyPersonFirstName'];
-    $emergencyPersonMiddleName = $_POST['EmergencyPersonMiddleName'];
-    $emergencyPersonLastName = $_POST['EmergencyPersonLastName'];
-    $emergencyPersonContactNumber = $_POST['EmergencyPersonContactNumber'];
-    $emergencyPersonAddress = $_POST['EmergencyPersonAddress'];
-    $relationshipToTheEmergencyPerson = $_POST['RelationshipToTheEmergencyPerson'];
-    
-    // Insert into the third table
-    $sql = "INSERT INTO SoloParent_ApplicationForm_FamilyInfo (Relationship, LastName, FirstName, MiddleName, BirthDate, CivilStatus, EducationalAttainment, Occupation, NeedsOrProblemsOfSoloParent, Remarks, SourceOfIncome, EmergencyPersonFirstName, EmergencyPersonMiddleName, EmergencyPersonLastName, EmergencyPersonContactNumber, EmergencyPersonAddress, RelationshipToTheEmergencyPerson) 
-             VALUES ('$relationship', '$lastName', '$firstName', '$middleName', '$birthDate', '$civilStatus', '$educationalAttainment', '$occupation', '$needsOrProblemsOfSoloParent', '$remarks', '$sourceOfIncome', '$emergencyPersonFirstName', '$emergencyPersonMiddleName', '$emergencyPersonLastName', '$emergencyPersonContactNumber', '$emergencyPersonAddress', '$relationshipToTheEmergencyPerson')";
-    
-    if (!mysqli_query($conn, $sql)) {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    
-   
-    // Data for the fourth table
-    $numberOfYears = $_POST['NumberOfYears'];
-    $numberOfMonths = $_POST['NumberOfMonths'];
-    $lotNumber = $_POST['LotNumber'];
-    $blkNumber = $_POST['BlkNumber'];
-    $streetAndSubdivision = $_POST['StreetAndSubdivision'];
-    $barangay = $_POST['Barangay'];
-    $landline = $_POST['Landline'];
-    $mobileNumber1 = $_POST['MobileNumber1'];
-    $mobileNumber2 = $_POST['MobileNumber2'];
-    $emailAddress = $_POST['EmailAddress'];
-    $facebookAccount = $_POST['FacebookAccount'];
-    $twitterAccount = $_POST['TwitterAccount'];
-    
-    // Insert into the fourth table
-    $sql = "INSERT INTO SoloParent_ApplicationForm_AddressAndContact (NumberOfYears, NumbersOfMonths, LotNumber, BlkNumber, StreetAndSubdivision, Barangay, Landline, MobileNumber1, MobileNumber2, EmailAddress, FacebookAccount, TwitterAccount) 
-             VALUES ('$numberOfYears', '$numberOfMonths', '$lotNumber', '$blkNumber', '$streetAndSubdivision', '$barangay', '$landline', '$mobileNumber1', '$mobileNumber2', '$emailAddress', '$facebookAccount', '$twitterAccount')";
-    
-    if (!mysqli_query($conn, $sql)) {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    
-    // Close the database connection
-    mysqli_close($conn);
-}
-
-include 'header.php';
-      ?>
 
 <!DOCTYPE html>
     <html>
@@ -190,9 +84,10 @@ include 'header.php';
           </div>
         </div>
       </nav>
-      <form action= " " method="POST" >
       <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
       <div class="container">
+      <form action= "Solo Parent Application DB.php" method="POST" >
+
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -729,8 +624,9 @@ include 'header.php';
             </div>
         </div>
     </div>
-    </main>
     </form>
+    </main>
+ 
 
     <br>
     <br>

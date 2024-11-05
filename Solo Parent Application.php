@@ -23,6 +23,7 @@ include 'header.php';
       <link rel="icon" type="img/png" href="logo.png">
       <title>Solo Parent Application</title>
 
+
       <style>
         /* Custom Dropdown Styling */
 .dropdown dt a {
@@ -68,10 +69,8 @@ include 'header.php';
       </style>
     </head>
     <body>
-<<<<<<< Updated upstream
-        
-      <nav class="navbar navbar-dark navbar-expand-lg" >
-        <div class="container-fluid" style="display: none;">
+      <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
@@ -82,7 +81,7 @@ include 'header.php';
               <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
               </a>
-              <ul class="dropdown-menu dropdown-menu-end" s>
+              <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
                 <li><a class="dropdown-item" href="#">History Transaction</a></li>
                 <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
@@ -91,13 +90,9 @@ include 'header.php';
           </div>
         </div>
       </nav>
-=======
-      
->>>>>>> Stashed changes
-      <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
-      <div class="container">
-      <form action= "Solo Parent Application DB.php" method="POST" >
 
+    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+      <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -148,31 +143,30 @@ include 'header.php';
                         A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
                     </p>
     
-                   
-                       
+                    <form>
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="precinct" class="form-label">Precinct #</label>
-                                <input type="text" class="form-control" id="precinct" name="precinct" placeholder="Precinct" required>
+                                <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" name="gender" onchange="genderChange()" required>
+                                <select class="form-select" id="gender" onchange="genderChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -180,7 +174,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-2">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" name="civilstatus" onchange="civilChange()" required>
+                                <select class="form-select" id="civilstatus" onchange="civilChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -189,33 +183,33 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" name="dob" required>
+                                <input type="date" class="form-control" id="dob" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="birthPlace" class="form-label">Birth Place</label>
-                                <input type="text" class="form-control" id="birthPlace" name="birthPlace" placeholder="Birth Place" required>
+                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="telephone" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="(916) 345-6783" required>
+                                <input type="tel" class="form-control" id="telephone" placeholder="(916) 345-6783" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="bloodType" class="form-label">Blood Type</label>
-                                <select class="form-select" id="bloodType" name="bloodType" required>
+                                <select class="form-select" id="bloodType" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -229,7 +223,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="religion" class="form-label">Religion</label>
-                                <input type="text" class="form-control" id="religion" name="religion" placeholder="Religion" required>
+                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
                             </div>
                         </div>
 
@@ -240,13 +234,12 @@ include 'header.php';
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
                           </div>
-                   
+                    </form>
                 </div>
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-               
-
+                    <form>
                         <h4>Sectoral Information</h4>
                         <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                         <div class="row mb-3">
@@ -292,8 +285,9 @@ include 'header.php';
                                         <option value="Sponsored">Sponsored</option>
                                     </select>
                                 </div>
+
                                 <div class="col-md-4">
-                                <label for="familyResources" class="form-label">Family Resources</label>
+                                    <label for="familyResources" class="form-label">Family Resources</label>
                                     <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
                                         <option value="" disabled selected>Choose...</option>
                                         <option value="Employeds">Employed</option>
@@ -301,6 +295,7 @@ include 'header.php';
                                         <option value="Others">Others</option>
                                     </select>
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
                                     <select class="form-select" id="education" required>
@@ -383,12 +378,11 @@ include 'header.php';
                                 </div>
                             </div>
                         </div>
-                
+                    </form>
                 </div>
     
                 <div class="form-section" id="other-information" style="display: none;">
-             
-    
+                    <form>    
                         <h4>Other Information</h4>
                         <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
                         <div class="row mb-3">
@@ -483,13 +477,12 @@ include 'header.php';
                                 <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
                             </div>
                         </div>
-                  
+                    </form>
                 </div>
                 
                     <!-- Family Composition Section -->
                     <div class="form-section" id="familyComposition" style="display: none;">
-                   
-  
+                        <form>    
                             <h4>Family Composition</h4>
                                 <!-- Input fields for a new family member -->
                                 <div class="row">
@@ -530,10 +523,10 @@ include 'header.php';
                                         <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                
-                            
+                        </form>    
                     </div>
                 
+    
                     <!-- Section 4: User Summary Section -->
                 <div class="form-section" id="section4" style="display: none;">
                     <h4>User Summary</h4>
@@ -592,7 +585,7 @@ include 'header.php';
                             <tr><td><strong>4 P's ID:</strong></td><td id="summaryFourPsId"></td></tr>
                             <tr><td><strong>PhilHealth Member:</strong></td><td id="summaryPhilHealthMember"></td></tr>
                             <tr><td><strong>PhilHealth ID:</strong></td><td id="summaryPhilHealthId"></td></tr>
-
+                            
                             <!-- Emergency Contact Information -->
                             <tr><td><strong>Emergency Contact Name:</strong></td><td id="summaryEmergencyName"></td></tr>
                             <tr><td style="display: none;"></td><td id="summaryemergencyFirstName" style="display: none;"></td></tr>
@@ -617,7 +610,8 @@ include 'header.php';
                                 </thead>
                                 <tbody>
                                     <!-- Rows will be added here -->
-                                </tbody>                         
+                                </tbody>   
+                            </table>                      
                         </tbody>
                     </table>
                 </div>
@@ -628,15 +622,13 @@ include 'header.php';
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
                     <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-                    <button type="submit" id="next-btn" class="btn btn-primary">Next</button>
+                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
                 </div>
     
             </div>
         </div>
     </div>
-    </form>
     </main>
- 
 
     <br>
     <br>
@@ -681,7 +673,13 @@ include 'header.php';
         // Helper function to retrieve the value of an input or show "N/A" if empty
         const getValue = (id) => {
             const element = document.getElementById(id);
-            return element ? element.value : 'N/A';
+            if (!element) return 'N/A';
+            
+            if (element.type === 'radio') {
+                const selectedRadio = document.querySelector(`input[name="${id}"]:checked`);
+                return selectedRadio ? selectedRadio.value : 'N/A';
+            }
+            return element.value || 'N/A';
         };
 
         // Populate the summary section with the values from the form
@@ -779,23 +777,31 @@ include 'header.php';
             document.getElementById('summaryMonthsOfStay').innerText = getValue('monthsOfStay');
             localStorage.setItem('summaryMonthsOfStay', document.getElementById('summaryMonthsOfStay').innerText); // Store precinct in localStorage
 
-    
             // 4Ps and PhilHealth Membership
-            const fourPsMember = document.querySelector('input[name="fourPsMember"]:checked')?.value || 'N/A';
-            document.getElementById('summaryFourPsMember').innerText = fourPsMember;
-            if (fourPsMember === 'yes') {
-                document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
-                localStorage.setItem('selectedFourPs', selectedFourPs);  // Store PhilHealth membership status
+            // Retrieve 4Ps and PhilHealth membership status
+            const selectedFourPs = document.querySelector('input[name="fourPsMember"]:checked');
+            const selectedPhilHealth = document.querySelector('input[name="philHealthMember"]:checked');
 
-            }
-    
-            const philHealthMember = document.querySelector('input[name="philHealthMember"]:checked')?.value || 'N/A';
-            document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
-            if (philHealthMember === 'yes') {
-                document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
-                localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
-            }
-    
+            // Retrieve IDs for 4Ps and PhilHealth
+            const fourPsId = document.getElementById('fourPsId').value || 'N/A';
+            const philHealthId = document.getElementById('philHealthId').value || 'N/A';
+
+            // Update summary fields
+            document.getElementById('summaryFourPsMember').innerText = selectedFourPs ? selectedFourPs.value : 'N/A';
+            localStorage.setItem('summaryFourPsMember', document.getElementById('summaryFourPsMember').innerText);
+
+            document.getElementById('summaryPhilHealthMember').innerText = selectedPhilHealth ? selectedPhilHealth.value : 'N/A';
+            localStorage.setItem('summaryPhilHealthMember', document.getElementById('summaryPhilHealthMember').innerText);
+
+            document.getElementById('summaryFourPsId').innerText = fourPsId;
+            localStorage.setItem('summaryFourPsId', document.getElementById('summaryFourPsId').innerText);
+
+            document.getElementById('summaryPhilHealthId').innerText = philHealthId;
+            localStorage.setItem('summaryPhilHealthId', document.getElementById('summaryPhilHealthId').innerText);
+
+            // Store in localStorage
+
+
             // Emergency Contact Full Name (combined in one step)
         document.getElementById('summaryemergencyFirstName').innerText = getValue('emergencyFirstName');
         localStorage.setItem('summaryemergencyFirstName', document.getElementById('summaryemergencyFirstName').innerText);
@@ -859,7 +865,7 @@ include 'header.php';
 
         function classificationChange() {
             const selectedClassification = document.getElementById('soloParentClassification').value;
-            localStorage.setItem('selectedFamilyClassification', selectedClassification);  // Store the classification in localStorage
+            localStorage.setItem('selectedFamilyClassification', selectedClassification);
         }
 
         function familyResourcesChange() {
@@ -902,7 +908,7 @@ include 'header.php';
 
                 
 
-        function addFamilyRow() {
+    function addFamilyRow() {
     // Get values from input fields
     const relationship = document.getElementById("familyRelationship").value;
     const fullName = document.getElementById("familyFullName").value;
@@ -999,7 +1005,7 @@ function saveFamilyData() {
                 }
             });
         
-            $(document).ready(function () {
+        $(document).ready(function () {
         // Section references
         const sections = [
         "#basic-information-section",
@@ -1026,7 +1032,7 @@ function saveFamilyData() {
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "Solo Parent Form.php";
+        window.location.href = "first page.html";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();
@@ -1061,9 +1067,16 @@ function saveFamilyData() {
 
     // Function to update the progress bar
     function updateProgress() {
-        $(".progress-item").removeClass("active");
-        $(".progress-item").eq(currentSection).addClass("active");
-    }
+    $(".progress-item").removeClass("active");
+    $(".progress-item").eq(currentSection).addClass("active");
+
+    // Update icons
+    $(".progress-item i").removeClass("bi-check-square-fill").addClass("bi-check-square"); // Reset icons
+    $(".progress-item:lt(" + (currentSection + 1) + ") i")
+        .removeClass("bi-check-square")
+        .addClass("bi-check-square-fill"); // Set filled icons up to the current section
+}
+
 
     // Add click functionality to progress items
     $(".progress-item").click(function () {

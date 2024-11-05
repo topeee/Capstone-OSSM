@@ -69,8 +69,8 @@ include 'header.php';
       </style>
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg">
-        <div class="container-fluid">
+      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none;">
+        <div class="container-fluid" >
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>

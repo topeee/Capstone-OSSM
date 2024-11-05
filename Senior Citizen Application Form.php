@@ -22,7 +22,7 @@ include 'header.php';
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none">
+      <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
@@ -312,6 +312,12 @@ include 'header.php';
                                     </div>
                                 </div>
                         </form>    
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                            <br><br>
+                              <i class="bi bi-info-circle-fill"></i>       
+                              "Please fill out all text fields. Once completed, click 'Add' to save the information you entered. <br> 
+                              <strong>Note: If you have additional family members to include, simply click 'Add Family' to add each one."</strong>
+                        </div> 
                     </div>
                 
                     <!--Identification--> 
@@ -642,6 +648,8 @@ include 'header.php';
     if (!relationship || !fullName || !birthDate || !civilStatus || !occupation) {
         alert("Please fill in all fields before adding.");
         return;
+    } else {
+        alert("Family member added successfully!");
     }
 
     // Create a new row in the familyTable
@@ -771,13 +779,17 @@ $("#next-btn").on('click', function () {
 });
 
 
-        function updateProgress() {
-            // Remove the active class from all progress items
-            $(".progress-item").removeClass("active");
+    // Function to update the progress bar
+    function updateProgress() {
+    $(".progress-item").removeClass("active");
+    $(".progress-item").eq(currentSection).addClass("active");
 
-            // Add the active class to the current section's progress item
-            $(".progress-item").eq(currentSection).addClass("active");
-        }
+    // Update icons
+    $(".progress-item i").removeClass("bi-check-square-fill").addClass("bi-check-square"); // Reset icons
+    $(".progress-item:lt(" + (currentSection + 1) + ") i")
+        .removeClass("bi-check-square")
+        .addClass("bi-check-square-fill"); // Set filled icons up to the current section
+}
 
       
         $("#prev-btn").on('click', function () {

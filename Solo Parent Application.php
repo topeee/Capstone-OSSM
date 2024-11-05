@@ -91,7 +91,7 @@ include 'header.php';
         </div>
       </nav>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+      <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -233,7 +233,7 @@ include 'header.php';
                             <br><br>
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
-                          </div>
+                        </div>
                     </form>
                 </div>
     
@@ -523,7 +523,13 @@ include 'header.php';
                                         <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                        </form>    
+                        </form>
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                            <br><br>
+                              <i class="bi bi-info-circle-fill"></i>       
+                              "Please fill out all text fields. Once completed, click 'Add' to save the information you entered. <br> 
+                              <strong>Note: If you have additional family members to include, simply click 'Add Family' to add each one."</strong>
+                        </div>    
                     </div>
                 
     
@@ -921,6 +927,8 @@ include 'header.php';
     if (!relationship || !fullName || !birthDate || !civilStatus || !educAttainment || !occupation) {
         alert("Please fill in all fields before adding.");
         return;
+    } else {
+        alert("Family member added successfully!");
     }
 
     // Create a new row in the familyTable
@@ -1032,7 +1040,7 @@ function saveFamilyData() {
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "Solo Parent Form.php";
+        window.location.href = "first page.html";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();

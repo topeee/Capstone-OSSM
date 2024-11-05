@@ -1,5 +1,8 @@
+
 <?php
+session_start();
 include 'header.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +68,7 @@ include 'header.php';
       </style>
     </head>
     <body>
+<<<<<<< Updated upstream
         
       <nav class="navbar navbar-dark navbar-expand-lg" >
         <div class="container-fluid" style="display: none;">
@@ -87,6 +91,9 @@ include 'header.php';
           </div>
         </div>
       </nav>
+=======
+      
+>>>>>>> Stashed changes
       <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
       <div class="container">
       <form action= "Solo Parent Application DB.php" method="POST" >

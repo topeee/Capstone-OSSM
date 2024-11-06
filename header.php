@@ -24,7 +24,34 @@ if ($stmt = $conn->prepare($query)) {
 ?>
 
 <html>
+<style>
+.navbar-brand-logo {
+  margin-right: 8px;
+}
 
+.brand-name {
+  font-size: 22px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif ;
+  padding-left: 6px;
+}
+
+.d-flex .username {
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+.Hamburger-Icon {
+  width: 36px;
+  height: 36px;
+}
+
+.username {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+</style>
 <header><nav class="navbar navbar-dark navbar-expand-lg">
     <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
         <div class="d-flex align-items-center ms-auto"><span class="username">Hello, <?php echo htmlspecialchars($first_name); ?></span>

@@ -13,6 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   
     <style>
         * {
@@ -104,6 +106,13 @@
       width: 100%;
       margin-top: 10px;
     }
+    @media print {
+  .button-card {
+    display: none;
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -410,9 +419,9 @@
                 </tr>
                 <tr>
                     <td>For in case of emergency:<br>GUARDIAN: </td>
-                    <td class="guardianlname-field"></td>
-                    <td class="guardianfname-field"></td>
-                    <td class="guardianmname-field"></td>
+                    <td id="emergencyGuardianLastName" class="guardianlname-field"></td>
+                    <td id="emergencyGuardianFirstName" class="guardianfname-field"></td>
+                    <td id="emergencyGuardianMiddleName" class="guardianmname-field"></td>
                 </tr>
                 <tr>
                     <td>Contact No.: </td>
@@ -428,24 +437,24 @@
                 </tr>
                 <!-- Applicant Row -->
                 <tr>
-                    <td><input type="checkbox" id="accomplishedByApplicant"> APPLICANT</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="radio" id="accomplishedByApplicant" name="accomplishedBy" value="Applicant" > APPLICANT</td>
+                    <td class="applicantlname-field"></td>
+                    <td class="applicantfname-field"></td>
+                    <td class="applicantmname-field"></td>
                 </tr>
                 <!-- Guardian Row -->
                 <tr>
-                    <td><input type="checkbox" id="accomplishedByGuardian"> GUARDIAN</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><input type="radio" id="accomplishedByGuardian" name="accomplishedBy" value="Guardian"> GUARDIAN</td>
+                    <td class="guardianslname-field"></td>
+                    <td class="guardiansfname-field" ></td>
+                    <td class="guardiansmname-field"></td>
                 </tr>
                 <!-- Representative Row -->
                 <tr>
-                    <td><input type="checkbox" id="accomplishedByRepresentative"> REPRESENTATIVE</td>
-                    <td class="accomplishedBylname-field"></td>
-                    <td class="accomplishedByfname-field"></td>
-                    <td class="accomplishedBymname-field"></td>
+                    <td><input type="radio" id="accomplishedByRepresentative" name="accomplishedBy" value="Representative"> REPRESENTATIVE</td>
+                    <td class="representativelname"></td>
+                    <td class="representativefname-field"></td>
+                    <td class="representativemname-field"></td>
                 </tr>
                 
                 <!-- Certifying Physician -->
@@ -501,46 +510,51 @@
  <!-- Right-side Button Card -->
  <div class="button-card">
     <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
-    <button class="btn btn-success" id="downloadBtn">Submit and Download</button>
+    <button class="btn btn-success" onclick="handleDownload()">Submit and Download</button>
     <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
   </div>
   
-    <script>
- document.getElementById('downloadBtn').addEventListener('click', async () => {
+<script>
+async function handleDownload() {
     try {
-      const { jsPDF } = window.jspdf;
+        const { jsPDF } = window.jspdf;
 
-      const element = document.querySelector('.form-container');
-      const canvas = await html2canvas(element, { scale: 2 });
+        // Select the element to capture
+        const element = document.querySelector('.container');
+        const canvas = await html2canvas(element, { scale: 2 });
 
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
+        // Convert canvas to image format (base64)
+        const imgData = canvas.toDataURL('image/png');
 
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+        // Create a new jsPDF instance
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 297; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
 
-      let position = 0;
-
-      // Add the first page
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // Add more pages if needed
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight; // Move to next page
-        pdf.addPage();
+        // Add the first page   
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
-      }
 
-      pdf.save('Solo_Parent_Application_Form.pdf');
+        // Add more pages if content overflows
+        while (heightLeft > 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+
+        // Save the PDF file
+        pdf.save('PWD_Registration_Form.pdf');
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('An error occurred while generating the PDF. Check console for details.');
+        console.error('Error generating PDF:', error);
+        alert('An error occurred while generating the PDF.');
     }
-  });
+}
+
+
 
   function handleSubmit() {
     alert('Form Submitted');
@@ -548,7 +562,8 @@
 
   function handlePrint() {
     window.print();
-  }
+    window.download();
+}
   
   document.addEventListener('DOMContentLoaded', function() {
     const pwdIDValue = localStorage.getItem('summaryPWDIdNumber') || 'N/A';
@@ -582,9 +597,15 @@
     const guardianFirstNameValue = localStorage.getItem('summaryGuardianFirstName') || 'N/A';
     const guardianMiddleNameValue = localStorage.getItem('summaryGuardianMiddleName') || 'N/A';
     const guardianContactNoValue = localStorage.getItem('summaryGuardianContactNo') || 'N/A';
-    const applicantLastNameValue = localStorage.getItem('summaryAccomplishedByLastName') || 'N/A';
-    const applicantFirstNameValue = localStorage.getItem('summaryAccomplishedByFirstName') || 'N/A';
-    const applicantMiddleNameValue = localStorage.getItem('summaryAccomplishedByMiddleName') || 'N/A';
+    const applicantLastNameValue = localStorage.getItem('summaryApplicantLastName') || 'N/A';
+    const applicantFirstNameValue = localStorage.getItem('summaryApplicantFirstName') || 'N/A';
+    const applicantMiddleNameValue = localStorage.getItem('summaryApplicantMiddleName') || 'N/A';
+    const guardiansLastNameValue = localStorage.getItem('summaryGuardiansLastName') || 'N/A';
+    const guardiansFirstNameValue = localStorage.getItem('summaryGuardiansFirstName') || 'N/A';
+    const guardiansMiddleNameValue = localStorage.getItem('summaryGuardiansMiddleName') || 'N/A';
+    const representativeLastNameValue = localStorage.getItem('summaryRepresentativeLastName') || 'N/A';
+    const representativeFirstNameValue = localStorage.getItem('summaryRepresentativeFirstName') || 'N/A';
+    const representativeMiddleNameValue = localStorage.getItem('summaryRepresentativeMiddleName') || 'N/A';
     const physiciaFirstNameValue = localStorage.getItem('summaryPhysicianFirstName') || 'N/A';
     const physicianMiddleNameValue = localStorage.getItem('summaryPhysicianMiddleName') || 'N/A';
     const physicianLastNameValue = localStorage.getItem('summaryPhysicianLastName') || 'N/A';
@@ -622,9 +643,15 @@
     document.querySelector('.guardianfname-field').textContent = guardianFirstNameValue;
     document.querySelector('.guardianmname-field').textContent = guardianMiddleNameValue;
     document.querySelector('.contactguardian-field').textContent = guardianContactNoValue;
-    document.querySelector('.accomplishedBylname-field').textContent = applicantLastNameValue;
-    document.querySelector('.accomplishedByfname-field').textContent = applicantFirstNameValue;
-    document.querySelector('.accomplishedBymname-field').textContent = applicantMiddleNameValue;
+    document.querySelector('.applicantlname-field').textContent = applicantLastNameValue;
+    document.querySelector('.applicantfname-field').textContent = applicantFirstNameValue;
+    document.querySelector('.applicantmname-field').textContent = applicantMiddleNameValue;
+    document.querySelector('.representativelname').textContent = representativeLastNameValue;
+    document.querySelector('.representativefname-field').textContent = representativeFirstNameValue;
+    document.querySelector('.representativemname-field').textContent = representativeMiddleNameValue;
+    document.querySelector('.guardianslname-field').textContent = guardiansLastNameValue;
+    document.querySelector('.guardiansfname-field').textContent = guardiansFirstNameValue;
+    document.querySelector('.guardiansmname-field').textContent = guardiansMiddleNameValue;
     document.querySelector('.physicianlname').textContent = physicianLastNameValue;
     document.querySelector('.physicianfname').textContent = physiciaFirstNameValue;
     document.querySelector('.physicianmname').textContent = physicianMiddleNameValue;
@@ -736,23 +763,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const accomplishedBy = localStorage.getItem('accomplishedBy');
+        // Function to duplicate Guardian info to Accomplished By Guardian fields
+    function duplicateGuardianInfo() {
+        document.getElementById('accomplishedGuardianLastName').value = document.getElementById('emergencyGuardianLastName').value;
+        document.getElementById('accomplishedGuardianFirstName').value = document.getElementById('emergencyGuardianFirstName').value;
+        document.getElementById('accomplishedGuardianMiddleName').value = document.getElementById('emergencyGuardianMiddleName').value;
+    }
 
-        // Set the checkbox based on the stored option
-        if (accomplishedBy === 'applicant') {
-            document.getElementById('accomplishedByApplicant').checked = true;
-        } else if (accomplishedBy === 'guardian') {
-            document.getElementById('accomplishedByGuardian').checked = true;
-        } else if (accomplishedBy === 'representative') {
-            document.getElementById('accomplishedByRepresentative').checked = true;
-        }
+    // Attach event listeners to the emergency Guardian fields
+    document.getElementById('emergencyGuardianLastName').addEventListener('input', duplicateGuardianInfo);
+    document.getElementById('emergencyGuardianFirstName').addEventListener('input', duplicateGuardianInfo);
+    document.getElementById('emergencyGuardianMiddleName').addEventListener('input', duplicateGuardianInfo);
 
-        // Populate the name fields for the selected option
-        document.querySelector('.accomplishedBylname-field').textContent = localStorage.getItem('accomplishedByLastName') || '';
-        document.querySelector('.accomplishedByfname-field').textContent = localStorage.getItem('accomplishedByFirstName') || '';
-        document.querySelector('.accomplishedBymname-field').textContent = localStorage.getItem('accomplishedByMiddleName') || '';
-    });
+    // Function to select the appropriate radio button in PWD Form based on PWD Application selection
+function updateAccomplishedBySelection(selectedValue) {
+    if (selectedValue === 'Applicant') {
+        document.getElementById('accomplishedByApplicant').checked = true;
+    } else if (selectedValue === 'Guardian') {
+        document.getElementById('accomplishedByGuardian').checked = true;
+    } else if (selectedValue === 'Representative') {
+        document.getElementById('accomplishedByRepresentative').checked = true;
+    }
+}
+
+// Function to load the saved 'accomplishedBy' value from localStorage and select the correct radio button
+function loadAccomplishedBySelection() {
+    const savedOption = localStorage.getItem('accomplishedBy');
+    if (savedOption) {
+        // Select the corresponding radio button based on the saved value
+        document.querySelector(`input[name="accomplishedBy"][value="${savedOption.charAt(0).toUpperCase() + savedOption.slice(1)}"]`).checked = true;
+    }
+}
+
+// Call the function to load the selection on page load
+window.onload = loadAccomplishedBySelection;
+
+
     </script>
 </body>
 </html>

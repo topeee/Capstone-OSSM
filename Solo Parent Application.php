@@ -87,6 +87,7 @@ include 'header.php';
           </div>
         </div>
       </nav>
+      
       <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
       <div class="container">
       <form action= "Solo Parent Application DB.php" method="POST" >

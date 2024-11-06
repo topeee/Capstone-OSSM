@@ -38,6 +38,7 @@ if ($stmt = $conn->prepare($query)) {
         </div>
     </div>
 </nav>
+
 </header>
 
 

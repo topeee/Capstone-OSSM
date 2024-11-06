@@ -184,7 +184,7 @@ main {
     <body>
       
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+    <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -314,7 +314,7 @@ main {
                                     <label class="form-check-label" for="no2">No</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>   
                         <!-- 5th row -->
                         <div class="row">
                             <div class="col-md-8">
@@ -1094,6 +1094,7 @@ main {
                         </div>
                     </div>
                 </div>
+
 
                 <div id="hidden-message-q5" style="display: none;">
                     <div class="row mb-3 ms-5">

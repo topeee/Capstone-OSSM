@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['role'] = $is_admin ? 'admin' : 'user'; // Set the user's role based on is_admin
 
                     if ($is_admin) {
-                        header('Location: ADMIN DASHBOARD OSSM/index.php');
+                        header('Location: ADMIN DASHBOARD OSSM/admn_dashboard.php');
                     } else {
                         header('Location: Home.php');
                     }

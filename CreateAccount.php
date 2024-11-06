@@ -17,17 +17,15 @@
 </head>
 <body>
     <div class="main-content">
-        <a href="index.php">
+        <a href="Home.php">
             <img src="logo.png" alt="SM Logo" class="img-fluid logo">
         </a>
         <h2>MUNICIPAL GOVERNMENT OF</h2>
         <h1>SAN MATEO RIZAL</h1>
         <h6>Create New OSSM Account</h6>
-        <?php
-
-?>
 
 <?php
+    session_start();
     if (isset($_SESSION['status'])) {
         ?>
         <div class="alert alert-danger">

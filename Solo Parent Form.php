@@ -22,7 +22,7 @@
     .form-container {
       border: 3px solid black;
       padding: 20px;
-      margin: 20px auto;
+      margin: 0px auto;
       max-width: 800px;
       background-color: white; /* Keep form content background white */
     }
@@ -73,6 +73,13 @@
       margin: 0 auto;
       background-color: white;
     }
+    .form-box1 {
+      border: 2px solid black;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+    }
     .row-border {
       border: 1px solid black;
       padding: 10px;
@@ -111,7 +118,7 @@
     }
     .thin-rows td {
     height: 30px; /* Adjust as needed */
-    padding: 5px; /* Optional: reduce padding to make it even thinner */
+    padding: 0px; /* Optional: reduce padding to make it even thinner */
     }
     .button-card {
       position: fixed;
@@ -129,6 +136,27 @@
       width: 100%;
       margin-top: 10px;
     }
+    @media print {
+    .print-two-column {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .print-two-column .col-md-6 {
+        width: 50%;
+        padding-left: 40px;
+    }
+
+    .print-two-column .form-group {
+        margin-bottom: 10px;
+    }
+    .form-box{
+      margin-bottom: 200px;
+    }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -137,16 +165,16 @@
   <div class="container form-container">
     <div class="row">
       <div class="col-12 text-center">
-        <img src="D:\User Files\OneDrive\Desktop\testing\Picture1.png" alt="Republic of the Philippines" style="height: 130px; width: auto;">
+        <img src="HeaderSoloParent.png" alt="Republic of the Philippines" style="height: 130px; width: auto;">
         <h4>APPLICATION FORM FOR SOLO PARENT</h4>
       </div>
     </div>
 
       
-  <div class="container form-container">
+  <div class="form-box">
     <div class="row">
-      <div class="col-9">
-        <div class="mb-3">
+      <div class="col-9" style="height: 200px;">
+        <div class="mb-3" style="margin: 0px; padding-bottom: 0px;">
           <span class="field-label">DATE OF ATTENDED ORIENTATION/ VENUE:</span>
           <span class="field-line"></span> <br>
           <span class="field-label">DATE FILED:</span> <br>
@@ -154,7 +182,7 @@
           <span class="field-label">CONTROL NO:</span> <br>
           <span class="field-line"></span> <br>
           <span class="field-label">SOLO PARENT CATEGORY:</span> <br>
-          <span class="field-line"></span>
+          <span class="field-line" style="margin: 0px; padding-bottom: 0px;"></span>
         </div>
       </div>
 
@@ -167,10 +195,10 @@
     </div>
 
     <div class="row mt-3">
-      <div class="col-12 section-title">
+      <div class="col-12 section-title" style="margin: 0px; padding-top: 0px;">
         PRIMARY INFORMATION:
       </div>
-      <div class="col-12">
+      <div class="col-12" style="height: 240px;">
         <table class="table table-bordered">
           <tbody>
             <div class="form-section" style="border: 1px solid black; padding-right: 15px; padding-left: 15px; margin-top: 20px;">
@@ -227,7 +255,7 @@
         <strong>ADDRESS & CONTACTS:</strong>
       </div>
       <div class="col-12">
-        <table class="table address-contacts-table">
+        <table class="table address-contacts-table" style="margin: 0px;">
           <tbody>
             <tr>
               <td colspan="4"><strong>LENGTH OF STAY IN SAN MATEO RIZAL:</strong>
@@ -294,35 +322,39 @@
       </div>
       <div class="col-12">
         <div>
-          <div><label>4 P's Member:</label>
-              <input type="radio" name="fourPsMember" id="fourPsNo" value="No" style="margin-left: 55px;">
-              <label for="fourPsNo">No</label>
-              <input type="radio" name="fourPsMember" id="fourPsYes" value="Yes" style="margin-left: 15px;"> 
-              <label for="fourPsYes">Yes</label> ID#: __________________________
+          <div>
+            <label>4 P's Member:</label>
+            <input type="radio" name="fourPsMember" id="fourPsNo" value="No">
+            <label for="fourPsNo">No</label>
+            <input type="radio" name="fourPsMember" id="fourPsYes" value="Yes">
+            <label for="fourPsYes">Yes</label> 
+            <span class="fourPsId-field">ID#: __________________________</span>
           </div>
       </div>
       <div>
-          <div><label>PhilHealth Member:</label>
-              <input type="radio" name="philHealthMember" id="philHealthNo" value="No" style="margin-left: 15px;">
-              <label for="philHealthNo">No</label>
-              <input type="radio" name="philHealthMember" id="philHealthYes" value="Yes" style="margin-left: 15px;"> 
-              <label for="philHealthYes">Yes</label> ID#: ___________________________
-          </div>
+        <div>
+          <label>PhilHealth Member:</label>
+          <input type="radio" name="philHealthMember" id="philHealthNo" value="No">
+          <label for="philHealthNo">No</label>
+          <input type="radio" name="philHealthMember" id="philHealthYes" value="Yes">
+          <label for="philHealthYes">Yes</label> 
+          <span class="philHealthId-field">ID#: ___________________________</span>
+        </div>
       </div>        
       <br>
       <div>
-          <div style="display: flex; gap: 20px;">Membership Category:
-                  <label for="individual"><input type="radio" name="membershipCategory" id="individual" value="Individually Paying"> Individually Paying</label>
-                  <label for="lifetime"><input type="radio" name="membershipCategory" id="lifetime" value="Lifetime"> Lifetime</label>
-                  <label for="ofw"><input type="radio" name="membershipCategory" id="ofw" value="OFW"> OFW</label>
-                  <label for="employed"><input type="radio" name="membershipCategory" id="employed" value="Employed">Employed</label>
-              </div>
-              <!-- Second row aligned with first row -->
-              <div style="display: flex; gap: 20px; padding-left: 180px;">
-                <label for="private"><input type="radio" name="membershipCategory" id="private" value="Private"> Private</label>
-                <label for="government"><input type="radio" name="membershipCategory" id="government" value="Government"> Government</label>
-                <label for="sponsored"><input type="radio" name="membershipCategory" id="sponsored" value="Sponsored"> Sponsored</label>
-              </div>
+            <div style="display: flex; gap: 20px;">Membership Category:
+              <label for="individual"><input type="radio" name="membershipCategory" id="category_individual" value="Individually Paying"> Individually Paying</label>
+              <label for="lifetime"><input type="radio" name="membershipCategory" id="category_lifetime" value="Lifetime"> Lifetime</label>
+              <label for="ofw"><input type="radio" name="membershipCategory" id="category_ofw" value="OFW"> OFW</label>
+              <label for="category_employed"><input type="radio" name="membershipCategory" id="category_employed" value="Employed">Employed</label>
+          </div>
+          <!-- Second row aligned with first row -->
+          <div style="display: flex; gap: 20px; padding-left: 180px;">
+              <label for="category_private"><input type="radio" name="membershipCategory" id="category_private" value="Private"> Private</label>
+              <label for="category_government"><input type="radio" name="membershipCategory" id="category_government" value="Government"> Government</label>
+              <label for="category_sponsored"><input type="radio" name="membershipCategory" id="category_sponsored" value="Sponsored"> Sponsored</label>
+          </div>
           </div>
       </div>
       
@@ -341,7 +373,7 @@
   
 
       <!-- Content from the 2nd page -->
-      <div class="form-box">
+      <div class="form-box1">
         <div class="row mb-3 row-border">
           <div class="col-md-12">
             <p style="margin-bottom: 0px; margin-top: 0px;" class="officeAddress-field">Office Address: _____________________________________________________________________ </p>
@@ -372,7 +404,7 @@
         </table>
 
         <h6>II. NEEDS/PROBLEMS OF SOLO PARENT</h6>
-        <div class="row" style="padding-left: 15px; padding-right: 15px;">
+        <div class="row print-two-column" style="padding-left: 15px; padding-right: 15px;">
           <div class="col-md-6" style="padding-left: 40px;">
             <div class="form-group">
               <input type="checkbox" class="form-check-input" id="leaveBenefits">
@@ -411,6 +443,8 @@
               <span style="text-decoration: underline; margin-left: 10px; width: 100px; display: inline-block;"></span>
             </div>
           </div>
+        </div>
+        <div>        
         
           <div class="row mt-2" style="padding-left: 15px;">
             <div class="col-md-12">
@@ -461,9 +495,9 @@
           </tr>
           </tr>
           <tr>
-            <td style="height: 30px;" class="emergencyFirstName-field"></td>
-            <td style="height: 30px;" class="emergencyMiddleName-field"></td>
-            <td style="height: 30px;" class="emergencyLastName-field"></td>
+            <td style="height: 30px; padding: 0px;" class="emergencyFirstName-field"></td>
+            <td style="height: 30px; padding: 0px;" class="emergencyMiddleName-field"></td>
+            <td style="height: 30px; padding: 0px;" class="emergencyLastName-field"></td>
           </tr>
           <tr class="thin-rows">
             <td colspan="2" style="height: 30px; font-size: 14px; text-align: left; font-weight: bold;" class="emergencyContactNumber">CONTACT NUMBER/S:</td>
@@ -479,7 +513,7 @@
           made will be subjected to criminal and civil liabilities provided for by existing laws.
         </p>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0px;">
           <!-- Signature Section -->
           <div style="text-align: center;">
             <div style="border-bottom: 2px solid black; width: 300px; margin-top: 165px;"></div>
@@ -503,7 +537,7 @@
               
           <br>
 
-          <div class="black-bar">TO BE FILLED-UP BY THE LOCAL GOVERNMENT OF SAN MATEO</div>
+          <div class="black-bar" style="margin: 0px;">TO BE FILLED-UP BY THE LOCAL GOVERNMENT OF SAN MATEO</div>
           <!-- Two-column table below the black bar -->
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
@@ -541,107 +575,65 @@
  <!-- Right-side Button Card -->
  <div class="button-card">
   <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
-  <button class="btn btn-success" id="downloadBtn">Download</button>
-
-  <script>
-   
-  </script>
+  <button class="btn btn-success" onclick="handleDownload()">Submit and Download</button>
   <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
 </div>
 
 
 <script>
-  document.getElementById('downloadBtn').addEventListener('click', async () => {
+async function handleDownload() {
     try {
-      const { jsPDF } = window.jspdf;
+        const { jsPDF } = window.jspdf;
 
-      const element = document.querySelector('.form-container');
-      const canvas = await html2canvas(element, { scale: 2 });
+        // Select the element to capture
+        const element = document.querySelector('.form-container');
+        const canvas = await html2canvas(element, { scale: 2 });
 
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
+        // Convert canvas to image format (base64)
+        const imgData = canvas.toDataURL('image/png');
 
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+        // Create a new jsPDF instance
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 297; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
 
-      let position = 0;
-
-      // Add the first page
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // Add more pages if needed
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight; // Move to next page
-        pdf.addPage();
+        // Add the first page
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
-      }
 
-      pdf.save('Solo_Parent_Application_Form.pdf');
+        // Add more pages if content overflows
+        while (heightLeft > 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+
+        // Save the PDF file
+        pdf.save('Solo_Parent_Application_Form.pdf');
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('An error occurred while generating the PDF. Check console for details.');
+        console.error('Error generating PDF:', error);
+        alert('An error occurred while generating the PDF.');
     }
-  });
+}
+
 
   function handleSubmit() {
-    const formData = {
-        precinct: localStorage.getItem('summaryPrecinct') || 'N/A',
-        firstName: localStorage.getItem('summaryFirstName') || 'N/A',
-        middleName: localStorage.getItem('summaryMiddleName') || 'N/A',
-        lastName: localStorage.getItem('summaryLastName') || 'N/A',
-        religion: localStorage.getItem('summaryReligion') || 'N/A',
-        dob: localStorage.getItem('summaryDob') || 'N/A',
-        bloodType: localStorage.getItem('summaryBloodType') || 'N/A',
-        birthPlace: localStorage.getItem('summaryBirthPlace') || 'N/A',
-        civilStatus: localStorage.getItem('selectedStatus') || 'N/A',
-        tele: localStorage.getItem('summaryTele') || 'N/A',
-        mobile1: localStorage.getItem('summaryPhone') || 'N/A',
-        email: localStorage.getItem('summaryEmail') || 'N/A',
-        lotNumber: localStorage.getItem('summaryLotNumber') || 'N/A',
-        blkNumber: localStorage.getItem('summaryBlkNumber') || 'N/A',
-        street: localStorage.getItem('summaryStreet') || 'N/A',
-        barangay: localStorage.getItem('summaryBarangay') || 'N/A',
-        yearsOfStay: localStorage.getItem('summaryYearsOfStay') || 'N/A',
-        monthsOfStay: localStorage.getItem('summaryMonthsOfStay') || 'N/A',
-        employer: localStorage.getItem('summaryCompany') || 'N/A',
-        officeAddress: localStorage.getItem('summaryOfficeAddress') || 'N/A',
-        occupation: localStorage.getItem('summaryOccupation') || 'N/A',
-        monthlyIncome: localStorage.getItem('summaryMonthlyIncome') || 'N/A',
-        tinNumber: localStorage.getItem('summaryTinNumber') || 'N/A',
-        sssNumber: localStorage.getItem('summarySssNumber') || 'N/A',
-        gsisNumber: localStorage.getItem('summaryGsisNumber') || 'N/A',
-        emergencyFirstName: localStorage.getItem('summaryemergencyFirstName') || 'N/A',
-        emergencyMiddleName: localStorage.getItem('summaryemergencyMiddleName') || 'N/A',
-        emergencyLastName: localStorage.getItem('summaryemergencyLastName') || 'N/A',
-        emergencyContact: localStorage.getItem('summaryEmergencyContact') || 'N/A',
-        emergencyRelationship: localStorage.getItem('summaryEmergencyRelationship') || 'N/A',
-        emergencyAddress: localStorage.getItem('summaryEmergencyAddress') || 'N/A'
-      };
-     
-
-      $.ajax({
-        url: 'Solo Parent Application DB.php',
-        type: 'POST',
-        data: formData,
-        success: function(response) {
-          alert('Form data submitted successfully!');
-          window.location.href = 'Home.php'; // Redirect to home page
-        },
-        error: function(xhr, status, error) {
-          console.error('Error submitting form data:', error);
-          alert('An error occurred while submitting the form data. Check console for details.');
-        }
-      });
-    }
-  
+    alert('Form Submitted');
+  }
 
   function handlePrint() {
+    const formContainer = document.querySelector('.form-container');
+    const originalContent = document.body.innerHTML;
+    document.body.innerHTML = formContainer.outerHTML;
     window.print();
-  }
+    window.download();
+    document.body.innerHTML = originalContent;
+}
+  
   document.addEventListener('DOMContentLoaded', function() {
     const precinctValue = localStorage.getItem('summaryPrecinct') || 'N/A';
     const firstNameValue = localStorage.getItem('summaryFirstName') || 'N/A';
@@ -674,6 +666,8 @@
     const emergencyContactNumberValue = localStorage.getItem('summaryEmergencyContact') || 'N/A';
     const emergencyRelationshipValue = localStorage.getItem('summaryEmergencyRelationship') || 'N/A';
     const emergencyAddressValue = localStorage.getItem('summaryEmergencyAddress') || 'N/A';
+    const fourPsIdValue = localStorage.getItem('summaryFourPsId') || '__________________________';
+    const philHealthIdValue = localStorage.getItem('summaryPhilHealthId') || '__________________________';
     
 
 
@@ -708,6 +702,8 @@
     document.querySelector('.emergencyContactNumber').innerHTML = `CONTACT NUMBER/S: <strong>${emergencyContactNumberValue}</strong>`;
     document.querySelector('.emergencyRelationship').innerHTML = `RELATIONSHIP: <strong>${emergencyRelationshipValue}</strong>`;
     document.querySelector('.emergencyAddress').innerHTML = `ADDRESS: <strong>${emergencyAddressValue}</strong>`;
+    document.querySelector('.fourPsId-field').innerHTML = `ID#: <strong>${fourPsIdValue}</strong>`;
+    document.querySelector('.philHealthId-field').innerHTML = `ID#: <strong>${philHealthIdValue}</strong>`;
 });
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -744,30 +740,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
-  const selectedClassification = localStorage.getItem('selectedClassification');  // Retrieve stored membership category
+  const selectedClassification = localStorage.getItem('selectedFamilyClassification');
   
-  if (selectedCategory === 'Individually Paying') {
-    document.getElementById('individual').checked = true;
-  } else if (selectedCategory === 'Lifetime') {
-    document.getElementById('lifetime').checked = true;
-  } else if (selectedCategory === 'OFW') {
-    document.getElementById('ofw').checked = true;
-  } else if (selectedCategory === 'Employed') {
-    document.getElementById('employed').checked = true;
-  } else if (selectedCategory === 'Private') {
-    document.getElementById('private').checked = true;
-  } else if (selectedCategory === 'Government') {
-    document.getElementById('government').checked = true;
-  } else if (selectedCategory === 'Sponsored') {
-    document.getElementById('sponsored').checked = true;
+  if (selectedClassification === 'Individually Paying') {
+    document.getElementById('category_individual').checked = true;
+  } else if (selectedClassification === 'Lifetime') {
+    document.getElementById('category_lifetime').checked = true;
+  } else if (selectedClassification === 'OFW') {
+    document.getElementById('category_ofw').checked = true;
+  } else if (selectedClassification === 'Employed') {
+    document.getElementById('category_employed').checked = true;
+  } else if (selectedClassification === 'Private') {
+    document.getElementById('category_private').checked = true;
+  } else if (selectedClassification === 'Government') {
+    document.getElementById('category_government').checked = true;
+  } else if (selectedClassification === 'Sponsored') {
+    document.getElementById('category_sponsored').checked = true;
   }
 });
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
     // Retrieve and display 4 P's Member status
-    const selectedFourPs = localStorage.getItem('selectedFourPsMember');
+    const selectedFourPs = localStorage.getItem('selectedFourPs');
     if (selectedFourPs === 'No') {
         document.getElementById('fourPsNo').checked = true;
     } else if (selectedFourPs === 'Yes') {
@@ -775,13 +773,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Retrieve and display PhilHealth Member status
-    const selectedPhilHealth = localStorage.getItem('selectedPhilHealthMember');
+    const selectedPhilHealth = localStorage.getItem('selectedPhilHealth');
     if (selectedPhilHealth === 'No') {
         document.getElementById('philHealthNo').checked = true;
     } else if (selectedPhilHealth === 'Yes') {
         document.getElementById('philHealthYes').checked = true;
     }
 });
+
+
 
 
 document.addEventListener('DOMContentLoaded', function() {

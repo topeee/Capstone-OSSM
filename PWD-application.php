@@ -84,8 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg" >
-        <div class="container-fluid" style="display: none;">
+      <nav class="navbar navbar-dark navbar-expand-lg " style="display: none;" >
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
             <span class="brand-name">OSSM</span>
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </nav>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+    <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -575,7 +575,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
 
                             <h5>Accomplished By:</h5>
-                            <div class="row mb-3">
+                            <div class="row mb-3" style="margin-left: 20px ;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="accomplishedBy" value="applicant" id="applicantOption" onchange="accomplishedByChange()">
                                     <label class="form-check-label" for="applicantOption">APPLICANT</label>
@@ -608,16 +608,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             
                             <div id="guardianFields" class="row mb-3" style="display: none;">
                                 <div class="col-md-4">
-                                    <label for="guardianLastName" class="form-label">Guardian Last Name</label>
-                                    <input type="text" class="form-control" id="guardianLastName" placeholder="Guardian Last Name">
+                                    <label for="guardiansLastName" class="form-label">Guardian Last Name</label>
+                                    <input type="text" class="form-control" id="guardiansLastName" placeholder="Guardian Last Name">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="guardianFirstName" class="form-label">Guardian First Name</label>
-                                    <input type="text" class="form-control" id="guardianFirstName" placeholder="Guardian First Name">
+                                    <label for="guardiansFirstName" class="form-label">Guardian First Name</label>
+                                    <input type="text" class="form-control" id="guardiansFirstName" placeholder="Guardian First Name">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="guardianMiddleName" class="form-label">Guardian Middle Name</label>
-                                    <input type="text" class="form-control" id="guardianMiddleName" placeholder="Guardian Middle Name">
+                                    <label for="guardiansMiddleName" class="form-label">Guardian Middle Name</label>
+                                    <input type="text" class="form-control" id="guardiansMiddleName" placeholder="Guardian Middle Name">
                                 </div>
                             </div>
                             
@@ -748,15 +748,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <!-- Basic Information -->
                                 <tr>
                                     <td><strong>First Name:</strong></td>
-                                    <td id="summaryFirstName">/td>
+                                    <td id="summaryFirstName"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Middle Name:</strong></td>
-                                    <td id="summaryMiddleName">/td>
+                                    <td id="summaryMiddleName"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Last Name:</strong></td>
-                                    <td id="summaryLastName">/td>
+                                    <td id="summaryLastName"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Suffix:</strong></td>
@@ -914,22 +914,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <!-- Summary Row for Accomplished By -->
                                 <tr>
                                     <td><strong>Accomplished By:</strong></td>
-                                    <td id="summaryAccomplishedBy">/td>
+                                    <td id="summaryAccomplishedBy"></td>
                                 </tr>
 
-                                <!-- Summary Rows for Accomplished By Names -->
-                                <tr>
-                                    <td><strong>Accomplished By First Name:</strong></td>
-                                    <td id="summaryAccomplishedByFirstName">/td>
+                                <!-- Applicant Summary Rows -->
+                                <tr id="applicantFirstNameRow" style="display: none;">
+                                    <td><strong>Applicant First Name:</strong></td>
+                                    <td id="summaryApplicantFirstName"></td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Accomplished By Middle Name:</strong></td>
-                                    <td id="summaryAccomplishedByMiddleName">/td>
+                                <tr id="applicantMiddleNameRow" style="display: none;">
+                                    <td><strong>Applicant Middle Name:</strong></td>
+                                    <td id="summaryApplicantMiddleName"></td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Accomplished By Last Name:</strong></td>
-                                    <td id="summaryAccomplishedByLastName">/td>
-                                </tr>>
+                                <tr id="applicantLastNameRow" style="display: none;">
+                                    <td><strong>Applicant Last Name:</strong></td>
+                                    <td id="summaryApplicantLastName"></td>
+                                </tr>
+
+                                <!-- Guardian Summary Rows -->
+                                <tr id="guardianFirstNameRow" style="display: none;">
+                                    <td><strong>Guardian First Name:</strong></td>
+                                    <td id="summaryGuardiansFirstName"></td>
+                                </tr>
+                                <tr id="guardianMiddleNameRow" style="display: none;">
+                                    <td><strong>Guardian Middle Name:</strong></td>
+                                    <td id="summaryGuardiansMiddleName"></td>
+                                </tr>
+                                <tr id="guardianLastNameRow" style="display: none;">
+                                    <td><strong>Guardian Last Name:</strong></td>
+                                    <td id="summaryGuardiansLastName"></td>
+                                </tr>
+
+                                <!-- Representative Summary Rows -->
+                                <tr id="representativeFirstNameRow" style="display: none;">
+                                    <td><strong>Representative First Name:</strong></td>
+                                    <td id="summaryRepresentativeFirstName"></td>
+                                </tr>
+                                <tr id="representativeMiddleNameRow" style="display: none;">
+                                    <td><strong>Representative Middle Name:</strong></td>
+                                    <td id="summaryRepresentativeMiddleName"></td>
+                                </tr>
+                                <tr id="representativeLastNameRow" style="display: none;">
+                                    <td><strong>Representative Last Name:</strong></td>
+                                    <td id="summaryRepresentativeLastName"></td>
+                                </tr>
+
+
 
                                 <!-- Certifying Physician Information -->
                                     <tr id="physicianFirstNameRow" style="display: none;">
@@ -1147,14 +1177,22 @@ function updateButtons() {
     $("#next-btn").text(currentSection === sections.length - 1 ? "Submit" : "Next"); // Change Next to Submit on the last section
 }
 
-// Function to update the active state in the progress sidebar
-function updateProgress() {
-    $(".progress-item").removeClass("active"); // Remove active class from all items
-    $(".progress-item").eq(currentSection).addClass("active"); // Add active class to current item
+    // Function to update the progress bar
+    function updateProgress() {
+    $(".progress-item").removeClass("active");
+    $(".progress-item").eq(currentSection).addClass("active");
+
+    // Update icons
+    $(".progress-item i").removeClass("bi-check-square-fill").addClass("bi-check-square"); // Reset icons
+    $(".progress-item:lt(" + (currentSection + 1) + ") i")
+        .removeClass("bi-check-square")
+        .addClass("bi-check-square-fill"); // Set filled icons up to the current section
 }
+
 
 // Populate summary function to fill summary section with form data
 function populateSummary() {
+    // Basic Information
     document.getElementById('summaryFirstName').innerText = getValue('firstName');
     localStorage.setItem('summaryFirstName', document.getElementById('summaryFirstName').innerText);
 
@@ -1169,7 +1207,7 @@ function populateSummary() {
 
     document.getElementById('summaryGender').innerText = getValue('gender');
     localStorage.setItem('summaryGender', document.getElementById('summaryGender').innerText);
-    
+
     document.getElementById('summaryCivilStatus').innerText = getValue('civilstatus');
     localStorage.setItem('summaryCivilStatus', document.getElementById('summaryCivilStatus').innerText);
 
@@ -1184,36 +1222,39 @@ function populateSummary() {
 
     document.getElementById('summaryEmail').innerText = getValue('email');
     localStorage.setItem('summaryEmail', document.getElementById('summaryEmail').innerText);
-    
+
     // PWD ID Information
-// PWD ID Information
-const pwdIdOption = document.querySelector('input[name="PWDId"]:checked');
-if (pwdIdOption && pwdIdOption.value === 'yes') {
-    document.getElementById('pwdIdRow').style.display = 'table-row';
-    document.getElementById('summaryPWDIdNumber').innerText = getValue('PWDIdNumber');
-    localStorage.setItem('summaryPWDIdNumber', document.getElementById('summaryPWDIdNumber').innerText);
+    const pwdIdOption = document.querySelector('input[name="PWDId"]:checked');
+    if (pwdIdOption && pwdIdOption.value === 'yes') {
+        document.getElementById('pwdIdRow').style.display = 'table-row';
+        document.getElementById('summaryPWDIdNumber').innerText = getValue('PWDIdNumber');
+        localStorage.setItem('summaryPWDIdNumber', document.getElementById('summaryPWDIdNumber').innerText);
 
-    
-    // Display date applied
-    document.getElementById('dateAppliedRow').style.display = 'table-row';
-    document.getElementById('summaryDateApplied').innerText = getValue('PWDidImageUpload');
-    localStorage.setItem('summaryDateApplied', document.getElementById('summaryDateApplied').innerText);
+        // Display date applied
+        document.getElementById('dateAppliedRow').style.display = 'table-row';
+        document.getElementById('summaryDateApplied').innerText = getValue('PWDidImageUpload');
+        localStorage.setItem('summaryDateApplied', document.getElementById('summaryDateApplied').innerText);
 
-    // Display ID image name
-    const idImageUpload = getValue('PWDidImageUpload').split('\\').pop();
-    document.getElementById('idImageRow').style.display = 'table-row';
-    document.getElementById('summaryIdImage').innerText = idImageUpload || 'No file uploaded';
+        // Display ID image name
+        const idImageUpload = getValue('PWDidImageUpload').split('\\').pop();
+        document.getElementById('idImageRow').style.display = 'table-row';
+        document.getElementById('summaryIdImage').innerText = idImageUpload || 'No file uploaded';
 
-    // Display Type and Cause of Disability
-    document.getElementById('typeRow').style.display = 'table-row';
-    document.getElementById('summaryType').innerText = getValue('disabilityType');
-    localStorage.setItem('summaryType', document.getElementById('summaryType').innerText);
-    
-    document.getElementById('causeRow').style.display = 'table-row';
-    document.getElementById('summaryCause').innerText = getValue('causeOfDisability');
-    localStorage.setItem('summaryCause', document.getElementById('summaryCause').innerText);
-    
-    // Display Address Information
+        // Display Type and Cause of Disability
+        document.getElementById('typeRow').style.display = 'table-row';
+        document.getElementById('summaryType').innerText = getValue('disabilityType');
+        localStorage.setItem('summaryType', document.getElementById('summaryType').innerText);
+
+        document.getElementById('causeRow').style.display = 'table-row';
+        document.getElementById('summaryCause').innerText = getValue('causeOfDisability');
+        localStorage.setItem('summaryCause', document.getElementById('summaryCause').innerText);
+    } else {
+        document.getElementById('diagnosisRow').style.display = 'table-row';
+        document.getElementById('summaryDiagnosis').innerText = getValue('pwdDiagnosis');
+        localStorage.setItem('summaryDiagnosis', document.getElementById('summaryDiagnosis').innerText);
+    }
+
+    // Address Information
     document.getElementById('houseNoStreetRow').style.display = 'table-row';
     document.getElementById('summaryHouseNoStreet').innerText = getValue('houseNoStreet');
     localStorage.setItem('summaryHouseNoStreet', document.getElementById('summaryHouseNoStreet').innerText);
@@ -1221,28 +1262,14 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('barangayRow').style.display = 'table-row';
     document.getElementById('summaryBarangay').innerText = getValue('barangay');
     localStorage.setItem('summaryBarangay', document.getElementById('summaryBarangay').innerText);
-} else {
-    document.getElementById('diagnosisRow').style.display = 'table-row';
-    document.getElementById('summaryDiagnosis').innerText = getValue('pwdDiagnosis');
-    localStorage.setItem('summaryDiagnosis', document.getElementById('summaryDiagnosis').innerText);
 
-
-    // Display Address Information
-    document.getElementById('houseNoStreetRow').style.display = 'table-row';
-    document.getElementById('summaryHouseNoStreet').innerText = getValue('houseNoStreet');
-    localStorage.setItem('summaryHouseNoStreet', document.getElementById('summaryHouseNoStreet').innerText);
-
-    document.getElementById('barangayRow').style.display = 'table-row';
-    document.getElementById('summaryBarangay').innerText = getValue('barangay');
-    localStorage.setItem('summaryBarangay', document.getElementById('summaryBarangay').innerText);
-}
-
+    // Education and Employment Information
     document.getElementById('summaryEducationAttainment').innerText = getValue('educationAttainment');
     localStorage.setItem('summaryEducationAttainment', document.getElementById('summaryEducationAttainment').innerText);
 
     document.getElementById('summaryEmploymentStatus').innerText = getValue('employmentStatus');
     localStorage.setItem('summaryEmploymentStatus', document.getElementById('summaryEmploymentStatus').innerText);
-    
+
     document.getElementById('summaryEmploymentType').innerText = getValue('employmentType');
     localStorage.setItem('summaryEmploymentType', document.getElementById('summaryEmploymentType').innerText);
 
@@ -1268,7 +1295,7 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('summaryPSN').innerText = getValue('PSN');
     localStorage.setItem('summaryPSN', document.getElementById('summaryPSN').innerText);
 
-    // Father's Name in the Summary
+    // Parent and Guardian Information
     document.getElementById('summaryFatherLastName').innerText = getValue('fatherLastName');
     localStorage.setItem('summaryFatherLastName', document.getElementById('summaryFatherLastName').innerText);
 
@@ -1278,7 +1305,6 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('summaryFatherMiddleName').innerText = getValue('fatherMiddleName');
     localStorage.setItem('summaryFatherMiddleName', document.getElementById('summaryFatherMiddleName').innerText);
 
-    // Mother's Name in the Summary
     document.getElementById('summaryMotherLastName').innerText = getValue('motherLastName');
     localStorage.setItem('summaryMotherLastName', document.getElementById('summaryMotherLastName').innerText);
 
@@ -1288,7 +1314,6 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('summaryMotherMiddleName').innerText = getValue('motherMiddleName');
     localStorage.setItem('summaryMotherMiddleName', document.getElementById('summaryMotherMiddleName').innerText);
 
-    // Guardian's Name in the Summary (for Emergency Contact)
     document.getElementById('summaryGuardianLastName').innerText = getValue('guardianLastName');
     localStorage.setItem('summaryGuardianLastName', document.getElementById('summaryGuardianLastName').innerText);
 
@@ -1298,26 +1323,19 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('summaryGuardianMiddleName').innerText = getValue('guardianMiddleName');
     localStorage.setItem('summaryGuardianMiddleName', document.getElementById('summaryGuardianMiddleName').innerText);
 
-    // Populate Organization Information in Summary
-        document.getElementById('summaryOrgAffiliated').innerText = getValue('orgAffiliated');
-        document.getElementById('summaryContactPerson').innerText = getValue('contactPerson');
-        document.getElementById('summaryOfficeAddress').innerText = getValue('officeAddress');
-        document.getElementById('summaryTelNos').innerText = getValue('telNos');
+    // Organization Information
+    document.getElementById('summaryOrgAffiliated').innerText = getValue('orgAffiliated');
+    document.getElementById('summaryContactPerson').innerText = getValue('contactPerson');
+    document.getElementById('summaryOfficeAddress').innerText = getValue('officeAddress');
+    document.getElementById('summaryTelNos').innerText = getValue('telNos');
 
-        // Show the rows in the summary table
-        document.getElementById('orgAffiliatedRow').style.display = 'table-row';
-        document.getElementById('contactPersonRow').style.display = 'table-row';
-        document.getElementById('officeAddressRow').style.display = 'table-row';
-        document.getElementById('telNosRow').style.display = 'table-row';
+    // Display these rows in the summary table
+    document.getElementById('orgAffiliatedRow').style.display = 'table-row';
+    document.getElementById('contactPersonRow').style.display = 'table-row';
+    document.getElementById('officeAddressRow').style.display = 'table-row';
+    document.getElementById('telNosRow').style.display = 'table-row';
 
-        // Store Organization Information in localStorage
-        localStorage.setItem('summaryOrgAffiliated', document.getElementById('summaryOrgAffiliated').innerText);
-        localStorage.setItem('summaryContactPerson', document.getElementById('summaryContactPerson').innerText);
-        localStorage.setItem('summaryOfficeAddress', document.getElementById('summaryOfficeAddress').innerText);
-        localStorage.setItem('summaryTelNos', document.getElementById('summaryTelNos').innerText);
-
-
-    // NGO and Affiliation Information (Affiliation Section)
+    // NGO and Affiliation Information
     document.getElementById('summaryngoOrgAff').innerText = getValue('ngoOrgAff');
     document.getElementById('summaryngoContact').innerText = getValue('ngoContact');
     document.getElementById('summaryngoOfficeAddress').innerText = getValue('ngoOfficeAddress');
@@ -1333,65 +1351,82 @@ if (pwdIdOption && pwdIdOption.value === 'yes') {
     document.getElementById('summarycivpolOfficeAddress').innerText = getValue('civpolOfficeAddress');
     document.getElementById('summarycivpolTelNo').innerText = getValue('civpolTelNo');
 
-        // Populate Certifying Physician Information in Summary
+    // Certifying Physician Information
     document.getElementById('summaryPhysicianFirstName').innerText = getValue('certifyingPhysicianFirstName');
     document.getElementById('summaryPhysicianMiddleName').innerText = getValue('certifyingPhysicianMiddleName');
     document.getElementById('summaryPhysicianLastName').innerText = getValue('certifyingPhysicianLastName');
     document.getElementById('summaryLicenseNo').innerText = getValue('licenseNo');
 
-    // Show the rows in the summary table
+    // Show these rows in the summary table
     document.getElementById('physicianFirstNameRow').style.display = 'table-row';
     document.getElementById('physicianMiddleNameRow').style.display = 'table-row';
     document.getElementById('physicianLastNameRow').style.display = 'table-row';
     document.getElementById('licenseNoRow').style.display = 'table-row';
+    // Accomplished By Summary
+    const selectedValue = document.querySelector('input[name="accomplishedBy"]:checked').value;
+    document.getElementById('summaryAccomplishedBy').innerText = selectedValue.toUpperCase();
+    localStorage.setItem('summaryAccomplishedBy', document.getElementById('summaryAccomplishedBy').innerText);
 
-    // Store Certifying Physician Information in localStorage
-    localStorage.setItem('summaryPhysicianFirstName', document.getElementById('summaryPhysicianFirstName').innerText);
-    localStorage.setItem('summaryPhysicianMiddleName', document.getElementById('summaryPhysicianMiddleName').innerText);
-    localStorage.setItem('summaryPhysicianLastName', document.getElementById('summaryPhysicianLastName').innerText);
-    localStorage.setItem('summaryLicenseNo', document.getElementById('summaryLicenseNo').innerText);
+    // Reset and show specific sections based on selection
+    document.getElementById('applicantFirstNameRow').style.display = 'none';
+    document.getElementById('applicantMiddleNameRow').style.display = 'none';
+    document.getElementById('applicantLastNameRow').style.display = 'none';
+    document.getElementById('guardianFirstNameRow').style.display = 'none';
+    document.getElementById('guardianMiddleNameRow').style.display = 'none';
+    document.getElementById('guardianLastNameRow').style.display = 'none';
+    document.getElementById('representativeFirstNameRow').style.display = 'none';
+    document.getElementById('representativeMiddleNameRow').style.display = 'none';
+    document.getElementById('representativeLastNameRow').style.display = 'none';
+
+    if (selectedValue === 'applicant') {
+        document.getElementById('applicantFirstNameRow').style.display = 'table-row';
+        document.getElementById('summaryApplicantFirstName').innerText = getValue('applicantFirstName');
+        localStorage.setItem('summaryApplicantFirstName', document.getElementById('summaryApplicantFirstName').innerText);
+
+        document.getElementById('applicantMiddleNameRow').style.display = 'table-row';
+        document.getElementById('summaryApplicantMiddleName').innerText = getValue('applicantMiddleName');
+        localStorage.setItem('summaryApplicantMiddleName', document.getElementById('summaryApplicantMiddleName').innerText);
 
 
-// Populate Accomplished By choice
-const accomplishedBy = document.querySelector('input[name="accomplishedBy"]:checked');
-const summaryAccomplishedBy = document.getElementById('summaryAccomplishedBy');
-const summaryAccomplishedByFirstName = document.getElementById('summaryAccomplishedByFirstName');
-const summaryAccomplishedByMiddleName = document.getElementById('summaryAccomplishedByMiddleName');
-const summaryAccomplishedByLastName = document.getElementById('summaryAccomplishedByLastName');
+        document.getElementById('applicantLastNameRow').style.display = 'table-row';
+        document.getElementById('summaryApplicantLastName').innerText = getValue('applicantLastName');
+        localStorage.setItem('summaryApplicantLastName', document.getElementById('summaryApplicantLastName').innerText);
 
-if (accomplishedBy) {
-    const choice = accomplishedBy.value;
-    summaryAccomplishedBy.innerText = choice.charAt(0).toUpperCase() + choice.slice(1);
 
-    // Get the relevant name fields based on choice and populate summary
-    if (choice === 'applicant') {
-        summaryAccomplishedByFirstName.innerText = getValue('applicantFirstName');
-        summaryAccomplishedByMiddleName.innerText = getValue('applicantMiddleName');
-        summaryAccomplishedByLastName.innerText = getValue('applicantLastName');
-    } else if (choice === 'guardian') {
-        summaryAccomplishedByFirstName.innerText = getValue('guardianFirstName');
-        summaryAccomplishedByMiddleName.innerText = getValue('guardianMiddleName');
-        summaryAccomplishedByLastName.innerText = getValue('guardianLastName');
-    } else if (choice === 'representative') {
-        summaryAccomplishedByFirstName.innerText = getValue('representativeFirstName');
-        summaryAccomplishedByMiddleName.innerText = getValue('representativeMiddleName');
-        summaryAccomplishedByLastName.innerText = getValue('representativeLastName');
+    } else if (selectedValue === 'guardian') {
+        document.getElementById('guardianFirstNameRow').style.display = 'table-row';
+        document.getElementById('summaryGuardiansFirstName').innerText = getValue('guardiansFirstName');
+        localStorage.setItem('summaryGuardiansFirstName', document.getElementById('summaryGuardiansFirstName').innerText);
+
+
+        document.getElementById('guardianMiddleNameRow').style.display = 'table-row';
+        document.getElementById('summaryGuardiansMiddleName').innerText = getValue('guardiansMiddleName');
+        localStorage.setItem('summaryGuardiansMiddleName', document.getElementById('summaryGuardiansMiddleName').innerText);
+
+
+        document.getElementById('guardianLastNameRow').style.display = 'table-row';
+        document.getElementById('summaryGuardiansLastName').innerText = getValue('guardiansLastName');
+        localStorage.setItem('summaryGuardiansLastName', document.getElementById('summaryGuardiansLastName').innerText);
+
+
+    } else if (selectedValue === 'representative') {
+        document.getElementById('representativeFirstNameRow').style.display = 'table-row';
+        document.getElementById('summaryRepresentativeFirstName').innerText = getValue('representativeFirstName');
+        localStorage.setItem('summaryRepresentativeFirstName', document.getElementById('summaryRepresentativeFirstName').innerText);
+
+
+        document.getElementById('representativeMiddleNameRow').style.display = 'table-row';
+        document.getElementById('summaryRepresentativeMiddleName').innerText = getValue('representativeMiddleName');
+        localStorage.setItem('summaryRepresentativeMiddleName', document.getElementById('summaryRepresentativeMiddleName').innerText);
+
+
+        document.getElementById('representativeLastNameRow').style.display = 'table-row';
+        document.getElementById('summaryRepresentativeLastName').innerText = getValue('representativeLastName');
+        localStorage.setItem('summaryRepresentativeLastName', document.getElementById('summaryRepresentativeLastName').innerText);
+
     }
-} else {
-    // If no option selected, display "Not Provided"
-    summaryAccomplishedBy.innerText = 'Not Provided';
-    summaryAccomplishedByFirstName.innerText = 'Not Provided';
-    summaryAccomplishedByMiddleName.innerText = 'Not Provided';
-    summaryAccomplishedByLastName.innerText = 'Not Provided';
 }
-
-// Store each summary field in localStorage
-localStorage.setItem('summaryAccomplishedBy', summaryAccomplishedBy.innerText);
-localStorage.setItem('summaryAccomplishedByFirstName', summaryAccomplishedByFirstName.innerText);
-localStorage.setItem('summaryAccomplishedByMiddleName', summaryAccomplishedByMiddleName.innerText);
-localStorage.setItem('summaryAccomplishedByLastName', summaryAccomplishedByLastName.innerText);
-}
-
+    
         function genderChange() {
             const selectedGender = document.getElementById('gender').value;
             localStorage.setItem('selectedGender', selectedGender);  // Store the gender in localStorage
@@ -1437,33 +1472,9 @@ localStorage.setItem('summaryAccomplishedByLastName', summaryAccomplishedByLastN
         function accomplishedByChange() {
         const selectedOption = document.querySelector('input[name="accomplishedBy"]:checked').value;
         localStorage.setItem('accomplishedBy', selectedOption);
-
-        if (selectedOption === 'applicant') {
-            saveApplicantName();
-        } else if (selectedOption === 'guardian') {
-            saveGuardianName();
-        } else if (selectedOption === 'representative') {
-            saveRepresentativeName();
         }
-    }
-
-    function saveApplicantName() {
-        localStorage.setItem('accomplishedByLastName', document.getElementById('applicantLastName').value);
-        localStorage.setItem('accomplishedByFirstName', document.getElementById('applicantFirstName').value);
-        localStorage.setItem('accomplishedByMiddleName', document.getElementById('applicantMiddleName').value);
-    }
-
-    function saveGuardianName() {
-        localStorage.setItem('accomplishedByLastName', document.getElementById('guardianLastName').value);
-        localStorage.setItem('accomplishedByFirstName', document.getElementById('guardianFirstName').value);
-        localStorage.setItem('accomplishedByMiddleName', document.getElementById('guardianMiddleName').value);
-    }
-
-    function saveRepresentativeName() {
-        localStorage.setItem('accomplishedByLastName', document.getElementById('representativeLastName').value);
-        localStorage.setItem('accomplishedByFirstName', document.getElementById('representativeFirstName').value);
-        localStorage.setItem('accomplishedByMiddleName', document.getElementById('representativeMiddleName').value);
-    }
+        
+                
 
 // Helper function to get the value of an element by ID, or 'Not Provided' if empty
 const getValue = (id) => {

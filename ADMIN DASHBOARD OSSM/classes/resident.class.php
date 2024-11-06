@@ -43,9 +43,9 @@
                     else {
 
                         $connection = $this->openConn();
-                        $stmt = $connection->prepare("INSERT INTO tbl_resident ( `email`,`password`,`lname`,`fname`,
-                        `mi`, `age`, `sex`, `status`, `houseno`, `street`, `brgy`, `municipal`, `contact`, `bdate`, 
-                        `bplace`, `nationality`,`voter` ,`family_role`,
+                        $stmt = $connection->prepare("INSERT INTO users ( `email`,`password`,`last_name`,`first_name`,
+                        `middle_name`, `age`, `gender`, `status`, `house_number`, `street`, `brgy`, `municipal`, `mobile_number`, `dob`, 
+                        `bplace`, `Nationality`,`voter` ,`family_role`,
                         `role`, `addedby`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
     
                         $stmt->Execute([ $email, $password, $lname, $fname, $mi, $age, $sex, $status, 

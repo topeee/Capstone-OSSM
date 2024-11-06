@@ -81,6 +81,9 @@ if (isset($_POST['register-btn'])) {
             die("Error: Missing required field '$field'.");
         }
     }
+    if (!isset($_FILES['validId'])) {
+        die("Error: Missing required field 'validId'.");
+    }
     
     $first_name = $_POST['firstname'];
     $last_name = $_POST['lastname'];
@@ -99,6 +102,25 @@ if (isset($_POST['register-btn'])) {
     $hashed_password = $_POST['password'];
     $verify_token = md5(rand()); // Generate a random verification token
 
+    // Define the directory to store uploaded files
+    $uploads_dir = 'uploads/';
+    if (!is_dir($uploads_dir)) {
+        mkdir($uploads_dir, 0777, true);
+    }
+
+    $picture = $_FILES['validId'];
+    $target_file_picture = $uploads_dir . basename($picture["name"]);
+    if (move_uploaded_file($picture["tmp_name"], $target_file_picture)) {
+        $picture_content = $target_file_picture;
+    } else {
+        $_SESSION['status'] = "Failed to upload picture.";
+        header("Location: CreateAccount.php");
+        exit();
+    }
+
+
+
+   
     // Validate the password
     if (!validate_password($password)) {
         $_SESSION['status'] = "Password must be at least 8 characters long and contain at least one letter.";
@@ -117,8 +139,8 @@ if (isset($_POST['register-btn'])) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert the user data into the users table
-        $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token) 
-        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$hashed_password', '$verify_token')";
+        $query = "INSERT INTO users (first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, subdivision, barangay, password, verify_token, id_document, picture) 
+        VALUES ('$first_name', '$last_name', '$middle_name', '$suffix', '$dob', '$gender', '$mobile_number', '$tel_number', '$email', '$house_number', '$street', '$subdivision', '$barangay', '$hashed_password', '$verify_token', '$validId_content', '$picture_content')";
 
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {

@@ -250,16 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="home.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
         <p></p>
-        <?php
-
-
-if (isset($_SESSION['user_token'])) {
-    header("Location: Home.php");
-  } else {
-    echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
-  }
-
-?>
+        
         <div class="form-container">
             <form action="" method="POST">   <?php
     if (isset($_SESSION['status'])) {
@@ -292,10 +283,22 @@ if (isset($_SESSION['user_token'])) {
                 <a href="CreateAccount.php" class="link">Create Account</a>
                 <a href="Forgot password.php" class="link">Forgot Password</a>
             </div>
-     
-                
-            </div>
-        </div>
+<?php
+
+
+if (isset($_SESSION['user_token'])) {
+    header("Location: Home.php");
+} else {
+?>
+    <div class="social-login-container">
+        <a href="<?php echo $client->createAuthUrl(); ?>" class="gmail">
+            <i class="bi bi-google"></i>
+        </a>
+    </div>
+<?php
+}
+?>
+           
     <div class="footer-links">
         <a href="#">Terms of Service</a> | 
         <a href="#">Privacy Policy</a>

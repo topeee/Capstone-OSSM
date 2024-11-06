@@ -240,7 +240,7 @@ include 'header.php';
     <div class="container">
         <div class="row row-cols-1 row-cols-lg-3">
                 <ul class="list-inline my-2">
-                    <li class="list-inline-item"><a class="link-secondary" href="#">About usy</a></li>
+                    <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>
                     <li class="list-inline-item"><a class="link-secondary" href="#">Services</a></li>
                     <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
                 </ul>

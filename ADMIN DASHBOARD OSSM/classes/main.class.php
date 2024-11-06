@@ -1686,4 +1686,3 @@ class BMISClass {
 
 $bmis = new BMISClass(); //variable to call outside of its class
 
-?>

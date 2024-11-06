@@ -5,19 +5,11 @@ include 'header.php';
 
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
-
-    // Fetch the user's first name from the database
-    $query = "SELECT first_name FROM users WHERE email = ?";
-    if ($stmt = $conn->prepare($query)) {
-        $stmt->bind_param("s", $email); // Assuming email is a string
-        $stmt->execute();
-        $stmt->bind_result($first_name);
-        $stmt->fetch();
-        $stmt->close();
-    }
 } else {
-    $first_name = 'Guest';
+    header("Location: login.php");
+    exit;
 }
+
 $query = "SELECT first_name, last_name, middle_name, suffix, dob, gender, tel_number, mobile_number, subdivision, house_number, street, barangay FROM users WHERE email = ?";
 if ($stmt = $conn->prepare($query)) {
     $stmt->bind_param("s", $email);
@@ -97,24 +89,7 @@ if ($stmt = $conn->prepare($query)) {
         margin-bottom: 15px;
     }
 
-   
 
-    .username {
-        color: white;
-        margin-right: 15px;
-        font-weight: bold;
-    }
-
-    .Hamburger-Icon {
-        height: 30px;
-    }
-
-    .toggle-header {
-        cursor: pointer;
-        color: #0044ff;
-        font-weight: bold;
-        margin-top: 20px;
-    }
 
     .transaction-history {
         display: none;
@@ -283,7 +258,7 @@ if ($stmt = $conn->prepare($query)) {
              
             <!-- Reset Password Button -->
             <div class="col-12">
-                <button type="button" class="btn btn-primary" onclick="location.href='reset_password.php'">Change Password</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='forgot password.php'">Change Password</button>
             </div>
             </form>
         </div>

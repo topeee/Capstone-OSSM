@@ -1,21 +1,26 @@
 <?php
 session_start();
 include 'header.php';
-
+include 'db_connection.php';
 // Function to generate a unique reference number
 function generateReferenceNumber($prefix = "REF", $length = 8) {
     $randomString = strtoupper(substr(md5(uniqid()), 0, $length));
     return $prefix . "-" . date("Ymd") . "-" . $randomString;
-    }
-    
-    // Generate the reference number
-    $referenceNumber = generateReferenceNumber();
-    
-    // Prepare an SQL statement to insert the reference number and application type
-    $sql = "INSERT INTO ReferenceNumbers (RefNumber, TypeOfApplication) VALUES (?, ?)";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $referenceNumber, $applicationType);
+}
+
+// Generate the reference number
+$referenceNumber = generateReferenceNumber();
+
+// Define the application type
+$applicationType = "Solo Parent"; // or any appropriate value
+
+// Prepare an SQL statement to insert the reference number and application type
+$sql = "INSERT INTO `ReferenceNumbers`(`RefNumber`, `TypeOfApplication`) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $referenceNumber, $applicationType);
+
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>

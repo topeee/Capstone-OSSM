@@ -9,8 +9,11 @@ include 'header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction History</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+ <style>
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(#00bfff, #87cefa);
@@ -85,24 +88,7 @@ include 'header.php';
             background-color: #cc0000;
         }
     
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.5); 
-        }
-    
-        .navbar-brand-logo {
-            height: 40px; 
-            margin-right: 10px;
-        }
-
-        .username {
-            color: white;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-
-        .Hamburger-Icon {
-            height: 30px;
-        }
+       
 
         @media (max-width: 768px) {
             .table-responsive {

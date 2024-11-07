@@ -76,16 +76,6 @@ include 'header.php';
     opacity: 1; /* Show text on hover */
 }
 
-.services a {
-    display: inline-block; /* Ensures only the content within the link is clickable */
-    width: 100%;           /* Adjust width to avoid extending beyond the card */
-}
-
-.service-card {
-    padding: 20px;         /* Adjust padding to ensure clickable area is limited to the card */
-    margin: 10px;          /* Add margin if needed */
-    overflow: hidden;      /* Prevent overflow issues */
-}
 
 /* Hide fixed button on smaller screens */
 @media (max-width: 768px) {
@@ -99,6 +89,7 @@ include 'header.php';
     </style>
 </head>
 
+<body>
     <div class="e-services col-xl-6 text-center mx-auto">
         <h2>E-SERVICES</h2>
     </div>

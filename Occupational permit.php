@@ -43,6 +43,7 @@ include 'header.php';
         }
         .modal-body h5 {
         margin-bottom: 20px;
+        overflow: hidden; /* Prevent scrolling inside the modal body */
         }
 
         .modal-body hr {
@@ -58,6 +59,7 @@ include 'header.php';
             margin-bottom: 10px;
             font-weight: normal;
             font-size: 1rem;
+            overflow: hidden; /* Prevent scrolling inside the modal body */
         }
 
         .modal-body ul {

@@ -3,8 +3,6 @@ session_start();
 include 'header.php';
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +29,6 @@ include 'header.php';
         .economic-wide-modal {
         max-width: 90%; /* Adjust percentage to fit your screen size */
         margin: auto;
-    }
-
-    .modal-body {
-    overflow-x: auto;
-    white-space: nowrap;
     }
 
 

@@ -574,8 +574,8 @@
 </div>
  <!-- Right-side Button Card -->
  <div class="button-card">
-  <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
-  <button class="btn btn-success" onclick="handleDownload()">Submit and Download</button>
+ <button class="btn btn-primary" onclick="handleSubmit()">Submit</button>
+ <button class="btn btn-success" onclick="handleDownload()">Submit and Download</button>
   <button class="btn btn-warning" onclick="handlePrint()">Download and Print</button>
 </div>
 
@@ -633,7 +633,67 @@ async function handleDownload() {
     window.download();
     document.body.innerHTML = originalContent;
 }
-  
+function handleSubmit() {
+      const formData = {
+        precinct: localStorage.getItem('summaryPrecinct') || 'N/A',
+        firstName: localStorage.getItem('summaryFirstName') || 'N/A',
+        middleName: localStorage.getItem('summaryMiddleName') || 'N/A',
+        lastName: localStorage.getItem('summaryLastName') || 'N/A',
+        religion: localStorage.getItem('summaryReligion') || 'N/A',
+        dob: localStorage.getItem('summaryDob') || 'N/A',
+        bloodType: localStorage.getItem('summaryBloodType') || 'N/A',
+        birthPlace: localStorage.getItem('summaryBirthPlace') || 'N/A',
+        civilStatus: localStorage.getItem('selectedStatus') || 'N/A',
+        tele: localStorage.getItem('summaryTele') || 'N/A',
+        mobile1: localStorage.getItem('summaryPhone') || 'N/A',
+        email: localStorage.getItem('summaryEmail') || 'N/A',
+        lotNumber: localStorage.getItem('summaryLotNumber') || 'N/A',
+        blkNumber: localStorage.getItem('summaryBlkNumber') || 'N/A',
+        street: localStorage.getItem('summaryStreet') || 'N/A',
+        barangay: localStorage.getItem('summaryBarangay') || 'N/A',
+        yearsOfStay: localStorage.getItem('summaryYearsOfStay') || 'N/A',
+        monthsOfStay: localStorage.getItem('summaryMonthsOfStay') || 'N/A',
+        employer: localStorage.getItem('summaryCompany') || 'N/A',
+        officeAddress: localStorage.getItem('summaryOfficeAddress') || 'N/A',
+        occupation: localStorage.getItem('summaryOccupation') || 'N/A',
+        monthlyIncome: localStorage.getItem('summaryMonthlyIncome') || 'N/A',
+        tinNumber: localStorage.getItem('summaryTinNumber') || 'N/A',
+        sssNumber: localStorage.getItem('summarySssNumber') || 'N/A',
+        gsisNumber: localStorage.getItem('summaryGsisNumber') || 'N/A',
+        emergencyFirstName: localStorage.getItem('summaryemergencyFirstName') || 'N/A',
+        emergencyMiddleName: localStorage.getItem('summaryemergencyMiddleName') || 'N/A',
+        emergencyLastName: localStorage.getItem('summaryemergencyLastName') || 'N/A',
+        emergencyContact: localStorage.getItem('summaryEmergencyContact') || 'N/A',
+        emergencyRelationship: localStorage.getItem('summaryEmergencyRelationship') || 'N/A',
+        emergencyAddress: localStorage.getItem('summaryEmergencyAddress') || 'N/A',
+        selectedGender: localStorage.getItem('selectedGender') || 'N/A',
+        selectedStatus: localStorage.getItem('selectedStatus') || 'N/A',
+        selectedFamilyResource: localStorage.getItem('selectedFamilyResource') || 'N/A',
+        selectedClassification: localStorage.getItem('selectedClassification') || 'N/A',
+        selectedFourPsMember: localStorage.getItem('selectedFourPsMember') || 'N/A',
+        selectedPhilHealthMember: localStorage.getItem('selectedPhilHealthMember') || 'N/A',
+        selectedProblems: JSON.parse(localStorage.getItem('selectedProblems')) || [],
+        selectedNeeds: JSON.parse(localStorage.getItem('selectedNeeds')) || [],
+        familyData: JSON.parse(localStorage.getItem('familyData')) || []
+
+
+      };
+
+
+      $.ajax({
+        url: 'Solo Parent Application DB.php',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+          alert('Form data submitted successfully!');
+          window.location.href = 'Home.php'; // Redirect to home page
+        },
+        error: function(xhr, status, error) {
+          console.error('Error submitting form data:', error);
+          alert('An error occurred while submitting the form data. Check console for details.');
+        }
+      });
+    }
   document.addEventListener('DOMContentLoaded', function() {
     const precinctValue = localStorage.getItem('summaryPrecinct') || 'N/A';
     const firstNameValue = localStorage.getItem('summaryFirstName') || 'N/A';

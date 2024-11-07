@@ -7,7 +7,7 @@ include 'db_connection.php';
 // init configuration
 $clientID = '64603179338-p984tmfnt1t548armn1ua3l7blvv0e67.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'https://onestopsanmateo.online/';
+$redirectUri = 'https://onestopsanmateo.online/login.php';
 
 // create Client Request to access Google API
 $client = new Google_Client();

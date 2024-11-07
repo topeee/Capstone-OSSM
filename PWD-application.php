@@ -4,66 +4,6 @@ session_start();
 
 include 'header.php';
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $firstName = $_POST['firstName'];
-    $middleName = $_POST['middleName'];
-    $lastName = $_POST['lastName'];
-    $gender = $_POST['gender'];
-    $civilstatus = $_POST['civilstatus'];
-    $dob = $_POST['dob'];
-    $tele = $_POST['tele'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $workPhone = $_POST['workPhone'];
-    $SSS = $_POST['SSS'];
-    $GSIS = $_POST['GSIS'];
-    $PhilHealth = $_POST['PhilHealth'];
-    $PAGIBIG = $_POST['PAGIBIG'];
-    $guardianFname = $_POST['guardianFname'] ?? null;
-    $guardianLname = $_POST['guardianLname'] ?? null;
-    $guardianMname = $_POST['guardianMname'] ?? null;
-    $guardianNumber = $_POST['guardianNumber'] ?? null;
-    $careFname = $_POST['careFname'] ?? null;
-    $careLname = $_POST['careLname'] ?? null;
-    $careMname = $_POST['careMname'] ?? null;
-    $careNumber = $_POST['careNumber'] ?? null;
-    $ngoOrgAff = $_POST['ngoOrgAff'];
-    $ngoContact = $_POST['ngoContact'];
-    $ngoOfficeAddress = $_POST['ngoOfficeAddress'];
-    $ngoTelNo = $_POST['ngoTelNo'];
-    $pwdOrgAff = $_POST['pwdOrgAff'];
-    $pwdOrgContact = $_POST['pwdOrgContact'];
-    $pwdOrgOffice = $_POST['pwdOrgOffice'];
-    $pwdOrgTelNo = $_POST['pwdOrgTelNo'];
-    $civpolAff = $_POST['civpolAff'];
-    $civpolContact = $_POST['civpolContact'];
-    $civpolOfficeAddress = $_POST['civpolOfficeAddress'];
-    $civpolTelNo = $_POST['civpolTelNo'];
-    // Validate required fields
-    $requiredFields = [
-        'firstName', 'middleName', 'lastName', 'gender', 'civilstatus', 'dob', 'tele', 'phone', 'email', 'workPhone', 
-        'PWDId', 'SSS', 'GSIS', 'PhilHealth', 'PAGIBIG', 'ngoOrgAff', 'ngoContact', 'ngoOfficeAddress', 'ngoTelNo', 
-        'pwdOrgAff', 'pwdOrgContact', 'pwdOrgOffice', 'pwdOrgTelNo', 'civpolAff', 'civpolContact', 'civpolOfficeAddress', 'civpolTelNo'
-    ];
-
-    foreach ($requiredFields as $field) {
-        if (empty($_POST[$field])) {
-            die("Error: The field $field is required.");
-        }
-    }
-
-    // Insert data into the database
-    $stmt = $conn->prepare("INSERT INTO pwd_applications (first_name, middle_name, last_name, gender, civil_status, dob, tele, phone, email, work_phone, PWDId, PWDIdNumber, PWDethnicGroup, pwdDiagnosis, education, refNo, SSS, GSIS, PhilHealth, PAGIBIG, guardian_fname, guardian_lname, guardian_mname, guardian_number, care_fname, care_lname, care_mname, care_number, ngo_org_aff, ngo_contact, ngo_office_address, ngo_tel_no, pwd_org_aff, pwd_org_contact, pwd_org_office, pwd_org_tel_no, civpol_aff, civpol_contact, civpol_office_address, civpol_tel_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssssssssssssssssssssssssssssssssss", $firstName, $middleName, $lastName, $gender, $civilstatus, $dob, $tele, $phone, $email, $workPhone, $PWDId, $PWDIdNumber, $PWDethnicGroup, $pwdDiagnosis, $education, $refNo, $SSS, $GSIS, $PhilHealth, $PAGIBIG, $guardianFname, $guardianLname, $guardianMname, $guardianNumber, $careFname, $careLname, $careMname, $careNumber, $ngoOrgAff, $ngoContact, $ngoOfficeAddress, $ngoTelNo, $pwdOrgAff, $pwdOrgContact, $pwdOrgOffice, $pwdOrgTelNo, $civpolAff, $civpolContact, $civpolOfficeAddress, $civpolTelNo);
-    $stmt->execute();
-    $stmt->close();
-}
-
 ?>
 <!DOCTYPE html>
     <html>

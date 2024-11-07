@@ -76,7 +76,27 @@ include 'header.php';
     </style>
 </head>
 <body>
-   
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.php">
+            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
+            <span class="brand-name">OSSM</span>
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="username">Hello, Username</span>
+            <div class="dropdown-center ms-3">
+              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </nav>
 
     <div id="top-bar" class="top-bar-image d-flex justify-content-center align-items-center">
         <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\PUBLIC EMPLOYMENT SERVICES.jpg" class="minibanner" alt="Social And General Welfare">
@@ -166,7 +186,7 @@ include 'header.php';
                             <h3 class="modal-title mx-auto" id="newOrRenewalModalLabel"><strong>CHOOSE APPLICATION TYPE:</strong></h3>
                         </div>
                         <div class="modal-body">
-                            <a href="Occupational permit(New).php" class="btn btn-primary w-100 mb-2">New Application</a>
+                            <a href="Occupational permit(New).html" class="btn btn-primary w-100 mb-2">New Application</a>
                             <button type="button" class="btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#renewalModal">Renewal Application</button>
                         </div>
                     </div>
@@ -289,7 +309,7 @@ include 'header.php';
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <a href="Occupational permit(Representative).php" class="btn btn-success" id="proceedButton">Proceed</a>
+                        <a href="Occupational permit(Representative).html" class="btn btn-success" id="proceedButton">Proceed</a>
                     </div>
                 </div>
             </div>
@@ -304,7 +324,7 @@ include 'header.php';
           <h4 class="card-title">Track your Application</h4>
           <p class="card-text">Already submitted your online Occupational Permit Application? <br>
             View the status of your application here:</p>
-            <a href="Track your Application.php" class="btn btn-primary w-25 h-25">Track your Application</a>
+            <a href="Track your Application.html" class="btn btn-primary w-25 h-25">Track your Application</a>
         </div>
     </div>
 

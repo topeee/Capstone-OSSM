@@ -3,10 +3,7 @@ session_start();
 include 'header.php';
 
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="en">

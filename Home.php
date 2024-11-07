@@ -9,19 +9,110 @@ include 'header.php';
 <!DOCTYPE html>
 <html lang="en">
     
+
+<!DOCTYPE html>
+<html lang="en">
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="img/png" href="logo.png">
     <title>Homepage</title>
+
+    <style>
+        .economic-wide-modal {
+        max-width: 90%; /* Adjust percentage to fit your screen size */
+        margin: auto;
+    }
+
+    .modal-body {
+    overflow-x: auto;
+    white-space: nowrap;
+    }
+
+
+/* Start Fixed Appointment Button */
+#fixedAppointment a {
+    position: fixed;
+    bottom: 130px; /* Position near the bottom */
+    right: 0px; /* Icon visible on screen */
+    transition: 0.3s;
+    padding: 15px;
+    width: 55px; /* Width to show only the icon */
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    background-color: #002B5C; /* Customize background color */
+    border-radius: 5px 0 0 5px;
+    overflow: hidden; /* Hide text initially */
+    white-space: nowrap; /* Prevent text wrapping */
+
+}
+
+#fixedAppointment a:hover {
+    width: 270px; /* Expand to show text on hover */
+}
+
+#fixedAppointment a i {
+    font-size: 27px; /* Icon size */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+#fixedAppointment a .text {
+    opacity: 0; /* Hide text initially */
+    transition: opacity 0.3s ease; /* Smooth fade-in for text */
+}
+
+#fixedAppointment a:hover .text {
+    opacity: 1; /* Show text on hover */
+}
+
+.services a {
+    display: inline-block; /* Ensures only the content within the link is clickable */
+    width: 100%;           /* Adjust width to avoid extending beyond the card */
+}
+
+.service-card {
+    padding: 20px;         /* Adjust padding to ensure clickable area is limited to the card */
+    margin: 10px;          /* Add margin if needed */
+    overflow: hidden;      /* Prevent overflow issues */
+}
+
+/* Hide fixed button on smaller screens */
+@media (max-width: 768px) {
+  #fixedAppointment {
+    display: none;
+  }
+}
+
+
+
+    </style>
 </head>
+
 <body>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container-fluid"><a class="navbar-brand" href="index.php"><img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110"><span class="brand-name">OSSM</span></a>
+            <div class="d-flex align-items-center ms-auto"><span class="username">Hello, Username</span>
+                <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="trasaac_history.html">History Transaction</a></li>
+                        <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="e-services col-xl-6 text-center mx-auto">
         <h2>E-SERVICES</h2>
@@ -47,7 +138,6 @@ include 'header.php';
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#citizenModal">
                     <div class="service-card dark even" >Citizen ID</div>
-                    
                 </a>
             </div>
         </main>
@@ -55,12 +145,12 @@ include 'header.php';
 
     <!-- Violation Management Modal -->
     <div class="modal fade" id="violationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
-        <div class="modal-dialog violation-wide-modal">
-            <div class="modal-content">
+        <div class="modal-dialog violation-wide-modal" style="padding-left: 30px;"> 
+        <div class="modal-content" style="margin-top: 150px; width: 400px;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="violationModalLabel">Violation Management</h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="margin-top: 20px;">
                     <a href="ovr.php">
                         <div class="inside-card mb-4">
                             <img src="VIOLATION.png" class="card-img-top" alt="OVR Icon">
@@ -78,12 +168,12 @@ include 'header.php';
     <!-- Social Services Modal -->
     <div class="modal fade" id="socialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
         <div class="modal-dialog social-wide-modal">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 150px;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
-                <div class="modal-body">
-                    <a href="Senior Citizen Landing Page.php">
+                <div class="modal-body" style="margin-top: 20px;">
+                    <a href="Scholarship Application Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Senior.png" class="card-img-top" alt="Senior Icon">
                             <h5 class="card-title">Senior Citizen Application</h5>
@@ -112,11 +202,11 @@ include 'header.php';
     <!-- Educational Support Modal -->
     <div class="modal fade" id="educationalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="educationalModalLabel" aria-hidden="true">
         <div class="modal-dialog educational-wide-modal">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 150px;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="educationalModalLabel">Educational Support</h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="margin-top: 20px;">
                     <a href="Scholarship Application Landing Page.php">
                         <div class="inside-card mb-4">
                             <img src="Scholar.png" class="card-img-top" alt="Scholar Icon">
@@ -132,59 +222,73 @@ include 'header.php';
     </div>
 
     <!-- Economic & Investment Support Modal -->
-    <div class="modal fade" id="econModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
-        <div class="modal-dialog economic-wide-modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
+<!-- Economic & Investment Support Modal -->
+<div class="modal fade" id="econModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="econModalLabel">Economic & Investment Support</h1>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="p-3">
+                        <a href="Occupational permit.php" class="text-decoration-none">
+                            <div class="inside-card text-center">
+                                <img src="Occupational.png" class="card-img-top img-fluid" alt="Occupational Icon">
+                                <h5 class="card-title">Occupational Permit</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <a href="businessPermitType.php" class="text-decoration-none">
+                            <div class="inside-card text-center">
+                                <img src="Business.png" class="card-img-top img-fluid" alt="Business Icon">
+                                <h5 class="card-title">Business Permit</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <a href="Tricycle Permit application.php" class="text-decoration-none">
+                            <div class="inside-card text-center">
+                                <img src="Tricycle.png" class="card-img-top img-fluid" alt="Tricycle Icon">
+                                <h5 class="card-title">Tricycle Permit</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <a href="RPT.html" class="text-decoration-none">
+                            <div class="inside-card text-center">
+                                <img src="RPT.png" class="card-img-top img-fluid" alt="RPT Icon">
+                                <h5 class="card-title">Real Property</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <a href="MOSS.php" class="text-decoration-none">
+                            <div class="inside-card text-center">
+                                <img src="Market.png" class="card-img-top img-fluid" alt="Market Icon">
+                                <h5 class="card-title">Market One-Stop Shop</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <a href="Occupational permit.php">
-                        <div class="inside-card mb-4">
-                            <img src="Occupational.png" class="card-img-top" alt="Occupational Icon">
-                            <h5 class="card-title">Occupational Permit</h5>
-                        </div>
-                    </a>
-                    <a href="businessPermitType.php">    
-                        <div class="inside-card mb-4">
-                            <img src="Business.png" class="card-img-top" alt="Business Icon">
-                            <h5 class="card-title">Business Permit</h5>
-                        </div>
-                    </a>
-                    <a href="Tricycle Permit application.php">
-                        <div class="inside-card mb-4">
-                            <img src="Tricycle.png" class="card-img-top" alt="Tricycle Icon">
-                            <h5 class="card-title">Tricycle Permit</h5>
-                        </div>
-                    </a>
-                    <a href="rpt-apply.php">
-                        <div class="inside-card mb-4">
-                            <img src="RPT.png" class="card-img-top" alt="RPT Icon">
-                            <h5 class="card-title">Real Property</h5>
-                        </div>
-                    </a>
-                    <a href="MOSS.php">
-                        <div class="inside-card mb-4">
-                            <img src="Market.png" class="card-img-top" alt="Market Icon">
-                            <h5 class="card-title">Market One-Stop Shop</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Health Services Modal -->
     <div class="modal fade" id="healthModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
         <div class="modal-dialog health-wide-modal">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 150px;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="margin-top: 20px;">
                 <a href="Medical Record Form.php">
                     <div class="inside-card mb-4">
                         <img src="_Medical.png" class="card-img-top" alt="Medical Icon">
@@ -207,18 +311,18 @@ include 'header.php';
     <!-- Citizen ID Modal -->
         <div class="modal fade" id="citizenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
             <div class="modal-dialog citizen-wide-modal">
-                <div class="modal-content">
+                <div class="modal-content" style="margin-top: 150px;">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="margin-top: 20px;">
                     <a href="Citizen-ID-Landing-Page.php">
                         <div class="inside-card mb-4">
                             <img src="ID.png" class="card-img-top" alt="Citizen Icon">
                             <h5 class="card-title">Citizen ID</h5>
                         </div>
                     </a>
-                    <a href="query.php">
+                    <a href="query.html">
                         <div class="inside-card mb-4">
                             <img src="Query.png" class="card-img-top" alt="Query Icon">
                             <h5 class="card-title">OSSM Query Portal</h5>
@@ -232,15 +336,21 @@ include 'header.php';
             </div>
         </div>
 <br>
-        <div class="Appoinment">
-            <a href="Appointment_form.php"> <div class="appointment">Book an Appointment</div></a>
+
+            
+    <!-- Fixed Menu for Book an Appointment -->
+        <div id="fixedAppointment">
+            <a href="#" class="appointment">
+            <i class="bi bi-calendar-week"></i> <span class="text"> Book an Appointment</span>
+            </a>
         </div>
+            
 
 <footer>
     <div class="container">
         <div class="row row-cols-1 row-cols-lg-3">
                 <ul class="list-inline my-2">
-                    <li class="list-inline-item"><a class="link-secondary" href="#">About usy</a></li>
+                    <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>
                     <li class="list-inline-item"><a class="link-secondary" href="#">Services</a></li>
                     <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
                 </ul>
@@ -272,7 +382,6 @@ include 'header.php';
         </div>
     </div>
 </footer>
-
 </body>
 
 </html>

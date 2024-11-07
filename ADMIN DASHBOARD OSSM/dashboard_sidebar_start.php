@@ -51,24 +51,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                User Management
-            </div>
-
-            <!-- Barangay Staff CRUD -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_staff_crud.php">
-                    <i class="fas fa-user-tie"></i>
-                    <span>Barangay Staffs</span></a>
-            </li>
-
-            <!-- Resident CRUD -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_resident_crud.php">
-                    <i class="fas fa-users"></i>
-                    <span>Barangay Residents</span></a>
-            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -78,6 +61,14 @@
                 Barangay Services
             </div>
 
+            <!-- E-SERVICES Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="eservices.php">
+                    <i class="fas fa-concierge-bell"></i> <!-- You can change the icon here -->
+                    <span>E-SERVICES</span>
+                </a>
+            </li>
+            
             <!-- Announcement Management -->
             <li class="nav-item">
                 <a class="nav-link" href="admn_announcement_crud.php">
@@ -127,7 +118,13 @@
                     <span>Peace and Order Report</span></a>
             </li>
 
-            
+            <!-- Appointment dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="appointmentdashboard.php">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Appointment Dashboard</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

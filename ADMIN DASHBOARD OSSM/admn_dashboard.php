@@ -31,6 +31,11 @@
 .card-row-gap {
     margin-top: 3em;
 }
+
+h4 {
+    font-weight: 400;
+}
+
 </style>
 
 
@@ -44,198 +49,368 @@
 <!-- Page Heading -->
 
 
-    <div class="row"> 
-        <div class="col-md-4">
-            <h4> Barangay Resident Data </h4>
-            <br>
-            <div class="card border-left-primary shadow">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Barangay Residents</div>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <h2 style="font-weight: 800;"> E-SERVICES </h2>
+        <br>
+
+        <!-- Violation Management Section -->
+        <h4>Violation Management</h4>
+        <div class="card border-left-primary shadow">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-10">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Ovr Search
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                        <br>
+                        <a href="admn_table_totalres.php"> View Records </a>
+                    </div>
+                    <div class="col-md-2">
+                        <span style="color: #4e73df;"> 
+                            <i class="fas fa-search fa-2x text-dark"></i> <!-- Search Icon for Violation Management -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End of Violation Management Row -->
+
+<!-- Add a New Row for Social Services -->
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h4>Social Services</h4>
+        <div class="row">
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Senior Citizen Application
+                                </div>
                                 <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
                                 <br>
                                 <a href="admn_table_totalres.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <span style="color: #4e73df;"> 
-                                <i class="fas fa-user-friends fa-2x text-dark "></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">  
-            <br>
-            <div class="card border-left-primary shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Household Count</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescountfh?></div>
-                                <br>
-                                <a href="admn_table_totalhouse.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-home fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4"> 
-            <br>
-            <div class="card border-left-primary shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Registered Voters </div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescountvoter?></div>
-                                <br>
-                                <a href="admn_table_voters.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-tie fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    <div class="row"> 
-        <div class="col-md-4">  
-            <div class="card border-left-primary shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Male Residents</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescountm?></div>
-                                <br>
-                                <a href="admn_table_maleres.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-male fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">  
-            <div class="card border-left-primary shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Female Residents</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescountf?></div>
-                                <br>
-                                <a href="admn_table_femaleres.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-female fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-4"> 
-            <div class="card border-left-primary shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Senior Residents</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescountsenior?></div>
-                                <br>
-                                <a href="admn_table_senior.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-blind fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <br>
-    <hr>
-    <br>
-
-    <div class="row"> 
-    <div class="col-md-4">
-        <h4> Barangay Staff Data </h4> 
-        <br>
-        <div class="card border-left-info shadow">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Total Barangay Staffs</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $staffcount?></div>
-                                <br>
-                                <a href="admn_table_totalstaff.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-friends fa-2x text-dark"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">  
-            <br>
-            <div class="card border-left-info shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Total Barangay Male Staff
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-dark"><?= $staffcountm?></div>
-                            <br>
-                            <a href="admn_table_malestaff.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-male fa-2x text-dark"></i>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-user-alt fa-2x text-dark"></i> <!-- Senior Citizen Icon -->
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">  
-            <br>
-            <div class="card border-left-info shadow card-upper-space">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Total Barangay Female Staffs</div>
-                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $staffcountf?></div>
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    PWD Application
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
                                 <br>
-                                <a href="admn_table_femalestaff.php"> View Records </a>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-female fa-2x text-dark"></i>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-wheelchair fa-2x text-dark"></i> <!-- PWD Icon -->
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Solo Parent Application
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-users fa-2x text-dark"></i> <!-- Solo Parent Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Social Services -->
     </div>
+</div> <!-- End of Social Services Row -->
+
+<!-- Add a New Row for Educational Support -->
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h4>Educational Support</h4>
+        <div class="row">
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Scholarship Application
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-graduation-cap fa-2x text-dark"></i> <!-- Scholarship Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Educational Support -->
+    </div>
+</div> <!-- End of Educational Support Row -->
+
+<!-- Add a New Row for Economic & Investment Support -->
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h4>Economic & Investment Support</h4>
+        <div class="row">
+            <div class="col-md-4 mb-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Occupational Permit
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-briefcase fa-2x text-dark"></i> <!-- Occupational Permit Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Business Permit
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-store fa-2x text-dark"></i> <!-- Business Permit Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Tricycle Permit
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-bicycle fa-2x text-dark"></i> <!-- Tricycle Permit Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Real Property
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-home fa-2x text-dark"></i> <!-- Real Property Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Market One Stop Shop
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-store fa-2x text-dark"></i> <!-- Store Icon for Market -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div> <!-- End Economic & Investment Support -->
+    </div>
+</div> <!-- End of Economic & Investment Support Row -->
+
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+
+        <h4>Health Services</h4>
+        <div class="row">
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Medical Records
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-file-medical fa-2x text-dark"></i> <!-- Medical Records Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Death Certificate
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-file-medical-alt fa-2x text-dark"></i> <!-- Death Certificate Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End Health Services -->
+    </div>
+</div> <!-- End of Health Services Row -->
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h4>Citizen ID</h4>
+        <div class="row">
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Citizen ID
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-id-card fa-2x text-dark"></i> <!-- Citizen ID Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">  
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-md-10">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    OSSM Query Portal
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark"><?= $rescount?></div>
+                                <br>
+                                <a href="admn_table_totalres.php"> View Records </a>
+                            </div>
+                            <div class="col-md-2">
+                                <span style="color: #4e73df;"> 
+                                    <i class="fas fa-search fa-2x text-dark"></i> <!-- OSSM Query Portal Icon -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!-- End Citizen ID Section -->
+    </div>
+</div> <!-- End of Citizen ID Row -->
+
+
+
 
 
 <!-- /.container-fluid -->
@@ -245,6 +420,7 @@
 
 <br>
 <br>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js" integrity="sha512-/HL24m2nmyI2+ccX+dSHphAHqLw60Oj5sK8jf59VWtFWZi9vx7jzoxbZmcBeeTeCUc7z1mTs3LfyXGuBU32t+w==" crossorigin="anonymous"></script>

@@ -294,6 +294,12 @@ if (isset($_SESSION['user_token'])) {
         <a href="<?php echo $client->createAuthUrl(); ?>" class="gmail">
             <i class="bi bi-google"></i>
         </a>
+        <a href="YOUR_FACEBOOK_AUTH_URL" class="facebook">
+            <i class="bi bi-facebook"></i>
+        </a>
+        <a href="YOUR_TWITTER_AUTH_URL" class="x">
+            <i class="bi bi-twitter"></i>
+        </a>
     </div>
 <?php
 }

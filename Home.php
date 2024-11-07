@@ -291,7 +291,7 @@ include 'header.php';
                             <h5 class="card-title">Citizen ID</h5>
                         </div>
                     </a>
-                    <a href="query.html">
+                    <a href="Query.php">
                         <div class="inside-card mb-4">
                             <img src="Query.png" class="card-img-top" alt="Query Icon">
                             <h5 class="card-title">OSSM Query Portal</h5>

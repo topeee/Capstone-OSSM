@@ -1,0 +1,320 @@
+
+/* Add your existing CSS styles here */
+/* Add your existing CSS styles here */
+/* Global Styles */
+body { 
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    overflow-x: hidden;
+    transition: background 0.5s;
+    background: #0066b2;
+}
+
+.dashboard-text {
+    color: black;
+    padding: 10px 20px;
+    text-align: left;
+    position: fixed;
+    top: 0;
+    left: 300px;
+    width: calc(100% - 300px);
+    z-index: 1;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 70px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s, width 0.3s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:#89CFF0;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s, backdrop-filter 0.3s;
+}
+
+.sidenav img {
+    width: 130px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: width 0.3s;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.sidenav h2 {
+    color: black;
+    margin: 0;
+    padding: 15px;
+    font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+}
+
+.sidenav a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, opacity 0.3s;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.sidenav a i {
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+.sidenav a:hover {
+    background-color: #0000FF;
+}
+
+.main-content {
+    margin-left: 300px;
+    padding: 40px;
+    padding-top: 10%;
+    transition: margin-left 0.3s;
+}
+
+.container-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.container {
+    width: calc(25% - 30px);
+    height: 220px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    font-size: 20px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    color: black;
+    text-align: center;
+    position: relative; /* Allows positioning of the number inside */
+}
+
+.number {
+    position: absolute;
+    bottom: 10px; /* Adjusts the vertical position */
+    right: 10px;  /* Adjusts the horizontal position */
+    font-size: 23px;
+    font-weight: 100;
+    color: #0000FF; /* Number color */
+}
+
+.container i {
+    margin-right: 10px;
+    font-size: 26px;
+    color: #0000FF;
+}
+
+.container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #000000;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logout i {
+    margin-right: 8px;
+    font-size: 22px;
+}
+
+.logout:hover {
+    color: #ff3333;
+}
+
+.switch {
+    position: absolute;
+    top: 20px;
+    right: 150px; /* Adjust this value based on your layout */
+    font-size: 17px;
+    display: inline-block;
+    width: 4em;
+    height: 2em;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    --background: #2c2c54;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    transition: 0.5s;
+    border-radius: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    background: #fff;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider {
+    background-color: #6f42c1;
+}
+
+input:checked + .slider:before {
+    transform: translateX(100%);
+}
+
+body.dark-mode {
+    background: #0a2351;
+    color: #e0e0e0;
+}
+
+body.dark-mode .dashboard-text {
+    color: #ff6b6b;
+}
+
+body.dark-mode .sidenav {
+    background: #0039a6;
+    border-right: 1px solid rgba(50, 50, 50, 0.5);
+}
+
+body.dark-mode .sidenav a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidenav h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidenav a:hover {
+    background-color: rgb(21, 147, 231);
+}
+
+body.dark-mode .main-content {
+    color: white;
+}
+
+body.dark-mode .container {
+    background: rgba(4, 140, 177, 0.96);
+    border: 1px solid rgba(60, 60, 60, 0.6);
+    color: white; /* Set text color to white */
+}
+
+body.dark-mode .container:hover {
+    background: rgba(13, 1, 55, 0.9);
+}
+
+body.dark-mode .logout {
+    color: #ff6b6b;
+}
+
+body.dark-mode .logout:hover {
+    color: #ff3333;
+}
+/* Style for the chart container */
+.chart-container {
+    width: 50%;
+    height: 300px; /* Adjust height as needed */
+    margin-top: 20px; /* Space above the chart */
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+#applicationChart {
+    width: 100%; /* Make chart responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-container-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.modal-container {
+    width: calc(33.33% - 20px);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: rgba(75, 192, 192, 0.5); /* Adjust color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: black;
+    text-align: center;
+}
+

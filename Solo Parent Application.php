@@ -39,7 +39,6 @@ $conn->close();
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
       <link rel="stylesheet" href="bootstrap.min.css">
       <link rel="stylesheet" href="bootstrap.min.js">
-      <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
       <link rel="stylesheet" href="footer.css">
       <link rel="icon" type="img/png" href="logo.png">
@@ -48,45 +47,45 @@ $conn->close();
 
       <style>
         /* Custom Dropdown Styling */
-.dropdown dt a {
-  display: inline-block;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  color: #495057;
-  background-color: #ffffff;
-  text-align: left;
-}
+        .dropdown dt a {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        color: #495057;
+        background-color: #ffffff;
+        text-align: left;
+        }
 
-.dropdown dd ul {
-  display: none;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  padding: 10px;
-  background-color: #ffffff;
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-}
+        .dropdown dd ul {
+        display: none;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #ffffff;
+        position: absolute;
+        z-index: 1000;
+        width: 100%;
+        }
 
-.mutliSelect ul {
-  list-style-type: none;
-  padding: 0;
-}
+        .mutliSelect ul {
+        list-style-type: none;
+        padding: 0;
+        }
 
-.mutliSelect li {
-  padding: 5px;
-  border-bottom: 1px solid #e9ecef;
-}
+        .mutliSelect li {
+        padding: 5px;
+        border-bottom: 1px solid #e9ecef;
+        }
 
-.mutliSelect li:last-child {
-  border-bottom: none;
-}
+        .mutliSelect li:last-child {
+        border-bottom: none;
+        }
 
-.hida {
-  color: #6c757d;
-}
+        .hida {
+        color: #6c757d;
+        }
 
       </style>
     </head>

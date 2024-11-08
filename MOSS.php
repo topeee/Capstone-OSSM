@@ -17,6 +17,7 @@ include 'header.php';
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="pwd app.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="icon" type="img/png" href="logo.png">
     <title>Market One Stop Shop</title>
 
@@ -141,6 +142,9 @@ include 'header.php';
             max-width: 100%;
         }
 
+        footer {
+            position: fixed; /* fixed to the bottom of the page */
+        }
     </style>
 </head>
 
@@ -223,7 +227,7 @@ include 'header.php';
     </div>
 
     <footer>
-            <div class="container">
+            <div class="containers">
                 <div class="row row-cols-1 row-cols-lg-3">
                     <ul class="list-inline my-2">
                         <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>

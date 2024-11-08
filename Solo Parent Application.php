@@ -41,6 +41,7 @@ $conn->close();
       <link rel="stylesheet" href="bootstrap.min.js">
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
+      <link rel="stylesheet" href="footer.css">
       <link rel="icon" type="img/png" href="logo.png">
       <title>Solo Parent Application</title>
 

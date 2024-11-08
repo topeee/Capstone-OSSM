@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/67a9b7069e.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -45,7 +48,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="admn_dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard Overview</span></a>
             </li>
 
             <!-- Divider -->
@@ -60,74 +63,127 @@
             <li class="nav-item">
                 <a class="nav-link" href="admn_staff_crud.php">
                     <i class="fas fa-user-tie"></i>
-                    <span>Barangay Staffs</span></a>
-            </li>
-
-            <!-- Resident CRUD -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_resident_crud.php">
-                    <i class="fas fa-users"></i>
-                    <span>Barangay Residents</span></a>
+                    <span>Users Overview</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Barangay Services
+            <div class="sidebar-heading" data-toggle="collapse" data-target="#municipalServices" aria-expanded="false" aria-controls="municipalServices">
+                <i class="fas fa-chevron-down" id="municipalServicesIcon"></i>
+                Municipal Services
             </div>
 
-            <!-- Announcement Management -->
+            <!-- Collapsible Content for Municipal Services -->
+            <div id="municipalServices" class="collapse">
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_announcement_crud.php">
+                    <i class="bi bi-calendar-date-fill"></i>
+                        <span>Appointment</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_certofres.php">
+                    <i class="bi bi-building-exclamation"></i>
+                        <span>Business Permit</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_brgyid.php">
+                    <i class="bi bi-person-vcard-fill"></i>
+                        <span>Citizen ID eApplication</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_bspermit.php">
+                    <i class="bi bi-file-earmark-diff"></i>
+                        <span>Death Certificate</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_brgyclearance.php">
+                    <i class="bi bi-shop-window"></i>
+                        <span>Market One-Stop Shop</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="admn_certofindigency.php">
+                    <i class="bi bi-prescription2"></i>
+                        <span>Medical Records</span>
+                    </a>
+                </li>
+
+                 <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_announcement_crud.php">
-                    <i class="fas fa-bullhorn"></i>
-                    <span>Announcements</span></a>
-            </li>
-
-            <!-- Certificate of Residency -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_certofres.php">
-                    <i class="fas fa-file-word"></i>
-                    <span>Certificate of Residency</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="admn_brgyid.php">
-                    <i class="fas fa-id-card"></i>
-                    <span>Barangay ID </span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="admn_bspermit.php">
-                    <i class="fas fa-file-contract"></i>
-                    <span>Business Permit</span></a>
-            </li>
-
-
-
-            <!-- Barangay Clearance -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_brgyclearance.php">
-                    <i class="fas fa-file"></i>
-                    <span>Barangay Clearance</span></a>
-            </li>
-
-            <!-- Certificate of Indigency -->
-            <li class="nav-item">
-                <a class="nav-link" href="admn_certofindigency.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Certificate of Indigency</span></a>
+                <a class="nav-link" href="admn_blotterreport.php">
+                    <i class="bi bi-briefcase-fill"></i>
+                    <span>Occupational Permit</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
                 <a class="nav-link" href="admn_blotterreport.php">
-                    <i class="fas fa-user-shield"></i>
-                    <span>Peace and Order Report</span></a>
+                <i class="bi bi-person-lines-fill"></i>
+                    <span>OSSM Query Portal</span></a>
             </li>
 
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-sign-stop-lights-fill"></i>
+                    <span>OVR Payment</span></a>
+            </li>
+
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-person-fill-down"></i>
+                    <span>PWD Application</span></a>
+            </li>
+
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-bank2"></i>
+                    <span>Real Property Tax</span></a>
+            </li>
+
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-pencil-square"></i>
+                    <span>Scholarship eApplication</span></a>
+            </li>
+
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-person-plus-fill"></i>
+                    <span>Senior Citizen Application</span></a>
+            </li>
             
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-people-fill"></i>
+                    <span>Solo Parent Application</span></a>
+            </li>
+
+            <!-- Complain Blotter Report -->
+            <li class="nav-item">
+                <a class="nav-link" href="admn_blotterreport.php">
+                <i class="bi bi-bicycle"></i>
+                    <span>Tricycle Permit Application</span></a>
+            </li>
+
+                <!-- Other services as needed -->
+            </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -202,5 +258,19 @@
                     </ul>
                 </nav>
 
-                
+                  <!-- jQuery and Bootstrap JS (required for collapse to work) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS to change the icon on collapse -->
+    <script>
+        $('#municipalServices').on('show.bs.collapse', function () {
+            $('#municipalServicesIcon').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        });
+
+        $('#municipalServices').on('hide.bs.collapse', function () {
+            $('#municipalServicesIcon').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        });
+    </script>  
+     
                 <!-- End of Topbar -->

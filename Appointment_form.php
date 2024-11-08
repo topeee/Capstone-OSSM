@@ -837,6 +837,16 @@
         </div>
     </div>
 
+    
+    
+       <!-- Barangay Official Section (Hidden by default) -->
+    <div class="content hidden" id="barangayOfficialContent">
+        <div class="barangay-officials-container">
+            <!-- Cards will be dynamically inserted here by JavaScript -->
+        </div>
+    </div>
+
+
     <footer>
             <div class="container">
                 <div class="row row-cols-1 row-cols-lg-3">

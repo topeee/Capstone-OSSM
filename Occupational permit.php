@@ -212,7 +212,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Proceed</button>
+                            <button type="button" id="proceedButton" class="btn btn-success">Proceed</button>
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Validate</button>
+                            <button type="button" class="btn btn-success">Validate</button>
                         </div>
                     </div>
                 </div>
@@ -409,5 +409,11 @@ include 'header.php';
             });
         });
         
+        $(document).ready(function() {
+        $('#proceedButton').click(function() {
+            $('#staticBackdrop').modal('hide'); // Hide current modal
+            $('#RenewalModal').modal('show');   // Show the RenewalModal
+        });
+    });
     </script>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barangay Admin Dashboard</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two cards per row */
+        gap: 40px; /* Space between cards */
+        max-width: 960px; /* Limit the maximum width for the grid */
+        margin: 0 auto; /* Center the grid */
+        padding-top: 20px; /* Adds some space between header and the cards */
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 10px; /* Reduced space below the header */
+        color: #333;
+        text-align: left; /* Center header text */
+        grid-column: span 2; /* Make the header span across both columns */
+      }
+
+      /* Specific styles for blue background */
+      .blue-background {
+        background-color: #2196f3; /* Blue background */
+        color: white; /* White text for contrast */
+      }
+
+      .blue-background i {
+        color: white; /* Change icon color to white */
+      }
+      .blue-background p {
+        color: white; /* Make the number white for better contrast */
+        font-weight: bold; /* Make the number bold for emphasis */
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card i {
+        font-size: 50px;
+        color: #4caf50;
+      }
+
+      .card h3 {
+        font-size: 22px;
+        color: #333;
+        margin-top: 15px;
+      }
+
+      .card p {
+        font-size: 20px;
+        color: #777;
+        margin: 5px 0;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .dashboard {
+          grid-template-columns: 1fr; /* Single card per row for mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <h1>Dashboard Overview</h1>
+
+      <!-- Residents Registered (Blue background) -->
+      <div class="card blue-background">
+        <i class="fas fa-users"></i>
+        <h3>Residents Registered</h3>
+        <p>350</p>
+      </div>
+
+      <!-- Appointments Pending -->
+      <div class="card">
+        <i class="fas fa-calendar-check"></i>
+        <h3>Appointments Pending</h3>
+        <p>10</p>
+      </div>
+
+      <!-- Documents Processed -->
+      <div class="card">
+        <i class="fas fa-file-alt"></i>
+        <h3>Documents Processed</h3>
+        <p>120</p>
+      </div>
+
+      <!-- Services Provided (Blue background) -->
+      <div class="card blue-background">
+        <i class="fas fa-handshake"></i>
+        <h3>Services Provided</h3>
+        <p>50</p>
+      </div>
+    </div>
+
+    <!-- Include Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </body>
+</html>

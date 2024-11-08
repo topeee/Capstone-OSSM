@@ -79,53 +79,91 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="date"],
-    select {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #0056b3;
-    }
+       body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 10px auto;
+            padding: 30px 40px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            padding: 10px;
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between the buttons */
+            margin-top: 20px;
+        }
+
+        .btn-update {
+            width: 150px;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #28a745; /* Green color for success */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .btn-update:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-3px); /* Slightly raise the button */
+        }
+
+        .btn-cancel {
+            width: 150px;
+            padding: 12px;
+            font-size: 16px;
+            background-color: red; /* Gray color for cancel */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .btn-cancel:hover {
+            background-color: #c82333; /* Darker red on hover */
+            transform: translateY(-3px); /* Slightly raise the button */
+        }
+
 </style>
 <body>
     <div class="container">
@@ -134,60 +172,94 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="alert alert-info">
                 <?php 
                 echo $_SESSION['status']; 
-                unset($_SESSION['status']); // Clear the status message
+                unset($_SESSION['status']);
                 ?>
             </div>
         <?php endif; ?>
         <form action="" method="post">
             <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-            
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" required><br>
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" required><br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" value="<?php echo htmlspecialchars($user['first_name']); ?>" required>
+                </div>
 
-            <label for="middle_name">Middle Name:</label>
-            <input type="text" id="middle_name" name="middle_name" value="<?php echo htmlspecialchars($user['middle_name']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" value="<?php echo htmlspecialchars($user['last_name']); ?>" required>
+                </div>
 
-            <label for="suffix">Suffix:</label>
-            <input type="text" id="suffix" name="suffix" value="<?php echo htmlspecialchars($user['suffix']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="middle_name">Middle Name:</label>
+                    <input type="text" id="middle_name" name="middle_name" class="form-control" value="<?php echo htmlspecialchars($user['middle_name']); ?>">
+                </div>
 
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" value="<?php echo htmlspecialchars($user['dob']); ?>" required><br>
+                <div class="form-group col-md-4">
+                    <label for="suffix">Suffix:</label>
+                    <input type="text" id="suffix" name="suffix" class="form-control" value="<?php echo htmlspecialchars($user['suffix']); ?>">
+                </div>
 
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-                <option value="Male" <?php if($user['gender'] == 'Male') echo 'selected'; ?>>Male</option>
-                <option value="Female" <?php if($user['gender'] == 'Female') echo 'selected'; ?>>Female</option>
-            </select><br>
+                <div class="form-group col-md-4">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" class="form-control" value="<?php echo htmlspecialchars($user['dob']); ?>" required>
+                </div>
 
-            <label for="mobile_number">Mobile Number:</label>
-            <input type="text" id="mobile_number" name="mobile_number" value="<?php echo htmlspecialchars($user['mobile_number']); ?>" required><br>
+                <div class="form-group col-md-4">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" class="form-control" required>
+                        <option value="Male" <?php if($user['gender'] == 'Male') echo 'selected'; ?>>Male</option>
+                        <option value="Female" <?php if($user['gender'] == 'Female') echo 'selected'; ?>>Female</option>
+                    </select>
+                </div>
 
-            <label for="tel_number">Telephone Number:</label>
-            <input type="text" id="tel_number" name="tel_number" value="<?php echo htmlspecialchars($user['tel_number']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="mobile_number">Mobile Number:</label>
+                    <input type="text" id="mobile_number" name="mobile_number" class="form-control" value="<?php echo htmlspecialchars($user['mobile_number']); ?>" required>
+                </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required><br>
+                <div class="form-group col-md-4">
+                    <label for="tel_number">Telephone Number:</label>
+                    <input type="text" id="tel_number" name="tel_number" class="form-control" value="<?php echo htmlspecialchars($user['tel_number']); ?>">
+                </div>
 
-            <label for="house_number">House Number:</label>
-            <input type="text" id="house_number" name="house_number" value="<?php echo htmlspecialchars($user['house_number']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                </div>
 
-            <label for="street">Street:</label>
-            <input type="text" id="street" name="street" value="<?php echo htmlspecialchars($user['street']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="house_number">House Number:</label>
+                    <input type="text" id="house_number" name="house_number" class="form-control" value="<?php echo htmlspecialchars($user['house_number']); ?>">
+                </div>
 
-            <label for="barangay">Barangay:</label>
-            <input type="text" id="barangay" name="barangay" value="<?php echo htmlspecialchars($user['barangay']); ?>"><br>
+                <div class="form-group col-md-4">
+                    <label for="street">Street:</label>
+                    <input type="text" id="street" name="street" class="form-control" value="<?php echo htmlspecialchars($user['street']); ?>">
+                </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br>
-            <label for="is_admin">Role:</label>
-            <select id="is_admin" name="is_admin" required>
-                <option value="0" <?php if($user['is_admin'] == 0) echo 'selected'; ?>>User</option>
-                <option value="1" <?php if($user['is_admin'] == 1) echo 'selected'; ?>>Admin</option>
-            </select><br>
-            <input type="submit" value="Update User">
+                <div class="form-group col-md-4">
+                    <label for="barangay">Barangay:</label>
+                    <input type="text" id="barangay" name="barangay" class="form-control" value="<?php echo htmlspecialchars($user['barangay']); ?>">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="is_admin">Role:</label>
+                    <select id="is_admin" name="is_admin" class="form-control" required>
+                        <option value="0" <?php if($user['is_admin'] == 0) echo 'selected'; ?>>User</option>
+                        <option value="1" <?php if($user['is_admin'] == 1) echo 'selected'; ?>>Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button-wrapper">
+                <a href="userscontent.php" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-update">Update User</button>
+            </div>
         </form>
     </div>
 </body>

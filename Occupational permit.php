@@ -212,7 +212,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newOrRenewalModal">Proceed</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Proceed</button>
                         </div>
                     </div>
                 </div>
@@ -403,10 +403,18 @@ include 'header.php';
     <script>
         // jQuery to trigger second modal when Proceed button is clicked
         $(document).ready(function() {
-            $('.proceedButton').click(function() {
-                $('#staticBackdrop').modal('hide');  // Hide the first modal
-                $('#newOrRenewalModal').modal('show');  // Show the second modal
-            });
+        // Show the second modal when the proceedButton is clicked
+        $('.proceedButton').click(function() {
+            $('#staticBackdrop').modal('hide');  // Hide the first modal
+            $('#newOrRenewalModal').modal('show');  // Show the second modal
         });
+
+        // Add a click event handler for the "Renewal Application" button
+        $('[data-bs-target="#renewalModal"]').click(function() {
+            $('#newOrRenewalModal').modal('hide');  // Hide the second modal
+            $('#renewalModal').modal('show');       // Show the third modal
+        });
+    });
+
     </script>
 </html>

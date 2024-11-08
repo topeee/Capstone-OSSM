@@ -212,7 +212,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Proceed</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newOrRenewalModal">Proceed</button>
                         </div>
                     </div>
                 </div>

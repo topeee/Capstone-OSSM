@@ -20,10 +20,10 @@
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="pwd app.css">
-    <link rel="stylesheet" href="footer.css">
     <link rel="icon" type="img/png" href="logo.png">
 
 
+    
     <style>
 
         /* Body background with an overlay */
@@ -212,7 +212,7 @@
                 gap: 10px;
             }
         }
-
+        
         /* Action column: Buttons will be aligned side by side */
         td.action-buttons {
             display: flex;
@@ -526,82 +526,86 @@
         }
 
 
-        /* Modal content styling */
+        /* Modal background overlay */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal content box */
         .modal-content {
-            background-color: #fff;
+            background-color: #ffffff;
+            margin: auto;
+            padding: 20px 30px;
             border-radius: 8px;
-            padding: 20px;
-            max-width: 600px; /* Max width for modal */
-            width: 100%; /* Ensure it takes up full width up to 600px */
-            margin: 0 auto; /* Center the modal horizontally */
-            display: flex; /* Flexbox layout */
-            align-items: center; /* Vertically center items */
-            justify-content: flex-start; /* Align content to the left */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Fix modal in the center of the screen */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Ensure it is centered both vertically and horizontally */
+            width: 50%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Close button style */
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #555;
+            text-decoration: none;
         }
 
         /* Modal header */
         .modal-content h3 {
-            text-align: left; /* Align heading to the left */
+            text-align: center;
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
         }
 
-        /* Modal content layout: Left (image) and Right (information) */
-        .modal-body {
-            display: flex; /* Use flexbox for side-by-side layout */
-            align-items: flex-start; /* Align items to the top */
-            width: 100%; /* Full width */
-        }
-
-        /* Image styling (on the left side) */
-        .modal-photo {
-            width: 150px; /* Set image size */
-            height: 150px; /* Make image square */
-            object-fit: cover;
-            margin-right: 20px; /* Space between image and text */
-            border-radius: 8px;
-        }
-
-        /* Right side content (text) */
-        .modal-text {
-            display: flex;
-            flex-direction: column; /* Stack text vertically */
-            justify-content: flex-start; /* Align text to the top */
-            flex-grow: 1; /* Allow text to take up remaining space */
-        }
-
-        /* Text styling for heading and paragraphs */
-        .modal-text h3 {
-            color: #3498db; /* Heading color */
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .modal-text p {
-            color: #555;
+        /* Line separator between items */
+        .modal-content p {
             font-size: 16px;
-            margin: 5px 0;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
         }
 
-        /* Icon styling (optional) */
+        /* Last item without a border */
+        .modal-content p:last-child {
+            border-bottom: none;
+        }
+
+        /* Icon styling */
         .modal-content .icon {
-            font-size: 120px; /* Icon size */
+            font-size: 120px; /* Extra large icon */
             color: #007bff;
             margin-bottom: 20px; /* Space between icon and text */
         }
 
-        /* Line separator between items */
-        .modal-content p {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-        }
 
+        /* Text styling */
+        .modal-content strong {
+            font-weight: 600;
+            color: #555;
+            margin-right: 8px;
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -609,111 +613,17 @@
                 width: 80%;
             }
         }
-
-        /* Barangay Official Cards styles */
-        .barangay-official-card {
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px;
-            width: calc(33% - 20px); /* Three cards per row */
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Vertically align items */
-            text-align: left; /* Align text to the left */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition for hover effect */
-            height: 300px; /* Fix height for the card */
-            position: relative;
-            overflow: hidden; /* Prevent content from overflowing */
-            border-left: 10px solid #3498db; /* Blue border, increased size */
-            border-top: 10px solid #3498db; /* Blue border, increased size */
-        }
-
-        .barangay-official-card:hover {
-            transform: scale(1.05); /* Zoom in effect */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-        }
-
-        .barangay-officials-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .barangay-official-card h3 {
-            font-weight: 900;
-            color: #3498db;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .barangay-official-card p {
-            color: #555;
-            font-size: 14px;
-            margin: 5px 0; /* Adjust margin for paragraphs */
-        }
-
-        /* Updated image styles to make the image even larger */
-        .official-photo {
-            width: 200px; /* Increased size */
-            height: 250px; /* Increased size */
-            object-fit: cover;
-            margin-right: 20px; /* Increased space between image and text */
-            border-radius: 8px; /* Keep rounded corners for the image */
-            transition: transform 0.3s ease-out; /* Smooth transition for image zoom */
-        }
-
-        /* Ensure text is aligned properly on the card */
-        .barangay-official-card .content {
-            display: flex;
-            flex-direction: column; /* Stack text vertically */
-            justify-content: space-between; /* Make the text take up remaining space */
-            flex-grow: 1; /* Allow text content to take up available space */
-        }
-
-        /* Zoom effect on image when card is hovered */
-        .barangay-official-card:hover .official-photo {
-            transform: scale(1.1); /* Zoom the image on hover */
-        }
-
-        .barangay-official-card .content h3 {
-            margin: 0; /* Remove margin for name */
-        }
-
-        .barangay-official-card .content p {
-            margin: 5px 0; /* Adjust margin for paragraphs */
-        }
-
-        .nav-link {
-            cursor: pointer;
-            padding: 10px;
-            color: white; /* White color for initial state */
-            text-decoration: none;
-        }
-
-
-        .nav-link.active {
-            color: #007bff; /* Change color of active link to blue */
-        }
-
-        .nav-link:hover {
-            color: #007bff; /* Color on hover for all links */
-        }
-
-
-
-
-
+        
     </style>
+    
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <img src="logo.png" alt="Barangay Logo" class="logo">
         <div class="nav-links">
-            <span class="nav-link" onclick="setActiveLink(this); showDashboard()">Dashboard</span>
-            <span class="nav-link" onclick="setActiveLink(this); showBarangayOfficial()">Barangay Official</span>
-            <span class="nav-link" onclick="setActiveLink(this); showBookAppointment()">Book Appointment</span>
+            <span class="nav-link" onclick="showDashboard()">Dashboard</span>
+            <span class="nav-link" onclick="showBookAppointment()">Book Appointment</span>
         </div>
     </nav>
 
@@ -737,46 +647,45 @@
                 <p id="finishedCount">0</p>
             </div>
         </div>
+    </div>
 
-        <br>
-         <!-- Appointment Details Table -->
-        <div class="appointment-details-container" id="appointmentDetails">
-            <h3 class="details-header">Appointment Details</h3>
+      <!-- Appointment Details Table -->
+    <div class="appointment-details-container" id="appointmentDetails">
+        <h3 class="details-header">Appointment Details</h3>
+        
+        <!-- Search Bar and Status Filter -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search here..." />
+            <button id="searchButton" class="search-btn">Search</button>
             
-            <!-- Search Bar and Status Filter -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search here..." />
-                <button id="searchButton" class="search-btn">Search</button>
-                
-                <!-- Status Filter Dropdown -->
-                <label for="status" style="color: skyblue; font-weight: 800;">Status</label>
-                <select id="statusFilter" class="status-filter" onchange="filterByStatus()">
-                    <option value="all">All</option>
-                    <option value="upcoming">Upcoming</option>
-                    <option value="today">Today</option>
-                </select>
-            </div>
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Full Name</th>
-                        <th class="email-column">Email</th>
-                        <th>Service</th>
-                        <th>Type of Document</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="appointmentTableBody">
-                    <!-- Dynamic rows go here -->
-                </tbody>
-            </table>
+            <!-- Status Filter Dropdown -->
+             <label for="status" style="color: skyblue; font-weight: 800;">Status</label>
+            <select id="statusFilter" class="status-filter" onchange="filterByStatus()">
+                <option value="all">All</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="today">Today</option>
+            </select>
         </div>
 
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th class="email-column">Email</th>
+                    <th>Service</th>
+                    <th>Type of Document</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentTableBody">
+                <!-- Dynamic rows go here -->
+            </tbody>
+        </table>
     </div>
+
 
     <!-- Appointment Booking Form -->
     <div class="content hidden" id="bookAppointmentContent">
@@ -818,7 +727,6 @@
         </div>
     </div>
     
-        
         <!-- Modal -->
     <div id="appointmentModal" class="modal">
         <div class="modal-content">
@@ -837,143 +745,8 @@
         </div>
     </div>
 
-    <footer>
-            <div class="container">
-                <div class="row row-cols-1 row-cols-lg-3">
-                    <ul class="list-inline my-2">
-                        <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>
-                    </ul>
-                    <div class="col">
-                        <ul class="list-inline my-2">
-                            <li class="list-inline-item me-4">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon">
-                                    <a href="https://www.facebook.com/sanmateorizalPIO" target="_blank">
-                                        <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <!-- Increased size for YouTube icon -->
-                            <li class="list-inline-item me-4">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon" >
-                                    <a href="https://www.youtube.com/@SanMateoRizal" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16" style="vertical-align: middle;">
-                                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="list-inline-item">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon">
-                                    <a href="https://www.sanmateo.gov.ph/?fbclid=IwY2xjawGa8FxleHRuA2FlbQIxMAABHV7oEXf9A30xAMK0rZkUq2u79JjY-rg8Nx1htqvExUJJk_Bm0eYPp6P6RA_aem_EAarsNJrWise3DgKGtmDTg" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
-                                          </svg>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>            
-        </footer>
 
-    
     <script>
-
-        // Function to handle active link styling
-        function setActiveLink(link) {
-            // Get all nav links
-            const links = document.querySelectorAll('.nav-link');
-
-            // Remove active class from all links
-            links.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Add active class to the clicked link
-            link.classList.add('active');
-        }
-
-
-
-        // Function to show barangay officials
-        function showBarangayOfficial() {
-            // Hide other sections (e.g., Dashboard and Appointment Book)
-            document.getElementById("dashboardContent").classList.add("hidden");
-            document.getElementById("bookAppointmentContent").classList.add("hidden");
-            document.getElementById("barangayOfficialContent").classList.remove("hidden");
-
-            // Simulating Barangay Official Data with image URLs
-            const barangayOfficials = [
-                { 
-                    name: "Juan Dela Cruz", 
-                    position: "Barangay Captain", 
-                    contact: "09123456789",
-                    image: "municipal.jpg"  // Image file path
-                },
-                { 
-                    name: "Maria Santos", 
-                    position: "Barangay Secretary", 
-                    contact: "09123456788",
-                    image: "municipal.jpg"  // Image file path
-                },
-                { 
-                    name: "Carlos Garcia", 
-                    position: "Barangay Treasurer", 
-                    contact: "09123456787",
-                    image: "municipal.jpg"  // Image file path
-                },
-                { 
-                    name: "Liza Aquino", 
-                    position: "Barangay Kagawad", 
-                    contact: "09123456786",
-                    image: "municipal.jpg"  // Image file path
-                },
-                { 
-                    name: "Miguel Reyes", 
-                    position: "Barangay Kagawad", 
-                    contact: "09123456785",
-                    image: "municipal.jpg"  // Image file path
-                },
-                { 
-                    name: "Ana Lopez", 
-                    position: "Barangay Kagawad", 
-                    contact: "09123456784",
-                    image: "municipal.jpg"  // Image file path
-                }
-            ];
-
-            // Get the container where the cards will be shown
-            const barangayOfficialContainer = document.querySelector("#barangayOfficialContent .barangay-officials-container");
-
-            // Clear previous content if there is any
-            barangayOfficialContainer.innerHTML = '';
-
-            // Loop through the barangayOfficials array and create cards dynamically
-            barangayOfficials.forEach(official => {
-                const card = `
-                    <div class="barangay-official-card">
-                        <img src="${official.image}" alt="${official.name}" class="official-photo">
-                        <div class="content">
-                            <div class="info">
-                                <h3>${official.name}</h3>
-                                <p>Position: ${official.position}</p>
-                                <p>Contact: ${official.contact}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                barangayOfficialContainer.innerHTML += card;
-            });
-        }
-
 
         // Filter the table rows based on the selected status
         function filterByStatus() {
@@ -997,6 +770,7 @@
                 }
             });
         }
+
         // Get references to the search input, button, and table rows
         const searchInput = document.getElementById('searchInput');
         const searchButton = document.getElementById('searchButton');
@@ -1113,16 +887,14 @@
         function showDashboard() {
             document.getElementById("dashboardContent").classList.remove("hidden");
             document.getElementById("bookAppointmentContent").classList.add("hidden");
-            document.getElementById("barangayOfficialContent").classList.add("hidden");
-            updateDashboard(); // Optional: if you want to update dashboard on view
+            updateDashboard();
         }
 
         function showBookAppointment() {
             document.getElementById("dashboardContent").classList.add("hidden");
             document.getElementById("bookAppointmentContent").classList.remove("hidden");
-            document.getElementById("barangayOfficialContent").classList.add("hidden");
+            document.getElementById("appointmentDetails").style.display = 'none';
         }
-
 
         // Map service codes to display names
         const serviceMapping = {
@@ -1259,6 +1031,7 @@
             updateDashboard(); // Update dashboard counts on load
             showAppointmentDetails('Upcoming Appointment'); // Automatically show upcoming appointments initially
         });
+
 
     </script>
 </body>

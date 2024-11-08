@@ -15,6 +15,7 @@
     <a href="#" data-content="services"><i class="fas fa-file-alt"></i> E-SERVICES</a>
     <a href="#" data-content="settings"><i class="fas fa-cogs"></i> Settings</a>
     <a href="#" data-content="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <a href="#" data-content="appointments"><i class="fas fa-calendar-alt"></i> Appointments</a>
 </div>
 
 

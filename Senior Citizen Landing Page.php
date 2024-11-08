@@ -13,7 +13,6 @@ include 'header.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
-    <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="icon" type="img/png" href="logo.png">
@@ -33,8 +32,6 @@ include 'header.php';
   justify-content: space-between;
   overflow-x: hidden;
 }
-
-
 
 .navbar-brand-logo {
   margin-right: 8px;

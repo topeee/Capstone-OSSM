@@ -31,11 +31,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 // $conn->close(); // Commented out to prevent closing the connection prematurely
+ include 'navbar.php'; 
 
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +44,42 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <title>Users Content</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+    body {
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+    @media (max-width: 768px) {
+        table thead {
+            display: none;
+        }
+        table, table tbody, table tr, table td {
+            display: block;
+            width: 100%;
+        }
+        table tr {
+            margin-bottom: 15px;
+        }
+        table td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+        table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+    }
+</style>
 <body>
-
 
 <h2>Users Section</h2>
 

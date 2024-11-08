@@ -371,39 +371,7 @@ body.dark-mode .logout:hover {
         </div>
     </div>
    
-    <div id="users-content" class="content-section" style="display: none;">
-     
-    <?php include 'userscontent.php'; ?>
-    <div id="services-content" class="content-section" style="display: none;">
-        <h2>E-Services Section</h2>
-        <div class="container-group">
-            <div class="container">
-                <i class="fas fa-file-upload"></i> Violation Management
-                <div class="number">5</div>
-            </div>
-            <div class="container">
-                <i class="fas fa-file-download"></i> Social Services
-                <div class="number">12</div>
-            </div>
-            <div class="container">
-                <i class="fas fa-check-circle"></i> Educational Support
-                <div class="number">8</div>
-            </div>
-            <div class="container">
-                <i class="fas fa-times-circle"></i> Economic & Investment Support
-                <div class="number">2</div>
-            </div>
-            <div class="container">
-                <i class="fas fa-sync"></i> Health Services
-                <div class="number">6</div>
-            </div>
-            <div class="container">
-                <i class="fas fa-info-circle"></i> Citizen ID
-                <div class="number">4</div>
-            </div>
-        </div>
-    </div>
-
+  
     <!-- Modal Structure -->
     <div id="serviceModal" class="modal">
         <div class="modal-content">

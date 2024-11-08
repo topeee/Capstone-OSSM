@@ -26,6 +26,8 @@ $stmt->close();
 $conn->close();
 ?>
 
+
+
 <!DOCTYPE html>
     <html>
     <head>
@@ -39,6 +41,7 @@ $conn->close();
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
       <link rel="stylesheet" href="bootstrap.min.css">
       <link rel="stylesheet" href="bootstrap.min.js">
+      <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
       <link rel="stylesheet" href="footer.css">
       <link rel="icon" type="img/png" href="logo.png">
@@ -58,44 +61,39 @@ $conn->close();
         text-align: left;
         }
 
-        .dropdown dd ul {
-        display: none;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 10px;
-        background-color: #ffffff;
-        position: absolute;
-        z-index: 1000;
-        width: 100%;
-        }
+.dropdown dd ul {
+  display: none;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
 
-        .mutliSelect ul {
-        list-style-type: none;
-        padding: 0;
-        }
+.mutliSelect ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-        .mutliSelect li {
-        padding: 5px;
-        border-bottom: 1px solid #e9ecef;
-        }
+.mutliSelect li {
+  padding: 5px;
+  border-bottom: 1px solid #e9ecef;
+}
 
-        .mutliSelect li:last-child {
-        border-bottom: none;
-        }
+.mutliSelect li:last-child {
+  border-bottom: none;
+}
 
-        .hida {
-        color: #6c757d;
-        }
-
-        footer,
-        footer * {
-        transform: scale(1) !important;
-        }
+.hida {
+  color: #6c757d;
+}
 
       </style>
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none;">
+      <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid" >
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">

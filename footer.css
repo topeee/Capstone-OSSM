@@ -57,7 +57,11 @@ footer {
     color: #ccc; /* lighter color for hover effect */
   }
   
-
+/* Prevent scaling of footer elements on zoom */
+footer,
+footer * {
+  transform: scale(1) !important;
+}
   
   /* For responsive design on smaller screens */
   @media (max-width: 768px) {

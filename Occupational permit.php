@@ -173,7 +173,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-success" id="proceedButton">Proceed</button>
+                            <button type="button" class="btn btn-success proceedButton">Proceed</button>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@ include 'header.php';
                             <h3 class="modal-title mx-auto" id="newOrRenewalModalLabel"><strong>CHOOSE APPLICATION TYPE:</strong></h3>
                         </div>
                         <div class="modal-body">
-                            <a href="Occupational permit(New).html" class="btn btn-primary w-100 mb-2">New Application</a>
+                            <a href="Occupational permit(New).php" class="btn btn-primary w-100 mb-2">New Application</a>
                             <button type="button" class="btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#renewalModal">Renewal Application</button>
                         </div>
                     </div>
@@ -212,7 +212,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" id="proceedButton" class="btn btn-success">Proceed</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Proceed</button>
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Validate</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Validate</button>
                         </div>
                     </div>
                 </div>
@@ -309,7 +309,7 @@ include 'header.php';
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <a href="Occupational permit(Representative).html" class="btn btn-success" id="proceedButton">Proceed</a>
+                        <a href="Occupational permit(Representative).php" class="btn btn-success proceedButton">Proceed</a>
                     </div>
                 </div>
             </div>
@@ -324,7 +324,7 @@ include 'header.php';
           <h4 class="card-title">Track your Application</h4>
           <p class="card-text">Already submitted your online Occupational Permit Application? <br>
             View the status of your application here:</p>
-            <a href="Track your Application.html" class="btn btn-primary w-25 h-25">Track your Application</a>
+            <a href="Track your Application.php" class="btn btn-primary w-25 h-25">Track your Application</a>
         </div>
     </div>
 
@@ -403,17 +403,10 @@ include 'header.php';
     <script>
         // jQuery to trigger second modal when Proceed button is clicked
         $(document).ready(function() {
-            $('#proceedButton').click(function() {
+            $('.proceedButton').click(function() {
                 $('#staticBackdrop').modal('hide');  // Hide the first modal
                 $('#newOrRenewalModal').modal('show');  // Show the second modal
             });
         });
-        
-        $(document).ready(function() {
-        $('#proceedButton').click(function() {
-            $('#staticBackdrop').modal('hide'); // Hide current modal
-            $('#RenewalModal').modal('show');   // Show the RenewalModal
-        });
-    });
     </script>
 </html>

@@ -22,7 +22,7 @@ $sql = "INSERT INTO SoloParentApplication (precinct, firstName, middleName, last
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully in SoloParentApplication table";
-    
+     
     // Get the last inserted ID
     $last_id = $conn->insert_id;
 

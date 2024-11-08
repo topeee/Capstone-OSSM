@@ -1,21 +1,29 @@
+
 <?php
 session_start();
 include 'header.php';
+include 'db_connection.php';
 
 // Function to generate a unique reference number
 function generateReferenceNumber($prefix = "REF", $length = 8) {
     $randomString = strtoupper(substr(md5(uniqid()), 0, $length));
     return $prefix . "-" . date("Ymd") . "-" . $randomString;
-    }
-    
-    // Generate the reference number
-    $referenceNumber = generateReferenceNumber();
-    
-    // Prepare an SQL statement to insert the reference number and application type
-    $sql = "INSERT INTO ReferenceNumbers (RefNumber, TypeOfApplication) VALUES (?, ?)";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $referenceNumber, $applicationType);
+}
+
+// Generate the reference number
+$referenceNumber = generateReferenceNumber();
+
+// Define the application type
+$applicationType = "Solo Parent"; // or fetch it from a form input
+
+// Prepare an SQL statement to insert the reference number and application type
+$sql = "INSERT INTO ReferenceNumbers (RefNumber, TypeOfApplication) VALUES (?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $referenceNumber, $applicationType);
+$stmt->execute(); // Execute the prepared statement
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +114,6 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
 
       <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
-        
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -150,8 +157,7 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
     
             <!-- Main form -->
             <div class="col-md-9">
-                <!-- Basic Information Section -->
-                 <tr id="summaryReference"><td><strong>Reference Number:</strong>
+                <!-- Basic Information Section --><tr id="summaryReference"><td><strong>Reference Number:</strong>
                  <?php echo $referenceNumber;?>
                 </td></tr>
                 <div class="form-section" id="basic-information-section">
@@ -251,10 +257,12 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
                         </div>
+                    </form>
                 </div>
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
+                    <form>
                         <h4>Sectoral Information</h4>
                         <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                         <div class="row mb-3">
@@ -393,9 +401,11 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
                                 </div>
                             </div>
                         </div>
+                    </form>
                 </div>
     
-                <div class="form-section" id="other-information" style="display: none;">  
+                <div class="form-section" id="other-information" style="display: none;">
+                    <form>    
                         <h4>Other Information</h4>
                         <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
                         <div class="row mb-3">
@@ -490,10 +500,12 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
                                 <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
                             </div>
                         </div>
+                    </form>
                 </div>
                 
                     <!-- Family Composition Section -->
                     <div class="form-section" id="familyComposition" style="display: none;">
+                        <form>    
                             <h4>Family Composition</h4>
                                 <!-- Input fields for a new family member -->
                                 <div class="row">
@@ -548,8 +560,6 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
                 <div class="form-section" id="section4" style="display: none;">
                     <h4>User Summary</h4>
                     <table class="table table-bordered">
-                     </tr>   
-                    
                         <thead>
                             <tr>
                                 <th>Category</th>
@@ -703,20 +713,13 @@ function generateReferenceNumber($prefix = "REF", $length = 8) {
 
         // Populate the summary section with the values from the form
         function populateSummary() {
-            // Store reference number in localStorage
-    document.addEventListener("DOMContentLoaded", function() {
-        let referenceNumber = "<?php echo $referenceNumber; ?>";
-        document.getElementById('summaryReference').innerText = referenceNumber;
-        localStorage.setItem('summaryReference', referenceNumber);
-    });
-
             // Basic Information
                 document.getElementById('summaryFirstName').innerText = getValue('firstName');
                 document.getElementById('summaryMiddleName').innerText = getValue('middleName');
                 document.getElementById('summaryLastName').innerText = getValue('lastName');
                 localStorage.setItem('summaryFirstName', document.getElementById('summaryFirstName').innerText);
                 localStorage.setItem('summaryMiddleName', document.getElementById('summaryMiddleName').innerText);
-                localStorage.setItem('summaryLastName', document.getElementById('summaryLastName').innerText);   
+                localStorage.setItem('summaryLastName', document.getElementById('summaryLastName').innerText);    
 
             document.getElementById('summaryCivilStatus').innerText = getValue('civilstatus');
             document.getElementById('summaryGender').innerText = getValue('gender');
@@ -1091,9 +1094,8 @@ function saveFamilyData() {
         // Change the Next button text to "Submit" on the last section
         const isLastSection = currentSection === sections.length - 1;
         $("#next-btn").text(isLastSection ? "Submit" : "Next");
-
-
     }
+
     // Function to update the progress bar
     function updateProgress() {
     $(".progress-item").removeClass("active");

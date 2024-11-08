@@ -14,10 +14,10 @@ if (isset($_POST['export_excel'])) {
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Users');
 
-    $header = ['ID', 'First Name', 'Last Name', 'Middle Name', 'Suffix', 'DOB', 'Gender', 'Mobile Number', 'Tel Number', 'Email', 'House Number', 'Street', 'Barangay'];
+    $header = ['ID', 'First Name', 'Last Name', 'Middle Name', 'Suffix', 'DOB', 'Gender', 'Mobile Number', 'Tel Number', 'Email', 'House Number', 'Street', 'Barangay', 'Role'];
     $sheet->fromArray($header, NULL, 'A1');
 
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay FROM users";
+    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_role FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $rowIndex = 2;
@@ -36,10 +36,10 @@ if (isset($_POST['export_pdf'])) {
     $html = '<h1>Users</h1>';
     $html .= '<table border="1" style="width:100%;border-collapse:collapse;">';
     $html .= '<thead><tr>';
-    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th>';
+    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
     $html .= '</tr></thead><tbody>';
-
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay FROM users";
+    $html .= '<th>Role</th>';
+    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -57,10 +57,11 @@ if (isset($_POST['export_pdf'])) {
             $html .= '<td>' . $row['house_number'] . '</td>';
             $html .= '<td>' . $row['street'] . '</td>';
             $html .= '<td>' . $row['barangay'] . '</td>';
+            $html .= '<td>' . $row['role'] . '</td>';
             $html .= '</tr>';
         }
     } else {
-        $html .= '<tr><td colspan="13">No users found</td></tr>';
+        $html .= '<tr><td colspan="14">No users found</td></tr>';
     }
     $html .= '</tbody></table>';
 
@@ -70,7 +71,7 @@ if (isset($_POST['export_pdf'])) {
 }
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT id, name, email FROM users"; // Adjust the table and column names as needed
+$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users"; // Adjust the table and column names as needed
 $result = $conn->query($sql);
 
 // Get user ID from request
@@ -81,11 +82,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
     $stmt->bind_param("i", $user_id);
 
-    if ($stmt->execute()) {           
-        $_SESSION['message'] = "Record deleted successfully";
-    } else {
-        $_SESSION['message'] = "Error deleting record: {$stmt->error}";
-    }
+    $_SESSION['message'] = $stmt->execute() ? "Record deleted successfully" : "Error deleting record: {$stmt->error}";
 
     $stmt->close();  
     header("Location: userscontent.php");
@@ -132,32 +129,32 @@ if (isset($_SESSION['message'])) {
             <th scope="col">House Number</th>
             <th scope="col">Street</th>
             <th scope="col">Barangay</th>
+            <th scope="col">Role</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay FROM users";
-        $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<th scope='row'>" . $row["id"] . "</th>";
-                echo "<td>" . $row["first_name"] . "</td>";
-                echo "<td>" . $row["middle_name"] . "</td>";
-                echo "<td>" . $row["last_name"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . $row["suffix"] . "</td>";
-                echo "<td>" . $row["dob"] . "</td>";
-                echo "<td>" . $row["gender"] . "</td>";
-                echo "<td>" . $row["mobile_number"] . "</td>";
-                echo "<td>" . $row["tel_number"] . "</td>";
-                echo "<td>" . $row["house_number"] . "</td>";
-                echo "<td>" . $row["street"] . "</td>";
-                echo "<td>" . $row["barangay"] . "</td>";
-                echo "<td><a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a> ";
-                echo "<a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a></td>";
-                echo "</tr>";
+            echo "<tr>";
+            echo "<th scope='row'>" . $row["id"] . "</th>";
+            echo "<td>" . $row["first_name"] . "</td>";
+            echo "<td>" . $row["middle_name"] . "</td>";
+            echo "<td>" . $row["last_name"] . "</td>";
+            echo "<td>" . $row["email"] . "</td>";
+            echo "<td>" . $row["suffix"] . "</td>";
+            echo "<td>" . $row["dob"] . "</td>";
+            echo "<td>" . $row["gender"] . "</td>";
+            echo "<td>" . $row["mobile_number"] . "</td>";
+            echo "<td>" . $row["tel_number"] . "</td>";
+            echo "<td>" . $row["house_number"] . "</td>";
+            echo "<td>" . $row["street"] . "</td>";
+            echo "<td>" . $row["barangay"] . "</td>";
+            echo "<td>" . ($row["is_admin"] == 1 ? 'Admin' : 'User') . "</td>";
+            echo "<td><a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a> ";
+            echo "<a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a></td>";
+            echo "</tr>";
             }
         } else {
             echo "<tr><td colspan='14'>No users found</td></tr>";

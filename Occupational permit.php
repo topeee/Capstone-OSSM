@@ -401,20 +401,24 @@ include 'header.php';
     </footer>
 
     <script>
-        // jQuery to trigger second modal when Proceed button is clicked
-        $(document).ready(function() {
-        // Show the second modal when the proceedButton is clicked
-        $('.proceedButton').click(function() {
-            $('#staticBackdrop').modal('hide');  // Hide the first modal
-            $('#newOrRenewalModal').modal('show');  // Show the second modal
-        });
-
-        // Add a click event handler for the "Renewal Application" button
-        $('[data-bs-target="#renewalModal"]').click(function() {
-            $('#newOrRenewalModal').modal('hide');  // Hide the second modal
-            $('#renewalModal').modal('show');       // Show the third modal
-        });
+$(document).ready(function() {
+    // Show "CHOOSE APPLICATION TYPE" modal when 'Proceed' is clicked in "Requirement List" modal
+    $('#showNewOrRenewalModal').on('click', function() {
+        $('#staticBackdrop').modal('hide');
+        $('#newOrRenewalModal').modal('show');
     });
 
+    // Show "Renewal Application" modal when 'Renewal Application' button is clicked in "CHOOSE APPLICATION TYPE" modal
+    $('#newOrRenewalModal').on('click', '[data-bs-target="#renewalModal"]', function() {
+        $('#newOrRenewalModal').modal('hide');
+        $('#renewalModal').modal('show');
+    });
+
+    // Show "RENEWAL APPLICATION" modal when 'Proceed' is clicked in "Renewal Application" modal
+    $('#renewalModal').on('click', '.btn-success', function() {
+        $('#renewalModal').modal('hide');
+        $('#RenewalModal').modal('show');
+    });
+});
     </script>
 </html>

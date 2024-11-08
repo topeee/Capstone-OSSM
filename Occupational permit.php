@@ -187,7 +187,7 @@
                 <h3 class="modal-title mx-auto" id="newOrRenewalModalLabel"><strong>CHOOSE APPLICATION TYPE:</strong></h3>
             </div>
             <div class="modal-body">
-                <a href="Occupational permit(New).html" class="btn btn-primary w-100 mb-2">New Application</a>
+                <a href="Occupational permit(New).php" class="btn btn-primary w-100 mb-2">New Application</a>
                 <button type="button" class="btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#renewalModal">Renewal Application</button>
             </div>
         </div>
@@ -330,7 +330,7 @@
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <a href="Occupational permit(Representative).html" class="btn btn-success" id="proceedButton">Proceed</a>
+                        <a href="Occupational permit(Representative).php" class="btn btn-success" id="proceedButton">Proceed</a>
                     </div>
                 </div>
             </div>

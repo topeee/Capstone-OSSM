@@ -34,7 +34,9 @@ include 'header.php';
   overflow-x: hidden;
 }
 
-
+footer {
+    position: fixed; /* fixed to the bottom of the page */
+}
 
 .navbar-brand-logo {
   margin-right: 8px;

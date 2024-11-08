@@ -409,11 +409,5 @@ include 'header.php';
             });
         });
 
-        $(document).ready(function() {
-    $('#proceedButton').click(function() {
-            $('#renewalModal').modal('hide');  // Hide the current modal (renewalModal)
-            $('#RenewalModal').modal('show');  // Show RenewalModal after clicking proceed
-        });
-    });
     </script>
 </html>

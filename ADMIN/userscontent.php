@@ -37,54 +37,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Content</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="admin.css">
 
 </head>
-<style>
-    body {
-        padding: 20px;
-    }
-    table {
-        width: 100%;
-        margin-top: 20px;
-    }
-    @media (max-width: 768px) {
-        table thead {
-            display: none;
-        }
-        table, table tbody, table tr, table td {
-            display: block;
-            width: 100%;
-        }
-        table tr {
-            margin-bottom: 15px;
-        }
-        table td {
-            text-align: right;
-            padding-left: 50%;
-            position: relative;
-        }
-        table td::before {
-            content: attr(data-label);
-            position: absolute;
-            left: 0;
-            width: 50%;
-            padding-left: 15px;
-            font-weight: bold;
-            text-align: left;
-        }
-    }
-</style>
+
 <body>
 
 <h2>Users Section</h2>
-<?php
-include 'navbar.php';
-?>
+
 <table class="table table-striped">
     <thead>
         <tr>

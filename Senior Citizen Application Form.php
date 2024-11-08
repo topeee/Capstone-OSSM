@@ -22,6 +22,12 @@ include 'header.php';
       <link rel="icon" type="img/png" href="logo.png">
       <title>Senior Citizen Application Form</title>
 
+    <style>
+        footer {
+        position: fixed; /* fixed to the bottom of the page */
+    }
+    </style>
+
     </head>
     <body>
 

@@ -43,7 +43,7 @@ include 'header.php';
 
       <br>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+    <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->

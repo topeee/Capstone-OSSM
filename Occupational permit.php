@@ -264,7 +264,7 @@ include 'header.php';
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal">Validate</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#RenewalModal">Validate</button>
                         </div>
                     </div>
                 </div>
@@ -408,14 +408,6 @@ include 'header.php';
                 $('#newOrRenewalModal').modal('show');  // Show the second modal
             });
         });
-
-        $(document).ready(function() {
-    $('#showRenewalModal').click(function() {
-        $('#staticBackdrop').modal('hide');  // Hide the current modal
-        $('#renewalModal').modal('show');    // Show the renewalModal
-        $('#renewalModalLabel').text('Renewal'); // Set the label for the renewalModal
-        });
-    });
-
+        
     </script>
 </html>

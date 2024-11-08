@@ -706,6 +706,8 @@
 
     </style>
 </head>
+
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">

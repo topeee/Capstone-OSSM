@@ -17,7 +17,6 @@ include 'db_connection.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
 
 <style>
 body { 
@@ -341,7 +340,12 @@ body.dark-mode .logout:hover {
 </style>
 <?php include 'navbar.php'; ?>
 
-<div class="main-content">
+
+<body>
+
+
+
+<div class="mai</div>n-content">
     <h1>Admin Dashboard</h1>
     
     <!-- Content Sections -->
@@ -370,10 +374,10 @@ body.dark-mode .logout:hover {
             <canvas id="applicationChart"></canvas>
         </div>
     </div>
-   
-    <div id="users-content" class="content-section" style="display: none;">
-     
-    <?php include 'userscontent.php'; ?>
+
+
+</div>
+
     <div id="services-content" class="content-section" style="display: none;">
         <h2>E-Services Section</h2>
         <div class="container-group">
@@ -438,27 +442,7 @@ body.dark-mode .logout:hover {
 </div>
 
 <script>
-        // Sidebar navigation functionality
-        document.querySelectorAll('.sidenav a').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default anchor behavior
-            
-            // Hide all content sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Get the content to display based on data-content attribute
-            const contentId = this.getAttribute('data-content');
-            const activeContent = document.getElementById(`${contentId}-content`);
-
-            // Show the corresponding content section
-            if (activeContent) {
-                activeContent.style.display = 'block';
-            }
-        });
-    });
-
+     
     // Initialize the chart
     const ctx = document.getElementById('applicationChart').getContext('2d');
     const applicationChart = new Chart(ctx, {

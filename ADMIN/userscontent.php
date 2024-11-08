@@ -33,19 +33,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 // $conn->close(); // Commented out to prevent closing the connection prematurely
 
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Content</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
 
+</head>
+
+<body>
 
 <h2>Users Section</h2>
 
@@ -99,4 +99,3 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         ?>
     </tbody>
 </table>
-echo "<td><a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a></td>";

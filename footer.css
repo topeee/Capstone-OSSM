@@ -3,7 +3,6 @@ footer {
     color: white;
     padding: 10px 0; /* Adjust padding for footer height */
     text-align: center;
-    position: fixed; /* fixed to the bottom of the page */
     bottom: 0;
     width: 100%; /* Ensure it spans the entire width */
     z-index: 9999; /* Keep it above other content if necessary */

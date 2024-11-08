@@ -34,6 +34,8 @@ include 'header.php';
   overflow-x: hidden;
 }
 
+
+
 .navbar-brand-logo {
   margin-right: 8px;
 }

@@ -308,50 +308,6 @@
           font-size: 1.7rem;
         }
       }
-
-    .stat-cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-right: 20px;
-    overflow-x: auto;
-}
-
-.stat-card {
-    background-color: #2196F3;
-    color: #FFFFFF;
-    border-radius: 10px;
-    padding: 15px 20px; /* Adjust padding as needed */
-    display: flex;
-    width: 320px; /* Adjust width as needed */
-    height: 95px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.stat-card .icon {
-    color: #00E5FF;
-    font-size: 28px; /* Adjust size as needed */
-    margin-right: 15px; /* Space between icon and text */
-}
-
-.stat-card .text-container {
-    display: flex;
-    flex-direction: column; /* Stack title and value vertically */
-}
-
-.stat-card .title {
-    font-weight: bold;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
-}
-
-.stat-card .value {
-    font-weight: bold;
-    font-size: 24px;
-    color: #FFFFFF; /* White color for the main value */
-}
-
-
     </style>
   </head>
   <body>
@@ -383,7 +339,7 @@
           <li class="menu-item">
             <a class="menu-link" href="#">
               <i class="fas fa-solid fa-table"></i>
-              <span class="menu-link-text">Dashboard Overview</span>
+              <span class="menu-link-text">Dashboard</span>
             </a>
           </li>
           <li class="menu-item">
@@ -434,41 +390,47 @@
       <div class="dashboard-content">
         <section class="overview">
           <h2>Overview</h2>
-          <div class="stat-cards-container">
-            <div class="stat-card">
-                <div class="icon">👥</div>
-                <div class="text-container">
-                    <div class="title">Total Users</div>
-                    <div class="value">15,687</div>
-                </div>
+          <div class="overview-cards">
+            <div class="card">
+              <i class="fas fa-solid fa-paw"></i>
+              <div class="card-content">
+                <h3>Pets Registered</h3>
+                <p>50</p>
+              </div>
             </div>
-        
-            <div class="stat-card">
-                <div class="icon">🛍️</div>
-                <div class="text-container">
-                    <div class="title">Total Sales</div>
-                    <div class="value">$124,563</div>
-                </div>
+            <div class="card">
+              <i class="fas fa-solid fa-user"></i>
+              <div class="card-content">
+                <h3>Customers</h3>
+                <p>200</p>
+              </div>
             </div>
-        
-            <div class="stat-card">
-                <div class="icon">📈</div>
-                <div class="text-container">
-                    <div class="title">Revenue</div>
-                    <div class="value">$67,895</div>
-                </div>
+            <div class="card">
+              <i class="fas fa-regular fa-stethoscope"></i>
+              <div class="card-content">
+                <h3>Vets Available</h3>
+                <p>10</p>
+              </div>
             </div>
-        
-            <div class="stat-card">
-                <div class="icon">📊</div>
-                <div class="text-container">
-                    <div class="title">Growth</div>
-                    <div class="value">+24.5%</div>
-                </div>
-            </div>
-        </div> 
+          </div>
         </section>
 
+        <section class="recent-activity">
+          <h2>Recent Activity</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <p><strong>John Doe</strong> registered a new pet: Bella</p>
+            </div>
+            <div class="activity-item">
+              <p>
+                <strong>Jane Smith</strong> made an appointment with Dr. Rachel
+              </p>
+            </div>
+            <div class="activity-item">
+              <p><strong>Mark Johnson</strong> updated his pet's details</p>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 

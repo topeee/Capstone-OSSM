@@ -23,7 +23,7 @@ include 'header.php';
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none;">
+      <nav class="navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.php">
             <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
@@ -45,7 +45,7 @@ include 'header.php';
         </div>
       </nav>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);" >
+    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->

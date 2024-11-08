@@ -17,11 +17,34 @@ include 'header.php';
       <link rel="stylesheet" href="bootstrap.min.js">
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
+        <link rel="stylesheet" href="footer.css">
       <link rel="icon" type="img/png" href="logo.png">
       <title>Senior Citizen Application Form</title>
 
     </head>
     <body>
+      <nav class="navbar navbar-dark navbar-expand-lg" style="display: none;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.php">
+            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
+            <span class="brand-name">OSSM</span>
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="username">Hello, Username</span>
+            <div class="dropdown-center ms-3">
+              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
     <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
@@ -156,7 +179,7 @@ include 'header.php';
                 </div>
     
                 <!-- Sectoral Information Section -->
-                    <div class="form-section" id="sectoral-section" style="display: none;">
+                    <div class="form-section" id="sectoral-section">
                       <form>
                           <h4>Sectoral Information</h4>
                           

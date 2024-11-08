@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="pwd app.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="icon" type="img/png" href="logo.png">
 
         <!-- Bootstrap CSS -->
@@ -23,7 +24,7 @@
     <!-- Bootstrap JS Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <title>Document</title>
+    <title>Occupation Landing Page</title>
 
     <style>
         .custom-shadow {

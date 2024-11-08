@@ -4,10 +4,7 @@ include 'db_connection.php';
 
 
 
-//USERS TABLE
-// Fetch users from database
-$sql = "SELECT id, name, email FROM users"; // Adjust the table and column names as needed
-$result = $conn->query($sql);
+
 
 ?>
 <!DOCTYPE html>
@@ -342,15 +339,7 @@ body.dark-mode .logout:hover {
 
 
 </style>
-<div class="sidenav">
-    <img src="logo.png" alt="Logo">
-    <h2>Admin Panel</h2>
-    <a href="#" data-content="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="#" data-content="users"><i class="fas fa-users"></i> Users</a>
-    <a href="#" data-content="services"><i class="fas fa-file-alt"></i> E-SERVICES</a>
-    <a href="#" data-content="settings"><i class="fas fa-cogs"></i> Settings</a>
-    <a href="#" data-content="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</div>
+<?php include 'navbar.php'; ?>
 
 <div class="main-content">
     <h1>Admin Dashboard</h1>
@@ -383,61 +372,8 @@ body.dark-mode .logout:hover {
     </div>
    
     <div id="users-content" class="content-section" style="display: none;">
-        <h2>Users Section</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Middle Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Suffix</th>
-                    <th scope="col">DOB</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Mobile Number</th>
-                    <th scope="col">Tel Number</th>
-                    <th scope="col">House Number</th>
-                    <th scope="col">Street</th>
-                    <th scope="col">Barangay</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, password FROM users";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<th scope='row'>" . $row["id"] . "</th>";
-                        echo "<td>" . $row["first_name"] . "</td>";
-                        echo "<td>" . $row["middle_name"] . "</td>";
-                        echo "<td>" . $row["last_name"] . "</td>";
-                        echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . $row["suffix"] . "</td>";
-                echo "<td>" . $row["dob"] . "</td>";
-                echo "<td>" . $row["gender"] . "</td>";
-                echo "<td>" . $row["mobile_number"] . "</td>";
-                echo "<td>" . $row["tel_number"] . "</td>";
-                echo "<td>" . $row["house_number"] . "</td>";
-                echo "<td>" . $row["street"] . "</td>";
-                echo "<td>" . $row["barangay"] . "</td>";
-                        echo "<td>
-                                <button class='btn btn-primary btn-sm'>Edit</button>
-                                <button class='btn btn-danger btn-sm'>Delete</button>
-                              </td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>No users found</td></tr>";
-                }
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
-    </div>
-
+     
+    <?php include 'userscontent.php'; ?>
     <div id="services-content" class="content-section" style="display: none;">
         <h2>E-Services Section</h2>
         <div class="container-group">

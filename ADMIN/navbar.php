@@ -17,10 +17,7 @@
     <a href="#" data-content="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 
-<div class="main">
-    <h2>Side Navigation Example</h2>
-    <p>This is a basic example of a side navigation bar.</p>
-</div>
+
 
 </body>
 </html>

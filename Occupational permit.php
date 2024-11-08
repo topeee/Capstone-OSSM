@@ -409,5 +409,13 @@ include 'header.php';
             });
         });
 
+        $(document).ready(function() {
+    $('#showRenewalModal').click(function() {
+        $('#staticBackdrop').modal('hide');  // Hide the current modal
+        $('#renewalModal').modal('show');    // Show the renewalModal
+        $('#renewalModalLabel').text('Renewal'); // Set the label for the renewalModal
+        });
+    });
+
     </script>
 </html>

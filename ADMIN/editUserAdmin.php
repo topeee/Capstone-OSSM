@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $street = htmlspecialchars($_POST['street']);
     $barangay = htmlspecialchars($_POST['barangay']);
     $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
+    $is_admin = intval($_POST['is_admin']);
 
     // Update user data using prepared statements
     $stmt = $conn->prepare("UPDATE users SET 
@@ -54,15 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         house_number = ?, 
         street = ?, 
         barangay = ?, 
-        password = ? 
+        password = ?, 
+        is_admin = ? 
         WHERE id = ?");
-    $stmt->bind_param("sssssssssssssi", $first_name, $last_name, $middle_name, $suffix, $dob, $gender, $mobile_number, $tel_number, $email, $house_number, $street, $barangay, $password, $user_id);
+    $stmt->bind_param("ssssssssssssssi", $first_name, $last_name, $middle_name, $suffix, $dob, $gender, $mobile_number, $tel_number, $email, $house_number, $street, $barangay, $password, $is_admin, $user_id);
 
     if ($stmt->execute()) {
         echo "<script>alert('User updated successfully.'); window.location.href='userscontent.php';</script>";
         exit;
     } else {
-        $_SESSION['status'] = "Error updating user: " . $stmt->error;
+        $_SESSION['status'] = "Error updating user: {$stmt->error}";
     }
     $stmt->close();
 }
@@ -180,7 +182,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password"><br>
-
+            <label for="is_admin">Role:</label>
+            <select id="is_admin" name="is_admin" required>
+                <option value="0" <?php if($user['is_admin'] == 0) echo 'selected'; ?>>User</option>
+                <option value="1" <?php if($user['is_admin'] == 1) echo 'selected'; ?>>Admin</option>
+            </select><br>
             <input type="submit" value="Update User">
         </form>
     </div>

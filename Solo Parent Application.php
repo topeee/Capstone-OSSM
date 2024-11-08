@@ -87,6 +87,11 @@ $conn->close();
         color: #6c757d;
         }
 
+        footer,
+        footer * {
+        transform: scale(1) !important;
+        }
+
       </style>
     </head>
     <body>

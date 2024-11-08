@@ -92,26 +92,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 // $conn->close(); // Commented out to prevent closing the connection prematurely
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users Content</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-</head>
-<body>
-<h2>Users Section</h2>
 
-<?php
-if (isset($_SESSION['message'])) {
-    echo '<div class="alert alert-info">' . $_SESSION['message'] . '</div>';
-    unset($_SESSION['message']);
-}
+    <?php 
+    include('dashboard_sidebar_start.php');
 ?>
+
+
+
 
 <table id="usersTable" class="display">
     <thead>
@@ -167,11 +158,13 @@ $(document).ready(function() {
     $('#usersTable').DataTable();
 });
 </script>
-</body>
-</html>
+
 
 <!-- Removed duplicate Download Excel button -->
 <form method="post">
     <button type="submit" name="export_excel" class="btn btn-success">Download Excel</button>
     <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
 </form>
+<?php 
+    include('dashboard_sidebar_end.php');
+?>

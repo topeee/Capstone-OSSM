@@ -212,53 +212,6 @@
             }
         }
 
-       
-
-        /* Style for delete button */
-        .delete-btn {
-            background-color: #e74c3c; /* Red background */
-            color: #fff; /* White text */
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .delete-btn:hover {
-            background-color: #c0392b; /* Darker red on hover */
-        }
-
-        /* Button container styles */
-        td button {
-            margin-right: 10px; /* Space between buttons */
-            padding: 5px 10px;
-            cursor: pointer;
-            display: inline-block; /* Ensure buttons are inline */
-        }
-
-        /* Style for the View button */
-        .view-btn {
-            background-color: #4CAF50; /* Green for view */
-            color: white;
-        }
-
-        /* Style for the Delete button */
-        .delete-btn {
-            background-color: #f44336; /* Red for delete */
-            color: white;
-        }
-
-        /* Hover effects for buttons */
-        .view-btn:hover {
-            background-color: #45a049;
-        }
-
-        .delete-btn:hover {
-            background-color: #e53935;
-        }
-
         /* Action column: Buttons will be aligned side by side */
         td.action-buttons {
             display: flex;
@@ -268,31 +221,35 @@
 
         /* Style for the View button */
         .view-btn {
-            background-color: #4CAF50; /* Green for view */
+            background-color: #3498db; /* Blue for view */
             color: white;
-            padding: 5px 10px;
+            padding: 12px 15px; /* Increased padding */
             cursor: pointer;
-            width: 45%; /* Adjust width */
+            width: 60%; /* Increased width */
             font-size: 12px;
+            border-radius: 5px; /* Rounded corners */
         }
+
+        
+        /* Hover effects for buttons */
+        .view-btn:hover {
+            background-color: darkblue;
+        }
+
 
         /* Style for the Delete button */
         .delete-btn {
             background-color: #f44336; /* Red for delete */
             color: white;
-            padding: 5px 10px;
+            padding: 12px 15px;
             cursor: pointer;
-            width: 45%; /* Adjust width */
+            width: 60%; /* Adjust width */
             font-size: 12px;
-        }
-
-        /* Hover effects for buttons */
-        .view-btn:hover {
-            background-color: #45a049;
+            border-radius: 5px;
         }
 
         .delete-btn:hover {
-            background-color: #e53935;
+            background-color: #c0392b;
         }
 
         /* Adjust table column widths */
@@ -377,22 +334,6 @@
         /* Add styles for the Status column */
         .table th:nth-child(7), .table td:nth-child(7) {
             text-align: center;
-        }
-
-        /* Delete button style */
-        .delete-btn {
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .delete-btn:hover {
-            background-color: #c0392b;
         }
 
         /* Appointment Booking Form */
@@ -490,7 +431,6 @@
         }
 
         .card {
-            color: white;
             padding: 30px;
             margin: 10px;
             border-radius: 8px;
@@ -509,18 +449,22 @@
         /* Unique Colors for Each Card */
         .card.upcoming {
             background-color: #3498db; /* Blue for Upcoming */
+            color: white;
         }
 
         .card.total {
-            background-color: #e67e22; /* Orange for Total */
+            background-color: white; /* Orange for Total */
+            color: black;
         }
 
         .card.today {
-            background-color: #27ae60; /* Green for Today */
+            background-color: #3498db; /* Green for Today */
+            color: white;
         }
 
         .card.finished {
-            background-color: #9b59b6; /* Purple for Finished */
+            background-color: white; /* Purple for Finished */
+            color: black;
         }
 
         .appointment-details-container {
@@ -554,7 +498,7 @@
         .search-btn {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #4CAF50;
+            background-color: blue;
             color: white;
             border: none;
             border-radius: 5px;
@@ -563,7 +507,7 @@
 
         /* Search button hover effect */
         .search-btn:hover {
-            background-color: #45a049;
+            background-color: darkblue;
         }
 
         /* Status filter dropdown styling */
@@ -581,86 +525,82 @@
         }
 
 
-        /* Modal background overlay */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
-            padding-top: 60px;
-        }
-
-        /* Modal content box */
+        /* Modal content styling */
         .modal-content {
-            background-color: #ffffff;
-            margin: auto;
-            padding: 20px 30px;
+            background-color: #fff;
             border-radius: 8px;
-            width: 50%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Close button style */
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #555;
-            text-decoration: none;
+            padding: 20px;
+            max-width: 600px; /* Max width for modal */
+            width: 100%; /* Ensure it takes up full width up to 600px */
+            margin: 0 auto; /* Center the modal horizontally */
+            display: flex; /* Flexbox layout */
+            align-items: center; /* Vertically center items */
+            justify-content: flex-start; /* Align content to the left */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Fix modal in the center of the screen */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Ensure it is centered both vertically and horizontally */
         }
 
         /* Modal header */
         .modal-content h3 {
-            text-align: center;
+            text-align: left; /* Align heading to the left */
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
         }
 
-        /* Line separator between items */
-        .modal-content p {
-            font-size: 16px;
-            margin: 10px 0;
+        /* Modal content layout: Left (image) and Right (information) */
+        .modal-body {
+            display: flex; /* Use flexbox for side-by-side layout */
+            align-items: flex-start; /* Align items to the top */
+            width: 100%; /* Full width */
+        }
+
+        /* Image styling (on the left side) */
+        .modal-photo {
+            width: 150px; /* Set image size */
+            height: 150px; /* Make image square */
+            object-fit: cover;
+            margin-right: 20px; /* Space between image and text */
+            border-radius: 8px;
+        }
+
+        /* Right side content (text) */
+        .modal-text {
             display: flex;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
+            flex-direction: column; /* Stack text vertically */
+            justify-content: flex-start; /* Align text to the top */
+            flex-grow: 1; /* Allow text to take up remaining space */
         }
 
-        /* Last item without a border */
-        .modal-content p:last-child {
-            border-bottom: none;
+        /* Text styling for heading and paragraphs */
+        .modal-text h3 {
+            color: #3498db; /* Heading color */
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
-        /* Icon styling */
+        .modal-text p {
+            color: #555;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        /* Icon styling (optional) */
         .modal-content .icon {
-            font-size: 120px; /* Extra large icon */
+            font-size: 120px; /* Icon size */
             color: #007bff;
             margin-bottom: 20px; /* Space between icon and text */
         }
 
-
-        /* Text styling */
-        .modal-content strong {
-            font-weight: 600;
-            color: #555;
-            margin-right: 8px;
+        /* Line separator between items */
+        .modal-content p {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
         }
+
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -668,7 +608,101 @@
                 width: 80%;
             }
         }
-        
+
+        /* Barangay Official Cards styles */
+        .barangay-official-card {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            width: calc(33% - 20px); /* Three cards per row */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Vertically align items */
+            text-align: left; /* Align text to the left */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition for hover effect */
+            height: 300px; /* Fix height for the card */
+            position: relative;
+            overflow: hidden; /* Prevent content from overflowing */
+            border-left: 10px solid #3498db; /* Blue border, increased size */
+            border-top: 10px solid #3498db; /* Blue border, increased size */
+        }
+
+        .barangay-official-card:hover {
+            transform: scale(1.05); /* Zoom in effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+        }
+
+        .barangay-officials-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .barangay-official-card h3 {
+            font-weight: 900;
+            color: #3498db;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .barangay-official-card p {
+            color: #555;
+            font-size: 14px;
+            margin: 5px 0; /* Adjust margin for paragraphs */
+        }
+
+        /* Updated image styles to make the image even larger */
+        .official-photo {
+            width: 200px; /* Increased size */
+            height: 250px; /* Increased size */
+            object-fit: cover;
+            margin-right: 20px; /* Increased space between image and text */
+            border-radius: 8px; /* Keep rounded corners for the image */
+            transition: transform 0.3s ease-out; /* Smooth transition for image zoom */
+        }
+
+        /* Ensure text is aligned properly on the card */
+        .barangay-official-card .content {
+            display: flex;
+            flex-direction: column; /* Stack text vertically */
+            justify-content: space-between; /* Make the text take up remaining space */
+            flex-grow: 1; /* Allow text content to take up available space */
+        }
+
+        /* Zoom effect on image when card is hovered */
+        .barangay-official-card:hover .official-photo {
+            transform: scale(1.1); /* Zoom the image on hover */
+        }
+
+        .barangay-official-card .content h3 {
+            margin: 0; /* Remove margin for name */
+        }
+
+        .barangay-official-card .content p {
+            margin: 5px 0; /* Adjust margin for paragraphs */
+        }
+
+        .nav-link {
+            cursor: pointer;
+            padding: 10px;
+            color: white; /* White color for initial state */
+            text-decoration: none;
+        }
+
+
+        .nav-link.active {
+            color: #007bff; /* Change color of active link to blue */
+        }
+
+        .nav-link:hover {
+            color: #007bff; /* Color on hover for all links */
+        }
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -676,8 +710,9 @@
     <nav class="navbar">
         <img src="logo.png" alt="Barangay Logo" class="logo">
         <div class="nav-links">
-            <span class="nav-link" onclick="showDashboard()">Dashboard</span>
-            <span class="nav-link" onclick="showBookAppointment()">Book Appointment</span>
+            <span class="nav-link" onclick="setActiveLink(this); showDashboard()">Dashboard</span>
+            <span class="nav-link" onclick="setActiveLink(this); showBarangayOfficial()">Barangay Official</span>
+            <span class="nav-link" onclick="setActiveLink(this); showBookAppointment()">Book Appointment</span>
         </div>
     </nav>
 
@@ -701,45 +736,46 @@
                 <p id="finishedCount">0</p>
             </div>
         </div>
-    </div>
 
-      <!-- Appointment Details Table -->
-    <div class="appointment-details-container" id="appointmentDetails">
-        <h3 class="details-header">Appointment Details</h3>
-        
-        <!-- Search Bar and Status Filter -->
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search here..." />
-            <button id="searchButton" class="search-btn">Search</button>
+        <br>
+         <!-- Appointment Details Table -->
+        <div class="appointment-details-container" id="appointmentDetails">
+            <h3 class="details-header">Appointment Details</h3>
             
-            <!-- Status Filter Dropdown -->
-             <label for="status" style="color: skyblue; font-weight: 800;">Status</label>
-            <select id="statusFilter" class="status-filter" onchange="filterByStatus()">
-                <option value="all">All</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="today">Today</option>
-            </select>
+            <!-- Search Bar and Status Filter -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search here..." />
+                <button id="searchButton" class="search-btn">Search</button>
+                
+                <!-- Status Filter Dropdown -->
+                <label for="status" style="color: skyblue; font-weight: 800;">Status</label>
+                <select id="statusFilter" class="status-filter" onchange="filterByStatus()">
+                    <option value="all">All</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="today">Today</option>
+                </select>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th class="email-column">Email</th>
+                        <th>Service</th>
+                        <th>Type of Document</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentTableBody">
+                    <!-- Dynamic rows go here -->
+                </tbody>
+            </table>
         </div>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Full Name</th>
-                    <th class="email-column">Email</th>
-                    <th>Service</th>
-                    <th>Type of Document</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="appointmentTableBody">
-                <!-- Dynamic rows go here -->
-            </tbody>
-        </table>
     </div>
-
 
     <!-- Appointment Booking Form -->
     <div class="content hidden" id="bookAppointmentContent">
@@ -799,11 +835,105 @@
             <p><strong>Status:</strong> <span id="modalStatus"></span></p>
         </div>
     </div>
+    
 
+    <!-- Barangay Official Section (Hidden by default) -->
+    <div class="content hidden" id="barangayOfficialContent">
+        <div class="barangay-officials-container">
+            <!-- Cards will be dynamically inserted here by JavaScript -->
+        </div>
+    </div>
 
-
-
+    
     <script>
+
+        // Function to handle active link styling
+        function setActiveLink(link) {
+            // Get all nav links
+            const links = document.querySelectorAll('.nav-link');
+
+            // Remove active class from all links
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add active class to the clicked link
+            link.classList.add('active');
+        }
+
+
+
+        // Function to show barangay officials
+        function showBarangayOfficial() {
+            // Hide other sections (e.g., Dashboard and Appointment Book)
+            document.getElementById("dashboardContent").classList.add("hidden");
+            document.getElementById("bookAppointmentContent").classList.add("hidden");
+            document.getElementById("barangayOfficialContent").classList.remove("hidden");
+
+            // Simulating Barangay Official Data with image URLs
+            const barangayOfficials = [
+                { 
+                    name: "Juan Dela Cruz", 
+                    position: "Barangay Captain", 
+                    contact: "09123456789",
+                    image: "municipal.jpg"  // Image file path
+                },
+                { 
+                    name: "Maria Santos", 
+                    position: "Barangay Secretary", 
+                    contact: "09123456788",
+                    image: "municipal.jpg"  // Image file path
+                },
+                { 
+                    name: "Carlos Garcia", 
+                    position: "Barangay Treasurer", 
+                    contact: "09123456787",
+                    image: "municipal.jpg"  // Image file path
+                },
+                { 
+                    name: "Liza Aquino", 
+                    position: "Barangay Kagawad", 
+                    contact: "09123456786",
+                    image: "municipal.jpg"  // Image file path
+                },
+                { 
+                    name: "Miguel Reyes", 
+                    position: "Barangay Kagawad", 
+                    contact: "09123456785",
+                    image: "municipal.jpg"  // Image file path
+                },
+                { 
+                    name: "Ana Lopez", 
+                    position: "Barangay Kagawad", 
+                    contact: "09123456784",
+                    image: "municipal.jpg"  // Image file path
+                }
+            ];
+
+            // Get the container where the cards will be shown
+            const barangayOfficialContainer = document.querySelector("#barangayOfficialContent .barangay-officials-container");
+
+            // Clear previous content if there is any
+            barangayOfficialContainer.innerHTML = '';
+
+            // Loop through the barangayOfficials array and create cards dynamically
+            barangayOfficials.forEach(official => {
+                const card = `
+                    <div class="barangay-official-card">
+                        <img src="${official.image}" alt="${official.name}" class="official-photo">
+                        <div class="content">
+                            <div class="info">
+                                <h3>${official.name}</h3>
+                                <p>Position: ${official.position}</p>
+                                <p>Contact: ${official.contact}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                barangayOfficialContainer.innerHTML += card;
+            });
+        }
+
 
         // Filter the table rows based on the selected status
         function filterByStatus() {
@@ -943,14 +1073,16 @@
         function showDashboard() {
             document.getElementById("dashboardContent").classList.remove("hidden");
             document.getElementById("bookAppointmentContent").classList.add("hidden");
-            updateDashboard();
+            document.getElementById("barangayOfficialContent").classList.add("hidden");
+            updateDashboard(); // Optional: if you want to update dashboard on view
         }
 
         function showBookAppointment() {
             document.getElementById("dashboardContent").classList.add("hidden");
             document.getElementById("bookAppointmentContent").classList.remove("hidden");
-            document.getElementById("appointmentDetails").style.display = 'none';
+            document.getElementById("barangayOfficialContent").classList.add("hidden");
         }
+
 
         // Map service codes to display names
         const serviceMapping = {
@@ -1087,7 +1219,6 @@
             updateDashboard(); // Update dashboard counts on load
             showAppointmentDetails('Upcoming Appointment'); // Automatically show upcoming appointments initially
         });
-
 
     </script>
 </body>

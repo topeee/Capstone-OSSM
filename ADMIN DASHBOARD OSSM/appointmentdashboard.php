@@ -23,6 +23,7 @@
     <link rel="icon" type="img/png" href="logo.png">
 
 
+    
     <style>
 
         /* Body background with an overlay */
@@ -211,54 +212,7 @@
                 gap: 10px;
             }
         }
-
-       
-
-        /* Style for delete button */
-        .delete-btn {
-            background-color: #e74c3c; /* Red background */
-            color: #fff; /* White text */
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .delete-btn:hover {
-            background-color: #c0392b; /* Darker red on hover */
-        }
-
-        /* Button container styles */
-        td button {
-            margin-right: 10px; /* Space between buttons */
-            padding: 5px 10px;
-            cursor: pointer;
-            display: inline-block; /* Ensure buttons are inline */
-        }
-
-        /* Style for the View button */
-        .view-btn {
-            background-color: #4CAF50; /* Green for view */
-            color: white;
-        }
-
-        /* Style for the Delete button */
-        .delete-btn {
-            background-color: #f44336; /* Red for delete */
-            color: white;
-        }
-
-        /* Hover effects for buttons */
-        .view-btn:hover {
-            background-color: #45a049;
-        }
-
-        .delete-btn:hover {
-            background-color: #e53935;
-        }
-
+        
         /* Action column: Buttons will be aligned side by side */
         td.action-buttons {
             display: flex;
@@ -268,31 +222,35 @@
 
         /* Style for the View button */
         .view-btn {
-            background-color: #4CAF50; /* Green for view */
+            background-color: #3498db; /* Blue for view */
             color: white;
-            padding: 5px 10px;
+            padding: 12px 15px; /* Increased padding */
             cursor: pointer;
-            width: 45%; /* Adjust width */
+            width: 60%; /* Increased width */
             font-size: 12px;
+            border-radius: 5px; /* Rounded corners */
         }
+
+        
+        /* Hover effects for buttons */
+        .view-btn:hover {
+            background-color: darkblue;
+        }
+
 
         /* Style for the Delete button */
         .delete-btn {
             background-color: #f44336; /* Red for delete */
             color: white;
-            padding: 5px 10px;
+            padding: 12px 15px;
             cursor: pointer;
-            width: 45%; /* Adjust width */
+            width: 60%; /* Adjust width */
             font-size: 12px;
-        }
-
-        /* Hover effects for buttons */
-        .view-btn:hover {
-            background-color: #45a049;
+            border-radius: 5px;
         }
 
         .delete-btn:hover {
-            background-color: #e53935;
+            background-color: #c0392b;
         }
 
         /* Adjust table column widths */
@@ -369,7 +327,6 @@
             background-color: #f2f2f2; /* Light gray for alternate rows */
         }
 
-        
         .table tbody tr:hover {
             background-color: #e0f7fa; /* Light blue on hover */
             transition: background-color 0.3s;
@@ -378,22 +335,6 @@
         /* Add styles for the Status column */
         .table th:nth-child(7), .table td:nth-child(7) {
             text-align: center;
-        }
-
-        /* Delete button style */
-        .delete-btn {
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .delete-btn:hover {
-            background-color: #c0392b;
         }
 
         /* Appointment Booking Form */
@@ -491,7 +432,6 @@
         }
 
         .card {
-            color: white;
             padding: 30px;
             margin: 10px;
             border-radius: 8px;
@@ -510,18 +450,22 @@
         /* Unique Colors for Each Card */
         .card.upcoming {
             background-color: #3498db; /* Blue for Upcoming */
+            color: white;
         }
 
         .card.total {
-            background-color: #e67e22; /* Orange for Total */
+            background-color: white; /* Orange for Total */
+            color: black;
         }
 
         .card.today {
-            background-color: #27ae60; /* Green for Today */
+            background-color: #3498db; /* Green for Today */
+            color: white;
         }
 
         .card.finished {
-            background-color: #9b59b6; /* Purple for Finished */
+            background-color: white; /* Purple for Finished */
+            color: black;
         }
 
         .appointment-details-container {
@@ -555,7 +499,7 @@
         .search-btn {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #4CAF50;
+            background-color: blue;
             color: white;
             border: none;
             border-radius: 5px;
@@ -564,7 +508,7 @@
 
         /* Search button hover effect */
         .search-btn:hover {
-            background-color: #45a049;
+            background-color: darkblue;
         }
 
         /* Status filter dropdown styling */
@@ -671,6 +615,7 @@
         }
         
     </style>
+    
 </head>
 <body>
     <!-- Navbar -->

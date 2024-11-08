@@ -17,11 +17,83 @@ include 'header.php';
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
       <link rel="stylesheet" href="bootstrap.min.css">
       <link rel="stylesheet" href="bootstrap.min.js">
-      <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
       <link rel="icon" type="img/png" href="logo.png">
       <title>Senior Citizen Application Form</title>
 
+      <style>
+        footer {
+    background: #002B5C; /* example background color */
+    color: white;
+    padding: 10px 0; /* Adjust padding for footer height */
+    text-align: center;
+    bottom: 0;
+    width: 100%; /* Ensure it spans the entire width */
+    z-index: 9999; /* Keep it above other content if necessary */
+  }
+  
+  footer .containers {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  footer .row {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Align vertically */
+    flex-wrap: wrap; /* Ensures items wrap properly on smaller screens */
+  }
+  
+  footer .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer .list-inline {
+    margin: 0;
+    align-items: center; /* Vertically center list items */
+  }
+  
+  footer .list-inline-item {
+    margin-right: 15px; /* Space between items */
+  }
+  
+  footer .bs-icon-circle {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer .bs-icon-circle a svg {
+    width: 1.2em; /* Increased icon size */
+    height: 1.2em; /* Increased icon size */
+    fill: white;
+  }
+  
+  footer .link-secondary {
+    color: white;
+    margin-left: 10px; /* Space between text and icons */
+  }
+  
+  footer .link-secondary:hover {
+    color: #ccc; /* lighter color for hover effect */
+  }
+  
+
+  
+  /* For responsive design on smaller screens */
+  @media (max-width: 768px) {
+    footer .row {
+      flex-direction: column;
+      align-items: center; /* Stack elements vertically on smaller screens */
+    }
+    footer .col {
+      margin-bottom: 10px; /* Space between footer items */
+    }
+  }
+      </style>
 
 
       </style>

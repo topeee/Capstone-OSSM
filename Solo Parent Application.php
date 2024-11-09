@@ -1,32 +1,6 @@
-
 <?php
-session_start();
 include 'header.php';
-include 'db_connection.php';
-
-// Function to generate a unique reference number
-function generateReferenceNumber($prefix = "REF", $length = 8) {
-    $randomString = strtoupper(substr(md5(uniqid()), 0, $length));
-    return $prefix . "-" . date("Ymd") . "-" . $randomString;
-}
-
-// Generate the reference number
-$referenceNumber = generateReferenceNumber();
-
-// Define the application type
-$applicationType = "Solo Parent"; // or fetch it from a form input
-
-// Prepare an SQL statement to insert the reference number and application type
-$sql = "INSERT INTO ReferenceNumbers (RefNumber, TypeOfApplication) VALUES (?, ?)";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $referenceNumber, $applicationType);
-$stmt->execute(); // Execute the prepared statement
-$stmt->close();
-$conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
     <html>
@@ -43,23 +17,21 @@ $conn->close();
       <link rel="stylesheet" href="bootstrap.min.js">
       <link rel="stylesheet" href="Footer.Clean.icons.css">
       <link rel="stylesheet" href="solo parent app.css">
-      <link rel="stylesheet" href="footer.css">
       <link rel="icon" type="img/png" href="logo.png">
       <title>Solo Parent Application</title>
 
-
       <style>
         /* Custom Dropdown Styling */
-        .dropdown dt a {
-        display: inline-block;
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        color: #495057;
-        background-color: #ffffff;
-        text-align: left;
-        }
+.dropdown dt a {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: #495057;
+  background-color: #ffffff;
+  text-align: left;
+}
 
 .dropdown dd ul {
   display: none;
@@ -93,9 +65,31 @@ $conn->close();
       </style>
     </head>
     <body>
-
-      <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
+      <nav class="navbar navbar-dark navbar-expand-lg" >
+        <div class="container-fluid" style="display: none;">
+          <a class="navbar-brand" href="index.php">
+            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
+            <span class="brand-name">OSSM</span>
+          </a>
+          <div class="d-flex align-items-center ms-auto">
+            <span class="username">Hello, Username</span>
+            <div class="dropdown-center ms-3">
+              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" s>
+                <li><a class="dropdown-item" href="account_profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">History Transaction</a></li>
+                <li><a class="dropdown-item logout-item" href="login.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main class="p-4 mx-auto" style="width: 70%; height: 100%; background-color: rgb(227, 249, 255);">
       <div class="container">
+      <form action= "Solo Parent Application DB.php" method="POST" >
+
         <div class="row">
             <!-- Button to toggle progress sidebar -->
             <button id="progress-button" class="btn btn-primary mb-3 d-md-none">Toggle Progress</button>
@@ -139,39 +133,38 @@ $conn->close();
     
             <!-- Main form -->
             <div class="col-md-9">
-                <!-- Basic Information Section --><tr id="summaryReference"><td><strong>Reference Number:</strong>
-                 <?php echo $referenceNumber;?>
-                </td></tr>
+                <!-- Basic Information Section -->
                 <div class="form-section" id="basic-information-section">
                     <h4>Basic Information</h4>
                     <p class="alert alert-info">
                         A separate application must be filed for each person seeking assistance. This is for Solo Parent Assistance Only.
                     </p>
     
-                    <form>
+                   
+                       
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="precinct" class="form-label">Precinct #</label>
-                                <input type="text" class="form-control" id="precinct" placeholder="Precinct" required>
+                                <input type="text" class="form-control" id="precinct" name="precinct" placeholder="Precinct" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" onchange="genderChange()" required>
+                                <select class="form-select" id="gender" name="gender" onchange="genderChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -179,7 +172,7 @@ $conn->close();
                             </div>
                             <div class="col-md-2">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" onchange="civilChange()" required>
+                                <select class="form-select" id="civilstatus" name="civilstatus" onchange="civilChange()" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -188,33 +181,33 @@ $conn->close();
                             </div>
                             <div class="col-md-4">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="birthPlace" class="form-label">Birth Place</label>
-                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
+                                <input type="text" class="form-control" id="birthPlace" name="birthPlace" placeholder="Birth Place" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="telephone" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="telephone" placeholder="(916) 345-6783" required>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="(916) 345-6783" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="bloodType" class="form-label">Blood Type</label>
-                                <select class="form-select" id="bloodType" required>
+                                <select class="form-select" id="bloodType" name="bloodType" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -228,7 +221,7 @@ $conn->close();
                             </div>
                             <div class="col-md-4">
                                 <label for="religion" class="form-label">Religion</label>
-                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
+                                <input type="text" class="form-control" id="religion" name="religion" placeholder="Religion" required>
                             </div>
                         </div>
 
@@ -238,13 +231,14 @@ $conn->close();
                             <br><br>
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
-                        </div>
-                    </form>
+                          </div>
+                   
                 </div>
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-                    <form>
+               
+
                         <h4>Sectoral Information</h4>
                         <p class="fs-4">Do you have an existing <strong> Solo Parent ID number? </strong></p>
                         <div class="row mb-3">
@@ -290,9 +284,8 @@ $conn->close();
                                         <option value="Sponsored">Sponsored</option>
                                     </select>
                                 </div>
-
                                 <div class="col-md-4">
-                                    <label for="familyResources" class="form-label">Family Resources</label>
+                                <label for="familyResources" class="form-label">Family Resources</label>
                                     <select class="form-select" id="familyResources" onchange="familyResourcesChange()" required>
                                         <option value="" disabled selected>Choose...</option>
                                         <option value="Employeds">Employed</option>
@@ -300,7 +293,6 @@ $conn->close();
                                         <option value="Others">Others</option>
                                     </select>
                                 </div>
-                                
                                 <div class="col-md-4">
                                     <label for="education" class="form-label">Educational Attainment</label>
                                     <select class="form-select" id="education" required>
@@ -383,11 +375,12 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                    </form>
+                
                 </div>
     
                 <div class="form-section" id="other-information" style="display: none;">
-                    <form>    
+             
+    
                         <h4>Other Information</h4>
                         <p style="font-size: 20px; font-weight: bold;">LENGTH OF STAY IN SAN MATEO RIZAL:</p>
                         <div class="row mb-3">
@@ -482,12 +475,13 @@ $conn->close();
                                 <input type="text" class="form-control" id="emergencyAddress" placeholder="Address" required>
                             </div>
                         </div>
-                    </form>
+                  
                 </div>
                 
                     <!-- Family Composition Section -->
                     <div class="form-section" id="familyComposition" style="display: none;">
-                        <form>    
+                   
+  
                             <h4>Family Composition</h4>
                                 <!-- Input fields for a new family member -->
                                 <div class="row">
@@ -528,16 +522,10 @@ $conn->close();
                                         <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                        </form>
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
-                            <br><br>
-                              <i class="bi bi-info-circle-fill"></i>       
-                              "Please fill out all text fields. Once completed, click 'Add' to save the information you entered. <br> 
-                              <strong>Note: If you have additional family members to include, simply click 'Add Family' to add each one."</strong>
-                        </div>    
+                
+                            
                     </div>
                 
-    
                     <!-- Section 4: User Summary Section -->
                 <div class="form-section" id="section4" style="display: none;">
                     <h4>User Summary</h4>
@@ -596,7 +584,7 @@ $conn->close();
                             <tr><td><strong>4 P's ID:</strong></td><td id="summaryFourPsId"></td></tr>
                             <tr><td><strong>PhilHealth Member:</strong></td><td id="summaryPhilHealthMember"></td></tr>
                             <tr><td><strong>PhilHealth ID:</strong></td><td id="summaryPhilHealthId"></td></tr>
-                            
+
                             <!-- Emergency Contact Information -->
                             <tr><td><strong>Emergency Contact Name:</strong></td><td id="summaryEmergencyName"></td></tr>
                             <tr><td style="display: none;"></td><td id="summaryemergencyFirstName" style="display: none;"></td></tr>
@@ -621,8 +609,7 @@ $conn->close();
                                 </thead>
                                 <tbody>
                                     <!-- Rows will be added here -->
-                                </tbody>   
-                            </table>                      
+                                </tbody>                         
                         </tbody>
                     </table>
                 </div>
@@ -633,75 +620,60 @@ $conn->close();
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
                     <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+                    <button type="submit" id="next-btn" class="btn btn-primary">Next</button>
                 </div>
     
             </div>
         </div>
     </div>
+    </form>
     </main>
+ 
 
     <br>
     <br>
-
-    <footer>
-            <div class="container">
-                <div class="row row-cols-1 row-cols-lg-3">
+      <footer>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3">
                     <ul class="list-inline my-2">
-                        <li class="list-inline-item"><a class="link-secondary" href="#">About us</a></li>
+                        <li class="list-inline-item"><a class="link-secondary" href="#">About usy</a></li>
+                        <li class="list-inline-item"><a class="link-secondary" href="#">Services</a></li>
+                        <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
                     </ul>
-                    <div class="col">
-                        <ul class="list-inline my-2">
-                            <li class="list-inline-item me-4">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon">
-                                    <a href="https://www.facebook.com/sanmateorizalPIO" target="_blank">
-                                        <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <!-- Increased size for YouTube icon -->
-                            <li class="list-inline-item me-4">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon" >
-                                    <a href="https://www.youtube.com/@SanMateoRizal" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16" style="vertical-align: middle;">
-                                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="list-inline-item">
-                                <div class="bs-icon-circle bs-icon-primary bs-icon">
-                                    <a href="https://www.sanmateo.gov.ph/?fbclid=IwY2xjawGa8FxleHRuA2FlbQIxMAABHV7oEXf9A30xAMK0rZkUq2u79JjY-rg8Nx1htqvExUJJk_Bm0eYPp6P6RA_aem_EAarsNJrWise3DgKGtmDTg" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
-                                          </svg>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a class="link-secondary" href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
+                <div class="col">
+                    <ul class="list-inline my-2">
+                        <li class="list-inline-item me-4">
+                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                                </svg></div>
+                        </li>
+                        <li class="list-inline-item me-4">
+                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                                </svg></div>
+                        </li>
+                        <li class="list-inline-item">
+                            <div class="bs-icon-circle bs-icon-primary bs-icon"><svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
+                                </svg></div>
+                        </li>
+                    </ul>
                 </div>
-            </div>            
-        </footer>
+                <div class="col">
+                    <ul class="list-inline my-2">
+                        <li class="list-inline-item"><a class="link-secondary" href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a class="link-secondary" href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Helper function to retrieve the value of an input or show "N/A" if empty
         const getValue = (id) => {
             const element = document.getElementById(id);
-            if (!element) return 'N/A';
-            
-            if (element.type === 'radio') {
-                const selectedRadio = document.querySelector(`input[name="${id}"]:checked`);
-                return selectedRadio ? selectedRadio.value : 'N/A';
-            }
-            return element.value || 'N/A';
+            return element ? element.value : 'N/A';
         };
 
         // Populate the summary section with the values from the form
@@ -799,31 +771,23 @@ $conn->close();
             document.getElementById('summaryMonthsOfStay').innerText = getValue('monthsOfStay');
             localStorage.setItem('summaryMonthsOfStay', document.getElementById('summaryMonthsOfStay').innerText); // Store precinct in localStorage
 
+    
             // 4Ps and PhilHealth Membership
-            // Retrieve 4Ps and PhilHealth membership status
-            const selectedFourPs = document.querySelector('input[name="fourPsMember"]:checked');
-            const selectedPhilHealth = document.querySelector('input[name="philHealthMember"]:checked');
+            const fourPsMember = document.querySelector('input[name="fourPsMember"]:checked')?.value || 'N/A';
+            document.getElementById('summaryFourPsMember').innerText = fourPsMember;
+            if (fourPsMember === 'yes') {
+                document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
+                localStorage.setItem('selectedFourPs', selectedFourPs);  // Store PhilHealth membership status
 
-            // Retrieve IDs for 4Ps and PhilHealth
-            const fourPsId = document.getElementById('fourPsId').value || 'N/A';
-            const philHealthId = document.getElementById('philHealthId').value || 'N/A';
-
-            // Update summary fields
-            document.getElementById('summaryFourPsMember').innerText = selectedFourPs ? selectedFourPs.value : 'N/A';
-            localStorage.setItem('summaryFourPsMember', document.getElementById('summaryFourPsMember').innerText);
-
-            document.getElementById('summaryPhilHealthMember').innerText = selectedPhilHealth ? selectedPhilHealth.value : 'N/A';
-            localStorage.setItem('summaryPhilHealthMember', document.getElementById('summaryPhilHealthMember').innerText);
-
-            document.getElementById('summaryFourPsId').innerText = fourPsId;
-            localStorage.setItem('summaryFourPsId', document.getElementById('summaryFourPsId').innerText);
-
-            document.getElementById('summaryPhilHealthId').innerText = philHealthId;
-            localStorage.setItem('summaryPhilHealthId', document.getElementById('summaryPhilHealthId').innerText);
-
-            // Store in localStorage
-
-
+            }
+    
+            const philHealthMember = document.querySelector('input[name="philHealthMember"]:checked')?.value || 'N/A';
+            document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
+            if (philHealthMember === 'yes') {
+                document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
+                localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
+            }
+    
             // Emergency Contact Full Name (combined in one step)
         document.getElementById('summaryemergencyFirstName').innerText = getValue('emergencyFirstName');
         localStorage.setItem('summaryemergencyFirstName', document.getElementById('summaryemergencyFirstName').innerText);
@@ -887,7 +851,7 @@ $conn->close();
 
         function classificationChange() {
             const selectedClassification = document.getElementById('soloParentClassification').value;
-            localStorage.setItem('selectedFamilyClassification', selectedClassification);
+            localStorage.setItem('selectedFamilyClassification', selectedClassification);  // Store the classification in localStorage
         }
 
         function familyResourcesChange() {
@@ -930,7 +894,7 @@ $conn->close();
 
                 
 
-    function addFamilyRow() {
+        function addFamilyRow() {
     // Get values from input fields
     const relationship = document.getElementById("familyRelationship").value;
     const fullName = document.getElementById("familyFullName").value;
@@ -943,8 +907,6 @@ $conn->close();
     if (!relationship || !fullName || !birthDate || !civilStatus || !educAttainment || !occupation) {
         alert("Please fill in all fields before adding.");
         return;
-    } else {
-        alert("Family member added successfully!");
     }
 
     // Create a new row in the familyTable
@@ -1029,7 +991,7 @@ function saveFamilyData() {
                 }
             });
         
-        $(document).ready(function () {
+            $(document).ready(function () {
         // Section references
         const sections = [
         "#basic-information-section",
@@ -1091,16 +1053,9 @@ function saveFamilyData() {
 
     // Function to update the progress bar
     function updateProgress() {
-    $(".progress-item").removeClass("active");
-    $(".progress-item").eq(currentSection).addClass("active");
-
-    // Update icons
-    $(".progress-item i").removeClass("bi-check-square-fill").addClass("bi-check-square"); // Reset icons
-    $(".progress-item:lt(" + (currentSection + 1) + ") i")
-        .removeClass("bi-check-square")
-        .addClass("bi-check-square-fill"); // Set filled icons up to the current section
-}
-
+        $(".progress-item").removeClass("active");
+        $(".progress-item").eq(currentSection).addClass("active");
+    }
 
     // Add click functionality to progress items
     $(".progress-item").click(function () {

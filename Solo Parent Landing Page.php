@@ -166,7 +166,7 @@ html, body {
  
     <main>
         <div id="top-bar" class="top-bar-image d-flex justify-content-center align-items-center">
-            <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\sagw.jpg" class="minibanner" alt="Social And General Welfare">
+            <img src="sagw.jpg" class="minibanner" alt="Social And General Welfare">
         </div>
     
         <div class="faq-container">

@@ -135,7 +135,7 @@ include('dashboard_sidebar_start.php');
                 <option value="">All</option>
                 <option value="pending">Pending</option>
                 <option value="ongoing">Ongoing</option>
-                <option value="ready_to_release">Ready to Release</option>
+                <option value="Ready To Release">Ready to Release</option>
                 <option value="completed">Completed</option>
             </select>
         </div>
@@ -312,7 +312,7 @@ function filterByStatus() {
 
     for (var i = 0; i < tableRows.length; i++) {
         var row = tableRows[i];
-        var statusCell = row.getElementsByTagName('td')[6]; // Status column index
+        var statusCell = row.getElementsByTagName('td')[7]; // Status column index
 
         if (statusFilter === "" || statusCell.innerText.toLowerCase() === statusFilter) {
             row.style.display = '';

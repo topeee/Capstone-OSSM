@@ -1,13 +1,3 @@
-<?php
-session_start();
-include 'header.php';
-include 'db_connection.php';
-
-include 'Solo Parent Reference.php';
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,8 +179,8 @@ include 'Solo Parent Reference.php';
           <span class="field-line"></span> <br>
           <span class="field-label">DATE FILED:</span> <br>
           <span class="field-line"></span> <br>
-          <span class="field-label">CONTROL NO:  </span> <br>
-          <span class="control-field"></span> <br>
+          <span class="field-label">CONTROL NO:</span> <br>
+          <span class="field-line"></span> <br>
           <span class="field-label">SOLO PARENT CATEGORY:</span> <br>
           <span class="field-line" style="margin: 0px; padding-bottom: 0px;"></span>
         </div>
@@ -705,7 +695,6 @@ function handleSubmit() {
       });
     }
   document.addEventListener('DOMContentLoaded', function() {
-    const controlValue = localStorage.getItem('controlNumber') || 'N/A';
     const precinctValue = localStorage.getItem('summaryPrecinct') || 'N/A';
     const firstNameValue = localStorage.getItem('summaryFirstName') || 'N/A';
     const middleNameValue = localStorage.getItem('summaryMiddleName') || 'N/A';
@@ -742,7 +731,7 @@ function handleSubmit() {
     
 
 
-    document.querySelector('.control-field').innerHTML = `<strong>Control #: ${controlValue} </strong>`;
+
     document.querySelector('.precinct-field').innerHTML = `<strong>Precinct #: ${precinctValue}</strong>`;
     document.querySelector('.religion-field').innerHTML = `<strong>Religion: <p>${religionValue}</p></strong>`;
     document.querySelector('.first-field').innerHTML = `<strong>First Name: <p>${firstNameValue}</p></strong>`;

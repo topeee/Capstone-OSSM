@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
 
 // Assuming you have stored the user's role in the session during login
 if ($_SESSION['role'] === 'is_admin') {
-    header('Location: ADMIN DASHBOARD OSSM/index.php');
+    header('Location: adminDashboard.php');
     exit();
 } else {
     header('Location: Home.php');

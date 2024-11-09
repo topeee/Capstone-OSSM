@@ -22,12 +22,12 @@ if (isset($_POST['export_excel'])) {
     $header = ['ID', 'First Name', 'Last Name', 'Middle Name', 'Suffix', 'DOB', 'Gender', 'Mobile Number', 'Tel Number', 'Email', 'House Number', 'Street', 'Barangay', 'Role'];
     $sheet->fromArray($header, NULL, 'A1');
 
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_role FROM users";
+    $sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $rowIndex = 2;
         while ($row = $result->fetch_assoc()) {
-            $sheet->fromArray($row, NULL, 'A' . $rowIndex++);
+            $sheet->fromArray(array_values($row), NULL, 'A' . $rowIndex++);
         }
     }
 
@@ -44,8 +44,7 @@ if (isset($_POST['export_pdf'])) {
     $html .= '<thead><tr>';
     $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
     $html .= '</tr></thead><tbody>';
-    $html .= '<th>Role</th>';
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+    $sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin, picture, verify_status FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -63,7 +62,7 @@ if (isset($_POST['export_pdf'])) {
             $html .= '<td>' . $row['house_number'] . '</td>';
             $html .= '<td>' . $row['street'] . '</td>';
             $html .= '<td>' . $row['barangay'] . '</td>';
-            $html .= '<td>' . $row['role'] . '</td>';
+            $html .= '<td>' . ($row['is_admin'] == 1 ? 'Admin' : 'User') . '</td>';
             $html .= '</tr>';
         }
     } else {
@@ -78,7 +77,7 @@ if (isset($_POST['export_pdf'])) {
 
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users"; // Adjust the table and column names as needed
+$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin, picture, verify_status FROM users";
 $result = $conn->query($sql);
 
 // Get user ID from request
@@ -227,7 +226,7 @@ include('dashboard_sidebar_start.php');
 <div class="container mt-3">
     <form method="get" action="userscontent.php">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
@@ -238,7 +237,7 @@ include('dashboard_sidebar_start.php');
 <?php
 // Modify SQL query to include search functionality
 $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
-$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin, picture, verify_status FROM users";
 if ($search) {
     $sql .= " WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR email LIKE '%$search%'";
 }
@@ -311,7 +310,9 @@ $result = $conn->query($sql);
                 <th scope="col">House Number</th>
                 <th scope="col">Street</th>
                 <th scope="col">Barangay</th>
+                <th scope="col">Verify Status</th>
                 <th scope="col">Role</th>
+                <th scope="col">Picture</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -334,6 +335,13 @@ $result = $conn->query($sql);
                 echo "<td>" . $row["street"] . "</td>";
                 echo "<td>" . $row["barangay"] . "</td>";
                 echo "<td>" . ($row["is_admin"] == 1 ? 'Admin' : 'User') . "</td>";
+                echo "<td>" . $row["verify_status"] . "</td>";
+                $picturePath = 'uploads/' . $row["picture"];
+                if (file_exists($picturePath) && !empty($row["picture"])) {
+                    echo "<td><img src='$picturePath' width='50' height='50'></td>";
+                } else {
+                    echo "<td>No Image</td>";
+                }
                 echo "<td class='action-buttons'>
                         <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
                         <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
@@ -371,6 +379,3 @@ $(document).ready(function() {
 });
 </script>
 
-<?php 
-include('dashboard_sidebar_end.php');
-?>

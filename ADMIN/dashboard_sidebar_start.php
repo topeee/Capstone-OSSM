@@ -61,7 +61,7 @@
 
             <!-- Barangay Staff CRUD -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_staff_crud.php">
+                <a class="nav-link" href="userscontent.php">
                     <i class="fas fa-user-tie"></i>
                     <span>Users Overview</span></a>
             </li>
@@ -78,7 +78,7 @@
             <!-- Collapsible Content for Municipal Services -->
             <div id="municipalServices" class="collapse">
                 <li class="nav-item">
-                    <a class="nav-link" href="admn_announcement_crud.php">
+                    <a class="nav-link" href="Appointmentquery.php">
                     <i class="bi bi-calendar-date-fill"></i>
                         <span>Appointment</span>
                     </a>
@@ -170,7 +170,7 @@
             
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="soloparentcontent.php">
                 <i class="bi bi-people-fill"></i>
                     <span>Solo Parent Application</span></a>
             </li>

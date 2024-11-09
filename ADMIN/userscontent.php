@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-session_start();
 
-// Check if the user is logged in and is an admin
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-    // If not, redirect to the login page or an error page
-    header('Location: login.php');
-    exit();
-}
 
 
 
@@ -103,7 +96,36 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit();
 }
 ?>
+<link rel="shortcut icon" href="assets/images/favicon.ico" />
 
+<!-- DataTables -->
+<!-- DataTables -->
+<link
+      href="assets/plugins/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="assets/plugins/datatables/buttons.bootstrap4.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Responsive datatable examples -->
+    <link
+      href="assets/plugins/datatables/responsive.bootstrap4.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      href="assets/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -141,10 +163,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         background-color: #f1f1f1;
     }
 
-    /* Table borders */
-    .dataTable, .dataTable td, .dataTable th {
-        border: 1px solid #ddd;
-    }
+    
 
     /* Alternate row colors */
     tr:nth-child(even) {
@@ -204,9 +223,79 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <?php 
 include('dashboard_sidebar_start.php');
 ?>
+<!-- Search form -->
+<div class="container mt-3">
+    <form method="get" action="userscontent.php">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php
+// Modify SQL query to include search functionality
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+if ($search) {
+    $sql .= " WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR email LIKE '%$search%'";
+}
+$result = $conn->query($sql);
+?>
+
+<!-- Filter form -->
+<div class="container mt-3">
+    <form method="get" action="userscontent.php">
+        <div class="input-group mb-3">
+            <select class="form-control" name="filter_role">
+                <option value="">Filter by Role</option>
+                <option value="admin" <?php echo isset($_GET['filter_role']) && $_GET['filter_role'] == 'admin' ? 'selected' : ''; ?>>Admin</option>
+                <option value="user" <?php echo isset($_GET['filter_role']) && $_GET['filter_role'] == 'user' ? 'selected' : ''; ?>>User</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Apply Filter</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Sort form -->
+<div class="container mt-3">
+    <form method="get" action="userscontent.php">
+        <div class="input-group mb-3">
+            <select class="form-control" name="sort_order">
+                <option value="">Sort by Name</option>
+                <option value="asc" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'asc' ? 'selected' : ''; ?>>Ascending</option>
+                <option value="desc" <?php echo isset($_GET['sort_order']) && $_GET['sort_order'] == 'desc' ? 'selected' : ''; ?>>Descending</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Sort</button>
+            </div>
+        </div>
+    </form>
+</div>
+<?php
+// Modify SQL query to include sort functionality
+$sort_order = isset($_GET['sort_order']) ? $conn->real_escape_string($_GET['sort_order']) : '';
+if ($sort_order) {
+    $sql .= " ORDER BY first_name " . ($sort_order == 'asc' ? 'ASC' : 'DESC');
+}
+$result = $conn->query($sql);
+?>
+<?php
+// Modify SQL query to include filter functionality
+$filter_role = isset($_GET['filter_role']) ? $conn->real_escape_string($_GET['filter_role']) : '';
+if ($filter_role) {
+    $sql .= $search ? " AND" : " WHERE";
+    $sql .= " is_admin = '" . ($filter_role == 'admin' ? 1 : 0) . "'";
+}
+$result = $conn->query($sql);
+?>
 
 <div class="table-container">
-    <table id="usersTable" class="display">
+    <table  >
+                
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -259,18 +348,6 @@ include('dashboard_sidebar_start.php');
     </table>
 </div>
 
-<script>
-$(document).ready(function() {
-    $('#usersTable').DataTable({
-        "paging": true, // Enables pagination
-        "lengthChange": false, // Disables length change
-        "searching": true, // Enables search
-        "ordering": true, // Enables column sorting
-        "info": true, // Shows info about the table
-        "autoWidth": false // Disables auto width for columns
-    });
-});
-</script>
 
 <!-- Button container for centering -->
 <div class="button-container">
@@ -279,6 +356,20 @@ $(document).ready(function() {
         <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
     </form>
 </div>
+
+<?php 
+include('dashboard_sidebar_end.php');
+?>
+<script>
+$(document).ready(function() {
+    $('table').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": true,
+        "info": true
+    });
+});
+</script>
 
 <?php 
 include('dashboard_sidebar_end.php');

@@ -13,11 +13,10 @@ if (isset($_POST['export_excel'])) {
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Users');
-
-    $header = ['ID', 'First Name', 'Last Name', 'Middle Name', 'Suffix', 'DOB', 'Gender', 'Mobile Number', 'Tel Number', 'Email', 'House Number', 'Street', 'Barangay', 'Role'];
+    $header = ['Ticket ID', 'Ticket No', 'Last Name', 'Violation Date', 'Violation Type', 'Fine Amount', 'Status'];
     $sheet->fromArray($header, NULL, 'A1');
 
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_role FROM users";
+    $sql = "SELECT id, first_name, last_name, email, dob, gender, mobile_number, house_number, street, barangay, is_admin FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $rowIndex = 2;
@@ -37,10 +36,9 @@ if (isset($_POST['export_pdf'])) {
     $html = '<h1>Users</h1>';
     $html .= '<table border="1" style="width:100%;border-collapse:collapse;">';
     $html .= '<thead><tr>';
-    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
+    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
     $html .= '</tr></thead><tbody>';
-    $html .= '<th>Role</th>';
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+    $sql = "SELECT id, first_name, last_name, middle_name, dob, gender, mobile_number, email, house_number, street, barangay, is_admin AS Role FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -50,19 +48,17 @@ if (isset($_POST['export_pdf'])) {
             $html .= '<td>' . $row['middle_name'] . '</td>';
             $html .= '<td>' . $row['last_name'] . '</td>';
             $html .= '<td>' . $row['email'] . '</td>';
-            $html .= '<td>' . $row['suffix'] . '</td>';
             $html .= '<td>' . $row['dob'] . '</td>';
             $html .= '<td>' . $row['gender'] . '</td>';
             $html .= '<td>' . $row['mobile_number'] . '</td>';
-            $html .= '<td>' . $row['tel_number'] . '</td>';
             $html .= '<td>' . $row['house_number'] . '</td>';
             $html .= '<td>' . $row['street'] . '</td>';
             $html .= '<td>' . $row['barangay'] . '</td>';
-            $html .= '<td>' . $row['role'] . '</td>';
+            $html .= '<td>' . ($row['Role'] == 1 ? 'Admin' : 'User') . '</td>';
             $html .= '</tr>';
         }
     } else {
-        $html .= '<tr><td colspan="14">No users found</td></tr>';
+        $html .= '<tr><td colspan="12">No users found</td></tr>';
     }
     $html .= '</tbody></table>';
 
@@ -72,22 +68,41 @@ if (isset($_POST['export_pdf'])) {
 }
 
 // USERS TABLE
-// Fetch users from database
-$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users"; // Adjust the table and column names as needed
+// Fetch tickets from database
+$sql = "SELECT ticket_id, ticket_no, last_name, violation_date, violation_type, fine_amount, status FROM OVR_Tickets WHERE 1";
 $result = $conn->query($sql);
 
-// Get user ID from request
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $user_id = $_GET['id'];
+// Get ticket ID from request
+if (isset($_GET['ticket_id']) && is_numeric($_GET['ticket_id'])) {
+    $ticket_id = $_GET['ticket_id'];
 
     // Prepare SQL to delete a record
-    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
+    $stmt = $conn->prepare("DELETE FROM OVR_Tickets WHERE ticket_id = ?");
+    $stmt->bind_param("i", $ticket_id);
 
     $_SESSION['message'] = $stmt->execute() ? "Record deleted successfully" : "Error deleting record: {$stmt->error}";
 
     $stmt->close();
-    header("Location: userscontent.php");
+    header("Location: ovradmin.php");
+    exit();
+}
+
+if (isset($_POST['ticketId']) && isset($_POST['newStatus'])) {
+    $ticketId = $_POST['ticketId'];
+    $newStatus = $_POST['newStatus'];
+
+    // Prepare SQL to update the status
+    $stmt = $conn->prepare("UPDATE OVR_Tickets SET status = ? WHERE ticket_id = ?");
+    $stmt->bind_param("si", $newStatus, $ticketId);
+
+    if ($stmt->execute()) {
+        $_SESSION['message'] = "Status updated successfully";
+    } else {
+        $_SESSION['message'] = "Error updating status: {$stmt->error}";
+    }
+
+    $stmt->close();
+    header("Location: ovradmin.php");
     exit();
 }
 ?>
@@ -192,25 +207,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <?php 
 include('dashboard_sidebar_start.php');
 ?>
-
+<h2>Tickets</h2>
 <div class="table-container">
-    <table id="usersTable" class="display">
+    <table id="ticketsTable" class="display">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Middle Name</th>
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Ticket No</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Suffix</th>
-                <th scope="col">DOB</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Mobile Number</th>
-                <th scope="col">Tel Number</th>
-                <th scope="col">House Number</th>
-                <th scope="col">Street</th>
-                <th scope="col">Barangay</th>
-                <th scope="col">Role</th>
+                <th scope="col">Violation Date</th>
+                <th scope="col">Violation Type</th>
+                <th scope="col">Fine Amount</th>
+                <th scope="col">Status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -218,45 +226,86 @@ include('dashboard_sidebar_start.php');
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<th scope='row'>" . $row["id"] . "</th>";
-                echo "<td>" . $row["first_name"] . "</td>";
-                echo "<td>" . $row["middle_name"] . "</td>";
-                echo "<td>" . $row["last_name"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . $row["suffix"] . "</td>";
-                echo "<td>" . $row["dob"] . "</td>";
-                echo "<td>" . $row["gender"] . "</td>";
-                echo "<td>" . $row["mobile_number"] . "</td>";
-                echo "<td>" . $row["tel_number"] . "</td>";
-                echo "<td>" . $row["house_number"] . "</td>";
-                echo "<td>" . $row["street"] . "</td>";
-                echo "<td>" . $row["barangay"] . "</td>";
-                echo "<td>" . ($row["is_admin"] == 1 ? 'Admin' : 'User') . "</td>";
-                echo "<td class='action-buttons'>
-                        <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
-                        <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
-                      </td>";
-                echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>" . $row["ticket_id"] . "</td>";
+                    echo "<td>" . $row["ticket_no"] . "</td>";
+                    echo "<td>" . $row["last_name"] . "</td>";
+                    echo "<td>" . $row["violation_date"] . "</td>";
+                    echo "<td>" . $row["violation_type"] . "</td>";
+                    echo "<td>" . $row["fine_amount"] . "</td>";
+                    echo "<td>" . $row["status"] . "</td>";
+                        echo "<td><button class='btn btn-primary' data-toggle='modal' data-target='#changeStatusModal' onclick='changeStatus(\"" . $row["ticket_id"] . "\")'>Change Status</button></td>";
+                    echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='14'>No users found</td></tr>";
+                echo "<tr><td colspan='8'>No tickets found</td></tr>";
             }
             ?>
-
         </tbody>
     </table>
 </div>
+<!-- Change Status Modal -->
+<div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeStatusModalLabel">Change Ticket Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changeStatusForm">
+                    <input type="hidden" id="ticketId" name="ticketId">
+                    <div class="form-group">
+                        <label for="newStatus">New Status</label>
+                        <select id="newStatus" name="newStatus" class="form-control">
+                            <option value="paid">Paid</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="Ready To Release">Ready to Release</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
+function changeStatus(ticketId) {
+    document.getElementById('ticketId').value = ticketId;
+}
+
+document.getElementById('changeStatusForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var ticketId = document.getElementById('ticketId').value;
+    var newStatus = document.getElementById('newStatus').value;
+
+    $.ajax({
+        url: 'change_status.php',
+        type: 'POST',
+        data: {
+            ticketId: ticketId,
+            newStatus: newStatus
+        },
+        success: function(response) {
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+</script>
 $(document).ready(function() {
-    $('#usersTable').DataTable({
-        "paging": true, // Enables pagination
-        "lengthChange": false, // Disables length change
-        "searching": true, // Enables search
-        "ordering": true, // Enables column sorting
-        "info": true, // Shows info about the table
-        "autoWidth": false // Disables auto width for columns
+    $('#ticketsTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
     });
 });
 </script>

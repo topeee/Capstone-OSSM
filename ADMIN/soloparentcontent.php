@@ -97,7 +97,7 @@ if (isset($_POST['export_pdf'])) {
 
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay FROM SoloParentApplication";
+$sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay, lastName FROM SoloParentApplication";
 $result = $conn->query($sql);
 
 // Get user ID from request
@@ -264,47 +264,45 @@ include('dashboard_sidebar_start.php');
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<th scope='row'>" . $row["id"] . "</th>";
-                echo "<td>" . $row["precinct"] . "</td>";
-                echo "<td>" . $row["firstName"] . "</td>";
-                echo "<td>" . $row["middleName"] . "</td>";
-                echo "<td>" . (isset($row["last_name"]) ? $row["last_name"] : '') . "</td>";
-                echo "<td>" . (isset($row["selectedGender"]) ? $row["selectedGender"] : '') . "</td>";
-                echo "<td>" . (isset($row["civil_status"]) ? $row["civil_status"] : '') . "</td>";
-                echo "<td>" . $row["dob"] . "</td>";
-                echo "<td>" . (isset($row["birth_place"]) ? $row["birth_place"] : '') . "</td>";
-                echo "<td>" . $row["religion"] . "</td>";
-                echo "<td>" . (isset($row["blood_type"]) ? $row["blood_type"] : '') . "</td>";
-                echo "<td>" . $row["tel_number"] . "</td>";
-                echo "<td>" . $row["mobile_number"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . (isset($row["house_number"]) ? $row["house_number"] : '') . "</td>";
-                echo "<td>" . $row["street"] . "</td>";
-                echo "<td>" . $row["barangay"] . "</td>";
-                echo "<td>" . $row["monthly_income"] . "</td>";
-                echo "<td>" . (isset($row["problem_needs"]) ? $row["problem_needs"] : '') . "</td>";
-                echo "<td>" . (isset($row["source_of_income"]) ? $row["source_of_income"] : '') . "</td>";
-                echo "<td>" . (isset($row["company_name"]) ? $row["company_name"] : '') . "</td>";
-                echo "<td>" . $row["office_address"] . "</td>";
-                echo "<td>" . $row["occupation"] . "</td>";
-                echo "<td>" . $row["tin_number"] . "</td>";
-                echo "<td>" . $row["sss_number"] . "</td>";
-                echo "<td>" . $row["gsis_number"] . "</td>";
-                echo "<td>" . $row["years_of_stay"] . "</td>";
-                echo "<td>" . $row["months_of_stay"] . "</td>";
-                echo "<td>" . $row["lot_number"] . "</td>";
-                echo "<td>" . $row["block_number"] . "</td>";
-                echo "<td>" . (isset($row["four_ps_member"]) ? $row["four_ps_member"] : '') . "</td>";
-                echo "<td>" . (isset($row["four_ps_id"]) ? $row["four_ps_id"] : '') . "</td>";
-                echo "<td>" . (isset($row["philhealth_member"]) ? $row["philhealth_member"] : '') . "</td>";
-                echo "<td>" . (isset($row["philhealth_id"]) ? $row["philhealth_id"] : '') . "</td>";
-                echo "<td>" . (isset($row["emergency_contact_name"]) ? $row["emergency_contact_name"] : '') . "</td>";
-                echo "<td>" . (isset($row["emergency_contact_number"]) ? $row["emergency_contact_number"] : '') . "</td>";
-                echo "<td>" . (isset($row["relationship"]) ? $row["relationship"] : '') . "</td>";
-                echo "<td class='action-buttons'>
-                        <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
-                        <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
-                      </td>";
+                    echo "<td>" . $row["precinct"] . "</td>";
+                    echo "<td>" . $row["firstName"] . "</td>";
+                    echo "<td>" . $row["middleName"] . "</td>";
+                    echo "<td>". $row["lastName"] . "</td>";
+                    echo "<td>". $row["selectedGender"] . "</td>";
+                    echo "<td>". $row["civilStatus"] ."</td>";
+                    echo "<td>" . $row["dob"] . "</td>";
+                    echo "<td>" . (isset($row["birth_place"]) ? $row["birth_place"] : '') . "</td>";
+                    echo "<td>" . $row["religion"] . "</td>";
+                    echo "<td>" . (isset($row["blood_type"]) ? $row["blood_type"] : '') . "</td>";
+                    echo "<td>" . $row["tel_number"] . "</td>";
+                    echo "<td>" . $row["mobile_number"] . "</td>";
+                    echo "<td>" . $row["email"] . "</td>";
+                    echo "<td>" . $row["monthly_income"] . "</td>";
+                    echo "<td>" . (isset($row["problem_needs"]) ? $row["problem_needs"] : '') . "</td>";
+                    echo "<td>" . (isset($row["source_of_income"]) ? $row["source_of_income"] : '') . "</td>";
+                    echo "<td>" . (isset($row["company_name"]) ? $row["company_name"] : '') . "</td>";
+                    echo "<td>" . $row["office_address"] . "</td>";
+                    echo "<td>" . $row["occupation"] . "</td>";
+                    echo "<td>" . $row["tin_number"] . "</td>";
+                    echo "<td>" . $row["sss_number"] . "</td>";
+                    echo "<td>" . $row["gsis_number"] . "</td>";
+                    echo "<td>" . $row["years_of_stay"] . "</td>";
+                    echo "<td>" . $row["months_of_stay"] . "</td>";
+                    echo "<td>" . $row["lot_number"] . "</td>";
+                    echo "<td>" . $row["block_number"] . "</td>";
+                    echo "<td>" . $row["street"] . "</td>";
+                    echo "<td>" . $row["barangay"] . "</td>";
+                    echo "<td>" . (isset($row["four_ps_member"]) ? $row["four_ps_member"] : '') . "</td>";
+                    echo "<td>" . (isset($row["four_ps_id"]) ? $row["four_ps_id"] : '') . "</td>";
+                    echo "<td>" . (isset($row["philhealth_member"]) ? $row["philhealth_member"] : '') . "</td>";
+                    echo "<td>" . (isset($row["philhealth_id"]) ? $row["philhealth_id"] : '') . "</td>";
+                    echo "<td>" . (isset($row["emergency_contact_name"]) ? $row["emergency_contact_name"] : '') . "</td>";
+                    echo "<td>" . (isset($row["emergency_contact_number"]) ? $row["emergency_contact_number"] : '') . "</td>";
+                    echo "<td>" . (isset($row["relationship"]) ? $row["relationship"] : '') . "</td>";
+                    echo "<td class='action-buttons'>
+                            <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
+                            <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
+                        </td>";
                 echo "</tr>";
                 }
             } else {

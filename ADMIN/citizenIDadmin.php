@@ -14,10 +14,10 @@ if (isset($_POST['export_excel'])) {
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Users');
 
-    $header = ['First Name', 'Middle Name', 'Last Name', 'Suffix', 'Gender', 'Date Of Birth', 'Place Of Birth', 'Nationality', 'Social Welfare', 'Occupation', 'Religion', 'Civil Status', 'Telephone Number', 'Phone Number', 'Email', 'Work Phone', 'Mother First Name', 'Mother Middle Name', 'Mother Maiden Name', 'Mother Contact Number', 'Father First Name', 'Father Middle Name', 'Father Last Name', 'Father Contact Number', 'House Number', 'Street', 'Village Or Subdivision', 'Barangay'];
+    $header = ['First Name', 'Middle Name', 'Last Name', 'Suffix', 'Gender', 'Date Of Birth', 'Place Of Birth', 'Nationality', 'Social Welfare', 'Occupation', 'Religion', 'Civil Status', 'Telephone Number', 'Phone Number', 'Email', 'Work Phone', 'Mother First Name', 'Mother Middle Name', 'Mother Maiden Name', 'Mother Contact Number', 'Father First Name', 'Father Middle Name', 'Father Last Name', 'Father Contact Number', 'House Number', 'Street', 'Village Or Subdivision', 'Barangay', 'status'];
     $sheet->fromArray($header, NULL, 'A1');
 
-    $sql = "SELECT FirstName, MiddleName, LastName, Suffix, Gender, DateOfBirth, PlaceOfBirth, Nationality, SocialWelfare, Occupation, Religion, CivilStatus, TelephoneNumber, PhoneNumber, Email, WorkPhone, MotherFirstName, MotherMiddleName, MotherMaidenName, MotherContactNum, FatherFirstName, FatherMiddleName, FatherLastName, FatherContactNum, HouseNumber, Street, VillageOrSubdivision, Barangay FROM CitizenID_Application_Form_BasicInfo WHERE 1";
+    $sql = "SELECT FirstName, MiddleName, LastName, Suffix, Gender, DateOfBirth, PlaceOfBirth, Nationality, SocialWelfare, Occupation, Religion, CivilStatus, TelephoneNumber, PhoneNumber, Email, WorkPhone, MotherFirstName, MotherMiddleName, MotherMaidenName, MotherContactNum, FatherFirstName, FatherMiddleName, FatherLastName, FatherContactNum, HouseNumber, Street, VillageOrSubdivision, Barangay, status FROM CitizenID_Application_Form_BasicInfo WHERE 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $rowIndex = 2;
@@ -40,7 +40,7 @@ if (isset($_POST['export_pdf'])) {
     $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
     $html .= '</tr></thead><tbody>';
     $html .= '<th>Role</th>';
-    $sql = "SELECT `FirstName`, `MiddleName`, `LastName`, `Suffix`, `Gender`, `DateOfBirth`, `PlaceOfBirth`, `Nationality`, `SocialWelfare`, `Occupation`, `Religion`, `CivilStatus`, `TelephoneNumber`, `PhoneNumber`, `Email`, `WorkPhone`, `MotherFirstName`, `MotherMiddleName`, `MotherMaidenName`, `MotherContactNum`, `FatherFirstName`, `FatherMiddleName`, `FatherLastName`, `FatherContactNum`, `HouseNumber`, `Street`, `VillageOrSubdivision`, `Barangay` FROM `CitizenID_Application_Form_BasicInfo` WHERE 1";
+    $sql = "SELECT `FirstName`, `MiddleName`, `LastName`, `Suffix`, `Gender`, `DateOfBirth`, `PlaceOfBirth`, `Nationality`, `SocialWelfare`, `Occupation`, `Religion`, `CivilStatus`, `TelephoneNumber`, `PhoneNumber`, `Email`, `WorkPhone`, `MotherFirstName`, `MotherMiddleName`, `MotherMaidenName`, `MotherContactNum`, `FatherFirstName`, `FatherMiddleName`, `FatherLastName`, `FatherContactNum`, `HouseNumber`, `Street`, `VillageOrSubdivision`, `Barangay`, `status` FROM `CitizenID_Application_Form_BasicInfo` WHERE 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -73,6 +73,8 @@ if (isset($_POST['export_pdf'])) {
             $html .= '<td>' . $row['Street'] . '</td>';
             $html .= '<td>' . $row['VillageOrSubdivision'] . '</td>';
             $html .= '<td>' . $row['Barangay'] . '</td>';
+            $html .= '<td>' . $row['status'] . '</td>';
+
             $html .= '</tr>';
         }
     } else {
@@ -87,7 +89,8 @@ if (isset($_POST['export_pdf'])) {
 
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT `id`, `FirstName`, `MiddleName`, `LastName`, `Suffix`, `Gender`, `DateOfBirth`, `PlaceOfBirth`, `Nationality`, `SocialWelfare`, `Occupation`, `Religion`, `CivilStatus`, `TelephoneNumber`, `PhoneNumber`, `Email`, `WorkPhone`, `MotherFirstName`, `MotherMiddleName`, `MotherMaidenName`, `MotherContactNum`, `FatherFirstName`, `FatherMiddleName`, `FatherLastName`, `FatherContactNum`, `HouseNumber`, `Street`, `VillageOrSubdivision`, `Barangay` FROM `CitizenID_Application_Form_BasicInfo` WHERE 1";
+$sql = "SELECT `id`, `FirstName`, `MiddleName`, `LastName`, `Suffix`, `Gender`, `DateOfBirth`, `PlaceOfBirth`, `Nationality`, `SocialWelfare`, `Occupation`, `Religion`, `CivilStatus`, `TelephoneNumber`, `PhoneNumber`, `Email`, `WorkPhone`, `MotherFirstName`, `MotherMiddleName`, `MotherMaidenName`, `MotherContactNum`, `FatherFirstName`, `FatherMiddleName`, `FatherLastName`, `FatherContactNum`, `HouseNumber`, `Street`, `VillageOrSubdivision`, `Barangay`, `status` FROM `CitizenID_Application_Form_BasicInfo` WHERE 1";
+
 $result = $conn->query($sql);
 
 // Get user ID from request
@@ -104,6 +107,23 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     header("Location: citizenIDadmin.php");
     exit();
 }
+
+// Update user status
+if (isset($_POST['ticketId']) && isset($_POST['newStatus'])) {
+    $ticketId = $_POST['ticketId'];
+    $newStatus = $_POST['newStatus'];
+
+    // Prepare SQL to update status
+    $stmt = $conn->prepare("UPDATE CitizenID_Application_Form_BasicInfo SET status = ? WHERE id = ?");
+    $stmt->bind_param("si", $newStatus, $ticketId);
+
+    $_SESSION['message'] = $stmt->execute() ? "Status updated successfully" : "Error updating status: {$stmt->error}";
+
+    $stmt->close();
+    header("Location: citizenIDadmin.php");
+    exit();
+}
+
 ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -240,6 +260,7 @@ include('dashboard_sidebar_start.php');
                 <th scope="col">Street</th>
                 <th scope="col">Village Or Subdivision</th>
                 <th scope="col">Barangay</th>
+                <th scope="col">Status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -277,8 +298,9 @@ include('dashboard_sidebar_start.php');
                 echo "<td>" . $row["Street"] . "</td>";
                 echo "<td>" . $row["VillageOrSubdivision"] . "</td>";
                 echo "<td>" . $row["Barangay"] . "</td>";
+                echo "<td>" . $row["status"] . "</td>";
                 echo "<td class='action-buttons'>
-                        <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
+                        <button onclick='changeStatus(" . $row["id"] . ")' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#changeStatusModal'>Change Status</button>
                         <a href='citizenIDadmin.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
                       </td>";
                 echo "</tr>";
@@ -291,6 +313,61 @@ include('dashboard_sidebar_start.php');
         </tbody>
     </table>
 </div>
+<!-- Change Status Modal -->
+<div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeStatusModalLabel">Change Ticket Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changeStatusForm">
+                    <input type="hidden" id="ticketId" name="ticketId">
+                    <div class="form-group">
+                        <label for="newStatus">New Status</label>
+                        <select id="newStatus" name="newStatus" class="form-control">
+                            <option value="Release">Release</option>
+                            <option value="To be release">To be release</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="pending">Pending</option>
+
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function changeStatus(ticketId) {
+    document.getElementById('ticketId').value = ticketId;
+}
+
+document.getElementById('changeStatusForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var ticketId = document.getElementById('ticketId').value;
+    var newStatus = document.getElementById('newStatus').value;
+
+    $.ajax({
+        url: 'citizenIDadmin.php',
+        type: 'POST',
+        data: {
+            ticketId: ticketId,
+            newStatus: newStatus
+        },
+        success: function(response) {
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+</script>
 
 <script>
 $(document).ready(function() {

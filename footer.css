@@ -4,7 +4,6 @@ footer {
   padding: 15px 0;
   text-align: center;
   width: 100%;
-  position: fixed; /* Ensure it doesn't stick to the bottom */
   font-size: 14px; /* Fixed size to prevent scaling on zoom */
 }
 

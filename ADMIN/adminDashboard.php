@@ -190,13 +190,26 @@ body.dark-mode .logout:hover {
 }
 /* Style for the chart container */
 .chart-container {
-    width: 30%;
-    height: 300px; /* Adjust height as needed */
-    margin-top: 20px; /* Space above the chart */
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Inner padding */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    width: 40%;
+    height: 350px;
+    margin-top: 120px;
+    margin-left: 150px; /* Align container with the left side */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.card{
+    width: 40%;
+    height: 250px;
+    margin-top: 80px;
+    margin-left: 250px; /* Align container with the left side */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #applicationChart {
@@ -243,6 +256,34 @@ body.dark-mode .logout:hover {
     box-sizing: border-box; /* Ensures padding doesn't affect overall width */
 }
 
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    width: 80%;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
 
 </style>
 
@@ -259,17 +300,39 @@ include('dashboard_sidebar_start.php');
 <div class="container-group" style="display: flex; justify-content: space-between;">
 
     <div class="container" id="new-applications" style="width: 330px;">
-        <i class="fas fa-plus-circle"></i> NEW APPLICATION
-        <div class="number" id="new-count">10</div>
+        <i class="fas fa-plus-circle"></i> TOTAL USERS
+        <div class="number" id="new-count"></div>
+    <?php
+    // Fetch the total number of users from the database
+    $query = "SELECT COUNT(*) as total_users FROM users";   
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $total_users = $row['total_users'];
+    ?>
+    <script>
+        // Update the total users count dynamically
+        document.getElementById('new-count').innerText = <?php echo $total_users; ?>;
+    </script>
     </div>
 
     <div class="container" id="ongoing-applications" style="width: 330px;">
-        <i class="fas fa-spinner"></i> ON-GOING APPLICATION
-        <div class="number" id="ongoing-count">5</div>
+        <i class="fas fa-spinner"></i> PENDING APPOINMENTS
+        <div class="number" id="ongoing-count"></div>
+        <?php
+        // Fetch the total number of ongoing appointments from the database
+        $query = "SELECT COUNT(*) as ongoing_appointments FROM appointments WHERE status = 'ongoing'";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        $ongoing_appointments = $row['ongoing_appointments'];
+        ?>
+        <script>
+            // Update the ongoing appointments count dynamically
+            document.getElementById('ongoing-count').innerText = <?php echo $ongoing_appointments; ?>;
+        </script>
     </div>
 
     <div class="container" id="application-list" style="width: 330px;">
-        <i class="fas fa-list"></i> APPLICATION LIST
+        <i class="fas fa-list"></i> TOTAL CLIENTS
         <div class="number" id="list-count">30</div>
     </div>
 
@@ -280,11 +343,24 @@ include('dashboard_sidebar_start.php');
 
 </div>
 
-        <!-- Chart Container -->
-        <div class="chart-container">
-            <canvas id="applicationChart"></canvas>
+<main>
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-md-6" style="margin-left: -150px;">
+                <div class="card p-4">
+                    <h5 class="card-title">Card 1</h5>
+                    <p class="card-text">Content for the first card.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="card-title">Card 2</h5>
+                    <p class="card-text">Content for the second card.</p>
+                </div>
+            </div>
         </div>
     </div>
+</main>
 
 
 </div>

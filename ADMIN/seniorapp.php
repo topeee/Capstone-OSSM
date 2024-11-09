@@ -96,6 +96,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
     /* Custom Table Styling */
@@ -264,7 +265,7 @@ include('dashboard_sidebar_start.php');
 <div class="table-container" style="margin-left:10px; margin-right:10px; ">
     <table id="usersTable" class="display">
         <thead>
-            <tr>
+            <tr id="headerRow">
                 <th scope="col">#</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Middle Name</th>
@@ -325,23 +326,11 @@ include('dashboard_sidebar_start.php');
 </div>
 
 <script>
+
 $(document).ready(function() {
-    $('#usersTable').DataTable({
-        "paging": true, // Enables pagination
-        "lengthChange": false, // Disables length change
-        "searching": true, // Enables search
-        "ordering": true, // Enables column sorting
-        "info": true, // Shows info about the table
-        "autoWidth": false // Disables auto width for columns
-    });
+// Initialize DataTable with built-in search
+var table = $('#usersTable').DataTable();
 });
-</script>
-
-<script>
-$(document).ready(function() {
-    // Initialize DataTable with built-in search
-    var table = $('#usersTable').DataTable();
-
     // List of column headers and indices
     const headers = [
         "ID", "First Name", "Middle Name", "Last Name", "Suffix", "DOB", "Gender",
@@ -393,57 +382,63 @@ $(document).ready(function() {
         isSortedAlphabetically = !isSortedAlphabetically;
     });
 
-    // JavaScript to toggle visibility of table columns
-    document.querySelectorAll('.toggle-column').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const column = this.getAttribute('data-column');
-            const isChecked = this.checked;
-
-            // Toggle visibility of cells in the specified column
-            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
-                cell.style.display = isChecked ? "" : "none";
+    $(document).ready(function() {
+        // JavaScript to toggle visibility of table columns
+        document.querySelectorAll('.toggle-column').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const column = this.getAttribute('data-column');
+                const isChecked = this.checked;
+    
+                // Toggle visibility of cells in the specified column
+                document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                    cell.style.display = isChecked ? "" : "none";
+                });
             });
         });
-    });
-
-    // Select All functionality
-    document.getElementById('select-all').addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.toggle-column');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = true;
-
-            // Show all columns
-            const column = checkbox.getAttribute('data-column');
-            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
-                cell.style.display = "";
+    
+        // Select All functionality
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.toggle-column');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+    
+                // Show all columns
+                const column = checkbox.getAttribute('data-column');
+                document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                    cell.style.display = "";
+                });
             });
-        });
-        document.getElementById('deselect-all').checked = false;
-    });
-
-    // Deselect All functionality
-    document.getElementById('deselect-all').addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('.toggle-column');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = false;
-
-            // Hide all columns
-            const column = checkbox.getAttribute('data-column');
-            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
-                cell.style.display = "none";
-            });
-        });
-        document.getElementById('select-all').checked = false;
-    });
-
-    // Ensure Select/Deselect All only affect their respective states
-    document.querySelectorAll('.toggle-column').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            document.getElementById('select-all').checked = false;
             document.getElementById('deselect-all').checked = false;
         });
+    
+        // Deselect All functionality
+        document.getElementById('deselect-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.toggle-column');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+    
+                // Hide all columns
+                const column = checkbox.getAttribute('data-column');
+                document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                    cell.style.display = "none";
+                });
+            });
+            document.getElementById('select-all').checked = false;
+        });
+    
+        // Ensure Select/Deselect All only affect their respective states
+        document.querySelectorAll('.toggle-column').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                document.getElementById('select-all').checked = false;
+                document.getElementById('deselect-all').checked = false;
+            });
+        });
+            // Prevent dropdown from closing when clicking on label
+            $('.dropdown-menu label').on('click', function(e) {
+            e.stopPropagation();
+        });
+
     });
-});
 </script>
 
 <?php   

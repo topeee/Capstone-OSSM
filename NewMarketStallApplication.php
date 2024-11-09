@@ -17,6 +17,7 @@ include 'header.php';
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="pwd app.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="icon" type="img/png" href="logo.png">
     <title>Stall Application Form</title>
 

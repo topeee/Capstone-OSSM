@@ -517,6 +517,10 @@ let isSortedAlphabetically = false;
         });
     })
 
+            // Prevent dropdown from closing when clicking on label
+            $('.dropdown-menu label').on('click', function(e) {
+            e.stopPropagation();
+        });
 });
 </script>
 

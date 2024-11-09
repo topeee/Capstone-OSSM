@@ -207,7 +207,7 @@ include('dashboard_sidebar_start.php');
             <div class="container mt-3">
             <form method="get" action="soloparentcontent.php">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                    <input type="text" class="form-control" placeholder="Search by any field" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
@@ -217,10 +217,35 @@ include('dashboard_sidebar_start.php');
         
         <?php
         // Modify SQL query to include search functionality
-        $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+        $search = $conn->real_escape_string(str_replace(' ', '%', $_GET['search'] ?? ''));
         $sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay, lastName FROM SoloParentApplication";
         if ($search) {
-            $sql .= " WHERE firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR email LIKE '%$search%'";
+            $sql .= " WHERE 
+                firstName LIKE '%$search%' OR 
+                middleName LIKE '%$search%' OR 
+                lastName LIKE '%$search%' OR 
+                selectedGender LIKE '%$search%' OR 
+                civilStatus LIKE '%$search%' OR 
+                dob LIKE '%$search%' OR 
+                birthPlace LIKE '%$search%' OR 
+                religion LIKE '%$search%' OR 
+                bloodType LIKE '%$search%' OR 
+                tele LIKE '%$search%' OR 
+                mobile1 LIKE '%$search%' OR 
+                email LIKE '%$search%' OR 
+                monthlyIncome LIKE '%$search%' OR 
+                officeAddress LIKE '%$search%' OR 
+                occupation LIKE '%$search%' OR 
+                tinNumber LIKE '%$search%' OR 
+                sssNumber LIKE '%$search%' OR 
+                gsisNumber LIKE '%$search%' OR 
+                yearsOfStay LIKE '%$search%' OR 
+                monthsOfStay LIKE '%$search%' OR 
+                lotNumber LIKE '%$search%' OR 
+                blkNumber LIKE '%$search%' OR 
+                street LIKE '%$search%' OR 
+                barangay LIKE '%$search%' OR 
+                lastName LIKE '%$search%'";
         }
         $result = $conn->query($sql);
         ?>

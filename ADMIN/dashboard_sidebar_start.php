@@ -173,7 +173,7 @@
             
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="soloparentcontent.php">
                 <i class="bi bi-people-fill"></i>
                     <span>Solo Parent Application</span></a>
             </li>

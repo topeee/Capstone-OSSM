@@ -157,13 +157,6 @@ main {
     }
 }
 
-.business-type-section {
-    background-color: #f0f8ff;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 
 #business-summary-table th, #business-summary-table td, #summary-page th, #summary-page td {
@@ -448,7 +441,7 @@ main {
                         <div class="head mb-3">
                             <h2>Business Information and Registration</h2>
                         </div>
-                        <div class="business-type-section" style="background-color: #f0f8ff; padding: 20px; border-radius: 8px; margin: 10px;">
+                        <div class="business-type-section">
                             <div class="row mb-3 ms-3">
                                 <h5 style="font-weight: 700;">Type of Business:</h5>
                                 <div class="col-md-12 align-items-center">
@@ -1396,7 +1389,7 @@ main {
                     </div>
                 </div>
                 
-                <!-- Summary Section for Other required information -->
+                <!-- Summary Section for Other Required Information -->
                 <div class="form-section" id="sum-ot-req" style="display: none;">
                     <h2>Summary of Other Required Information</h2>
                     <div class="summary-section mt-5">
@@ -1414,6 +1407,8 @@ main {
                         </table>
                     </div>
                 </div>
+
+             
 
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
@@ -1478,174 +1473,181 @@ main {
 
     <script>
 
-            //Other required information summary starts here
-            function updateRequiredInformation () {
-            const locloc = document.querySelector('input[name="q1"]:checked')?.value || "Not Provided";
+    function updateOtherRequiredInfoSummary() {
+        const q1 = document.querySelector('input[name="q1"]:checked')?.value || "Not Provided";
+        const q2 = document.querySelector('input[name="q2"]:checked')?.value || "Not Provided";
+        const q3 = document.querySelector('input[name="q3"]:checked')?.value || "Not Provided";
+        const q4 = document.querySelector('input[name="q4"]:checked')?.value || "Not Provided";
+        const q5 = document.querySelector('input[name="q5"]:checked')?.value || "Not Provided";
+        const q6 = document.querySelector('input[name="q6"]:checked')?.value || "Not Provided";
+        const q7 = document.querySelector('input[name="q7"]:checked')?.value || "Not Provided";
+        const q8 = document.querySelector('input[name="q8"]:checked')?.value || "Not Provided";
+        const q9 = document.querySelector('input[name="q9"]:checked')?.value || "Not Provided";
+        const q10 = document.querySelector('input[name="q10"]:checked')?.value || "Not Provided";
+        const q11 = document.querySelector('input[name="q11"]:checked')?.value || "Not Provided";
+        const q12 = document.querySelector('input[name="q12"]:checked')?.value || "Not Provided";
 
-            const RequiredSummaryTable = document.getElementById('other-required-info-summary-table');
-            summaryTable.innerHTML = `
-            <tr><td>Location of the Area</td><td>${locloc}</td></tr
-            `;
-            }
+        const summaryTable = document.getElementById('other-required-info-summary-table');
+        summaryTable.innerHTML = `
+            <tr><td>Office Purposes Only</td><td>${q1}</td></tr>
+            <tr><td>Walk-in Transactions or Sales</td><td>${q2}</td></tr>
+            <tr><td>Storage or Display of Merchandise</td><td>${q3}</td></tr>
+            <tr><td>Serving or Selling Liquor</td><td>${q4}</td></tr>
+            <tr><td>Located Inside Market</td><td>${q5}</td></tr>
+            <tr><td>Community Tax Certificate</td><td>${q6}</td></tr>
+            <tr><td>Barangay Micro Business Enterprise</td><td>${q7}</td></tr>
+            <tr><td>Covered by PAGCOR/GAB/PCSO</td><td>${q8}</td></tr>
+            <tr><td>Qualified for Tax Exemption</td><td>${q9}</td></tr>
+            <tr><td>Owner is a Person with Disability</td><td>${q10}</td></tr>
+            <tr><td>Employs Persons with Disability</td><td>${q11}</td></tr>
+            <tr><td>Utilizes Internet Service Subscription</td><td>${q12}</td></tr>
+        `;
+    }
 
-            // Attach 'oninput' event listeners to all form inputs and radio buttons
-            document.querySelectorAll('#sum-ot-req input').forEach(input => {
-                input.addEventListener('input', updateRequiredInformation);
-            });
-            document.querySelectorAll('#sum-ot-req input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', updateRequiredInformation);
-            });
-            //Other required information summary ends here
+    // Attach 'oninput' event listeners to all form inputs and radio buttons
+    document.querySelectorAll('#required-information input').forEach(input => {
+        input.addEventListener('input', updateOtherRequiredInfoSummary);
+    });
+    document.querySelectorAll('#required-information input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', updateOtherRequiredInfoSummary);
+    });
 
-            //Toggle the business activity government entity?
-            function toggleFileInput(isVisible) {
-            const fileInputContainer = document.getElementById('fileInputContainer');
-            if (isVisible) {
-                fileInputContainer.style.display = 'block'; // Show the file input if "Yes" is selected
-            } else {
-                fileInputContainer.style.display = 'none'; // Hide the file input if "No" is selected
-            }
-        }
+    // Business operation & activity summary starts here
+    function updateBusinessOperationSummary() {
+        // Get form input values from the Business Operation section
+        const businessArea = document.getElementById('business-area').value || "Not Provided";
+        const totalBuilding = document.getElementById('total-building').value || "Not Provided";
+        const fromTime = document.getElementById('from-time').value || "Not Provided";
+        const toTime = document.getElementById('time-to').value || "Not Provided"; // updated ID
+        const maleEmployees = document.getElementById('male').value || "Not Provided";
+        const femaleEmployees = document.getElementById('female').value || "Not Provided";
+        const numEmployeesInSanMateo = document.getElementById('num-emp').value || "Not Provided";
+        const vanTruck = document.getElementById('van/truck').value || "Not Provided";
+        const motor = document.getElementById('motor').value || "Not Provided";
+        const tdn = document.getElementById('tdn').value || "Not Provided";
+        const pin = document.getElementById('pin').value || "Not Provided";
+        const tct = document.getElementById('tct').value || "Not Provided";
 
-            //Business operation & activity summary starts here
-            function updateBusinessOperationSummary() {
-            // Get form input values from the Business Operation section
-            const businessArea = document.getElementById('business-area').value || "Not Provided";
-            const totalBuilding = document.getElementById('total-building').value || "Not Provided";
-            const fromTime = document.getElementById('from-time').value || "Not Provided";
-            const toTime = document.getElementById('time-to').value || "Not Provided"; // updated ID
-            const maleEmployees = document.getElementById('male').value || "Not Provided";
-            const femaleEmployees = document.getElementById('female').value || "Not Provided";
-            const numEmployeesInSanMateo = document.getElementById('num-emp').value || "Not Provided";
-            const vanTruck = document.getElementById('van/truck').value || "Not Provided";
-            const motor = document.getElementById('motor').value || "Not Provided";
-            const tdn = document.getElementById('tdn').value || "Not Provided";
-            const pin = document.getElementById('pin').value || "Not Provided";
-            const tct = document.getElementById('tct').value || "Not Provided";
+        // Get radio button values for ownership
+        const ownerRegistered = document.querySelector('input[name="choice3"]:checked')?.value || "Not Provided";
+        const governmentProperty = document.querySelector('input[name="choice4"]:checked')?.value || "Not Provided";
+        const companyOwnedProperty = document.querySelector('input[name="choice5"]:checked')?.value || "Not Provided";
 
-            // Get radio button values for ownership
-            const ownerRegistered = document.querySelector('input[name="choice3"]:checked')?.value || "Not Provided";
-            const governmentProperty = document.querySelector('input[name="choice4"]:checked')?.value || "Not Provided";
-            const companyOwnedProperty = document.querySelector('input[name="choice5"]:checked')?.value || "Not Provided";
+        // If the user is the registered owner, no further info is needed
+        let ownerInfo = "";
+        if (ownerRegistered === 'no') {
+            // If it's not the registered owner, check for lessor or ownership details
+            const surnameNo = document.getElementById('surname-no').value || "Not Provided";
+            const givenNameNo = document.getElementById('given-name-no').value || "Not Provided";
+            const middleNameNo = document.getElementById('middle-name-no').value || "Not Provided";
+            const suffixNo = document.getElementById('suffix-no').value || "Not Provided";
+            const leaseFrom = document.getElementById('lease-from').value || "Not Provided";
+            const leaseTo = document.getElementById('lease-to').value || "Not Provided";
 
-            // If the user is the registered owner, no further info is needed
-            let ownerInfo = "";
-            if (ownerRegistered === 'no') {
-                // If it's not the registered owner, check for lessor or ownership details
-                const surnameNo = document.getElementById('surname-no').value || "Not Provided";
-                const givenNameNo = document.getElementById('given-name-no').value || "Not Provided";
-                const middleNameNo = document.getElementById('middle-name-no').value || "Not Provided";
-                const suffixNo = document.getElementById('suffix-no').value || "Not Provided";
-                const leaseFrom = document.getElementById('lease-from').value || "Not Provided";
-                const leaseTo = document.getElementById('lease-to').value || "Not Provided";
-
-                ownerInfo = `
-                    <tr><td>Name of Lessor</td><td>${surnameNo} ${givenNameNo} ${middleNameNo} ${suffixNo}</td></tr>
-                    <tr><td>Contract of Lease (From)</td><td>${leaseFrom}</td></tr>
-                    <tr><td>Contract of Lease (To)</td><td>${leaseTo}</td></tr>
-                `;
-            }
-
-            // For government or company owned properties
-            let additionalPropertyInfo = "";
-            if (governmentProperty === 'yes') {
-                additionalPropertyInfo = `<tr><td>Government Owned Property</td><td>Yes (Affidavit of Undertaking)</td></tr>`;
-            }
-            if (companyOwnedProperty === 'yes') {
-                const surname = document.getElementById('surname').value || "Not Provided";
-                const givenName = document.getElementById('given-name').value || "Not Provided";
-                const middleName = document.getElementById('middle-name').value || "Not Provided";
-                const suffix = document.getElementById('suffix').value || "Not Provided";
-                
-                additionalPropertyInfo += `
-                    <tr><td>Company Owned Property</td><td>Yes</td></tr>
-                    <tr><td>Owner/Representative</td><td>${surname} ${givenName} ${middleName} ${suffix}</td></tr>
-                `;
-            }
-
-            // Business Activity Section
-            const tci = document.getElementById('tci').value || "Not Provided";
-            const taxIncentive = document.querySelector('input[name="uploadChoice"]:checked')?.value || "Not Provided";
-            let fileUpload = "Not Provided";
-            if (taxIncentive === 'yes') {
-                fileUpload = document.getElementById('fileUpload').value.split('\\').pop() || "Not Provided";
-            }
-            const officeLocation = document.querySelector('input[name="office-location"]:checked')?.value || "Not Provided";
-            const lineOfBusiness = document.getElementById('line-business').value || "Not Provided";
-            const productsServices = document.getElementById('products-services').value || "Not Provided";
-
-            // Equipment Fields (if applicable)
-            let equipmentInfo = "";
-            const equipmentGroups = document.querySelectorAll('#dynamic-field-group .row');
-            equipmentGroups.forEach((group, index) => {
-                const noOfUnits = group.querySelector('[name="no-of-units"]').value || "Not Provided";
-                const description = group.querySelector('[name="description"]').value || "Not Provided";
-                const size = group.querySelector('[name="size"]').value || "Not Provided";
-                equipmentInfo += `
-                    <tr><td>Equipment ${index + 1}:</td></tr>
-                    <tr><td>&nbsp;&nbsp;No. of Units:</td><td>${noOfUnits}</td></tr>
-                    <tr><td>&nbsp;&nbsp;Description:</td><td>${description}</td></tr>
-                    <tr><td>&nbsp;&nbsp;Size:</td><td>${size}</td></tr>
-                `;
-            });
-
-            // Description of Business
-            const businessDescription = document.getElementById('descriptions').value || "Not Provided";
-
-            // Create the summary table rows
-            const businessSummaryTable = document.getElementById('business-summary-table');
-            businessSummaryTable.innerHTML = `
-                <!-- Business Operation Section -->
-                <tr><th colspan="2">Business Operation</th></tr>
-                <tr><td>Business Area (sq.m)</td><td>${businessArea}</td></tr>
-                <tr><td>Total Floor/Building Area (sq.m)</td><td>${totalBuilding}</td></tr>
-                <tr><td>Time Operation (From)</td><td>${fromTime}</td></tr>
-                <tr><td>Time Operation (To)</td><td>${toTime}</td></tr>
-                <tr><td>Male Employees</td><td>${maleEmployees}</td></tr>
-                <tr><td>Female Employees</td><td>${femaleEmployees}</td></tr>
-                <tr><td>Employees Living in San Mateo</td><td>${numEmployeesInSanMateo}</td></tr>
-                <tr><td>Van/Truck</td><td>${vanTruck}</td></tr>
-                <tr><td>Motor</td><td>${motor}</td></tr>
-                <tr><td>Tax Declaration No.</td><td>${tdn}</td></tr>
-                <tr><td>Property Identification No.</td><td>${pin}</td></tr>
-                <tr><td>Transfer Certificate of Title</td><td>${tct}</td></tr>
-                <tr><td>Registered Owner</td><td>${ownerRegistered === 'yes' ? "Yes" : "No"}</td></tr>
-                ${ownerInfo}
-                ${additionalPropertyInfo}
-
-                <!-- Business Activity Section -->
-                <tr><th colspan="2">Business Activity</th></tr>
-                <tr><td>Total Capital Investment (TCI)</td><td>${tci}</td></tr>
-                <tr><td>Tax Incentives from Government Entity</td><td>${taxIncentive}</td></tr>
-                ${taxIncentive === 'yes' ? `<tr><td>Uploaded File:</td><td>${fileUpload}</td></tr>` : ""}
-                <tr><td>Office Location</td><td>${officeLocation}</td></tr>
-                <tr><td>Line of Business</td><td>${lineOfBusiness}</td></tr>
-                <tr><td>Products/Services</td><td>${productsServices}</td></tr>
-                ${equipmentInfo}
-                <tr><td>Description of Business</td><td>${businessDescription}</td></tr>
+            ownerInfo = `
+                <tr><td>Name of Lessor</td><td>${surnameNo} ${givenNameNo} ${middleNameNo} ${suffixNo}</td></tr>
+                <tr><td>Contract of Lease (From)</td><td>${leaseFrom}</td></tr>
+                <tr><td>Contract of Lease (To)</td><td>${leaseTo}</td></tr>
             `;
         }
 
-        // Attach 'oninput' event listeners to all form inputs and radio buttons
-        document.querySelectorAll('#business-operation input').forEach(input => {
-            input.addEventListener('input', updateBusinessOperationSummary);
-        });
-        document.querySelectorAll('#business-operation input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', updateBusinessOperationSummary);
-        });
-        document.querySelectorAll('#business-activity input, #business-activity select').forEach(input => {
-            input.addEventListener('input', updateBusinessOperationSummary);
-        });
-        document.querySelectorAll('#business-activity input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', updateBusinessOperationSummary);
+        // For government or company owned properties
+        let additionalPropertyInfo = "";
+        if (governmentProperty === 'yes') {
+            additionalPropertyInfo = `<tr><td>Government Owned Property</td><td>Yes (Affidavit of Undertaking)</td></tr>`;
+        }
+        if (companyOwnedProperty === 'yes') {
+            const surname = document.getElementById('surname').value || "Not Provided";
+            const givenName = document.getElementById('given-name').value || "Not Provided";
+            const middleName = document.getElementById('middle-name').value || "Not Provided";
+            const suffix = document.getElementById('suffix').value || "Not Provided";
+            
+            additionalPropertyInfo += `
+                <tr><td>Company Owned Property</td><td>Yes</td></tr>
+                <tr><td>Owner/Representative</td><td>${surname} ${givenName} ${middleName} ${suffix}</td></tr>
+            `;
+        }
+
+        // Business Activity Section
+        const tci = document.getElementById('tci').value || "Not Provided";
+        const taxIncentive = document.querySelector('input[name="uploadChoice"]:checked')?.value || "Not Provided";
+        let fileUpload = "Not Provided";
+        if (taxIncentive === 'yes') {
+            fileUpload = document.getElementById('fileUpload').value.split('\\').pop() || "Not Provided";
+        }
+        const officeLocation = document.querySelector('input[name="office-location"]:checked')?.value || "Not Provided";
+        const lineOfBusiness = document.getElementById('line-business').value || "Not Provided";
+        const productsServices = document.getElementById('products-services').value || "Not Provided";
+
+        // Equipment Fields (if applicable)
+        let equipmentInfo = "";
+        const equipmentGroups = document.querySelectorAll('#dynamic-field-group .row');
+        equipmentGroups.forEach((group, index) => {
+            const noOfUnits = group.querySelector('[name="no-of-units"]').value || "Not Provided";
+            const description = group.querySelector('[name="description"]').value || "Not Provided";
+            const size = group.querySelector('[name="size"]').value || "Not Provided";
+            equipmentInfo += `
+                <tr><td>Equipment ${index + 1}:</td></tr>
+                <tr><td>&nbsp;&nbsp;No. of Units:</td><td>${noOfUnits}</td></tr>
+                <tr><td>&nbsp;&nbsp;Description:</td><td>${description}</td></tr>
+                <tr><td>&nbsp;&nbsp;Size:</td><td>${size}</td></tr>
+            `;
         });
 
-        //Business operation & activity summary ends here
+        // Description of Business
+        const businessDescription = document.getElementById('descriptions').value || "Not Provided";
 
+        // Create the summary table rows
+        const businessSummaryTable = document.getElementById('business-summary-table');
+        businessSummaryTable.innerHTML = `
+            <!-- Business Operation Section -->
+            <tr><th colspan="2">Business Operation</th></tr>
+            <tr><td>Business Area (sq.m)</td><td>${businessArea}</td></tr>
+            <tr><td>Total Floor/Building Area (sq.m)</td><td>${totalBuilding}</td></tr>
+            <tr><td>Time Operation (From)</td><td>${fromTime}</td></tr>
+            <tr><td>Time Operation (To)</td><td>${toTime}</td></tr>
+            <tr><td>Male Employees</td><td>${maleEmployees}</td></tr>
+            <tr><td>Female Employees</td><td>${femaleEmployees}</td></tr>
+            <tr><td>Employees Living in San Mateo</td><td>${numEmployeesInSanMateo}</td></tr>
+            <tr><td>Van/Truck</td><td>${vanTruck}</td></tr>
+            <tr><td>Motor</td><td>${motor}</td></tr>
+            <tr><td>Tax Declaration No.</td><td>${tdn}</td></tr>
+            <tr><td>Property Identification No.</td><td>${pin}</td></tr>
+            <tr><td>Transfer Certificate of Title</td><td>${tct}</td></tr>
+            <tr><td>Registered Owner</td><td>${ownerRegistered === 'yes' ? "Yes" : "No"}</td></tr>
+            ${ownerInfo}
+            ${additionalPropertyInfo}
 
-        // Summarizr the input for Business Information
-        // Function to update the summary table in real-time
-        function updateSummary() {
+            <!-- Business Activity Section -->
+            <tr><th colspan="2">Business Activity</th></tr>
+            <tr><td>Total Capital Investment (TCI)</td><td>${tci}</td></tr>
+            <tr><td>Tax Incentives from Government Entity</td><td>${taxIncentive}</td></tr>
+            ${taxIncentive === 'yes' ? `<tr><td>Uploaded File:</td><td>${fileUpload}</td></tr>` : ""}
+            <tr><td>Office Location</td><td>${officeLocation}</td></tr>
+            <tr><td>Line of Business</td><td>${lineOfBusiness}</td></tr>
+            <tr><td>Products/Services</td><td>${productsServices}</td></tr>
+            ${equipmentInfo}
+            <tr><td>Description of Business</td><td>${businessDescription}</td></tr>
+        `;
+    }
+
+    // Attach 'oninput' event listeners to all form inputs and radio buttons
+    document.querySelectorAll('#business-operation input').forEach(input => {
+        input.addEventListener('input', updateBusinessOperationSummary);
+    });
+    document.querySelectorAll('#business-operation input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', updateBusinessOperationSummary);
+    });
+    document.querySelectorAll('#business-activity input, #business-activity select').forEach(input => {
+        input.addEventListener('input', updateBusinessOperationSummary);
+    });
+    document.querySelectorAll('#business-activity input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', updateBusinessOperationSummary);
+    });
+
+    // Summarize the input for Business Information
+    // Function to update the summary table in real-time
+    function updateSummary() {
         // Get form input values
         const businessType = document.querySelector('input[name="choice4"]:checked')?.nextElementSibling.innerText || "Not Selected";
         const dtiSecCda = document.getElementById('dti-sec-cda').value || "Not Provided";

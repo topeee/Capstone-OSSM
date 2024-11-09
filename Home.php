@@ -129,9 +129,9 @@ include 'header.php';
     </div>
 
     <!-- Social Services Modal -->
-    <div class="modal fade" id="socialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
-        <div class="modal-dialog social-wide-modal">
-            <div class="modal-content" style="margin-top: 150px;">
+    <div class="modal fade " id="socialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
+        <div class="modal-dialog social-wide-modal" style="margin-left: 250px;">
+            <div class="modal-content" style="margin-top: 150px; width: 1000px;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="socialModalLabel">Social Services</h1>
                 </div>
@@ -184,7 +184,7 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- Economic & Investment Support Modal -->
+
 <!-- Economic & Investment Support Modal -->
 <div class="modal fade" id="econModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="econModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -246,8 +246,8 @@ include 'header.php';
 
     <!-- Health Services Modal -->
     <div class="modal fade" id="healthModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="healthModalLabel" aria-hidden="true">
-        <div class="modal-dialog health-wide-modal">
-            <div class="modal-content" style="margin-top: 150px;">
+        <div class="modal-dialog health-wide-modal" style="margin-left: 410px;">
+            <div class="modal-content" style="margin-top: 150px; width: 700px">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="healthModalLabel">Health Services</h1>
                 </div>
@@ -273,8 +273,8 @@ include 'header.php';
     </div>
     <!-- Citizen ID Modal -->
         <div class="modal fade" id="citizenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="citizenModalLabel" aria-hidden="true">
-            <div class="modal-dialog citizen-wide-modal">
-                <div class="modal-content" style="margin-top: 150px;">
+            <div class="modal-dialog citizen-wide-modal" style="margin-left: 410px;">
+                <div class="modal-content" style="margin-top: 150px; width: 700px">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="citizenModalLabel">Citizen ID</h1>
                     </div>

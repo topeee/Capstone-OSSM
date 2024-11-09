@@ -323,7 +323,7 @@ include('dashboard_sidebar_start.php');
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-6 mb-4">
-            <div class="container" id="new-applications">
+            <div class="container" id="new-applications" style="color:#0000FF;">
                 <i class="fas fa-plus-circle"></i> TOTAL USERS
                 <div class="number" id="new-count"></div>
                 <?php
@@ -340,7 +340,7 @@ include('dashboard_sidebar_start.php');
             </div>
         </div>
         <div class="col-md-3 col-sm-6 mb-4">
-            <div class="container" id="ongoing-applications">
+            <div class="container" id="ongoing-applications" style="color:#0000FF;">
                 <i class="fas fa-spinner"></i> PENDING APPOINTMENTS
                 <div class="number" id="ongoing-count"></div>
                 <?php

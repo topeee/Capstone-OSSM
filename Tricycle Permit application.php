@@ -79,7 +79,7 @@ include 'header.php';
 <body>
 
     <div id="top-bar" class="top-bar-image d-flex justify-content-center align-items-center">
-        <img src="C:\Users\rexce\Desktop\ossm\Capstone-OSSM\PUBLIC EMPLOYMENT SERVICES.jpg" class="minibanner" alt="Social And General Welfare">
+        <img src="PUBLIC EMPLOYMENT SERVICES.jpg" class="minibanner" alt="Social And General Welfare">
     </div>
     
 <main class="body">

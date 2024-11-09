@@ -75,7 +75,7 @@ include 'header.php';
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="appTypeSelect" class="form-label">Application Type:</label>
-                                <select id="appTypeSelect" class="form-select">
+                                <select id="appTypeSelect" class="form-select" required>
                                     <option value="selectType">SELECT TYPE</option>
                                     <option value="newStall">New Stall</option>
                                     <option value="renewalStall">Renewal of Stall</option>
@@ -88,7 +88,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="appStatusSelect" class="form-label">Application Status:</label>
-                                <select id="appStatusSelect" class="form-select">
+                                <select id="appStatusSelect" class="form-select" required>
                                     <option value="selectType">SELECT TYPE</option>
                                     <option value="additional_information_requested">Additional Information Requested</option>
                                     <option value="approved">Approved</option>
@@ -119,7 +119,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="appIDInput" class="form-label">Application ID:</label>
-                                <input type="text" id="appIDInput" class="form-control" placeholder="Enter Application ID...">
+                                <input type="text" id="appIDInput" class="form-control" placeholder="Enter Application ID..." required>
                             </div>
                             <!-- Search Button -->
                              <div class="col-md-4">

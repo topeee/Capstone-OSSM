@@ -170,7 +170,7 @@ include 'header.php';
                     <form>
                         <div class="mb-3">
                             <label for="marketSelect" class="form-label"><strong>Pumili ng Palengke:</strong></label>
-                            <select class="form-select small-dropdown" id="marketSelect" aria-label="Public Market Select">
+                            <select class="form-select small-dropdown" id="marketSelect" aria-label="Public Market Select" required>
                                 <option selected>Select a market</option>
                                 <option value="1">San Mateo Public Market</option>
                                 <option value="2">Sampaguita Market</option>

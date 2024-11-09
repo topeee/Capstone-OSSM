@@ -84,22 +84,22 @@ include 'header.php';
                         <div class="row g-3 mb-3">
                             <div class="col-md-4">
                                 <label for="leaseID" class="form-label">Lease ID</label>
-                                <input type="text" class="form-control" id="leaseID">
+                                <input type="text" class="form-control" id="leaseID" required>
                             </div>
                     
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name of Stallholder</label>
-                                <input type="text" class="form-control" id="firstName">
+                                <input type="text" class="form-control" id="firstName" required>
                             </div>
                     
                             <div class="col-md-4">
                                 <label for="lastName" class="form-label">Surname of Stallholder</label>
-                                <input type="text" class="form-control" id="lastName">
+                                <input type="text" class="form-control" id="lastName" required>
                             </div>
                     
                             <div class="col-md-4">
                                 <label for="marketName" class="form-label">Name of Market</label>
-                                <select class="form-select" id="marketName">
+                                <select class="form-select" id="marketName" required>
                                     <option value="Sample Market" selected>Sample Market</option>
                                     <option value="Market 1">Market 1</option>
                                     <option value="Market 2">Market 2</option>
@@ -109,7 +109,7 @@ include 'header.php';
                             
                             <div class="col-md-4">
                                 <label for="leaseStatus" class="form-label">Status of Lease</label>
-                                <select class="form-select" id="leaseStatus">
+                                <select class="form-select" id="leaseStatus" >
                                     <option value="Active" selected>Active</option>
                                     <option value="Expired">Expired</option>
                                     <option value="Terminated">Terminated</option>
@@ -184,6 +184,9 @@ include 'header.php';
                                                 <option value="Pending">Pending</option>
                                             </select>
                                         </td>
+                                        <td>
+                                    
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>LEASE456</td>
@@ -202,6 +205,9 @@ include 'header.php';
                                                 <option value="Unpaid">Unpaid</option>
                                                 <option value="Pending">Pending</option>
                                             </select>
+                                        </td>
+                                        <td>
+                                   
                                         </td>
                                     </tr>
                                 </tbody>
@@ -318,3 +324,60 @@ include 'header.php';
 </body>
 
 </html>
+<!-- Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel">Lease Summary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Lease ID:</strong> <span id="modalLeaseID"></span></p>
+                <p><strong>First Name:</strong> <span id="modalFirstName"></span></p>
+                <p><strong>Last Name:</strong> <span id="modalLastName"></span></p>
+                <p><strong>Market Name:</strong> <span id="modalMarketName"></span></p>
+                <p><strong>Section:</strong> <span id="modalSection"></span></p>
+                <p><strong>Stall Number:</strong> <span id="modalStallNumber"></span></p>
+                <p><strong>Status of Lease:</strong> <span id="modalLeaseStatus"></span></p>
+                <p><strong>Amount Due:</strong> <span id="modalAmountDue"></span></p>
+                <p><strong>Help Approval Status:</strong> <span id="modalHelpApprovalStatus"></span></p>
+                <p><strong>Advance Payment Status:</strong> <span id="modalAdvancePaymentStatus"></span></p>
+                <p><strong>Payment Status:</strong> <span id="modalPaymentStatus"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Function to populate and show the modal with row data
+        function showModal(row) {
+            $('#modalLeaseID').text(row.find('td').eq(0).text());
+            $('#modalFirstName').text(row.find('td').eq(1).text());
+            $('#modalLastName').text(row.find('td').eq(2).text());
+            $('#modalMarketName').text(row.find('td').eq(3).text());
+            $('#modalSection').text(row.find('td').eq(4).text());
+            $('#modalStallNumber').text(row.find('td').eq(5).text());
+            $('#modalLeaseStatus').text(row.find('td').eq(6).text());
+            $('#modalAmountDue').text(row.find('td').eq(7).text());
+            $('#modalHelpApprovalStatus').text(row.find('td').eq(8).text());
+            $('#modalAdvancePaymentStatus').text(row.find('td').eq(9).text());
+            $('#modalPaymentStatus').text(row.find('td').eq(10).find('select').val());
+            $('#viewModal').modal('show');
+        }
+
+        // Add view button to each row and set up click event
+        $('#applicantTable tbody tr').each(function() {
+            var row = $(this);
+            var viewButton = $('<button class="btn btn-info btn-sm">View</button>');
+            viewButton.click(function() {
+                showModal(row);
+            });
+            row.find('td').last().append(viewButton);
+        });
+    });
+</script>

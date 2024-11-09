@@ -70,11 +70,11 @@ include 'header.php';
                     <div class="row mb-3 align-items-end">
                         <div class="col-md-4">
                             <label for="bpNo" class="form-label">Business Permit No.</label>
-                            <input type="text" class="form-control" id="bpNo" placeholder="Enter Business Permit No.">
+                            <input type="text" class="form-control" id="bpNo" placeholder="Enter Business Permit No." required>
                         </div>
                         <div class="col-md-4">
                             <label for="marketName" class="form-label">Name of Market:</label>
-                            <input type="text" class="form-control" id="marketName" placeholder="Enter Name of Market">
+                            <input type="text" class="form-control" id="marketName" placeholder="Enter Name of Market" required>
                         </div>
                         <div class="col-md-4">
                             <button id="searchButton" class="btn btn-primary">Search</button>

@@ -167,7 +167,7 @@ include 'header.php';
                     <form>
                         <div class="mb-3">
                             <label for="marketSelect" class="form-label"><strong>Pumili ng Vending Site:</strong></label>
-                            <select class="form-select small-dropdown" id="marketSelect" aria-label="Vending Site Select">
+                            <select class="form-select small-dropdown" id="marketSelect" aria-label="Vending Site Select" required>
                                 <option selected>Select a vending site</option>
                                 <option value="1">Vending Site A</option>
                                 <option value="2">Vending Site B</option>

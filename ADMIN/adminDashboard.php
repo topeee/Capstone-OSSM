@@ -18,6 +18,10 @@ include 'db_connection.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
 </head>
 
 <style>
@@ -200,6 +204,17 @@ body.dark-mode .logout:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 }
+.piechart-container {
+    width: 40%;
+    height: 350px;
+    margin-top: 120px;
+    margin-left: 150px; /* Align container with the left side */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
 
 .card{
     width: 40%;
@@ -284,7 +299,10 @@ body.dark-mode .logout:hover {
     color: #555;
 }
 
-
+.lineChart {
+    width: 100%;
+    height: 100%;
+}
 </style>
 
 
@@ -297,67 +315,81 @@ include('dashboard_sidebar_start.php');
     
     
 <!-- Content Sections -->
-<div class="container-group" style="display: flex; justify-content: space-between;">
-
-    <div class="container" id="new-applications" style="width: 330px;">
-        <i class="fas fa-plus-circle"></i> TOTAL USERS
-        <div class="number" id="new-count"></div>
-    <?php
-    // Fetch the total number of users from the database
-    $query = "SELECT COUNT(*) as total_users FROM users";   
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
-    $total_users = $row['total_users'];
-    ?>
-    <script>
-        // Update the total users count dynamically
-        document.getElementById('new-count').innerText = <?php echo $total_users; ?>;
-    </script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="container" id="new-applications">
+                <i class="fas fa-plus-circle"></i> TOTAL USERS
+                <div class="number" id="new-count"></div>
+                <?php
+                // Fetch the total number of users from the database
+                $query = "SELECT COUNT(*) as total_users FROM users";   
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result);
+                $total_users = $row['total_users'];
+                ?>
+                <script>
+                    // Update the total users count dynamically
+                    document.getElementById('new-count').innerText = <?php echo $total_users; ?>;
+                </script>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="container" id="ongoing-applications">
+                <i class="fas fa-spinner"></i> PENDING APPOINTMENTS
+                <div class="number" id="ongoing-count"></div>
+                <?php
+                // Fetch the total number of ongoing appointments from the database
+                $query = "SELECT COUNT(*) as ongoing_appointments FROM appointments WHERE status = 'ongoing'";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result);
+                $ongoing_appointments = $row['ongoing_appointments'];
+                ?>
+                <script>
+                    // Update the ongoing appointments count dynamically
+                    document.getElementById('ongoing-count').innerText = <?php echo $ongoing_appointments; ?>;
+                </script>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="container" id="application-list">
+                <i class="fas fa-list"></i> TOTAL CLIENTS
+                <div class="number" id="list-count">30</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="adminDocu.php">
+                <div class="container" id="requested-documents">
+                    <i class="fas fa-file"></i> REQUESTED DOCUMENTS
+                    <div class="number" id="requested-count">5  </div>
+                </div>
+            </a>
+        </div>
     </div>
-
-    <div class="container" id="ongoing-applications" style="width: 330px;">
-        <i class="fas fa-spinner"></i> PENDING APPOINMENTS
-        <div class="number" id="ongoing-count"></div>
-        <?php
-        // Fetch the total number of ongoing appointments from the database
-        $query = "SELECT COUNT(*) as ongoing_appointments FROM appointments WHERE status = 'ongoing'";
-        $result = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($result);
-        $ongoing_appointments = $row['ongoing_appointments'];
-        ?>
-        <script>
-            // Update the ongoing appointments count dynamically
-            document.getElementById('ongoing-count').innerText = <?php echo $ongoing_appointments; ?>;
-        </script>
-    </div>
-
-    <div class="container" id="application-list" style="width: 330px;">
-        <i class="fas fa-list"></i> TOTAL CLIENTS
-        <div class="number" id="list-count">30</div>
-    </div>
-
-    <div class="container" id="requested-documents" style="width: 330px;">
-        <i class="fas fa-file"></i> REQUESTED DOCUMENTS
-        <div class="number" id="requested-count">3</div>
-    </div>
-
 </div>
 
 <main>
     <div class="mt-5">
-        <div class="row">
-            <div class="col-md-6" style="margin-left: -150px;">
-                <div class="card p-4">
-                    <h5 class="card-title">Card 1</h5>
-                    <p class="card-text">Content for the first card.</p>
+        <div class="row mt-5">
+
+            <h5 class="card-title" style="margin-left: 420px;">Monthly Views</h5> 
+            <h5 class="card-title" style="margin-left: 640px;">Pie Chart</h5>    
+        </div>
+            <div class="row">
+                        <div class="chart-container">
+                            <canvas id="lineChart"></canvas>
+                        </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h5 class="card-title">Card 2</h5>
-                    <p class="card-text">Content for the second card.</p>
-                </div>
+
+            <div class="row">
+                    <div class="piechart-container">
+                        <canvas id="pieChart"></canvas>
+                    </div>
             </div>
+
+
+
         </div>
     </div>
 </main>
@@ -429,33 +461,24 @@ include('dashboard_sidebar_start.php');
 </div>
 
 <script>
-     
-    // Initialize the chart
-    const ctx = document.getElementById('applicationChart').getContext('2d');
-    const applicationChart = new Chart(ctx, {
-        type: 'bar', // Change to 'line' for line chart
+    // Initialize the line chart
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(lineCtx, {
+        type: 'line',
         data: {
-            labels: ['New Applications', 'Ongoing Applications', 'Application Form List', 'Requested Documents'],
+            labels: ['August', 'September', 'October', 'November', 'December'],
             datasets: [{
-                label: 'Number of Applications',
-                data: [10, 5, 30, 3], // Use the current counts for dynamic data
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(54, 162, 235, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
+                label: 'Monthly Data',
+                data: [35, 59, 90, 78, 0],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: true
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, // Allow chart to resize
             scales: {
                 y: {
                     beginAtZero: true
@@ -463,6 +486,49 @@ include('dashboard_sidebar_start.php');
             }
         }
     });
+
+    // Adjust the size of the chart container
+    document.querySelector('.chart-container').style.width = '50%';
+    document.querySelector('.chart-container').style.height = '500px';
+    document.querySelector('.chart-container').style.marginLeft = '70px';
+    document.querySelector('.chart-container').style.marginTop = '0px';
+
+
+                // Initialize the pie chart
+                const pieCtx = document.getElementById('pieChart').getContext('2d');
+                const pieChart = new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['TOTAL USERS', 'PENDING APPOINTMENTS', 'TOTAL CLIENTS', 'REQUESTED DOCUMENTS'],
+                        datasets: [{
+                            label: 'Pie Chart Data',
+                            data: [7, 4, 30, 5],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+
+                    // Adjust the size of the chart container
+    document.querySelector('.piechart-container').style.width = '30%';
+    document.querySelector('.piechart-container').style.height = '500px';
+    document.querySelector('.piechart-container').style.marginLeft = '1000px';
+    document.querySelector('.piechart-container').style.marginTop = '-501px';
 
     // Modal functionality
 const modal = document.getElementById('serviceModal');

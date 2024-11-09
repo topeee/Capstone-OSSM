@@ -87,7 +87,7 @@
              
 
                 <li class="nav-item">
-                    <a class="nav-link" href="citizenID.php">
+                    <a class="nav-link" href="citizenIDadmin.php">
                     <i class="bi bi-person-vcard-fill"></i>
                         <span>Citizen ID eApplication</span>
                     </a>

@@ -97,7 +97,7 @@ if (isset($_POST['export_pdf'])) {
 
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay FROM SoloParentApplication";
+$sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay, lastName FROM SoloParentApplication";
 $result = $conn->query($sql);
 
 // Get user ID from request

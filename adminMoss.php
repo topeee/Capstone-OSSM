@@ -1,6 +1,11 @@
 
 <?php
 include('dashboard_sidebar_start.php');
+if ($_SESSION['role'] != 'admin') {
+    header("Location: login.php");
+    exit();
+}
+?>
 
 ?>
 <!DOCTYPE html>

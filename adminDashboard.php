@@ -1,14 +1,19 @@
 <?php
 session_start();
 include 'db_connection.php';
-
-
-
-
-
-
-
+if ($_SESSION['role'] != 'admin') {
+    header("Location: login.php");
+    exit();
+}
 ?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

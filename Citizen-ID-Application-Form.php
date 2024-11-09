@@ -1,3 +1,52 @@
+<?php 
+session_start();
+include 'header.php';
+include 'db_connection.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
+    $lastName = $_POST['lastName'];
+    $suffix = $_POST['suffix'];
+    $gender = $_POST['gender'];
+    $dob = $_POST['dob'];
+    $placeOfBirth = $_POST['PoB'];
+    $nationality = $_POST['nationality'];
+    $socialWelfare = $_POST['social-welfare'];
+    $occupation = $_POST['occupation'];
+    $religion = $_POST['religion'];
+    $civilStatus = $_POST['civilstatus'];
+    $telephoneNumber = $_POST['tele'];
+    $phoneNumber = $_POST['phone'];
+    $email = $_POST['email'];
+    $workPhone = $_POST['workPhone'];
+    $motherFirstName = $_POST['motherfirstName'];
+    $motherMiddleName = $_POST['mothermiddleName'];
+    $motherMaidenName = $_POST['motherlastName'];
+    $motherContactNum = $_POST['motherphone'];
+    $fatherFirstName = $_POST['fatherfirstName'];
+    $fatherMiddleName = $_POST['fathermiddleName'];
+    $fatherLastName = $_POST['fatherlastName'];
+    $fatherContactNum = $_POST['fatherphone'];
+    $houseNumber = $_POST['house-num'];
+    $street = $_POST['street'];
+    $villageOrSubdivision = $_POST['vill-or-subd'];
+    $barangay = $_POST['barangay-dropdown'];
+
+    $sql = "INSERT INTO CitizenID_Application_Form_BasicInfo (FirstName, MiddleName, LastName, Suffix, Gender, DateOfBirth, PlaceOfBirth, Nationality, SocialWelfare, Occupation, Religion, CivilStatus, TelephoneNumber, PhoneNumber, Email, WorkPhone, MotherFirstName, MotherMiddleName, MotherMaidenName, MotherContactNum, FatherFirstName, FatherMiddleName, FatherLastName, FatherContactNum, HouseNumber, Street, VillageOrSubdivision, Barangay) 
+            VALUES ('$firstName', '$middleName', '$lastName', '$suffix', '$gender', '$dob', '$placeOfBirth', '$nationality', '$socialWelfare', '$occupation', '$religion', '$civilStatus', '$telephoneNumber', '$phoneNumber', '$email', '$workPhone', '$motherFirstName', '$motherMiddleName', '$motherMaidenName', '$motherContactNum', '$fatherFirstName', '$fatherMiddleName', '$fatherLastName', '$fatherContactNum', '$houseNumber', '$street', '$villageOrSubdivision', '$barangay')";
+
+    if ($conn->query($sql) === TRUE) {
+        $_SESSION['status'] = "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+?>
+
+
 <!DOCTYPE html>
     <html>
     <head>
@@ -18,29 +67,15 @@
 
     </head>
     <body>
-      <nav class="navbar navbar-dark navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">
-            <img class="navbar-brand-logo" alt="Logo" src="logo.png" width="110" height="110">
-            <span class="brand-name">OSSM</span>
-          </a>
-          <div class="d-flex align-items-center ms-auto">
-            <span class="username">Hello, Username</span>
-            <div class="dropdown-center ms-3">
-              <a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36">
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="trasaac_history.php">History Transaction</a></li>
-                <li><a class="dropdown-item logout-item" href="login.php">Logout</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <?php
+    if (isset($_SESSION['status'])) {
+        echo '<div class="alert alert-success" role="alert">' . $_SESSION['status'] . '</div>';
+        unset($_SESSION['status']);
+    }
+    ?>
+    <form method="POST" action="">
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+    <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -89,30 +124,30 @@
                 <div class="form-section" id="basic-information-section">
                     <h4>Basic Information</h4>
     
-                    <form>
+                
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="suffix" class="form-label">Suffix</label>
-                                <input type="text" class="form-control" id="suffix" placeholder="Suffix">
+                                <input type="text" class="form-control" id="suffix" name="suffix" placeholder="Suffix">
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" required>
+                                <select class="form-select" id="gender" name="gender" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -120,22 +155,22 @@
                             </div>                        
                             <div class="col-md-3">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="PoB" class="form-label">Place of Birth</label>
-                                <input type="text" class="form-control" id="PoB" placeholder="Place of Birth" required>
+                                <input type="text" class="form-control" id="PoB" name="PoB" placeholder="Place of Birth" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="nationality" class="form-label">Nationality</label>
-                                <input type="text" class="form-control" id="nationality" placeholder="Nationality" required>
+                                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Nationality" required>
                             </div>
                         </div>
     
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label for="social-welfare" class="form-label">Social Welfare</label>
-                                <select class="form-select" id="social-welfare" required>
+                                <select class="form-select" id="social-welfare" name="social-welfare" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="PWD">Person with Disability</option>
                                     <option value="Solo">Solo Parent</option>
@@ -144,15 +179,15 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="occupation" class="form-label">Occupation</label>
-                                <input type="text" class="form-control" id="occupation" placeholder="Occupation" required>
+                                <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Occupation" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="religion" class="form-label">Religion</label>
-                                <input type="text" class="form-control" id="religion" placeholder="Religion" required>
+                                <input type="text" class="form-control" id="religion" name="religion" placeholder="Religion" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" required>
+                                <select class="form-select" id="civilstatus" name="civilstatus" required>
                                     <option value="" disabled selected>Choose...</option>
                                     <option value="self">Married</option>
                                     <option value="spouse">Widowed</option>
@@ -164,167 +199,161 @@
                               <i class="bi bi-info-circle-fill"></i>       
                                 If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
                           </div>
-                    </form>
+                    
                 </div>
     
                 <!-- Parent Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-                    <form>
-                        <h4>Parent Information</h4>
-                        <p class="fs-4"><strong>Mother's Information</strong></p>
-                        <div class="row mb-3">
-                            <div class="col-md-3">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="motherfirstName" placeholder="First Name" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="mothermiddleName" placeholder="Middle Name" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="maiden-name" class="form-label">Mother's Maiden Name</label>
-                                <input type="text" class="form-control" id="motherlastName" placeholder="Mother's Maiden Name" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="motherphone" placeholder="(+63) 0923-345-6783" required>
-                            </div>
-                        </div>
+                  
+
+        <h4>Parent Information</h4>
+        <p class="fs-4"><strong>Mother's Information</strong></p>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="motherfirstName" name="motherfirstName" placeholder="First Name" required>
+            </div>
+            <div class="col-md-3">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="mothermiddleName" name="mothermiddleName" placeholder="Middle Name" required>
+            </div>
+            <div class="col-md-3">
+                <label for="maiden-name" class="form-label">Mother's Maiden Name</label>
+                <input type="text" class="form-control" id="motherlastName" name="motherlastName" placeholder="Mother's Maiden Name" required>
+            </div>
+            <div class="col-md-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="motherphone" name="motherphone" placeholder="(+63) 0923-345-6783" required>
+            </div>
+        </div>
 
                         <p class="fs-4"><strong>Father's Information</strong></p>
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="fatherfirstName" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="fatherfirstName" name="fatherfirstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="fathermiddleName" placeholder="Middle Name" required>
+                                <input type="text" class="form-control" id="fathermiddleName" name="fathermiddleName" placeholder="Middle Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="father-last-name" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="fatherlastName" placeholder="Mother's Maiden Name" required>
+                                <input type="text" class="form-control" id="fatherlastName" name="fatherlastName" placeholder="Father's Last Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="fatherphone" placeholder="(+63) 0923-345-6783" required>
+                                <input type="tel" class="form-control" id="fatherphone" name="fatherphone" placeholder="(+63) 0923-345-6783" required>
                             </div>
                         </div>
-                    </form>
+                   
                 </div>
     
                     <div>
                         <!-- Address Section -->
                         <div class="form-section" id="government-numbers" style="display: none;">
-                            <form>    
-                                <h4>Address</h4>
-                                
-                                <br>
-
-                                <p class="fs-4"><strong>Present Address</strong></p>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">
-                                        <label for="house-num" class="form-label">House Number</label>
-                                        <input type="text" class="form-control" id="house-num" placeholder="House Number" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="street" class="form-label">Street</label>
-                                        <input type="text" class="form-control" id="street" placeholder="Street" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="vill-or-subd" class="form-label">Village or Subdivision</label>
-                                        <input type="text" class="form-control" id="vill-or-subd" placeholder="Village or Subdivision" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="barangay-dropdown" class="form-label">Barangay</label>
-                                        <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" required>
-                                            <option value="" disabled selected>Select a barangay</option>
-                                            <option value="Ampid I">Ampid I</option>
-                                            <option value="Ampid II">Ampid II</option>
-                                            <option value="Banaba">Banaba</option>
-                                            <option value="Dulong Bayan I">Dulong Bayan I</option>
-                                            <option value="Dulong Bayan II">Dulong Bayan II</option>
-                                            <option value="Guinayang">Guinayang</option>
-                                            <option value="Guitnangbayan I">Guitnangbayan I</option>
-                                            <option value="Guitnangbayan II">Guitnangbayan II</option>
-                                            <option value="Gulod Malaya">Gulod Malaya</option>
-                                            <option value="Malanday">Malanday</option>
-                                            <option value="Maly">Maly</option>
-                                            <option value="Pintong Bukawe">Pintong Bukawe</option>
-                                            <option value="Sto. Nino">Sto. Niño</option>
-                                            <option value="Sta. Ana">Sta. Ana</option>
-                                            <option value="Silangan">Silangan</option>
-                                        </select>
-                                    </div>
+                            <h4>Address</h4>
+                            <br>
+                            <p class="fs-4"><strong>Present Address</strong></p>
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label for="house-num" class="form-label">House Number</label>
+                                    <input type="text" class="form-control" id="house-num" name="house-num" placeholder="House Number" required>
                                 </div>
-
-                                <p class="fs-4"><strong>Permanent Address</strong></p>
-
-                                <input type="checkbox" class="form-check-input" id="same-as-present-add">
-                                <label class="form-check-label" for="same-as-present-add"> Same as Present Address</label>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-2">
-                                        <label for="house-num" class="form-label">House Number</label>
-                                        <input type="text" class="form-control" id="house-num" placeholder="House Number" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="street" class="form-label">Street</label>
-                                        <input type="text" class="form-control" id="street" placeholder="Street" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="vill-or-subd" class="form-label">Village or Subdivision</label>
-                                        <input type="text" class="form-control" id="vill-or-subd" placeholder="Village or Subdivision" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="barangay-dropdown" class="form-label">Barangay</label>
-                                        <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" required>
-                                            <option value="" disabled selected>Select a barangay</option>
-                                            <option value="Ampid I">Ampid I</option>
-                                            <option value="Ampid II">Ampid II</option>
-                                            <option value="Banaba">Banaba</option>
-                                            <option value="Dulong Bayan I">Dulong Bayan I</option>
-                                            <option value="Dulong Bayan II">Dulong Bayan II</option>
-                                            <option value="Guinayang">Guinayang</option>
-                                            <option value="Guitnangbayan I">Guitnangbayan I</option>
-                                            <option value="Guitnangbayan II">Guitnangbayan II</option>
-                                            <option value="Gulod Malaya">Gulod Malaya</option>
-                                            <option value="Malanday">Malanday</option>
-                                            <option value="Maly">Maly</option>
-                                            <option value="Pintong Bukawe">Pintong Bukawe</option>
-                                            <option value="Sto. Nino">Sto. Niño</option>
-                                            <option value="Sta. Ana">Sta. Ana</option>
-                                            <option value="Silangan">Silangan</option>
-                                        </select>
-                                    </div>
-                            </form>    
+                                <div class="col-md-3">
+                                    <label for="street" class="form-label">Street</label>
+                                    <input type="text" class="form-control" id="street" name="street" placeholder="Street" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="vill-or-subd" class="form-label">Village or Subdivision</label>
+                                    <input type="text" class="form-control" id="vill-or-subd" name="vill-or-subd" placeholder="Village or Subdivision" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="barangay-dropdown" class="form-label">Barangay</label>
+                                    <select class="form-select" id="barangay-dropdown" name="barangay-dropdown" required>
+                                        <option value="" disabled selected>Select a barangay</option>
+                                        <option value="Ampid I">Ampid I</option>
+                                        <option value="Ampid II">Ampid II</option>
+                                        <option value="Banaba">Banaba</option>
+                                        <option value="Dulong Bayan I">Dulong Bayan I</option>
+                                        <option value="Dulong Bayan II">Dulong Bayan II</option>
+                                        <option value="Guinayang">Guinayang</option>
+                                        <option value="Guitnangbayan I">Guitnangbayan I</option>
+                                        <option value="Guitnangbayan II">Guitnangbayan II</option>
+                                        <option value="Gulod Malaya">Gulod Malaya</option>
+                                        <option value="Malanday">Malanday</option>
+                                        <option value="Maly">Maly</option>
+                                        <option value="Pintong Bukawe">Pintong Bukawe</option>
+                                        <option value="Sto. Nino">Sto. Niño</option>
+                                        <option value="Sta. Ana">Sta. Ana</option>
+                                        <option value="Silangan">Silangan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="fs-4"><strong>Permanent Address</strong></p>
+                            <input type="checkbox" class="form-check-input" id="same-as-present-add">
+                            <label class="form-check-label" for="same-as-present-add"> Same as Present Address</label>
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label for="perm-house-num" class="form-label">House Number</label>
+                                    <input type="text" class="form-control" id="perm-house-num" name="perm-house-num" placeholder="House Number" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="perm-street" class="form-label">Street</label>
+                                    <input type="text" class="form-control" id="perm-street" name="perm-street" placeholder="Street" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="perm-vill-or-subd" class="form-label">Village or Subdivision</label>
+                                    <input type="text" class="form-control" id="perm-vill-or-subd" name="perm-vill-or-subd" placeholder="Village or Subdivision" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="perm-barangay-dropdown" class="form-label">Barangay</label>
+                                    <select class="form-select" id="perm-barangay-dropdown" name="perm-barangay-dropdown" required>
+                                        <option value="" disabled selected>Select a barangay</option>
+                                        <option value="Ampid I">Ampid I</option>
+                                        <option value="Ampid II">Ampid II</option>
+                                        <option value="Banaba">Banaba</option>
+                                        <option value="Dulong Bayan I">Dulong Bayan I</option>
+                                        <option value="Dulong Bayan II">Dulong Bayan II</option>
+                                        <option value="Guinayang">Guinayang</option>
+                                        <option value="Guitnangbayan I">Guitnangbayan I</option>
+                                        <option value="Guitnangbayan II">Guitnangbayan II</option>
+                                        <option value="Gulod Malaya">Gulod Malaya</option>
+                                        <option value="Malanday">Malanday</option>
+                                        <option value="Maly">Maly</option>
+                                        <option value="Pintong Bukawe">Pintong Bukawe</option>
+                                        <option value="Sto. Nino">Sto. Niño</option>
+                                        <option value="Sta. Ana">Sta. Ana</option>
+                                        <option value="Silangan">Silangan</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="form-section" id="contact-information" style="display: none;">
-                        <form>    
+                       
                             <h4>Contact Information</h4>
                             
                             <br>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="tele" class="form-label">Telephone Number</label>
-                                    <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
+                                    <input type="tel" class="form-control" id="tele" name="tele" placeholder="(916) 345-6783" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+63) 0923-345-6783">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="workPhone" class="form-label">Work Phone</label>
-                                    <input type="tel" class="form-control" id="workPhone" placeholder="(916) 345-0000 x123">
+                                    <input type="tel" class="form-control" id="workPhone" name="workPhone" placeholder="(916) 345-0000 x123">
                                 </div>
                             </div>                                                           
-                        </form>    
+                      
                     </div>
     
                 <!-- Section 4: User Summary Section -->
@@ -439,49 +468,23 @@
                             </tbody>
                         </table>
 
-                        <!-- Contact Information -->
-                        <h4>Contact Information</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="category-cell"><strong>Telephone Number:</strong></td>
-                                    <td class="detail-cell" id="telNum"></td>
-                                </tr>
-                                <tr>
-                                    <td class="category-cell"><strong>Phone Number:</strong></td>
-                                    <td class="detail-cell" id="phoneNum"></td>
-                                </tr>
-                                <tr>
-                                    <td class="category-cell"><strong>Email:</strong></td>
-                                    <td class="detail-cell" id="Email"></td>
-                                </tr>
-                                <tr>
-                                    <td class="category-cell"><strong>Work Phone:</strong></td>
-                                    <td class="detail-cell" id="wrkPhone"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                       
+                  
                     </div>
 
-    
-    
+  
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
                     <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
                     <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+                    <button type="submit" id="submit-btn" class="btn btn-primary" style="display: none;">Submit</button>
                 </div>
     
             </div>
         </div>
     </div>
     </main>
-
+  </form>    
     <br>
     <br>
     <footer>
@@ -544,7 +547,6 @@
     document.getElementById('summaryGender').innerText = document.getElementById('gender').value || 'Not Provided';
     document.getElementById('summaryCivilStatus').innerText = document.getElementById('civilstatus').value || 'Not Provided';
     document.getElementById('summaryDob').innerText = document.getElementById('dob').value || 'Not Provided';
-    document.getElementById('summaryTele').innerText = document.getElementById('tele').value || 'Not Provided';
     document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
     document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
     document.getElementById('summaryWorkPhone').innerText = document.getElementById('workPhone').value || 'Not Provided';
@@ -563,12 +565,12 @@
     document.getElementById('summaryFatherContactNum').innerText = document.getElementById('fatherphone').value || 'Not Provided';
 
     //Address
-
+    document.getElementById('currentAdd').innerText = 
+        `${document.getElementById('house-num').value || 'Not Provided'}, ${document.getElementById('street').value || 'Not Provided'}, ${document.getElementById('vill-or-subd').value || 'Not Provided'}, ${document.getElementById('barangay-dropdown').value || 'Not Provided'}`.trim();
     //Contact Information
-    document.getElementById('telNum').innerText = document.getElementById('tele').value || 'Not Provided';
-    document.getElementById('phoneNum').innerText = document.getElementById('phone').value || 'Not Provided';
-    document.getElementById('Email').innerText = document.getElementById('email').value || 'Not Provided';
-    document.getElementById('wrkPhone').innerText = document.getElementById('workPhone').value || 'Not Provided';
+    document.getElementById('summaryPhone').innerText = document.getElementById('phone').value || 'Not Provided';
+    document.getElementById('summaryEmail').innerText = document.getElementById('email').value || 'Not Provided';
+    document.getElementById('summaryWorkPhone').innerText = document.getElementById('workPhone').value || 'Not Provided';
 }
 
 
@@ -643,13 +645,15 @@
           } else {
               $("#prev-btn").show();
           }
-      
-          if (currentSection === sections.length - 1) {
-              $("#next-btn").text("Submit");
-          } else {
-              $("#next-btn").text("Next");
+        if (currentSection === sections.length - 1) {
+            $("#next-btn").hide();
+            $("#submit-btn").show();
+        } else {
+            $("#next-btn").show();
+            $("#submit-btn").hide();
+        }
           }
-      }
+      
       
       // Function to update icons in the progress bar
       function updateIcon(index, state) {

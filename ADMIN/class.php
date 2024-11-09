@@ -8,5 +8,3 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
     exit();
 }
 
-// Your admin page content goes here
-?>

@@ -193,7 +193,75 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 include('dashboard_sidebar_start.php');
 ?>
 
-<div class="table-container">
+
+
+
+<div class="container my-3">
+    <!-- Top bar for search, filter, and column control -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="container mt-3">
+            <form method="get" action="seniorapp.php">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by any field" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <?php
+        // Modify SQL query to include search functionality
+        $search = $conn->real_escape_string(str_replace(' ', '%', $_GET['search'] ?? ''));
+        $sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+        if ($search) {
+            $sql .= " WHERE 
+                first_name LIKE '%$search%' OR 
+                middle_name LIKE '%$search%' OR 
+                last_name LIKE '%$search%' OR 
+                suffix LIKE '%$search%' OR 
+                dob LIKE '%$search%' OR 
+                gender LIKE '%$search%' OR 
+                mobile_number LIKE '%$search%' OR 
+                tel_number LIKE '%$search%' OR 
+                email LIKE '%$search%' OR 
+                house_number LIKE '%$search%' OR 
+                street LIKE '%$search%' OR 
+                barangay LIKE '%$search%' OR 
+                is_admin LIKE '%$search%'";
+        }
+        $result = $conn->query($sql);
+        ?>
+
+        <!-- Filter and Columns button group -->
+        <div class="btn-group">
+            <button id="filterButton" class="btn btn-primary">Sort</button>
+            <button id="columnToggle" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Columns
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" style="column-count: 2;">
+                <label class="dropdown-item"><input type="checkbox" id="select-all"> Select All</label>
+                <label class="dropdown-item"><input type="checkbox" id="deselect-all"> Deselect All</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="1" checked> ID</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="2" checked> First Name</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="3" checked> Middle Name</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="4" checked> Last Name</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="5" checked> Suffix</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="6" checked> DOB</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="7" checked> Gender</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="8" checked> Mobile Number</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="9" checked> Tel Number</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="10" checked> Email</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="11" checked> House Number</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="12" checked> Street</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="13" checked> Barangay</label>
+                <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="14" checked> Role</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-container" style="margin-left:10px; margin-right:10px; ">
     <table id="usersTable" class="display">
         <thead>
             <tr>
@@ -248,6 +316,14 @@ include('dashboard_sidebar_start.php');
     </table>
 </div>
 
+<!-- Button container for centering -->
+<div class="button-container">
+    <form method="post">
+        <button type="submit" name="export_excel" class="btn btn-success">Download Excel</button>
+        <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
+    </form>
+</div>
+
 <script>
 $(document).ready(function() {
     $('#usersTable').DataTable({
@@ -261,14 +337,115 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- Button container for centering -->
-<div class="button-container">
-    <form method="post">
-        <button type="submit" name="export_excel" class="btn btn-success">Download Excel</button>
-        <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
-    </form>
-</div>
+<script>
+$(document).ready(function() {
+    // Initialize DataTable with built-in search
+    var table = $('#usersTable').DataTable();
 
-<?php 
+    // List of column headers and indices
+    const headers = [
+        "ID", "First Name", "Middle Name", "Last Name", "Suffix", "DOB", "Gender",
+        "Mobile Number", "Tel Number", "Email", "House Number", "Street", "Barangay", "Role"
+    ];
+
+    // Map headers to column indices
+    const headerIndexMap = headers.reduce((map, header, index) => {
+        map[header.toLowerCase()] = index;
+        return map;
+    }, {});
+
+    let isSortedAlphabetically = false;
+    const headerRow = document.getElementById('headerRow');
+    const originalHeaderOrder = Array.from(headerRow.children); // Store original header order
+    
+    document.getElementById('filterButton').addEventListener('click', function() {
+        const headers = Array.from(headerRow.children); // Header cells
+        const rows = Array.from(document.querySelectorAll('#usersTable tbody tr')); // Table rows
+
+        if (!isSortedAlphabetically) {
+            // Sort headers and data columns alphabetically
+            headers.sort((a, b) => {
+                const textA = a.textContent.trim().toLowerCase();
+                const textB = b.textContent.trim().toLowerCase();
+                return textA.localeCompare(textB);
+            });
+        } else {
+            // Restore the original order
+            headers.splice(0, headers.length, ...originalHeaderOrder);
+        }
+
+        // Rearrange the data columns to match the header sorting
+        rows.forEach(row => {
+            const cells = Array.from(row.children);
+            const sortedCells = headers.map(header => {
+                const index = Array.from(headerRow.children).indexOf(header);
+                return cells[index];
+            });
+            row.innerHTML = ''; // Clear current row cells
+            sortedCells.forEach(cell => row.appendChild(cell)); // Append sorted cells
+        });
+
+        // Clear the header row and append the sorted/restored headers
+        headerRow.innerHTML = '';
+        headers.forEach(header => headerRow.appendChild(header));
+
+        // Toggle sorting state
+        isSortedAlphabetically = !isSortedAlphabetically;
+    });
+
+    // JavaScript to toggle visibility of table columns
+    document.querySelectorAll('.toggle-column').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const column = this.getAttribute('data-column');
+            const isChecked = this.checked;
+
+            // Toggle visibility of cells in the specified column
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = isChecked ? "" : "none";
+            });
+        });
+    });
+
+    // Select All functionality
+    document.getElementById('select-all').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.toggle-column');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = true;
+
+            // Show all columns
+            const column = checkbox.getAttribute('data-column');
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = "";
+            });
+        });
+        document.getElementById('deselect-all').checked = false;
+    });
+
+    // Deselect All functionality
+    document.getElementById('deselect-all').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.toggle-column');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+
+            // Hide all columns
+            const column = checkbox.getAttribute('data-column');
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = "none";
+            });
+        });
+        document.getElementById('select-all').checked = false;
+    });
+
+    // Ensure Select/Deselect All only affect their respective states
+    document.querySelectorAll('.toggle-column').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            document.getElementById('select-all').checked = false;
+            document.getElementById('deselect-all').checked = false;
+        });
+    });
+});
+</script>
+
+<?php   
 include('dashboard_sidebar_end.php');
 ?>

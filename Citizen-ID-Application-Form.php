@@ -65,6 +65,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <link rel="icon" type="img/png" href="logo.png">
       <title>Citizen ID Application Form</title>
 
+
+
+      <style>
+        footer {
+
+            position: fixed;
+
+        }
+      </style>
     </head>
     <body>
     <?php

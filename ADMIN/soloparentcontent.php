@@ -40,49 +40,23 @@ if (isset($_POST['export_pdf'])) {
     $html .= '<thead><tr>';
     $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
     $html .= '</tr></thead><tbody>';
-    $html .= '<th>Role</th>';
-    $sql = "SELECT id, precinct, firstName, middleName, lastName, religion, dob, bloodType, birthPlace, civilStatus, tele, mobile1, email, lotNumber, blkNumber, street, barangay, yearsOfStay, monthsOfStay, employer, officeAddress, occupation, monthlyIncome, tinNumber, sssNumber, gsisNumber, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyContact, emergencyRelationship, emergencyAddress, selectedGender, selectedStatus, selectedFamilyResource, selectedClassification, selectedFourPsMember, selectedPhilHealthMember, selectedProblems, selectedNeeds, familyData FROM SoloParentApplication";
+    $sql = "SELECT id, firstName, middleName, lastName, email, dob, selectedGender, mobile1, tele, lotNumber, street, barangay FROM SoloParentApplication";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $html .= '<tr>';
-            $html .= '<td>' . $row['precinct'] . '</td>';
+            $html .= '<td>' . $row['id'] . '</td>';
             $html .= '<td>' . $row['firstName'] . '</td>';
             $html .= '<td>' . $row['middleName'] . '</td>';
             $html .= '<td>' . $row['lastName'] . '</td>';
-            $html .= '<td>' . $row['selectedGender'] . '</td>';
-            $html .= '<td>' . $row['civilStatus'] . '</td>';
-            $html .= '<td>' . $row['dob'] . '</td>';
-            $html .= '<td>' . $row['birthPlace'] . '</td>';
-            $html .= '<td>' . $row['religion'] . '</td>';
-            $html .= '<td>' . $row['bloodType'] . '</td>';
-            $html .= '<td>' . $row['tel_number'] . '</td>';
-            $html .= '<td>' . $row['mobile_number'] . '</td>';
             $html .= '<td>' . $row['email'] . '</td>';
-            $html .= '<td>' . $row['selectedClassification'] . '</td>';
-            $html .= '<td>' . $row['monthly_income'] . '</td>';
-            $html .= '<td>' . $row['selectedNeeds'] . '</td>';
-            $html .= '<td>' . $row['selectedFamilyResource'] . '</td>';
-            $html .= '<td>' . $row['employer'] . '</td>';
-            $html .= '<td>' . $row['office_address'] . '</td>';
-            $html .= '<td>' . $row['occupation'] . '</td>';
-            $html .= '<td>' . $row['tin_number'] . '</td>';
-            $html .= '<td>' . $row['sss_number'] . '</td>';
-            $html .= '<td>' . $row['gsis_number'] . '</td>';
-            $html .= '<td>' . $row['years_of_stay'] . '</td>';
-            $html .= '<td>' . $row['months_of_stay'] . '</td>';
+            $html .= '<td>' . $row['dob'] . '</td>';
+            $html .= '<td>' . $row['selectedGender'] . '</td>';
+            $html .= '<td>' . $row['mobile1'] . '</td>';
+            $html .= '<td>' . $row['tele'] . '</td>';
             $html .= '<td>' . $row['lotNumber'] . '</td>';
-            $html .= '<td>' . $row['blkNumber'] . '</td>';
             $html .= '<td>' . $row['street'] . '</td>';
             $html .= '<td>' . $row['barangay'] . '</td>';
-            $html .= '<td>' . $row['selectedFourPsMember'] . '</td>';
-            $html .= '<td>' . $row['familyData'] . '</td>';
-            $html .= '<td>' . $row['selectedPhilHealthMember'] . '</td>';
-            $html .= '<td>' . $row['familyData'] . '</td>';
-            $html .= '<td>' . $row['emergencyFirstName'] . '</td>';
-            $html .= '<td>' . $row['emergencyContact'] . '</td>';
-            $html .= '<td>' . $row['emergencyRelationship'] . '</td>';
-            $html .= '<td>' . $row['emergencyAddress'] . '</td>';  
             $html .= '</tr>';
         }
     } else {
@@ -120,6 +94,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+
+
 
 <style>
     /* Custom Table Styling */
@@ -217,114 +200,172 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 include('dashboard_sidebar_start.php');
 ?>
 
-<div class="table-container">
-    <table id="usersTable" class="display">
-        <thead>
-            <tr>
-                <th scope="col">Precinct</th>   
-                <th scope="col">First Name</th>
-                <th scope="col">Middle Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Civil Status</th>
-                <th scope="col">DOB</th>
-                <th scope="col">Birth Place</th>
-                <th scope="col">Religion</th>
-                <th scope="col">Blood Type</th>
-                <th scope="col">Tel Number</th>
-                <th scope="col">Mobile Number</th>
-                <th scope="col">Email</th>
-                <th scope="col">Monthly Income</th>
-                <th scope="col">Problem/Needs</th>
-                <th scope="col">Source Of Income</th>
-                <th scope="col">Company Name/Employer Name</th>
-                <th scope="col">Office Address</th>
-                <th scope="col">Occupation</th>
-                <th scope="col">TIN Number</th>
-                <th scope="col">SSS Number</th>
-                <th scope="col">GSIS Number</th>
-                <th scope="col">Years of Stay</th>
-                <th scope="col">Months of Stay</th>
-                <th scope="col">Lot Number</th>
-                <th scope="col">Block Number</th>
-                <th scope="col">Street</th>
-                <th scope="col">Barangay</th>
-                <th scope="col">4 P's Member</th>
-                <th scope="col">4 P's ID</th>
-                <th scope="col">PhilHealth Member</th>
-                <th scope="col">PhilHealth ID</th>
-                <th scope="col">Emergency Contact Name</th>
-                <th scope="col">Emergency Contact Number</th>
-                <th scope="col">Relationship</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                    echo "<td>" . $row["precinct"] . "</td>";
-                    echo "<td>" . $row["firstName"] . "</td>";
-                    echo "<td>" . $row["middleName"] . "</td>";
-                    echo "<td>". $row["lastName"] . "</td>";
-                    echo "<td>". $row["selectedGender"] . "</td>";
-                    echo "<td>". $row["civilStatus"] ."</td>";
-                    echo "<td>" . $row["dob"] . "</td>";
-                    echo "<td>" . (isset($row["birth_place"]) ? $row["birth_place"] : '') . "</td>";
-                    echo "<td>" . $row["religion"] . "</td>";
-                    echo "<td>" . (isset($row["blood_type"]) ? $row["blood_type"] : '') . "</td>";
-                    echo "<td>" . $row["tel_number"] . "</td>";
-                    echo "<td>" . $row["mobile_number"] . "</td>";
-                    echo "<td>" . $row["email"] . "</td>";
-                    echo "<td>" . $row["monthly_income"] . "</td>";
-                    echo "<td>" . (isset($row["problem_needs"]) ? $row["problem_needs"] : '') . "</td>";
-                    echo "<td>" . (isset($row["source_of_income"]) ? $row["source_of_income"] : '') . "</td>";
-                    echo "<td>" . (isset($row["company_name"]) ? $row["company_name"] : '') . "</td>";
-                    echo "<td>" . $row["office_address"] . "</td>";
-                    echo "<td>" . $row["occupation"] . "</td>";
-                    echo "<td>" . $row["tin_number"] . "</td>";
-                    echo "<td>" . $row["sss_number"] . "</td>";
-                    echo "<td>" . $row["gsis_number"] . "</td>";
-                    echo "<td>" . $row["years_of_stay"] . "</td>";
-                    echo "<td>" . $row["months_of_stay"] . "</td>";
-                    echo "<td>" . $row["lot_number"] . "</td>";
-                    echo "<td>" . $row["block_number"] . "</td>";
-                    echo "<td>" . $row["street"] . "</td>";
-                    echo "<td>" . $row["barangay"] . "</td>";
-                    echo "<td>" . (isset($row["four_ps_member"]) ? $row["four_ps_member"] : '') . "</td>";
-                    echo "<td>" . (isset($row["four_ps_id"]) ? $row["four_ps_id"] : '') . "</td>";
-                    echo "<td>" . (isset($row["philhealth_member"]) ? $row["philhealth_member"] : '') . "</td>";
-                    echo "<td>" . (isset($row["philhealth_id"]) ? $row["philhealth_id"] : '') . "</td>";
-                    echo "<td>" . (isset($row["emergency_contact_name"]) ? $row["emergency_contact_name"] : '') . "</td>";
-                    echo "<td>" . (isset($row["emergency_contact_number"]) ? $row["emergency_contact_number"] : '') . "</td>";
-                    echo "<td>" . (isset($row["relationship"]) ? $row["relationship"] : '') . "</td>";
-                    echo "<td class='action-buttons'>
-                            <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
-                            <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
-                        </td>";
-                echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='14'>No users found</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+<div class="container my-3">
+    <!-- Top bar for search, filter, and column control -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+
+            <div class="container mt-3">
+            <form method="get" action="soloparentcontent.php">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <?php
+        // Modify SQL query to include search functionality
+        $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+        $sql = "SELECT id, precinct, firstName, middleName, lastName, selectedGender, civilStatus, dob, birthPlace, religion, bloodType, tele AS tel_number, mobile1 AS mobile_number, email, monthlyIncome AS monthly_income, officeAddress AS office_address, occupation, tinNumber AS tin_number, sssNumber AS sss_number, gsisNumber AS gsis_number, yearsOfStay AS years_of_stay, monthsOfStay AS months_of_stay, lotNumber AS lot_number, blkNumber AS block_number, street, barangay, lastName FROM SoloParentApplication";
+        if ($search) {
+            $sql .= " WHERE firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR email LIKE '%$search%'";
+        }
+        $result = $conn->query($sql);
+        ?>
+
+        <!-- Filter and Columns button group -->
+        <div class="btn-group">
+        <button id="filterButton" class="btn btn-primary">Sort</button>
+            <button id="columnToggle" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Columns
+            </button>
+<div class="dropdown-menu dropdown-menu-right" style="column-count: 2;">
+    <label class="dropdown-item"><input type="checkbox" id="select-all"> Select All</label>
+    <label class="dropdown-item"><input type="checkbox" id="deselect-all"> Deselect All</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="1" checked> Precinct</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="2" checked> First Name</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="3" checked> Middle Name</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="4" checked> Last Name</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="5" checked> Gender</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="6" checked> Civil Status</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="7" checked> DOB</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="8" checked> Birth Place</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="9" checked> Religion</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="10" checked> Blood Type</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="11" checked> Tel Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="12" checked> Mobile Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="13" checked> Email</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="14" checked> Monthly Income</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="15" checked> Problem/Needs</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="16" checked> Source Of Income</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="17" checked> Company Name/Employer Name</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="18" checked> Office Address</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="19" checked> Occupation</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="20" checked> TIN Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="21" checked> SSS Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="22" checked> GSIS Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="23" checked> Years of Stay</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="24" checked> Months of Stay</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="25" checked> Lot Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="26" checked> Block Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="27" checked> Street</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="28" checked> Barangay</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="29" checked> 4 P's Member</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="30" checked> 4 P's ID</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="31" checked> PhilHealth Member</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="32" checked> PhilHealth ID</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="33" checked> Emergency Contact Name</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="34" checked> Emergency Contact Number</label>
+    <label class="dropdown-item"><input type="checkbox" class="toggle-column" data-column="35" checked> Relationship</label>
+</div>
+        </div>
+    </div>
+</div>
+<div class="table-container" style="margin-left:20px;">
+<table id="usersTable" class="table">
+    <thead>
+        <tr id="headerRow">
+            <th scope="col">Precinct</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Civil Status</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Birth Place</th>
+            <th scope="col">Religion</th>
+            <th scope="col">Blood Type</th>
+            <th scope="col">Tel Number</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Monthly Income</th>
+            <th scope="col">Problem/Needs</th>
+            <th scope="col">Source Of Income</th>
+            <th scope="col">Company Name/Employer Name</th>
+            <th scope="col">Office Address</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">TIN Number</th>
+            <th scope="col">SSS Number</th>
+            <th scope="col">GSIS Number</th>
+            <th scope="col">Years of Stay</th>
+            <th scope="col">Months of Stay</th>
+            <th scope="col">Lot Number</th>
+            <th scope="col">Block Number</th>
+            <th scope="col">Street</th>
+            <th scope="col">Barangay</th>
+            <th scope="col">4 P's Member</th>
+            <th scope="col">4 P's ID</th>
+            <th scope="col">PhilHealth Member</th>
+            <th scope="col">PhilHealth ID</th>
+            <th scope="col">Emergency Contact Name</th>
+            <th scope="col">Emergency Contact Number</th>
+            <th scope="col">Relationship</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Fetch rows from the database
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td data-column='precinct'>" . $row["precinct"] . "</td>";
+            echo "<td data-column='firstName'>" . $row["firstName"] . "</td>";
+            echo "<td data-column='middleName'>" . $row["middleName"] . "</td>";
+            echo "<td data-column='lastName'>" . $row["lastName"] . "</td>";
+            echo "<td data-column='selectedGender'>" . $row["selectedGender"] . "</td>";
+            echo "<td data-column='civilStatus'>" . $row["civilStatus"] . "</td>";
+            echo "<td data-column='dob'>" . $row["dob"] . "</td>";
+            echo "<td data-column='birthPlace'>" . (isset($row["birth_place"]) ? $row["birth_place"] : '') . "</td>";
+            echo "<td data-column='religion'>" . $row["religion"] . "</td>";
+            echo "<td data-column='bloodType'>" . (isset($row["blood_type"]) ? $row["blood_type"] : '') . "</td>";
+            echo "<td data-column='telNumber'>" . $row["tel_number"] . "</td>";
+            echo "<td data-column='mobileNumber'>" . $row["mobile_number"] . "</td>";
+            echo "<td data-column='email'>" . $row["email"] . "</td>";
+            echo "<td data-column='monthlyIncome'>" . $row["monthly_income"] . "</td>";
+            echo "<td data-column='problemNeeds'>" . (isset($row["problem_needs"]) ? $row["problem_needs"] : '') . "</td>";
+            echo "<td data-column='sourceOfIncome'>" . (isset($row["source_of_income"]) ? $row["source_of_income"] : '') . "</td>";
+            echo "<td data-column='companyName'>" . (isset($row["company_name"]) ? $row["company_name"] : '') . "</td>";
+            echo "<td data-column='officeAddress'>" . $row["office_address"] . "</td>";
+            echo "<td data-column='occupation'>" . $row["occupation"] . "</td>";
+            echo "<td data-column='tinNumber'>" . $row["tin_number"] . "</td>";
+            echo "<td data-column='sssNumber'>" . $row["sss_number"] . "</td>";
+            echo "<td data-column='gsisNumber'>" . $row["gsis_number"] . "</td>";
+            echo "<td data-column='yearsOfStay'>" . $row["years_of_stay"] . "</td>";
+            echo "<td data-column='monthsOfStay'>" . $row["months_of_stay"] . "</td>";
+            echo "<td data-column='lotNumber'>" . $row["lot_number"] . "</td>";
+            echo "<td data-column='blockNumber'>" . $row["block_number"] . "</td>";
+            echo "<td data-column='street'>" . $row["street"] . "</td>";
+            echo "<td data-column='barangay'>" . $row["barangay"] . "</td>";
+            echo "<td data-column='fourPsMember'>" . (isset($row["four_ps_member"]) ? $row["four_ps_member"] : '') . "</td>";
+            echo "<td data-column='fourPsID'>" . (isset($row["four_ps_id"]) ? $row["four_ps_id"] : '') . "</td>";
+            echo "<td data-column='philhealthMember'>" . (isset($row["philhealth_member"]) ? $row["philhealth_member"] : '') . "</td>";
+            echo "<td data-column='philhealthID'>" . (isset($row["philhealth_id"]) ? $row["philhealth_id"] : '') . "</td>";
+            echo "<td data-column='emergencyContactName'>" . (isset($row["emergency_contact_name"]) ? $row["emergency_contact_name"] : '') . "</td>";
+            echo "<td data-column='emergencyContactNumber'>" . (isset($row["emergency_contact_number"]) ? $row["emergency_contact_number"] : '') . "</td>";
+            echo "<td data-column='relationship'>" . (isset($row["relationship"]) ? $row["relationship"] : '') . "</td>";
+            echo "<td class='action-buttons'>
+                    <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
+                </td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
 </div>
 
-<script>
-$(document).ready(function() {
-    $('#usersTable').DataTable({
-        "paging": true, // Enables pagination
-        "lengthChange": false, // Disables length change
-        "searching": true, // Enables search
-        "ordering": true, // Enables column sorting
-        "info": true, // Shows info about the table
-        "autoWidth": false // Disables auto width for columns
-    });
-});
-</script>
 
 <!-- Button container for centering -->
 <div class="button-container">
@@ -333,6 +374,128 @@ $(document).ready(function() {
         <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
     </form>
 </div>
+
+<script>
+$(document).ready(function() {
+
+    $(document).ready(function() {
+    // Initialize DataTable with built-in search
+    var table = $('#usersTable').DataTable();
+});
+
+// List of column headers and indices
+const headers = [
+        "Precinct", "First Name", "Middle Name", "Last Name", "Gender", "Civil Status", "DOB",
+        "Birth Place", "Religion", "Blood Type", "Tel Number", "Mobile Number", "Email",
+        "Monthly Income", "Problem/Needs", "Source Of Income", "Company Name/Employer Name",
+        "Office Address", "Occupation", "TIN Number", "SSS Number", "GSIS Number", "Years of Stay",
+        "Months of Stay", "Lot Number", "Block Number", "Street", "Barangay", "4 P's Member",
+        "4 P's ID", "PhilHealth Member", "PhilHealth ID", "Emergency Contact Name",
+        "Emergency Contact Number", "Relationship"
+    ];
+
+    // Map headers to column indices
+    const headerIndexMap = headers.reduce((map, header, index) => {
+        map[header.toLowerCase()] = index;
+        return map;
+    }, {});
+
+let isSortedAlphabetically = false;
+    const headerRow = document.getElementById('headerRow');
+    const originalHeaderOrder = Array.from(headerRow.children); // Store original header order
+    
+    document.getElementById('filterButton').addEventListener('click', function() {
+    const headers = Array.from(headerRow.children); // Header cells
+    const rows = Array.from(document.querySelectorAll('#usersTable tbody tr')); // Table rows
+
+    if (!isSortedAlphabetically) {
+        // Sort headers and data columns alphabetically
+        headers.sort((a, b) => {
+            const textA = a.textContent.trim().toLowerCase();
+            const textB = b.textContent.trim().toLowerCase();
+            return textA.localeCompare(textB);
+        });
+    } else {
+        // Restore the original order
+        headers.splice(0, headers.length, ...originalHeaderOrder);
+    }
+
+    // Rearrange the data columns to match the header sorting
+    rows.forEach(row => {
+        const cells = Array.from(row.children);
+        const sortedCells = headers.map(header => {
+            const index = Array.from(headerRow.children).indexOf(header);
+            return cells[index];
+        });
+        row.innerHTML = ''; // Clear current row cells
+        sortedCells.forEach(cell => row.appendChild(cell)); // Append sorted cells
+    });
+
+    // Clear the header row and append the sorted/restored headers
+    headerRow.innerHTML = '';
+    headers.forEach(header => headerRow.appendChild(header));
+
+    // Toggle sorting state
+    isSortedAlphabetically = !isSortedAlphabetically;
+});
+
+
+
+    // JavaScript to toggle visibility of table columns
+    document.querySelectorAll('.toggle-column').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const column = this.getAttribute('data-column');
+            const isChecked = this.checked;
+
+            // Toggle visibility of cells in the specified column
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = isChecked ? "" : "none";
+            });
+        });
+    });
+
+    // Select All functionality
+    document.getElementById('select-all').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.toggle-column');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = true;
+
+            // Show all columns
+            const column = checkbox.getAttribute('data-column');
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = "";
+            });
+        });
+        document.getElementById('deselect-all').checked = false;
+    });
+
+    // Deselect All functionality
+    document.getElementById('deselect-all').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.toggle-column');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+
+            // Hide all columns
+            const column = checkbox.getAttribute('data-column');
+            document.querySelectorAll(`table tr > *:nth-child(${column})`).forEach(cell => {
+                cell.style.display = "none";
+            });
+        });
+        document.getElementById('select-all').checked = false;
+    });
+
+    // Ensure Select/Deselect All only affect their respective states
+    document.querySelectorAll('.toggle-column').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            document.getElementById('select-all').checked = false;
+            document.getElementById('deselect-all').checked = false;
+        });
+    })
+
+});
+</script>
+
+
 
 <?php 
 include('dashboard_sidebar_end.php');

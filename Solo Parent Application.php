@@ -60,11 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
     <html>
@@ -133,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
       <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
-    <form action="Solo Parent Application.php" method="POST" id="soloParentForm">
+      <form action= "Solo Parent Application DB.php" method="POST" >
 
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -237,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="telephone" class="form-label">Telephone Number</label>
-                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="(916) 345-6783" required>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="(916) 345-6783">
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
@@ -663,15 +660,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
                 <!-- Navigation Buttons -->
-                      <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-
-                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
-
-                    <button type="button" id="submit-btn" class="btn btn-primary" style="display: none;" onclick="document.getElementById('soloParentForm').submit();">Submit</button>
-
-                  </div>
-
-       
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
+                    <button type="submit" id="next-btn" class="btn btn-primary">Next</button>
+                </div>
+    
             </div>
         </div>
     </div>
@@ -834,15 +827,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // 4Ps and PhilHealth Membership
             const fourPsMember = document.querySelector('input[name="fourPsMember"]:checked')?.value || 'N/A';
             document.getElementById('summaryFourPsMember').innerText = fourPsMember;
-            if (fourPsMember === 'yes') {
-                document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
-                localStorage.setItem('selectedFourPs', fourPsMember);  // Store 4Ps membership status
-
+            if (fourPsMember === 'Yes') {
+                document.getElementById('summaryFourPsId').innerText = getValue('fourPsNo');
+                localStorage.setItem('selectedFourPs', fourPsMember); 
             }
     
             const philHealthMember = document.querySelector('input[name="philHealthMember"]:checked')?.value || 'N/A';
             document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
-            if (philHealthMember === 'yes') {
+            if (philHealthMember === 'Yes') {
                 document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
                 localStorage.setItem('selectedPhilHealth', philHealthMember);  // Store PhilHealth membership status
             }
@@ -1066,18 +1058,24 @@ function saveFamilyData() {
     updateButtons();
     updateProgress();
 
-    // Handle the Next button click
-    $("#next-btn").on('click', function () {
+// Handle the Next button click
+$("#next-btn").on('click', function () {
     const isLastSection = currentSection === sections.length - 1;
+    
+    // Check required fields in the current section
+    if (!checkRequiredFields()) {
+        alert("Please fill in all required fields before proceeding.");
+        return; // Stop if any required field is missing
+    }
 
-    // Check if the current section is `#familyComposition`
+    // Check if the current section is #familyComposition
     if (sections[currentSection] === "#familyComposition") {
         populateSummary(); // Populate the summary if on the family composition section
     }
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        document.getElementById('soloParentForm').submit();
+        window.location.href = "Solo Parent Form.php";
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();
@@ -1086,6 +1084,74 @@ function saveFamilyData() {
         updateButtons();
         updateProgress();
     }
+});
+
+// Show or hide fields based on Solo Parent ID selection
+$('input[name="soloParentId"]').on('change', function() {
+    if ($(this).val() === 'yes') {
+        $('#yesFields').show();
+        $('#noFields').hide();
+        $('#yesFields').find('input, select').prop('required', true);
+        $('#noFields').find('input, select').prop('required', false);
+    } else {
+        $('#yesFields').hide();
+        $('#noFields').show();
+        $('#noFields').find('input, select').prop('required', true);
+        $('#yesFields').find('input, select').prop('required', false);
+    }
+});
+
+// Show or hide fields based on 4Ps selection
+$('input[name="fourPsMember"]').on('change', function() {
+    if ($(this).val() === 'Yes') {
+        $('#fourPsId').prop('disabled', false).prop('required', true);
+    } else {
+        $('#fourPsId').prop('disabled', true).prop('required', false).val('');
+    }
+});
+
+// Show or hide fields based on PhilHealth selection
+$('input[name="philHealthMember"]').on('change', function() {
+    if ($(this).val() === 'Yes') {
+        $('#philHealthId').prop('disabled', false).prop('required', true);
+    } else {
+        $('#philHealthId').prop('disabled', true).prop('required', false).val('');
+    }
+});
+
+// Function to check required fields in the current section
+function checkRequiredFields() {
+    let isValid = true;
+    // Only check required fields that are visible
+    $(sections[currentSection]).find('input[required]:visible, select[required]:visible').each(function() {
+        if (!this.value) {
+            isValid = false;
+            return false; // Stop loop if a required field is empty
+        }
+    });
+    return isValid;
+}
+
+// Function to check family resources fields requirements
+function checkFamilyResources() {
+    const familyResources = $('#familyResources').val();
+    const fieldsToCheck = ['company', 'officeAddress', 'occupation', 'monthlyIncome', 'tinNumber', 'sssNumber', 'gsisNumber'];
+
+    if (familyResources === 'Self-Employed' || familyResources === 'Others') {
+        fieldsToCheck.forEach(fieldId => {
+            $('#' + fieldId).removeAttr('required');
+        });
+    } else {
+        fieldsToCheck.forEach(fieldId => {
+            $('#' + fieldId).attr('required', 'required');
+        });
+    }
+}
+
+// Bind checkFamilyResources to familyResources changes and initialize on load
+$(document).ready(function() {
+    checkFamilyResources(); // Initial check on page load
+    $('#familyResources').on('change', checkFamilyResources); // Update on change
 });
 
 
@@ -1100,27 +1166,27 @@ function saveFamilyData() {
         }
     });
 
-      // Function to update the Next/Previous buttons
-      function updateButtons() {
-          if (currentSection === 0) {
-              $("#prev-btn").hide();
-          } else {
-              $("#prev-btn").show();
-          }
-        if (currentSection === sections.length - 1) {
-            $("#next-btn").hide();
-            $("#submit-btn").show();
-        } else {
-            $("#next-btn").show();
-            $("#submit-btn").hide();
-            }
-        }
-      
+    // Function to update the button states
+    function updateButtons() {
+        // Toggle visibility of Previous button
+        $("#prev-btn").toggle(currentSection > 0);
+
+        // Change the Next button text to "Submit" on the last section
+        const isLastSection = currentSection === sections.length - 1;
+        $("#next-btn").text(isLastSection ? "Submit" : "Next");
+    }
+
     // Function to update the progress bar
     function updateProgress() {
-        $(".progress-item").removeClass("active");
-        $(".progress-item").eq(currentSection).addClass("active");
-    }
+    $(".progress-item").removeClass("active");
+    $(".progress-item").eq(currentSection).addClass("active");
+
+    // Update icons
+    $(".progress-item i").removeClass("bi-check-square-fill").addClass("bi-check-square"); // Reset icons
+    $(".progress-item:lt(" + (currentSection + 1) + ") i")
+        .removeClass("bi-check-square")
+        .addClass("bi-check-square-fill"); // Set filled icons up to the current section
+}
 
     // Add click functionality to progress items
     $(".progress-item").click(function () {

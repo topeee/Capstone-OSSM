@@ -45,7 +45,7 @@ include 'header.php';
         </div>
       </nav>
 
-    <main class="p-4 mx-auto" style="width: 70%; height: 10%; background-color: rgb(227, 249, 255);">
+    <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -98,174 +98,171 @@ include 'header.php';
                     </p>
     
                     <form>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
-                            </div>
-                            <div class="col-md-4">
-                                <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" >
-                            </div>
-                            <div class="col-md-4">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
-                            </div>
-                        </div>
-                      
-                        <div class="row mb-3">
-                          <div class="col-md-6">
-                            <label for="birthPlace" class="form-label">Birth Place</label>
-                                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" >
-                          </div>
-                          <div class="col-md-6">
-                            <label for="birthdate" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" id="birthdate" placeholder="Birth date" >
-                          </div>
-                          
-                        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
+        </div>
 
-                        <div class="row mb-3">
-                          <div class="col-md-4">
-                              <label for="gender" class="form-label">Gender</label>
-                              <select class="form-select" id="gender" >
-                                  <option value="" disabled selected>Choose...</option>
-                                  <option value="male">Male</option>
-                                  <option value="female">Female</option>
-                              </select>
-                          </div>
-                          <div class="col-md-4">
-                              <label for="civilstatus" class="form-label">Civil Status</label>
-                              <select class="form-select" id="civilstatus" >
-                                  <option value="" disabled selected>Choose...</option>
-                                  <option value="self">Self</option>
-                                  <option value="spouse">Spouse</option>
-                              </select>
-                          </div>
-                          <div class="col-md-4">
-                            <label for="age" class="form-label">Age</label>
-                                <input type="text" class="form-control" id="age" placeholder="Age" >
-                          </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                              <label for="address" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="address" placeholder="Address" >
-                            </div>
-                            <div class="col-md-6">
-                                <label for="occupation" class="form-label">Occupation</label>
-                                <input type="text" class="form-control" id="occupation" placeholder="Address" >
-                              </div>
-                        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="birthPlace" class="form-label">Birth Place</label>
+                <input type="text" class="form-control" id="birthPlace" placeholder="Birth Place" required>
+            </div>
+            <div class="col-md-6">
+                <label for="birthdate" class="form-label">Birthdate</label>
+                <input type="date" class="form-control" id="birthdate" placeholder="Birth date" required>
+            </div>
+        </div>
 
-                        <div class="row mb-3">
-                          <div class="col-md-6">
-                              <label for="tele" class="form-label">Telephone Number</label>
-                              <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" >
-                          </div>
-                          <div class="col-md-6">
-                              <label for="phone" class="form-label">Phone Number</label>
-                              <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
-                          </div>
-                        </div>
-                      
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
-                            <br><br>
-                              <i class="bi bi-info-circle-fill"></i>       
-                                If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
-                          </div>
-                  </form>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" id="gender" required>
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="civilstatus" class="form-label">Civil Status</label>
+                <select class="form-select" id="civilstatus" required>
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="self">Self</option>
+                    <option value="spouse">Spouse</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="age" class="form-label">Age</label>
+                <input type="text" class="form-control" id="age" placeholder="Age" required>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Address" required>
+            </div>
+            <div class="col-md-6">
+                <label for="occupation" class="form-label">Occupation</label>
+                <input type="text" class="form-control" id="occupation" placeholder="Occupation" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="tele" class="form-label">Telephone Number</label>
+                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" required>
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+            </div>
+        </div>
+
+        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+            <br><br>
+            <i class="bi bi-info-circle-fill"></i>       
+            If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, continue to Sectoral Information.
+        </div>
+    </form>         
                 </div>
     
                 <!-- Sectoral Information Section -->
-                    <div class="form-section" id="sectoral-section">
-                      <form>
-                          <h4>Sectoral Information</h4>
-                          
-                            <h5>Answer Only if Replacement</h5>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="reasonReplacement" class="form-label"><h5>Reason for Replacement</h5></label>
-                                    <input type="text" id="reasonReplacement" class="form-control" placeholder="Reason" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="lossDate" class="form-label"><h5>If loss, when</h5></label>
-                                    <input type="date" id="lossDate"  class="form-control" placeholder="" >
-                                </div>
-                            </div>
-                            
-                            <h5>In Case of Emergency, Notify:</h5>
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <label for="emergencyFirstNames" class="form-label"><h5>First Name</h5></label>
-                                    <input type="text" id="emergencyFirstNames" class="form-control" placeholder="First Name" >
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="emergencyMiddleName" class="form-label"><h5>Middle Name</h5></label>
-                                    <input type="text" id="emergencyMiddleNames" class="form-control" placeholder="Middle Name" >
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="emergencyLastName" class="form-label"><h5>Last Name</h5></label>
-                                    <input type="text" id="emergencyLastNames" class="form-control" placeholder="Last Name" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="emergencyContact" class="form-label"><h5>Contact No</h5></label>
-                                    <input type="number" id="emergencyContact" class="form-control" placeholder="Contact" >
-                                </div>
-                            </div>
-                            
-                          
-                  
-                          <!-- Employment History -->
-                          <h5>Employment History</h5>
-                          <div class="employment-history-container">
-                              <div class="row mb-3">
-                                  <div class="col-md-4">
-                                      <label for="companyName" class="form-label">Company Name</label>
-                                      <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" >
-                                  </div>
-                                  <div class="col-md-4">
-                                      <label for="jobTitle" class="form-label">Job Title</label>
-                                      <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" >
-                                  </div>
-                                  <div class="col-md-4">
-                                      <label for="yearsWorked" class="form-label">Years Worked</label>
-                                      <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" >
-                                  </div>
-                              </div>
-                          </div>
+                <div class="form-section" id="sectoral-section">
+                <form>
+                    <h4>Sectoral Information</h4>
 
-                          <!-- Add Button for Employment History -->
-                              <div class="input-group-btn mb-3">
-                                  <button class="btn btn-success add-more-employment" type="button">
-                                      <i class="bi bi-plus-circle"></i> Add Employment History
-                                  </button>
-                                </div>
-                          </form>
+                    <h5>Answer Only if Replacement</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="reasonReplacement" class="form-label"><h5>Reason for Replacement</h5></label>
+                            <input type="text" id="reasonReplacement" class="form-control" placeholder="Reason" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lossDate" class="form-label"><h5>If loss, when</h5></label>
+                            <input type="date" id="lossDate" class="form-control" placeholder="" required>
+                        </div>
                     </div>
 
-                      <!-- Template for additional employment history fields -->
-                      <div class="employment-history-template d-none">
-                          <div class="row mb-3 align-items-end">
-                              <div class="col-md-4">
-                                  <label for="companyName" class="form-label">Company Name</label>
-                                  <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" >
-                              </div>
-                              <div class="col-md-4">
-                                  <label for="jobTitle" class="form-label">Job Title</label>
-                                  <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" >
-                              </div>
-                              <div class="col-md-4">
-                                  <label for="yearsWorked" class="form-label">Years Worked</label>
-                                  <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" >
-                              </div>
-                                <div class="col-md-3" style="margin-top: 10px;">
-                                    <button class="btn btn-danger remove-employment" type="button">Remove</button>
-                                </div>
+                    <h5>In Case of Emergency, Notify:</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="emergencyFirstNames" class="form-label"><h5>First Name</h5></label>
+                            <input type="text" id="emergencyFirstNames" class="form-control" placeholder="First Name" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="emergencyMiddleName" class="form-label"><h5>Middle Name</h5></label>
+                            <input type="text" id="emergencyMiddleNames" class="form-control" placeholder="Middle Name" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="emergencyLastName" class="form-label"><h5>Last Name</h5></label>
+                            <input type="text" id="emergencyLastNames" class="form-control" placeholder="Last Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="emergencyContact" class="form-label"><h5>Contact No</h5></label>
+                            <input type="number" id="emergencyContact" class="form-control" placeholder="Contact" required>
+                        </div>
+                    </div>
+
+                    <!-- Employment History -->
+                    <h5>Employment History</h5>
+                    <div class="employment-history-container">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" required>
                             </div>
-                            
-                      </div>
+                            <div class="col-md-4">
+                                <label for="jobTitle" class="form-label">Job Title</label>
+                                <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="yearsWorked" class="form-label">Years Worked</label>
+                                <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Button for Employment History -->
+                    <div class="input-group-btn mb-3">
+                        <button class="btn btn-success add-more-employment" type="button">
+                            <i class="bi bi-plus-circle"></i> Add Employment History
+                        </button>
+                    </div>
+                </form>
+                </div>
+
+<!-- Template for additional employment history fields -->
+<div class="employment-history-template d-none">
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-4">
+            <label for="companyName" class="form-label">Company Name</label>
+            <input type="text" id="companyName[]" class="form-control" placeholder="Company Name" required>
+        </div>
+        <div class="col-md-4">
+            <label for="jobTitle" class="form-label">Job Title</label>
+            <input type="text" id="jobTitle[]" class="form-control" placeholder="Job Title" required>
+        </div>
+        <div class="col-md-4">
+            <label for="yearsWorked" class="form-label">Years Worked</label>
+            <input type="number" id="yearsWorked[]" class="form-control" placeholder="Years Worked" required>
+        </div>
+        <div class="col-md-3" style="margin-top: 10px;">
+            <button class="btn btn-danger remove-employment" type="button">Remove</button>
+        </div>
+    </div>
+</div>
+
               
     
                 

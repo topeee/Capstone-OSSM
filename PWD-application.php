@@ -81,246 +81,230 @@ include 'header.php';
                         A separate application must be filed for each person seeking assistance. This is for PWD Assistance Only.
                     </p>
     
-                    <form>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
-                            </div>
-                            <div class="col-md-2">
-                                <label for="middleName" class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name" >
-                            </div>
-                            <div class="col-md-4">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
-                            </div>
-                            <div class="col-md-2">
-                                <label for="middleName" class="form-label">Suffix</label>
-                                <select class="form-select" id="suffix" >
-                                    <option value="" disabled selected>Choose...</option>
-                                    <option value="Jr">Jr</option>
-                                    <option value="Sr">Sr</option>
-                                    <option value="III">III</option>
-                                    <option value="IV">IV</option>
-                                </select>
-                            </div>
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                         </div>
-    
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" onchange="genderChange()">
-                                    <option value="" disabled selected>Choose...</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="civilstatus" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civilstatus" onchange="civilStatusChange()">
-                                    <option value="" disabled selected>Choose...</option>
-                                    <option value="Single">Single</option>
-                                    <option value="Separated">Separated</option>
-                                    <option value="Cohabitation">Cohabitation (Live-In)</option>
-                                    <option value="Married">Married</option>
-                                    <option value="Widow/er">Widow/er</option>
-                                </select>
-                            </div>                            
-                            <div class="col-md-4">
-                                <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" >
-                            </div>
+                        <div class="col-md-2">
+                            <label for="middleName" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" id="middleName" placeholder="Middle Name" required>
                         </div>
-    
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="tele" class="form-label">Landline Number</label>
-                                <input type="tel" class="form-control" id="tele" placeholder="(916) 345-6783" >
-                            </div>
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
-                            </div>
+                        <div class="col-md-4">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                         </div>
-    
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" >
-                            </div>
+                        <div class="col-md-2">
+                            <label for="suffix" class="form-label">Suffix</label>
+                            <select class="form-select" id="suffix" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="Jr">Jr</option>
+                                <option value="Sr">Sr</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                            </select>
                         </div>
-    
-                        <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" onchange="genderChange()" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="civilstatus" class="form-label">Civil Status</label>
+                            <select class="form-select" id="civilstatus" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Widow/er">Widow/er</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="tele" class="form-label">Landline Number</label>
+                            <input type="tel" class="form-control" id="tele" placeholder="Landline Number">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-lg-offset-0 col-lg-12 col-xs-12">
                             <br><br>
-                              <i class="bi bi-info-circle-fill"></i>       
-                                If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
-                          </div>
-                    </form>
+                            <i class="bi bi-info-circle-fill"></i>
+                            If you are also PWD, you may also apply here: <a href="*">PWD Application</a>. If not, Continue to Sectoral Information.
+                        </div>
+                    </div>
+                </form>
                 </div>
     
                 <!-- Sectoral Information Section -->
                 <div class="form-section" id="sectoral-section" style="display: none;">
-                    <form>
-                        <h4>Sectoral Information</h4>
-                        <p class="fs-4">Do you have an existing <strong> PWD ID number? </strong></p>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" >
-                                    <label class="form-check-label" for="yesOption">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" >
-                                    <label class="form-check-label" for="noOption">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div id="yesFields" style="display: none;">
-
-                            <div class="row mb-3">  
-                                <div class="col-md-6">
-                                    <label for="PWDIdNumber" class="form-label">PERSON WITH DISABILITY NUMBER</label>
-                                    <input type="text" class="form-control" id="PWDIdNumber" placeholder="(RR-PPMM-BBB-NNNNNNN)" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="idImageUpload" class="form-label">DATE APPLIED</label>
-                                    <input type="date" class="form-control" id="PWDidImageUpload" >
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="idImageUpload" class="form-label">Upload PWD ID</label>
-                                <input type="file" class="form-control" id="PWDidImageUpload" >
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="disabilityType" class="form-label">Type of Disability</label>
-                                    <select class="form-select" id="disabilityType" onchange="disabilityTypeChange()">
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
-                                        <option value="Psychosocial Disability">Psychosocial Disability</option>
-                                        <option value="Intellectual Disability">Intellectual Disability</option>
-                                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
-                                        <option value="Learning Disability">Learning Disability</option>
-                                        <option value="Visual Disability">Visual Disability</option>
-                                        <option value="Mental Disability">Mental Disability</option>
-                                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
-                                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
-                                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
-                                    </select>
-                                </div>
-        
-                                <br>
-        
-                                <div class="col-md-6">
-                                    <label for="needs" class="form-label">Cause Of Disabilty</label>
-                                    <select class="form-select" id="causeOfDisability" onchange="causeOfDisabilityChange()">
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="Congenital/Inborn">Congenital/Inborn</option>
-                                        <option value="Autism">Autism</option>
-                                        <option value="ADHD">ADHD</option>
-                                        <option value="Cerebral Palsy">Cerebral Palsy</option>
-                                        <option value="Down Syndrome">Down Syndrome</option>
-                                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
-                                        <option value="Acquired">Acquired</option>
-                                        <option value="Chronic Illness">Chronic Illness</option>
-                                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
-                                        <option value="Injury">Injury</option>
-                                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
-                                    </select>
-                                </div>  
-                                
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="houseNoStreet" class="form-label">House No. and Street</label>
-                                        <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="barangay" class="form-label">Barangay</label>
-                                        <input type="text" class="form-control" id="barangay" placeholder="Barangay" >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div id="noFields" style="display: none;">
-                            <div class="row mb-3">
-                                <div class="col-md-12">
-                                    <label for="pwdDiagnosis" class="form-label">Diagnosis</label>
-                                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" >
-                                </div>
-                            </div>
-    
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="houseNoStreet" class="form-label">House No. and Street</label>
-                                    <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" >
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="barangay" class="form-label">Barangay</label>
-                                    <input type="text" class="form-control" id="barangay" placeholder="Barangay" >
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="problems" class="form-label">Type of Disabilty</label>
-                                    <select class="form-select" id="disabilityType" onchange="disabilityTypeChange()">
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
-                                        <option value="Psychosocial Disability">Psychosocial Disability</option>
-                                        <option value="Intellectual Disability">Intellectual Disability</option>
-                                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
-                                        <option value="Learning Disability">Learning Disability</option>
-                                        <option value="Visual Disability">Visual Disability</option>
-                                        <option value="Mental Disability">Mental Disability</option>
-                                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
-                                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
-                                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
-                                    </select>
-                                </div>
-        
-                                <br>
-        
-                                <div class="col-md-6">
-                                    <label for="needs" class="form-label">Cause Of Disabilty</label>
-                                    <select class="form-select" id="causeOfDisability" onchange="causeOfDisabilityChange()">
-                                        <option value="" disabled selected>Choose...</option>
-                                        <option value="Congenital/Inborn">Congenital/Inborn</option>
-                                        <option value="Autism">Autism</option>
-                                        <option value="ADHD">ADHD</option>
-                                        <option value="Cerebral Palsy">Cerebral Palsy</option>
-                                        <option value="Down Syndrome">Down Syndrome</option>
-                                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
-                                        <option value="Acquired">Acquired</option>
-                                        <option value="Chronic Illness">Chronic Illness</option>
-                                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
-                                        <option value="Injury">Injury</option>
-                                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
-                                    </select>
-                                </div>    
-                            </div>
-                        </div>
-                    </form>
+    <form>
+        <h4>Sectoral Information</h4>
+        <p class="fs-4">Do you have an existing <strong>PWD ID number?</strong></p>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PWDId" id="yesOption" value="yes" required>
+                    <label class="form-check-label" for="yesOption">Yes</label>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="PWDId" id="noOption" value="no" required>
+                    <label class="form-check-label" for="noOption">No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fields for users who select 'Yes' -->
+        <div id="yesFields" style="display: none;">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="PWDIdNumber" class="form-label">PERSON WITH DISABILITY NUMBER</label>
+                    <input type="text" class="form-control" id="PWDIdNumber" placeholder="(RR-PPMM-BBB-NNNNNNN)" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="PWDidImageUpload" class="form-label">DATE APPLIED</label>
+                    <input type="date" class="form-control" id="PWDidImageUpload" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="PWDidImageUpload" class="form-label">Upload PWD ID</label>
+                <input type="file" class="form-control" id="PWDidImageUpload" required>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="disabilityType" class="form-label">Type of Disability</label>
+                    <select class="form-select" id="disabilityType" required>
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
+                        <option value="Psychosocial Disability">Psychosocial Disability</option>
+                        <option value="Intellectual Disability">Intellectual Disability</option>
+                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
+                        <option value="Learning Disability">Learning Disability</option>
+                        <option value="Visual Disability">Visual Disability</option>
+                        <option value="Mental Disability">Mental Disability</option>
+                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
+                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
+                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="causeOfDisability" class="form-label">Cause Of Disability</label>
+                    <select class="form-select" id="causeOfDisability" required>
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="Congenital/Inborn">Congenital/Inborn</option>
+                        <option value="Autism">Autism</option>
+                        <option value="ADHD">ADHD</option>
+                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                        <option value="Down Syndrome">Down Syndrome</option>
+                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
+                        <option value="Acquired">Acquired</option>
+                        <option value="Chronic Illness">Chronic Illness</option>
+                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
+                        <option value="Injury">Injury</option>
+                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="houseNoStreet" class="form-label">House No. and Street</label>
+                    <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="barangay" class="form-label">Barangay</label>
+                    <input type="text" class="form-control" id="barangay" placeholder="Barangay" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fields for users who select 'No' -->
+        <div id="noFields" style="display: none;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="pwdDiagnosis" class="form-label">Diagnosis</label>
+                    <input type="text" class="form-control" id="pwdDiagnosis" placeholder="Describe Diagnosis" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="houseNoStreet" class="form-label">House No. and Street</label>
+                    <input type="text" class="form-control" id="houseNoStreet" placeholder="House No. and Street" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="barangay" class="form-label">Barangay</label>
+                    <input type="text" class="form-control" id="barangay" placeholder="Barangay" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="disabilityType" class="form-label">Type of Disability</label>
+                    <select class="form-select" id="disabilityType" required>
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="Deaf or Hard of Hearing Disability">Deaf or Hard of Hearing Disability</option>
+                        <option value="Psychosocial Disability">Psychosocial Disability</option>
+                        <option value="Intellectual Disability">Intellectual Disability</option>
+                        <option value="Speech and Language Impairment">Speech and Language Impairment</option>
+                        <option value="Learning Disability">Learning Disability</option>
+                        <option value="Visual Disability">Visual Disability</option>
+                        <option value="Mental Disability">Mental Disability</option>
+                        <option value="Cancer (RA 11215)">Cancer (RA 11215)</option>
+                        <option value="Physical Disability (Orthopedic)">Physical Disability (Orthopedic)</option>
+                        <option value="Rare Disease (RA 10747)">Rare Disease (RA 10747)</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="causeOfDisability" class="form-label">Cause Of Disability</label>
+                    <select class="form-select" id="causeOfDisability" required>
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="Congenital/Inborn">Congenital/Inborn</option>
+                        <option value="Autism">Autism</option>
+                        <option value="ADHD">ADHD</option>
+                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                        <option value="Down Syndrome">Down Syndrome</option>
+                        <option value="Others, Specify (Congenital)">Others, Specify (Congenital)</option>
+                        <option value="Acquired">Acquired</option>
+                        <option value="Chronic Illness">Chronic Illness</option>
+                        <option value="Cerebral Palsy (Acquired)">Cerebral Palsy (Acquired)</option>
+                        <option value="Injury">Injury</option>
+                        <option value="Others, Specify (Acquired)">Others, Specify (Acquired)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
     
                     <div>
                         <!-- Family Composition Section -->
                         <div class="form-section" id="government-numbers" style="display: none;">
-                            <form>    
+                            <form>
                                 <h4>Government Numbers</h4>
 
                                 <div class="row mb-3">
                                     <div class="col-md-3">
                                         <label for="educationAttainment" class="form-label">Educational Attainment</label>
-                                        <select class="form-select" id="educationAttainment" onchange="educationAttainmentChange()">
+                                        <select class="form-select" id="educationAttainment" onchange="educationAttainmentChange()" required>
                                             <option value="" disabled selected>Choose...</option>
                                             <option value="None">None</option>
                                             <option value="Kindergarten">Kindergarten</option>
@@ -334,18 +318,18 @@ include 'header.php';
                                     </div>
 
                                     <div class="col-md-3">
-                                            <label for="employmentStatus" class="form-label">Status of Employment</label>
-                                            <select class="form-select" id="employmentStatus" onchange="statusOfEmploymentChange()">
-                                                <option value="" disabled selected>Choose...</option>
-                                                <option value="employed">Employed</option>
-                                                <option value="unemployed">Unemployed</option>
-                                                <option value="selfEmployed">Self-Employed</option>
-                                            </select>
+                                        <label for="employmentStatus" class="form-label">Status of Employment</label>
+                                        <select class="form-select" id="employmentStatus" onchange="statusOfEmploymentChange()" required>
+                                            <option value="" disabled selected>Choose...</option>
+                                            <option value="employed">Employed</option>
+                                            <option value="unemployed">Unemployed</option>
+                                            <option value="selfEmployed">Self-Employed</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-md-3">
                                         <label for="employmentType" class="form-label">Types of Employment</label>
-                                        <select class="form-select" id="employmentType" onchange="typesOfEmploymentChange()">
+                                        <select class="form-select" id="employmentType" onchange="typesOfEmploymentChange()" required>
                                             <option value="" disabled selected>Choose...</option>
                                             <option value="permanent">Permanent/Regular</option>
                                             <option value="seasonal">Seasonal</option>
@@ -356,7 +340,7 @@ include 'header.php';
 
                                     <div class="col-md-3">
                                         <label for="employmentCategory" class="form-label">Category of Employment</label>
-                                        <select class="form-select" id="employmentCategory" onchange="categoryOfEmploymentChange()">
+                                        <select class="form-select" id="employmentCategory" onchange="categoryOfEmploymentChange()" required>
                                             <option value="" disabled selected>Choose...</option>
                                             <option value="government">Government</option>
                                             <option value="private">Private</option>
@@ -367,7 +351,7 @@ include 'header.php';
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="occupation" class="form-label">Occupation</label>
-                                        <select class="form-select" id="occupation" onchange="occupationChange()">
+                                        <select class="form-select" id="occupation" onchange="occupationChange()" required>
                                             <option value="" disabled selected>Choose...</option>
                                             <option value="managers">Managers</option>
                                             <option value="professionals">Professionals</option>
@@ -384,54 +368,55 @@ include 'header.php';
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="occupation" class="form-label">Others</label>
-                                        <input type="text" class="form-control" id="occupation" placeholder="Specify" >
+                                        <label for="occupationOther" class="form-label">Others</label>
+                                        <input type="text" class="form-control" id="occupationOther" placeholder="Specify" required>
                                     </div>
                                 </div>
 
-<hr style="margin-top: 20px; margin-bottom: 20px;">
+                                <hr style="margin-top: 20px; margin-bottom: 20px;">
 
                                 <div class="row mb-3">
                                     <h5>Organization Information</h5>
                                     <div class="col-md-6">
                                         <label for="orgAffiliated" class="form-label">Organization Affiliated</label>
-                                        <input type="text" class="form-control" id="orgAffiliated" placeholder="Organization Affiliated" >
+                                        <input type="text" class="form-control" id="orgAffiliated" placeholder="Organization Affiliated" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="contactPerson" class="form-label">Contact Person</label>
-                                        <input type="text" class="form-control" id="contactPerson" placeholder="Contact Person" >
+                                        <input type="text" class="form-control" id="contactPerson" placeholder="Contact Person" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="officeAddress" class="form-label">Office Address</label>
-                                        <input type="text" class="form-control" id="officeAddress" placeholder="Office Address" >
+                                        <input type="text" class="form-control" id="officeAddress" placeholder="Office Address" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="telNos" class="form-label">Tel. Nos.</label>
-                                        <input type="text" class="form-control" id="telNos" placeholder="Tel. Nos." >
+                                        <input type="text" class="form-control" id="telNos" placeholder="Tel. Nos." required>
                                     </div>
                                 </div>
-<hr style="margin-top: 20px; margin-bottom: 20px;">
+
+                                <hr style="margin-top: 20px; margin-bottom: 20px;">
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-3">
                                         <label for="SSS" class="form-label">SSS Number/UMID Number</label>
-                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" >
+                                        <input type="text" class="form-control" id="SSS" placeholder="SSS Number" required>
                                     </div>
                                     <div class="col-md-2">
                                         <label for="GSIS" class="form-label">GSIS Number</label>
-                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" >
+                                        <input type="text" class="form-control" id="GSIS" placeholder="GSIS Number" required>
                                     </div>
                                     <div class="col-md-2">
                                         <label for="PhilHealth" class="form-label">PhilHealth Number</label>
-                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" >
+                                        <input type="text" class="form-control" id="PhilHealth" placeholder="PhilHealth Number" required>
                                     </div>
                                     <div class="col-md-2">
                                         <label for="PAGIBIG" class="form-label">PAGIBIG Number</label>
-                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" >
+                                        <input type="text" class="form-control" id="PAGIBIG" placeholder="PAGIBIG Number" required>
                                     </div>
                                     <div class="col-md-2">
                                         <label for="PSN" class="form-label">PSN Number</label>
-                                        <input type="text" class="form-control" id="PSN" placeholder="PSN Number" >
+                                        <input type="text" class="form-control" id="PSN" placeholder="PSN Number" required>
                                     </div>
                                 </div>
                                 
@@ -439,144 +424,144 @@ include 'header.php';
                         </div>
                     </div>
 
+
                     <div class="form-section" id="contact-information" style="display: none;">
-                        <form>    
-                            <h4>Contact Information</h4>
-                            <!-- Father's Name Section -->
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="fatherLastName" class="form-label">Father's Last Name</label>
-                                    <input type="text" class="form-control" id="fatherLastName" placeholder="Father's Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="fatherFirstName" class="form-label">Father's First Name</label>
-                                    <input type="text" class="form-control" id="fatherFirstName" placeholder="Father's First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="fatherMiddleName" class="form-label">Father's Middle Name</label>
-                                    <input type="text" class="form-control" id="fatherMiddleName" placeholder="Father's Middle Name">
-                                </div>
-                            </div>
+    <form>    
+        <h4>Contact Information</h4>
+        
+        <!-- Father's Name Section -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="fatherLastName" class="form-label">Father's Last Name</label>
+                <input type="text" class="form-control" id="fatherLastName" placeholder="Father's Last Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="fatherFirstName" class="form-label">Father's First Name</label>
+                <input type="text" class="form-control" id="fatherFirstName" placeholder="Father's First Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="fatherMiddleName" class="form-label">Father's Middle Name</label>
+                <input type="text" class="form-control" id="fatherMiddleName" placeholder="Father's Middle Name" required>
+            </div>
+        </div>
 
-                            <!-- Mother's Name Section -->
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="motherLastName" class="form-label">Mother's Last Name</label>
-                                    <input type="text" class="form-control" id="motherLastName" placeholder="Mother's Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="motherFirstName" class="form-label">Mother's First Name</label>
-                                    <input type="text" class="form-control" id="motherFirstName" placeholder="Mother's First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="motherMiddleName" class="form-label">Mother's Middle Name</label>
-                                    <input type="text" class="form-control" id="motherMiddleName" placeholder="Mother's Middle Name">
-                                </div>
-                            </div>
+        <!-- Mother's Name Section -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="motherLastName" class="form-label">Mother's Last Name</label>
+                <input type="text" class="form-control" id="motherLastName" placeholder="Mother's Last Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="motherFirstName" class="form-label">Mother's First Name</label>
+                <input type="text" class="form-control" id="motherFirstName" placeholder="Mother's First Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="motherMiddleName" class="form-label">Mother's Middle Name</label>
+                <input type="text" class="form-control" id="motherMiddleName" placeholder="Mother's Middle Name" required>
+            </div>
+        </div>
 
-                            <!-- Guardian (Emergency Contact) Section -->
-                            <div class="row mb-3">
-                                <h5>For in case of emergency: Guardian</h5>
-                                <div class="col-md-4">
-                                    <label for="guardianLastName" class="form-label">Guardian Last Name</label>
-                                    <input type="text" class="form-control" id="guardianLastName" placeholder="Guardian Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="guardianFirstName" class="form-label">Guardian First Name</label>
-                                    <input type="text" class="form-control" id="guardianFirstName" placeholder="Guardian First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="guardianMiddleName" class="form-label">Guardian Middle Name</label>
-                                    <input type="text" class="form-control" id="guardianMiddleName" placeholder="Guardian Middle Name">
-                                </div>
-                            </div>
+        <!-- Guardian (Emergency Contact) Section -->
+        <div class="row mb-3">
+            <h5>For in case of emergency: Guardian</h5>
+            <div class="col-md-4">
+                <label for="guardianLastName" class="form-label">Guardian Last Name</label>
+                <input type="text" class="form-control" id="guardianLastName" placeholder="Guardian Last Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="guardianFirstName" class="form-label">Guardian First Name</label>
+                <input type="text" class="form-control" id="guardianFirstName" placeholder="Guardian First Name" required>
+            </div>
+            <div class="col-md-4">
+                <label for="guardianMiddleName" class="form-label">Guardian Middle Name</label>
+                <input type="text" class="form-control" id="guardianMiddleName" placeholder="Guardian Middle Name" required>
+            </div>
+        </div>
 
-                            <h5>Accomplished By:</h5>
-                            <div class="row mb-3" style="margin-left: 20px ;">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="applicant" id="applicantOption" onchange="accomplishedByChange()">
-                                    <label class="form-check-label" for="applicantOption">APPLICANT</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="guardian" id="guardianOption" onchange="accomplishedByChange()">
-                                    <label class="form-check-label" for="guardianOption">GUARDIAN</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="accomplishedBy" value="representative" id="representativeOption" onchange="accomplishedByChange()">
-                                    <label class="form-check-label" for="representativeOption">REPRESENTATIVE</label>
-                                </div>
-                            </div>
-                            
-                            <!-- Conditional Fields for Each Option -->
-                            <div id="applicantFields" class="row mb-3" style="display: none;">
-                                <div class="col-md-4">
-                                    <label for="applicantLastName" class="form-label">Applicant Last Name</label>
-                                    <input type="text" class="form-control" id="applicantLastName" placeholder="Applicant Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="applicantFirstName" class="form-label">Applicant First Name</label>
-                                    <input type="text" class="form-control" id="applicantFirstName" placeholder="Applicant First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="applicantMiddleName" class="form-label">Applicant Middle Name</label>
-                                    <input type="text" class="form-control" id="applicantMiddleName" placeholder="Applicant Middle Name">
-                                </div>
-                            </div>
-                            
-                            <div id="guardianFields" class="row mb-3" style="display: none;">
-                                <div class="col-md-4">
-                                    <label for="guardiansLastName" class="form-label">Guardian Last Name</label>
-                                    <input type="text" class="form-control" id="guardiansLastName" placeholder="Guardian Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="guardiansFirstName" class="form-label">Guardian First Name</label>
-                                    <input type="text" class="form-control" id="guardiansFirstName" placeholder="Guardian First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="guardiansMiddleName" class="form-label">Guardian Middle Name</label>
-                                    <input type="text" class="form-control" id="guardiansMiddleName" placeholder="Guardian Middle Name">
-                                </div>
-                            </div>
-                            
-                            <div id="representativeFields" class="row mb-3" style="display: none;">
-                                <div class="col-md-4">
-                                    <label for="representativeLastName" class="form-label">Representative Last Name</label>
-                                    <input type="text" class="form-control" id="representativeLastName" placeholder="Representative Last Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="representativeFirstName" class="form-label">Representative First Name</label>
-                                    <input type="text" class="form-control" id="representativeFirstName" placeholder="Representative First Name">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="representativeMiddleName" class="form-label">Representative Middle Name</label>
-                                    <input type="text" class="form-control" id="representativeMiddleName" placeholder="Representative Middle Name">
-                                </div>
-                            </div>
-                            
+        <h5>Accomplished By:</h5>
+        <div class="row mb-3" style="margin-left: 20px;">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="accomplishedBy" value="applicant" id="applicantOption" onchange="accomplishedByChange()" required>
+                <label class="form-check-label" for="applicantOption">APPLICANT</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="accomplishedBy" value="guardian" id="guardianOption" onchange="accomplishedByChange()">
+                <label class="form-check-label" for="guardianOption">GUARDIAN</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="accomplishedBy" value="representative" id="representativeOption" onchange="accomplishedByChange()">
+                <label class="form-check-label" for="representativeOption">REPRESENTATIVE</label>
+            </div>
+        </div>
 
-                            <div class="row mb-3">
-                                    <h5>Name of Certifying Physician</h5>
-                                        <div class="col-md-3">
-                                            <label for="certifyingPhysicianFirstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="certifyingPhysicianFirstName" placeholder="First Name" >
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="certifyingPhysicianMiddleName" class="form-label">Middle Name</label>
-                                            <input type="text" class="form-control" id="certifyingPhysicianMiddleName" placeholder="Middle Name" >
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="certifyingPhysicianLastName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="certifyingPhysicianLastName" placeholder="Last Name" >
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="licenseNo" class="form-label">License No.</label>
-                                            <input type="text" class="form-control" id="licenseNo" placeholder="License No." >
-                                        </div>
-                            </div>
+        <!-- Conditional Fields for Each Option -->
+        <div id="applicantFields" class="row mb-3" style="display: none;">
+            <div class="col-md-4">
+                <label for="applicantLastName" class="form-label">Applicant Last Name</label>
+                <input type="text" class="form-control" id="applicantLastName" placeholder="Applicant Last Name">
+            </div>
+            <div class="col-md-4">
+                <label for="applicantFirstName" class="form-label">Applicant First Name</label>
+                <input type="text" class="form-control" id="applicantFirstName" placeholder="Applicant First Name">
+            </div>
+            <div class="col-md-4">
+                <label for="applicantMiddleName" class="form-label">Applicant Middle Name</label>
+                <input type="text" class="form-control" id="applicantMiddleName" placeholder="Applicant Middle Name">
+            </div>
+        </div>
 
-                                                                               
-                        </form>    
-                    </div>
+        <div id="guardianFields" class="row mb-3" style="display: none;">
+            <div class="col-md-4">
+                <label for="guardiansLastName" class="form-label">Guardian Last Name</label>
+                <input type="text" class="form-control" id="guardiansLastName" placeholder="Guardian Last Name">
+            </div>
+            <div class="col-md-4">
+                <label for="guardiansFirstName" class="form-label">Guardian First Name</label>
+                <input type="text" class="form-control" id="guardiansFirstName" placeholder="Guardian First Name">
+            </div>
+            <div class="col-md-4">
+                <label for="guardiansMiddleName" class="form-label">Guardian Middle Name</label>
+                <input type="text" class="form-control" id="guardiansMiddleName" placeholder="Guardian Middle Name">
+            </div>
+        </div>
+
+        <div id="representativeFields" class="row mb-3" style="display: none;">
+            <div class="col-md-4">
+                <label for="representativeLastName" class="form-label">Representative Last Name</label>
+                <input type="text" class="form-control" id="representativeLastName" placeholder="Representative Last Name">
+            </div>
+            <div class="col-md-4">
+                <label for="representativeFirstName" class="form-label">Representative First Name</label>
+                <input type="text" class="form-control" id="representativeFirstName" placeholder="Representative First Name">
+            </div>
+            <div class="col-md-4">
+                <label for="representativeMiddleName" class="form-label">Representative Middle Name</label>
+                <input type="text" class="form-control" id="representativeMiddleName" placeholder="Representative Middle Name">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <h5>Name of Certifying Physician</h5>
+            <div class="col-md-3">
+                <label for="certifyingPhysicianFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="certifyingPhysicianFirstName" placeholder="First Name" required>
+            </div>
+            <div class="col-md-3">
+                <label for="certifyingPhysicianMiddleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="certifyingPhysicianMiddleName" placeholder="Middle Name">
+            </div>
+            <div class="col-md-3">
+                <label for="certifyingPhysicianLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="certifyingPhysicianLastName" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-3">
+                <label for="licenseNo" class="form-label">License No.</label>
+                <input type="text" class="form-control" id="licenseNo" placeholder="License No." required>
+            </div>
+        </div>
+    </form>    
+                </div>
+
                 
 
                     <div>
@@ -983,7 +968,7 @@ include 'header.php';
     </main>
 
     <br>
-    <br>
+    <br><br>
     <footer>
             <div class="container">
                 <div class="row row-cols-1 row-cols-lg-3">
@@ -1061,6 +1046,12 @@ $(document).ready(function() {
         // Next button click handler
         // Updated Next button click handler (without the populateSummary call)
     $("#next-btn").on('click', function() {
+
+        // Check required fields in the current section
+        if (!checkRequiredFields()) {
+            alert("Please fill in all required fields before proceeding.");
+            return; // Stop if any required field is missing
+        }
         if (currentSection < sections.length - 1) {
             $(sections[currentSection]).hide(); // Hide current section
             currentSection++; // Move to the next section
@@ -1077,6 +1068,34 @@ $(document).ready(function() {
         }
     });
 
+    // Function to check required fields in the current section
+    function checkRequiredFields() {
+        let valid = true;
+        $(sections[currentSection]).find('[required]').each(function() {
+            if (!$(this).val()) {
+                valid = false;
+            }
+        });
+        return valid;
+    }
+    // Function to toggle required attribute based on PWD ID selection
+    $('input[name="PWDId"]').on('change', function() {
+        if ($(this).val() === 'yes') {
+            $('#yesFields').show();
+            $('#noFields').hide();
+            // Remove required attribute from noFields
+            $('#noFields').find('input, select').removeAttr('required');
+            // Add required attribute to yesFields
+            $('#yesFields').find('input, select').attr('required', 'required');
+        } else {
+            $('#yesFields').hide();
+            $('#noFields').show();
+            // Remove required attribute from yesFields
+            $('#yesFields').find('input, select').removeAttr('required');
+            // Add required attribute to noFields
+            $('#noFields').find('input, select').attr('required', 'required');
+        }
+    });
 
     // Previous button click handler
     $("#prev-btn").click(function() {
@@ -1124,7 +1143,6 @@ function updateButtons() {
         .removeClass("bi-check-square")
         .addClass("bi-check-square-fill"); // Set filled icons up to the current section
 }
-
 
 // Populate summary function to fill summary section with form data
 function populateSummary() {

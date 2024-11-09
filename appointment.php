@@ -64,69 +64,70 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Appointment</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #343a40;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9ecef;
-        }
-        .appointment-form {
-            background-color: #ffffff;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-        }
-        .appointment-form h2 {
-            margin-top: 0;
-            color: #343a40;
-            font-size: 32px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .appointment-form label {
-            display: block;
-            margin-bottom: 10px;
-            color: #495057;
-            font-weight: 500;
-        }
-        .appointment-form input,
-        .appointment-form select,
-        .appointment-form button {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-size: 18px;
-        }
-        .appointment-form input:focus,
-        .appointment-form select:focus,
-        .appointment-form button:focus {
-            border-color: #80bdff;
-            outline: none;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-        }
-        .appointment-form button {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .appointment-form button:hover {
-            background-color: #0056b3;
-        }
-        .alert {
-            margin-top: 20px;
-        }
-    </style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #343a40;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #e9ecef;
+    }
+    .appointment-form {
+        background-color: #ffffff;
+        padding: 20px; /* Reduced padding */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px; /* Reduced width */
+    }
+    .appointment-form h2 {
+        margin-top: 0;
+        color: #343a40;
+        font-size: 28px; /* Reduced font size */
+        text-align: center;
+        margin-bottom: 20px; /* Reduced margin */
+    }
+    .appointment-form label {
+        display: block;
+        margin-bottom: 8px; /* Reduced margin */
+        color: #495057;
+        font-weight: 500;
+    }
+    .appointment-form input,
+    .appointment-form select,
+    .appointment-form button {
+        width: 100%;
+        padding: 12px; /* Reduced padding */
+        margin-bottom: 15px; /* Reduced margin */
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 16px; /* Reduced font size */
+    }
+    .appointment-form input:focus,
+    .appointment-form select:focus,
+    .appointment-form button:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 6px rgba(0, 123, 255, 0.25);
+    }
+    .appointment-form button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+    .appointment-form button:hover {
+        background-color: #0056b3;
+    }
+    .alert {
+        margin-top: 100px; /* Reduced margin */
+    }
+</style>
+
 </head>
 <body>
 

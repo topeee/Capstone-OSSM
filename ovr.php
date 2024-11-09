@@ -109,6 +109,10 @@ include 'header.php';
             color: #888;
         }
 
+        footer {
+        position: fixed;
+        }
+
          /* Make buttons smaller on mobile */
          @media (max-width: 767px) {
             button {

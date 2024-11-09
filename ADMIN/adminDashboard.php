@@ -1,11 +1,8 @@
 <?php
 session_start();
 include 'db_connection.php';
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-    // If not, redirect to the login page or an error page
-    header('Location: login.php');
-    exit();
-}
+
+
 
 
 
@@ -24,124 +21,34 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
 </head>
 
 <style>
-body { 
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    color: black;
-    overflow-x: hidden;
-    transition: background 0.5s;
-    background: #0066b2;
-}
 
-.dashboard-text {
-    color: black;
-    padding: 10px 20px;
-    text-align: left;
-    position: fixed;
-    top: 0;
-    left: 300px;
-    width: calc(100% - 300px);
-    z-index: 1;
-    font-size: 36px;
-    font-weight: bold;
-    margin-top: 70px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s, width 0.3s;
-}
-
-.sidenav {
-    height: 100%;
-    width: 300px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background:#89CFF0;
-    backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    overflow-x: hidden;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    transition: width 0.3s, backdrop-filter 0.3s;
-}
-
-.sidenav img {
-    width: 130px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    transition: width 0.3s;
-    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
-}
-
-.sidenav h2 {
-    color: black;
-    margin: 0;
-    padding: 15px;
-    font-size: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s;
-}
-
-.sidenav a {
-    padding: 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: black;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, opacity 0.3s;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    backdrop-filter: blur(10px);
-}
-
-.sidenav a i {
-    margin-right: 15px;
-    font-size: 22px;
-}
-
-.sidenav a:hover {
-    background-color: #0000FF;
-}
-
-.main-content {
-    margin-left: 300px;
-    padding: 40px;
-    padding-top: 10%;
-    transition: margin-left 0.3s;
-}
 
 .container-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
 }
 
 .container {
-    width: calc(25% - 30px);
-    height: 220px;
-    padding: 20px;
+    width: 20px;/* Adjusts width for a smaller rectangle */
+    height: 120px; /* Reduces height for a more rectangular shape */
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 12px; /* Adjust border-radius for a smaller curve */
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    font-size: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Adjust shadow for smaller size */
+    font-size: 18px; /* Slightly smaller font for smaller container */
     font-weight: bold;
     transition: background 0.3s ease, transform 0.3s ease;
     color: black;
     text-align: center;
-    position: relative; /* Allows positioning of the number inside */
+    position: relative;
 }
+
 
 .number {
     position: absolute;
@@ -283,7 +190,7 @@ body.dark-mode .logout:hover {
 }
 /* Style for the chart container */
 .chart-container {
-    width: 50%;
+    width: 30%;
     height: 300px; /* Adjust height as needed */
     margin-top: 20px; /* Space above the chart */
     background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
@@ -322,57 +229,56 @@ body.dark-mode .logout:hover {
 
 .modal-container-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    gap: 20px; /* Adjust the spacing between containers as needed */
+    justify-content: space-around; /* Centers containers with space in between */
+    align-items: center; /* Centers content vertically within each container */
 }
 
 .modal-container {
-    width: calc(33.33% - 20px);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    border-radius: 10px;
-    background: rgba(75, 192, 192, 0.5); /* Adjust color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    color: black;
     text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100px; /* Adjust the width as needed for each container */
+    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
 }
 
 
-
 </style>
-<?php include 'navbar.php'; ?>
 
+
+<?php 
+include('dashboard_sidebar_start.php');
+?>
 
 <body>
-
-
-
 <div class="mai</div>n-content">
-    <h1>Admin Dashboard</h1>
     
-    <!-- Content Sections -->
-    <div id="dashboard-content" class="content-section">
-        <div class="container-group">
-            <div class="container" id="new-applications">
-                <i class="fas fa-plus-circle"></i> NEW APPLICATION
-                <div class="number" id="new-count">10</div>
-            </div>
-            <div class="container" id="ongoing-applications">
-                <i class="fas fa-spinner"></i> ON-GOING APPLICATION
-                <div class="number" id="ongoing-count">5</div>
-            </div>
-            <div class="container" id="application-list">
-                <i class="fas fa-list"></i> APPLICATION FORM LIST
-                <div class="number" id="list-count">30</div>
-            </div>
-            <div class="container" id="requested-documents">
-                <i class="fas fa-file"></i> REQUESTED DOCUMENTS
-                <div class="number" id="requested-count">3</div>
-            </div>
-        </div>
+    
+<!-- Content Sections -->
+<div class="container-group" style="display: flex; justify-content: space-between;">
+
+    <div class="container" id="new-applications" style="width: 330px;">
+        <i class="fas fa-plus-circle"></i> NEW APPLICATION
+        <div class="number" id="new-count">10</div>
+    </div>
+
+    <div class="container" id="ongoing-applications" style="width: 330px;">
+        <i class="fas fa-spinner"></i> ON-GOING APPLICATION
+        <div class="number" id="ongoing-count">5</div>
+    </div>
+
+    <div class="container" id="application-list" style="width: 330px;">
+        <i class="fas fa-list"></i> APPLICATION LIST
+        <div class="number" id="list-count">30</div>
+    </div>
+
+    <div class="container" id="requested-documents" style="width: 330px;">
+        <i class="fas fa-file"></i> REQUESTED DOCUMENTS
+        <div class="number" id="requested-count">3</div>
+    </div>
+
+</div>
 
         <!-- Chart Container -->
         <div class="chart-container">

@@ -300,8 +300,7 @@ include 'header.php';
         </div>
 <br>
 
-            
-    <!-- Fixed Menu for Book an Appointment -->
+        <!-- Fixed Menu for Book an Appointment -->
         <div id="fixedAppointment">
             <a href="appointment.php" class="appointment">
             <i class="bi bi-calendar-week"></i> <span class="text"> Book an Appointment</span>

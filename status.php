@@ -8,7 +8,7 @@ include 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Appointment</title>   
+    <title>My Appointment</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -124,7 +124,7 @@ include 'header.php';
 
 <body >
     <div class="container">
-        <h1>Appointments</h1>
+        <h1>STATUS</h1>
     
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -152,8 +152,16 @@ include 'header.php';
                         // Database connection
                         // Fetch appointments for the logged-in user
                         $user_id = $_SESSION['email'];
-                        $sql = "SELECT `full_name`, `email`, `service`, `date`, `time`, `document_type`, `status`, `reference_number` FROM `appointments` WHERE `email` = ?";
+                        $sql = "SELECT a.`full_name`, a.`email`, a.`service`, a.`date`, a.`time`, a.`document_type`, a.`status`, a.`reference_number`, c.`status` AS `citizen_status`
+                                FROM `appointments` a
+                                LEFT JOIN `CitizenID_Application_Form_BasicInfo` c ON a.`email` = c.`email`
+                                WHERE a.`email` = ?";
+
                         $stmt = $conn->prepare($sql);
+                        if ($stmt === false) {
+                            throw new Exception('Prepare failed: ' . $conn->error);
+                        }
+
                         $stmt->bind_param("s", $user_id);
                         $stmt->execute();
                         $result = $stmt->get_result();
@@ -162,7 +170,6 @@ include 'header.php';
                             // Output data of each row
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                
                                         <td>{$row['full_name']}</td>
                                         <td>{$row['email']}</td>
                                         <td>{$row['service']}</td>
@@ -171,7 +178,6 @@ include 'header.php';
                                         <td>{$row['document_type']}</td>  
                                         <td>{$row['reference_number']}</td>
                                         <td>{$row['status']}</td>
-                                      
                                       </tr>";
                             }
                         } else {

@@ -1,6 +1,68 @@
 <?php
 session_start();
 include 'header.php';
+
+include 'db_connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $precinct = $_POST['precinct'];
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
+    $lastName = $_POST['lastName'];
+    $religion = $_POST['religion'];
+    $dob = $_POST['dob'];
+    $bloodType = $_POST['bloodType'];
+    $birthPlace = $_POST['birthPlace'];
+    $civilStatus = $_POST['civilstatus'];
+    $tele = $_POST['telephone'];
+    $mobile1 = $_POST['phone'];
+    $email = $_POST['email'];
+    $lotNumber = $_POST['lotNumber'];
+    $blkNumber = $_POST['blkNumber'];
+    $street = $_POST['street'];
+    $barangay = $_POST['barangay'];
+    $yearsOfStay = $_POST['yearsOfStay'];
+    $monthsOfStay = $_POST['monthsOfStay'];
+    $employer = $_POST['company'];
+    $officeAddress = $_POST['officeAddress'];
+    $occupation = $_POST['occupation'];
+    $monthlyIncome = $_POST['monthlyIncome'];
+    $tinNumber = $_POST['tinNumber'];
+    $sssNumber = $_POST['sssNumber'];
+    $gsisNumber = $_POST['gsisNumber'];
+    $emergencyFirstName = $_POST['emergencyFirstName'];
+    $emergencyMiddleName = $_POST['emergencyMiddleName'];
+    $emergencyLastName = $_POST['emergencyLastName'];
+    $emergencyContact = $_POST['emergencyContactNumber'];
+    $emergencyRelationship = $_POST['emergencyRelationship'];
+    $emergencyAddress = $_POST['emergencyAddress'];
+    $selectedGender = $_POST['gender'];
+    $selectedStatus = $_POST['civilstatus'];
+    $selectedFamilyResource = $_POST['familyResources'];
+    $selectedClassification = $_POST['soloParentClassification'];
+    $selectedFourPsMember = $_POST['fourPsMember'];
+    $selectedPhilHealthMember = $_POST['philHealthMember'];
+    $selectedProblems = json_encode($_POST['probneeds']);
+    $selectedNeeds = json_encode($_POST['selectedNeeds']);
+    $familyData = json_encode($_POST['familyData']);
+
+
+
+    $sql = "INSERT INTO SoloParentApplication (precinct, firstName, middleName, lastName, religion, dob, bloodType, birthPlace, civilStatus, tele, mobile1, email, lotNumber, blkNumber, street, barangay, yearsOfStay, monthsOfStay, employer, officeAddress, occupation, monthlyIncome, tinNumber, sssNumber, gsisNumber, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyContact, emergencyRelationship, emergencyAddress, selectedGender, selectedStatus, selectedFamilyResource, selectedClassification, selectedFourPsMember, selectedPhilHealthMember, selectedProblems, selectedNeeds, familyData) VALUES ('$precinct', '$firstName', '$middleName', '$lastName', '$religion', '$dob', '$bloodType', '$birthPlace', '$civilStatus', '$tele', '$mobile1', '$email', '$lotNumber', '$blkNumber', '$street', '$barangay', '$yearsOfStay', '$monthsOfStay', '$employer', '$officeAddress', '$occupation', '$monthlyIncome', '$tinNumber', '$sssNumber', '$gsisNumber', '$emergencyFirstName', '$emergencyMiddleName', '$emergencyLastName', '$emergencyContact', '$emergencyRelationship', '$emergencyAddress', '$selectedGender', '$selectedStatus', '$selectedFamilyResource', '$selectedClassification', '$selectedFourPsMember', '$selectedPhilHealthMember', '$selectedProblems', '$selectedNeeds', '$familyData')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>

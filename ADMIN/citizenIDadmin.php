@@ -223,10 +223,36 @@ if (isset($_POST['ticketId']) && isset($_POST['newStatus'])) {
     }
 </style>
 
+
 <?php 
 include('dashboard_sidebar_start.php');
 ?>
 
+<div class="container mt-3">
+    <h2 class="text-center">Citizen ID Administration</h2>
+</div>
+
+<!-- Search form -->
+<div class="container mt-3">
+    <form method="get" action="citizenIDadmin.php">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search by name or email" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php
+// Modify SQL query to include search functionality
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+$sql = "SELECT `id`, `FirstName`, `MiddleName`, `LastName`, `Suffix`, `Gender`, `DateOfBirth`, `PlaceOfBirth`, `Nationality`, `SocialWelfare`, `Occupation`, `Religion`, `CivilStatus`, `TelephoneNumber`, `PhoneNumber`, `Email`, `WorkPhone`, `MotherFirstName`, `MotherMiddleName`, `MotherMaidenName`, `MotherContactNum`, `FatherFirstName`, `FatherMiddleName`, `FatherLastName`, `FatherContactNum`, `HouseNumber`, `Street`, `VillageOrSubdivision`, `Barangay`, `status` FROM `CitizenID_Application_Form_BasicInfo` WHERE 1";
+if ($search) {
+    $sql .= " AND (FirstName LIKE '%$search%' OR LastName LIKE '%$search%' OR Email LIKE '%$search%')";
+}
+$result = $conn->query($sql);
+?>
 <div class="table-container">
     <table id="usersTable" class="display">
         <thead>
@@ -333,6 +359,7 @@ include('dashboard_sidebar_start.php');
                             <option value="To be release">To be release</option>
                             <option value="cancelled">Cancelled</option>
                             <option value="pending">Pending</option>
+                        <option value="active">Active</option>
 
                         </select>
                     </div>

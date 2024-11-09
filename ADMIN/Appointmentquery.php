@@ -5,8 +5,36 @@ include 'db_connection.php';
 // Fetch appointment details from the database
 $query = "SELECT id, full_name, email, service, date, time, document_type, status FROM appointments WHERE 1";
 $result = $conn->query($query);
+if (isset($_POST['downloadExcel'])) {
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment; filename=appointments.xls');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    $sep = "\t";
+
+    echo "Full Name" . $sep . "Email" . $sep . "Service" . $sep . "Type of Document" . $sep . "Date" . $sep . "Time" . $sep . "Status" . "\n";
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo $row["full_name"] . $sep . $row["email"] . $sep . $row["service"] . $sep . $row["document_type"] . $sep . $row["date"] . $sep . $row["time"] . $sep . $row["status"] . "\n";
+        }
+    }
+    exit();
+}
+
+
+
+
+
+
 
 ?>
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -90,6 +118,12 @@ $result = $conn->query($query);
         width: 20%;
     }
 </style>
+
+
+<?php 
+include('dashboard_sidebar_start.php');
+?>
+
 <body>
     <!-- Appointment Details Table -->
     <div class="appointment-details-container" id="appointmentDetails">
@@ -145,7 +179,10 @@ $result = $conn->query($query);
                 ?>
             </tbody>
         </table>
-
+        <form method="post">
+    <form method="post" style="text-align: right;">
+        <button type="submit" name="downloadExcel" class="btn btn-success">Download Excel</button>
+    </form>
         <!-- Change Status Modal -->
         <div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -263,3 +300,6 @@ function filterByStatus() {
     }
 }
 </script>
+<?php 
+include('dashboard_sidebar_end.php');
+?>

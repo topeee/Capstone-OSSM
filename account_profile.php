@@ -92,29 +92,7 @@ if ($stmt = $conn->prepare($query)) {
         margin-top: 20px;
     }
 
-    .transaction-history {
-        display: none;
-        margin-top: 10px;
-        overflow-x: auto;
-    }
-
-    .transaction-history table {
-        width: 100%;
-        margin-top: 10px;
-        border-collapse: collapse;
-    }
-
-    .transaction-history th,
-    .transaction-history td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .transaction-history th {
-        background-color: #f2f2f2;
-    }
-
+   
     /* Responsive Styles */
     @media (min-width: 768px) {
         .container {
@@ -161,40 +139,7 @@ if ($stmt = $conn->prepare($query)) {
         </div>
 
         <div class="main-content">
-            <!-- Toggle Header for Transaction History -->
-            <div class="toggle-header" onclick="toggleTransactionHistory()">
-                <h5>View Transaction History</h5>
-            </div>
-            <div class="transaction-history" id="transaction-history">
-                <h5>TRANSACTION HISTORY</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Sample Data - Replace with dynamic content -->
-                        <tr>
-                            <td>2024-08-01</td>
-                            <td>Payment Received</td>
-                            <td>₱100.00</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>2024-08-15</td>
-                            <td>Refund Issued</td>
-                            <td>₱50.00</td>
-                            <td>Completed</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
-    
+
         
             <h5>PERSONAL INFORMATION</h5><br>
             <form class="row g-3" action="" method="POST">

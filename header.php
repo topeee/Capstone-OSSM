@@ -58,7 +58,8 @@ if ($stmt = $conn->prepare($query)) {
             <div class="dropdown-center ms-3"><a class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="Hamburger-Icon" src="Burger icon.png" alt="Burger Icon" width="36" height="36"></a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
-                    <li><a class="dropdown-item" href="trasaac_history.php">History Transaction</a></li>
+                    <li><a class="dropdown-item" href="transac_history.php">History Transaction</a></li>
+                    <li><a class="dropdown-item" href="appointment_account.php">Appointments</a></li>
                     <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                 </ul>
             </div>

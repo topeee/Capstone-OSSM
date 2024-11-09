@@ -59,7 +59,8 @@ if ($stmt = $conn->prepare($query)) {
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="account_profile.php">Profile</a></li>
                     <li><a class="dropdown-item" href="transac_history.php">History Transaction</a></li>
-                    <li><a class="dropdown-item" href="appointment_account.php">Appointments</a></li>
+                    <li><a class="dropdown-item" href="appointment_account.php">Appointment Status</a></li>
+                    <li><a class="dropdown-item" href="https://www.sanmateo.gov.ph/">Contact Us</a></li>
                     <li><a class="dropdown-item logout-item" href="logout.php">Logout</a></li>
                 </ul>
             </div>

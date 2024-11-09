@@ -42,6 +42,7 @@ include 'header.php';
 
         .table-responsive {
             margin-bottom: 30px;
+            overflow-x: auto;
         }
 
         .table {

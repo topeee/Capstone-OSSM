@@ -14,11 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = $_POST['date'];
     $time = $_POST['time'];
     $document_type = $_POST['document_type'];
+    $reference_number = uniqid();
+    $status = 'Pending';
 
-    $sql = "INSERT INTO appointments (full_name, email, service, date, time, document_type) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO appointments (full_name, email, service, date, time, document_type, status, reference_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param("ssssss", $name, $email, $service, $date, $time, $document_type);
+    $stmt->bind_param("ssssssss", $name, $email, $service, $date, $time, $document_type, $status, $reference_number);
     if ($stmt->execute()) {
         $_SESSION['status'] = "Appointment booked successfully!";
     } else {
@@ -166,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <?php unset($_SESSION['status']); ?>
             <?php endif; ?>
-            <button type="submit" class="btn btn-primary">Book Appointment</button>
+            <button type="submit" class="btn btn-primary">BOOK NOW</button>
             <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php'">BACK</button>
         </form>
     </div>

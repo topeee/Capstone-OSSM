@@ -205,12 +205,7 @@ main {
                             <i class="bi bi-check-square"></i>
                         </a>
                     </li>
-                    <li class="progress-item" data-target="sum-bus-op">
-                        <a href="#">
-                            Summary Page of Business Operation
-                            <i class="bi bi-check-square"></i>
-                        </a>
-                    </li>
+                   
                 </ul>
             </div>
     
@@ -983,6 +978,7 @@ main {
                         </table>
                     </div>
                 </div>
+                
 
                 <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
@@ -1112,7 +1108,8 @@ function addEventEntry() {
         }
     }
 
-        // Summarize Business Operation input - start
+    // Summarize Business Operation input - start
+  
         function updateBusinessOperationSummary() {
             // Get form input values from the Business Operation section
             const businessArea = document.getElementById('business-area-special').value || "N/A";
@@ -1130,7 +1127,7 @@ function addEventEntry() {
             const lessorGivenName = document.getElementById('lessor-given-name-special').value || "N/A";
             const lessorMiddleName = document.getElementById('lessor-middle-name-special').value || "N/A";
             const lessorSuffix = document.getElementById('lessor-suffix-special').value || "N/A";
-
+    
             // Create the summary table rows
             const businessSummaryTable = document.getElementById('business-summary-table');
             businessSummaryTable.innerHTML = `
@@ -1151,6 +1148,14 @@ function addEventEntry() {
                 <tr><td>Lessor Suffix</td><td>${lessorSuffix}</td></tr>
             `;
         }
+    
+        // Attach 'oninput' event listeners to all form inputs
+        document.querySelectorAll('#business-operation input').forEach(input => {
+            input.addEventListener('input', updateBusinessOperationSummary);
+        });
+        // Summarize Business Operation input - end
+
+                
 
         // Attach 'oninput' event listeners to all form inputs
         document.querySelectorAll('#business-operation-special input').forEach(input => {

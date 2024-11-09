@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         background-color: #0056b3;
     }
     .alert {
-        margin-top: 15px; /* Reduced margin */
+        margin-top: 100px; /* Reduced margin */
     }
 </style>
 

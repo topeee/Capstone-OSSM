@@ -1,6 +1,69 @@
 <?php
 session_start();
 include 'header.php';
+
+include 'db_connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $precinct = $_POST['precinct'] ?? '';
+    $firstName = $_POST['firstName'] ?? '';
+    $middleName = $_POST['middleName'] ?? '';
+    $lastName = $_POST['lastName'] ?? '';
+    $religion = $_POST['religion'] ?? '';
+    $dob = $_POST['dob'] ?? '';
+    $bloodType = $_POST['bloodType'] ?? '';
+    $birthPlace = $_POST['birthPlace'] ?? '';
+    $civilStatus = $_POST['civilstatus'] ?? '';
+    $tele = $_POST['telephone'] ?? '';
+    $mobile1 = $_POST['phone'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $lotNumber = $_POST['lotNumber'] ?? '';
+    $blkNumber = $_POST['blkNumber'] ?? '';
+    $street = $_POST['street'] ?? '';
+    $barangay = $_POST['barangay'] ?? '';
+    $yearsOfStay = $_POST['yearsOfStay'] ?? '';
+    $monthsOfStay = $_POST['monthsOfStay'] ?? '';
+    $employer = $_POST['company'] ?? '';
+    $officeAddress = $_POST['officeAddress'] ?? '';
+    $occupation = $_POST['occupation'] ?? '';
+    $monthlyIncome = $_POST['monthlyIncome'] ?? '';
+    $tinNumber = $_POST['tinNumber'] ?? '';
+    $sssNumber = $_POST['sssNumber'] ?? '';
+    $gsisNumber = $_POST['gsisNumber'] ?? '';
+    $emergencyFirstName = $_POST['emergencyFirstName'] ?? '';
+    $emergencyMiddleName = $_POST['emergencyMiddleName'] ?? '';
+    $emergencyLastName = $_POST['emergencyLastName'] ?? '';
+    $emergencyContact = $_POST['emergencyContactNumber'] ?? '';
+    $emergencyRelationship = $_POST['emergencyRelationship'] ?? '';
+    $emergencyAddress = $_POST['emergencyAddress'] ?? '';
+    $selectedGender = $_POST['gender'] ?? '';
+    $selectedStatus = $_POST['civilstatus'] ?? '';
+    $selectedFamilyResource = $_POST['familyResources'] ?? '';
+    $selectedClassification = $_POST['soloParentClassification'] ?? '';
+    $selectedFourPsMember = $_POST['fourPsMember'] ?? '';
+    $selectedPhilHealthMember = $_POST['philHealthMember'] ?? '';
+    $selectedProblems = json_encode($_POST['probneeds'] ?? []);
+    $selectedNeeds = json_encode($_POST['selectedNeeds'] ?? []);
+    $familyData = json_encode($_POST['familyData'] ?? []);
+
+
+
+    $sql = "INSERT INTO SoloParentApplication (precinct, firstName, middleName, lastName, religion, dob, bloodType, birthPlace, civilStatus, tele, mobile1, email, lotNumber, blkNumber, street, barangay, yearsOfStay, monthsOfStay, employer, officeAddress, occupation, monthlyIncome, tinNumber, sssNumber, gsisNumber, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyContact, emergencyRelationship, emergencyAddress, selectedGender, selectedStatus, selectedFamilyResource, selectedClassification, selectedFourPsMember, selectedPhilHealthMember, selectedProblems, selectedNeeds, familyData) VALUES ('$precinct', '$firstName', '$middleName', '$lastName', '$religion', '$dob', '$bloodType', '$birthPlace', '$civilStatus', '$tele', '$mobile1', '$email', '$lotNumber', '$blkNumber', '$street', '$barangay', '$yearsOfStay', '$monthsOfStay', '$employer', '$officeAddress', '$occupation', '$monthlyIncome', '$tinNumber', '$sssNumber', '$gsisNumber', '$emergencyFirstName', '$emergencyMiddleName', '$emergencyLastName', '$emergencyContact', '$emergencyRelationship', '$emergencyAddress', '$selectedGender', '$selectedStatus', '$selectedFamilyResource', '$selectedClassification', '$selectedFourPsMember', '$selectedPhilHealthMember', '$selectedProblems', '$selectedNeeds', '$familyData')";
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: Solo Parent Form.php");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +133,7 @@ include 'header.php';
     
       <main class="p-4 mx-auto" style="width: 70%; height: auto; background-color: rgb(227, 249, 255);">
       <div class="container">
-      <form action= "Solo Parent Application DB.php" method="POST" >
+    <form action="Solo Parent Application.php" method="POST" id="soloParentForm">
 
         <div class="row">
             <!-- Button to toggle progress sidebar -->
@@ -600,11 +663,15 @@ include 'header.php';
     
     
                 <!-- Navigation Buttons -->
-                <div class="navigation-buttons">
-                    <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
-                    <button type="submit" id="next-btn" class="btn btn-primary">Next</button>
-                </div>
-    
+                      <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Previous</button>
+
+                    <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+
+                    <button type="button" id="submit-btn" class="btn btn-primary" style="display: none;" onclick="document.getElementById('soloParentForm').submit();">Submit</button>
+
+                  </div>
+
+       
             </div>
         </div>
     </div>
@@ -769,7 +836,7 @@ include 'header.php';
             document.getElementById('summaryFourPsMember').innerText = fourPsMember;
             if (fourPsMember === 'yes') {
                 document.getElementById('summaryFourPsId').innerText = getValue('fourPsId');
-                localStorage.setItem('selectedFourPs', selectedFourPs);  // Store PhilHealth membership status
+                localStorage.setItem('selectedFourPs', fourPsMember);  // Store 4Ps membership status
 
             }
     
@@ -777,7 +844,7 @@ include 'header.php';
             document.getElementById('summaryPhilHealthMember').innerText = philHealthMember;
             if (philHealthMember === 'yes') {
                 document.getElementById('summaryPhilHealthId').innerText = getValue('philHealthId');
-                localStorage.setItem('selectedPhilHealth', selectedPhilHealth);  // Store PhilHealth membership status
+                localStorage.setItem('selectedPhilHealth', philHealthMember);  // Store PhilHealth membership status
             }
     
             // Emergency Contact Full Name (combined in one step)
@@ -1010,7 +1077,7 @@ function saveFamilyData() {
 
     if (isLastSection) {
         populateSummary(); // Ensure it populates if this is the final submit
-        window.location.href = "Solo Parent Form.php";
+        document.getElementById('soloParentForm').submit();
     } else {
         // Move to the next section
         $(sections[currentSection]).hide();
@@ -1033,16 +1100,22 @@ function saveFamilyData() {
         }
     });
 
-    // Function to update the button states
-    function updateButtons() {
-        // Toggle visibility of Previous button
-        $("#prev-btn").toggle(currentSection > 0);
-
-        // Change the Next button text to "Submit" on the last section
-        const isLastSection = currentSection === sections.length - 1;
-        $("#next-btn").text(isLastSection ? "Submit" : "Next");
-    }
-
+      // Function to update the Next/Previous buttons
+      function updateButtons() {
+          if (currentSection === 0) {
+              $("#prev-btn").hide();
+          } else {
+              $("#prev-btn").show();
+          }
+        if (currentSection === sections.length - 1) {
+            $("#next-btn").hide();
+            $("#submit-btn").show();
+        } else {
+            $("#next-btn").show();
+            $("#submit-btn").hide();
+            }
+        }
+      
     // Function to update the progress bar
     function updateProgress() {
         $(".progress-item").removeClass("active");

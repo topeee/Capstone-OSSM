@@ -375,7 +375,7 @@ html, body {
         </div>
     </main>
 
-        <footer>
+        <footer style="bottom: 0;">
             <div class="containers">
                 <div class="row row-cols-1 row-cols-lg-3">
                     <ul class="list-inline my-2">

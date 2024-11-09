@@ -1,3 +1,13 @@
+<?php
+session_start();
+include 'header.php';
+include 'db_connection.php';
+
+include 'Solo Parent Reference.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

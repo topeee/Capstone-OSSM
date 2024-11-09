@@ -1,4 +1,8 @@
 <?php
+
+
+include 'db_connection.php';
+
 $gsisNumber = $_POST['gsisNumber'];
 $emergencyFirstName = $_POST['emergencyFirstName'];
 $emergencyMiddleName = $_POST['emergencyMiddleName'];

@@ -14,10 +14,10 @@ if (isset($_POST['export_excel'])) {
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setTitle('Users');
 
-    $header = ['ID', 'First Name', 'Last Name', 'Middle Name', 'Suffix', 'DOB', 'Gender', 'Mobile Number', 'Tel Number', 'Email', 'House Number', 'Street', 'Barangay', 'Role'];
+    $header = ['ID', 'First Name', 'Middle Name', 'Last Name', 'Birth Place', 'Birthdate', 'Age', 'Gender', 'Civil Status', 'Blood Type', 'Nationality', 'Religion', 'Email', 'Telephone Number', 'Cellphone Number', 'Address'];
     $sheet->fromArray($header, NULL, 'A1');
 
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_role FROM users";
+    $sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `birth_place`, `birthdate`, `age`, `gender`, `civil_status`, `blood_type`, `nationality`, `religion`, `email`, `telephone_number`, `cellphone_number`, `address` FROM `ScholarshipPersonalInformation` WHERE 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $rowIndex = 2;
@@ -37,10 +37,10 @@ if (isset($_POST['export_pdf'])) {
     $html = '<h1>Users</h1>';
     $html .= '<table border="1" style="width:100%;border-collapse:collapse;">';
     $html .= '<thead><tr>';
-    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Email</th><th>Suffix</th><th>DOB</th><th>Gender</th><th>Mobile Number</th><th>Tel Number</th><th>House Number</th><th>Street</th><th>Barangay</th><th>Role</th>';
+    $html .= '<th>ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Birth Place</th><th>Birthdate</th><th>Age</th><th>Gender</th><th>Civil Status</th><th>Blood Type</th><th>Nationality</th><th>Religion</th><th>Email</th><th>Telephone Number</th><th>Cellphone Number</th><th>Address</th>';
     $html .= '</tr></thead><tbody>';
     $html .= '<th>Role</th>';
-    $sql = "SELECT id, first_name, last_name, middle_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users";
+    $sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `birth_place`, `birthdate`, `age`, `gender`, `civil_status`, `blood_type`, `nationality`, `religion`, `email`, `telephone_number`, `cellphone_number`, `address` FROM `ScholarshipPersonalInformation` WHERE 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -49,20 +49,22 @@ if (isset($_POST['export_pdf'])) {
             $html .= '<td>' . $row['first_name'] . '</td>';
             $html .= '<td>' . $row['middle_name'] . '</td>';
             $html .= '<td>' . $row['last_name'] . '</td>';
-            $html .= '<td>' . $row['email'] . '</td>';
-            $html .= '<td>' . $row['suffix'] . '</td>';
-            $html .= '<td>' . $row['dob'] . '</td>';
+            $html .= '<td>' . $row['birth_place'] . '</td>';
+            $html .= '<td>' . $row['birthdate'] . '</td>';
+            $html .= '<td>' . $row['age'] . '</td>';
             $html .= '<td>' . $row['gender'] . '</td>';
-            $html .= '<td>' . $row['mobile_number'] . '</td>';
-            $html .= '<td>' . $row['tel_number'] . '</td>';
-            $html .= '<td>' . $row['house_number'] . '</td>';
-            $html .= '<td>' . $row['street'] . '</td>';
-            $html .= '<td>' . $row['barangay'] . '</td>';
-            $html .= '<td>' . $row['role'] . '</td>';
+            $html .= '<td>' . $row['civil_status'] . '</td>';
+            $html .= '<td>' . $row['blood_type'] . '</td>';
+            $html .= '<td>' . $row['nationality'] . '</td>';
+            $html .= '<td>' . $row['religion'] . '</td>';
+            $html .= '<td>' . $row['email'] . '</td>';
+            $html .= '<td>' . $row['telephone_number'] . '</td>';
+            $html .= '<td>' . $row['cellphone_number'] . '</td>';
+            $html .= '<td>' . $row['address'] . '</td>';
             $html .= '</tr>';
         }
     } else {
-        $html .= '<tr><td colspan="14">No users found</td></tr>';
+        $html .= '<tr><td colspan="16">No Data found</td></tr>';
     }
     $html .= '</tbody></table>';
 
@@ -73,7 +75,7 @@ if (isset($_POST['export_pdf'])) {
 
 // USERS TABLE
 // Fetch users from database
-$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin FROM users"; // Adjust the table and column names as needed
+$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `birth_place`, `birthdate`, `age`, `gender`, `civil_status`, `blood_type`, `nationality`, `religion`, `email`, `telephone_number`, `cellphone_number`, `address` FROM `ScholarshipPersonalInformation` WHERE 1";
 $result = $conn->query($sql);
 
 // Get user ID from request
@@ -81,13 +83,30 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $user_id = $_GET['id'];
 
     // Prepare SQL to delete a record
-    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM ScholarshipPersonalInformation WHERE id = ?");
     $stmt->bind_param("i", $user_id);
 
     $_SESSION['message'] = $stmt->execute() ? "Record deleted successfully" : "Error deleting record: {$stmt->error}";
 
     $stmt->close();
     header("Location: userscontent.php");
+    exit();
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST['column']) && isset($_POST['value'])) {
+    $id = $_POST['id'];
+    $column = $_POST['column'];
+    $value = $_POST['value'];
+
+    $stmt = $conn->prepare("UPDATE ScholarshipPersonalInformation SET $column = ? WHERE id = ?");
+    $stmt->bind_param('si', $value, $id);
+
+    if ($stmt->execute()) {
+        echo 'success';
+    } else {
+        echo 'error';
+    }
+
+    $stmt->close();
     exit();
 }
 ?>
@@ -159,9 +178,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         font-size: 12px;
     }
 
-    /* Hover effects for buttons */
-    .btn:hover {
-        opacity: 0.9;
+    /* Hover effects for
     }
 
     /* Button container */
@@ -190,76 +207,133 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </style>
 
 <?php 
-include('dashboard_sidebar_start.php');
+include 'dashboard_sidebar_start.php';
 ?>
+
+
+<!-- Search Form -->
+<div class="container mt-3">
+    <form method="get" action="scholarshipapp.php">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search by First Name" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php
+// Search functionality
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$sql = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `birth_place`, `birthdate`, `age`, `gender`, `civil_status`, `blood_type`, `nationality`, `religion`, `email`, `telephone_number`, `cellphone_number`, `address` FROM `ScholarshipPersonalInformation` WHERE `first_name` LIKE '%$search%'";
+$result = $conn->query($sql);
+?>
+
+<!-- Sort Button -->
+<div class="container mt-3">
+    <form method="get" action="scholarshipapp.php">
+        <div class="input-group mb-3">
+            <select class="form-control" name="sort">
+                <option value="first_name">Sort by First Name</option>
+                <option value="last_name">Sort by Last Name</option>
+                <option value="birthdate">Sort by Birthdate</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Sort</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php
+// Sort functionality
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'first_name';
+$sql .= " ORDER BY `$sort`";
+$result = $conn->query($sql);
+?>
+
+
 
 <div class="table-container">
     <table id="usersTable" class="display">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Middle Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Suffix</th>
-                <th scope="col">DOB</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Mobile Number</th>
-                <th scope="col">Tel Number</th>
-                <th scope="col">House Number</th>
-                <th scope="col">Street</th>
-                <th scope="col">Barangay</th>
-                <th scope="col">Role</th>
-                <th scope="col">Actions</th>
+<th>ID</th>
+<th>First Name</th>
+<th>Middle Name</th>
+<th>Last Name</th>
+<th>Birth Place</th>
+<th>Birthdate</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Civil Status</th>
+<th>Blood Type</th>
+<th>Nationality</th>
+<th>Religion</th>
+<th>Email</th>
+<th>Telephone Number</th>
+<th>Cellphone Number</th>
+<th>Address</th>
             </tr>
         </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<th scope='row'>" . $row["id"] . "</th>";
-                echo "<td>" . $row["first_name"] . "</td>";
-                echo "<td>" . $row["middle_name"] . "</td>";
-                echo "<td>" . $row["last_name"] . "</td>";
-                echo "<td>" . $row["email"] . "</td>";
-                echo "<td>" . $row["suffix"] . "</td>";
-                echo "<td>" . $row["dob"] . "</td>";
-                echo "<td>" . $row["gender"] . "</td>";
-                echo "<td>" . $row["mobile_number"] . "</td>";
-                echo "<td>" . $row["tel_number"] . "</td>";
-                echo "<td>" . $row["house_number"] . "</td>";
-                echo "<td>" . $row["street"] . "</td>";
-                echo "<td>" . $row["barangay"] . "</td>";
-                echo "<td>" . ($row["is_admin"] == 1 ? 'Admin' : 'User') . "</td>";
-                echo "<td class='action-buttons'>
-                        <a href='editUserAdmin.php?id=" . $row["id"] . "' class='btn btn-primary btn-sm'>Edit</a>
-                        <a href='userscontent.php?id=" . $row["id"] . "' class='btn btn-danger btn-sm'>Delete</a>
-                      </td>";
-                echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='14'>No users found</td></tr>";
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $row['id'] . '</td>';
+                echo '<td>' . $row['first_name'] . '</td>';
+                echo '<td>' . $row['middle_name'] . '</td>';
+                echo '<td>' . $row['last_name'] . '</td>';
+                echo '<td>' . $row['birth_place'] . '</td>';
+                echo '<td>' . $row['birthdate'] . '</td>';
+                echo '<td>' . $row['age'] . '</td>';
+                echo '<td>' . $row['gender'] . '</td>';
+                echo '<td>' . $row['civil_status'] . '</td>';
+                echo '<td>' . $row['blood_type'] . '</td>';
+                echo '<td>' . $row['nationality'] . '</td>';
+                echo '<td>' . $row['religion'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
+                echo '<td>' . $row['telephone_number'] . '</td>';
+                echo '<td>' . $row['cellphone_number'] . '</td>';
+                echo '<td>' . $row['address'] . '</td>';
+                echo '</tr>';
             }
-            ?>
-
-        </tbody>
+        } else {
+            echo '<tr><td colspan="16">No users found</td></tr>';
+        }
+        ?>
+    </tbody>
     </table>
 </div>
 
 <script>
-$(document).ready(function() {
-    $('#usersTable').DataTable({
-        "paging": true, // Enables pagination
-        "lengthChange": false, // Disables length change
-        "searching": true, // Enables search
-        "ordering": true, // Enables column sorting
-        "info": true, // Shows info about the table
-        "autoWidth": false // Disables auto width for columns
+    $(document).ready(function() {
+        $('#usersTable').DataTable();
+
+        $('#usersTable').on('blur', 'td[contenteditable=true]', function() {
+            var id = $(this).data('id');
+            var column = $(this).data('column');
+            var value = $(this).text();
+
+            $.ajax({
+                url: 'update_user.php',
+                method: 'POST',
+                data: {id: id, column: column, value: value},
+                success: function(response) {
+                    if(response == 'success') {
+                        alert('User updated successfully');
+                    } else {
+                        alert('Failed to update user');
+                    }
+                }
+            });
+        });
     });
-});
 </script>
+
+
 
 <!-- Button container for centering -->
 <div class="button-container">
@@ -270,5 +344,5 @@ $(document).ready(function() {
 </div>
 
 <?php 
-include('dashboard_sidebar_end.php');
+include 'dashboard_sidebar_end.php';
 ?>

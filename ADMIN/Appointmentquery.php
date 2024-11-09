@@ -3,7 +3,7 @@
 include 'db_connection.php';
 
 // Fetch appointment details from the database
-$query = "SELECT id, full_name, email, service, date, time, document_type, status FROM appointments WHERE 1";
+$query = "SELECT id, reference_number, full_name, email, service, date, time, document_type, status FROM appointments WHERE 1";
 $result = $conn->query($query);
 if (isset($_POST['downloadExcel'])) {
     header('Content-Type: application/vnd.ms-excel');
@@ -13,20 +13,15 @@ if (isset($_POST['downloadExcel'])) {
 
     $sep = "\t";
 
-    echo "Full Name" . $sep . "Email" . $sep . "Service" . $sep . "Type of Document" . $sep . "Date" . $sep . "Time" . $sep . "Status" . "\n";
+    echo "Reference Number" . $sep . "Full Name" . $sep . "Email" . $sep . "Service" . $sep . "Type of Document" . $sep . "Date" . $sep . "Time" . $sep . "Status" . "\n";
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo $row["full_name"] . $sep . $row["email"] . $sep . $row["service"] . $sep . $row["document_type"] . $sep . $row["date"] . $sep . $row["time"] . $sep . $row["status"] . "\n";
+            echo $row["reference_number"] . $sep . $row["full_name"] . $sep . $row["email"] . $sep . $row["service"] . $sep . $row["document_type"] . $sep . $row["date"] . $sep . $row["time"] . $sep . $row["status"] . "\n";
         }
     }
     exit();
 }
-
-
-
-
-
 
 
 ?>
@@ -148,6 +143,7 @@ include('dashboard_sidebar_start.php');
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Reference Number</th>
                     <th>Full Name</th>
                     <th class="email-column">Email</th>
                     <th>Service</th>
@@ -163,6 +159,7 @@ include('dashboard_sidebar_start.php');
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
+                        echo "<td>" . $row["reference_number"] . "</td>";
                         echo "<td>" . $row["full_name"] . "</td>";
                         echo "<td class='email-column'>" . $row["email"] . "</td>";
                         echo "<td>" . $row["service"] . "</td>";
@@ -170,7 +167,7 @@ include('dashboard_sidebar_start.php');
                         echo "<td>" . $row["date"] . "</td>";
                         echo "<td>" . $row["time"] . "</td>";
                         echo "<td>" . $row["status"] . "</td>";
-                        echo "<td><button class='btn btn-primary' onclick='changeStatus(" . $row["id"] . ")'>Change Status</button></td>";
+                        echo "<td><button class='btn btn-primary' data-toggle='modal' data-target='#changeStatusModal' onclick='changeStatus(\"" . $row["id"] . "\")'>Change Status</button></td>";
                         echo "</tr>";
                     }
                 } else {
@@ -179,36 +176,55 @@ include('dashboard_sidebar_start.php');
                 ?>
             </tbody>
         </table>
-        <form method="post">
     <form method="post" style="text-align: right;">
         <button type="submit" name="downloadExcel" class="btn btn-success">Download Excel</button>
     </form>
         <!-- Change Status Modal -->
         <div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="changeStatusModalLabel">Change Appointment Status</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="changeStatusForm">
-                            <input type="hidden" id="appointmentId" name="appointmentId">
-                            <div class="form-group">
-                                <label for="newStatus">New Status</label>
-                                <select class="form-control" id="newStatus" name="newStatus">
-                                    <option value="pending">Pending</option>
-                                    <option value="ongoing">Ongoing</option>
-                                    <option value="Ready To Release">Ready to Release</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </form>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="changeStatusModalLabel">Change Appointment Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
+                <div class="modal-body">
+                <form id="changeStatusForm">
+                    <input type="hidden" id="appointmentId" name="appointmentId">
+                    <div class="form-group">
+                    <label for="newStatus">New Status</label>
+                    <select class="form-control" id="newStatus" name="newStatus">
+                        <option value="pending">Pending</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="Ready To Release">Ready to Release</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Success Notification -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <p>Status updated successfully!</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
             </div>
         </div>
      
@@ -224,15 +240,18 @@ include('dashboard_sidebar_start.php');
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom JS for search and filter functionality -->
 <script>
-function changeStatus(appointmentId) {
-    // Set the appointment ID in the hidden input field
-    document.getElementById('appointmentId').value = appointmentId;
-    // Show the modal
-    $('#changeStatusModal').modal('show');
-}
+$(document).ready(function() {
+    window.changeStatus = function(appointmentId) {
+        // Set the appointment ID in the hidden input field
+        document.getElementById('appointmentId').value = appointmentId;
+        // Show the modal
+        $('#changeStatusModal').modal('show');
+    }
+});
 
 // Handle form submission
 document.getElementById('changeStatusForm').addEventListener('submit', function(event) {
@@ -248,9 +267,12 @@ document.getElementById('changeStatusForm').addEventListener('submit', function(
             appointmentId: appointmentId,
             newStatus: newStatus
         },
+  
         success: function(response) {
             // Reload the page or update the table row with the new status
             location.reload();
+            // Show success modal
+$('#successModal').modal('show');
         },
         error: function(xhr, status, error) {
             console.error('Error updating status:', error);

@@ -24,7 +24,7 @@ include 'header.php';
         }
 
         .container {    
-            max-width: 900px;
+            max-width: 1200px;
             margin-top: 50px;
             padding: 20px;
             background-color: #CADCFC;
@@ -114,7 +114,7 @@ include 'header.php';
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+            
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Service</th>
@@ -136,7 +136,7 @@ include 'header.php';
                         // Database connection
                         // Fetch appointments for the logged-in user
                         $user_id = $_SESSION['email'];
-                        $sql = "SELECT `id`, `full_name`, `email`, `service`, `date`, `time`, `document_type`, `status`, `reference_number` FROM `appointments` WHERE `email` = ?";
+                        $sql = "SELECT `full_name`, `email`, `service`, `date`, `time`, `document_type`, `status`, `reference_number` FROM `appointments` WHERE `email` = ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("s", $user_id);
                         $stmt->execute();
@@ -146,7 +146,7 @@ include 'header.php';
                             // Output data of each row
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                        <td>{$row['id']}</td>
+                                
                                         <td>{$row['full_name']}</td>
                                         <td>{$row['email']}</td>
                                         <td>{$row['service']}</td>

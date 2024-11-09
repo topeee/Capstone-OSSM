@@ -153,6 +153,11 @@
     .form-box{
       margin-bottom: 200px;
     }
+    @media print {
+    .button-card {
+        display: none;
+    }
+}
 }
 
 
@@ -626,13 +631,11 @@ async function handleDownload() {
   }
 
   function handlePrint() {
-    const formContainer = document.querySelector('.form-container');
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = formContainer.outerHTML;
     window.print();
     window.download();
-    document.body.innerHTML = originalContent;
 }
+
+
 function handleSubmit() {
       const formData = {
         precinct: localStorage.getItem('summaryPrecinct') || 'N/A',

@@ -707,7 +707,9 @@
     </style>
 </head>
 
-
+<?php 
+    include('dashboard_sidebar_start.php');
+?>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -1274,4 +1276,6 @@
 
     </script>
 </body>
-</html>
+</html><?php 
+    include('dashboard_sidebar_end.php');
+?>

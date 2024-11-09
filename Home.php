@@ -8,21 +8,15 @@ include 'header.php';
 <!DOCTYPE html>
 <html lang="en">
     
-
-<!DOCTYPE html>
-<html lang="en">
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="Footer.Clean.icons.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" defer></script>
     <link rel="icon" type="img/png" href="logo.png">
     <title>Homepage</title>
 
@@ -309,7 +303,7 @@ include 'header.php';
             
     <!-- Fixed Menu for Book an Appointment -->
         <div id="fixedAppointment">
-            <a href="Appointment_form.php" class="appointment">
+            <a href="appointment.php" class="appointment">
             <i class="bi bi-calendar-week"></i> <span class="text"> Book an Appointment</span>
             </a>
         </div>

@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['role'] = $is_admin ? 'admin' : 'user'; // Set the user's role based on is_admin
 
                     if ($is_admin) {
-                        header('Location: ADMIN DASHBOARD OSSM/admn_dashboard.php');
+                        header('Location: ADMIN/adminDashboard.php');
                     } else {
                         header('Location: Home.php');
                     }
@@ -121,8 +121,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative; 
+            position: relative;
         }
+
         .main-content {
             display: flex;
             flex-direction: column;
@@ -131,10 +132,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             height: 100vh;
             text-align: center;
         }
+
         .logo {
-            max-width: 200px; 
+            max-width: 200px;
             height: auto;
+        animation: spin 5s linear infinite;
         }
+
         .link-container {
             display: flex;
             justify-content: space-between;
@@ -142,74 +146,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             max-width: 400px;
         }
+
         .link {
             text-decoration: underline;
             color: rgb(0, 0, 0);
         }
+
         .btn-center {
             display: flex;
             justify-content: center;
             width: 100%;
         }
+
         .btn-primary {
             width: 100%;
         }
+
         .form-container {
             width: 100%;
             max-width: 400px;
         }
+
         .form-check-label {
             margin-left: 5px;
         }
+
         .form-floating .form-control {
-            border-radius: 0 0 8px 8px; 
+            border-radius: 0 0 8px 8px;
         }
+
         .form-floating:first-child .form-control {
-            border-radius: 8px 8px 0 0; 
+            border-radius: 8px 8px 0 0;
         }
+
         .form-floating:last-child .form-control {
-            border-radius: 0 0 8px 8px; 
+            border-radius: 0 0 8px 8px;
         }
+
         .form-floating+.form-floating .form-control {
-            border-top: 0; 
+            border-top: 0;
         }
+
         .form-floating label {
             padding-left: 12px;
         }
+
         .footer-links {
             position: absolute;
-            bottom: 10px; 
-            right: 10px; 
+            bottom: 10px;
+            right: 10px;
             font-size: 0.9em;
             color: rgb(0, 0, 0);
         }
+
         .footer-links a {
             text-decoration: none;
             color: rgb(0, 0, 0);
             margin-left: 15px;
         }
+
         .error-message {
             color: red;
             margin-top: 10px;
             display: none;
             text-align: left;
         }
+
         .error-container {
             text-align: left;
             margin-top: 10px;
         }
+
         h2 {
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: bold;
             font-style: normal;
             color: rgb(0, 0, 0);
         }
+
         .social-login-container {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 15px;
         }
+
         .social-login-container a {
             color: #fff;
             text-decoration: none;
@@ -221,34 +242,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             font-size: 1.5em;
         }
+
         .facebook {
             background-color: #3b5998;
         }
+
         .gmail {
             background-color: #db4437;
         }
+
         .x {
             background-color: #1da1f2;
         }
+
         .captcha-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px; 
-    }
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
         .error-message {
-        color: red;
-        margin-top: 5px;
-        display: none;
-        text-align: left;
-    }
-
-
+            color: red;
+            margin-top: 5px;
+            display: none;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <div class="main-content">
         <a href="home.php"><img src="logo.png" alt="Welcome Image" class="img-fluid mb-3 logo"></a>
         <h2>ONE-STOP SAN MATEO</h2>
+        <style>
+         
+
+            @keyframes fadeIn {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            .logo {
+                max-width: 200px;
+                height: auto;
+                animation: spin 5s linear infinite, fadeIn 2s ease-in-out;
+            }
+        </style>
         <p></p>
         
         <div class="form-container">

@@ -1,6 +1,11 @@
 <?php
-
+session_start();
 include 'db_connection.php';
+if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+    // If not, redirect to the login page or an error page
+    header('Location: login.php');
+    exit();
+}
 
 
 

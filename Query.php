@@ -77,7 +77,7 @@ if ($stmt->fetch()) {
       <div class="container my-4 text-center">
         <h3 class="mb-4">Enter Reference Number</h3>
         <div class="input-group justify-content-center mb-3">
-          <input type="text" class="form-control custom-input" placeholder="[ A-XXX-XXXXX ]" aria-label="Reference Number">
+          <input type="text" class="form-control custom-input" placeholder="[ A-XXX-XXXXX ]" aria-label="Reference Number" required>
         </div>
         <button class="btn custom-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#verifyModal">SEARCH</button>
       </div>

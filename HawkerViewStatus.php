@@ -70,11 +70,11 @@ include 'header.php';
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="hawkerPermitInput" class="form-label">Hawker Permit No.</label>
-                                <input type="text" id="hawkerPermitInput" class="form-control" placeholder="Enter Hawker Permit...">
+                                <input type="text" id="hawkerPermitInput" class="form-control" placeholder="Enter Hawker Permit..." required>
                             </div>
                             <div class="col-md-4">
                                 <label for="applicationStatusSelect" class="form-label">Status:</label>
-                                <select id="applicationStatusSelect" class="form-select">
+                                <select id="applicationStatusSelect" class="form-select" required>
                                     <option value="selectType">SELECT STATUS</option>
                                     <option value="additional_information_requested">Additional Information Requested</option>
                                     <option value="approved">Approved</option>
@@ -105,7 +105,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="applicationIDInput" class="form-label">Application ID:</label>
-                                <input type="text" id="applicationIDInput" class="form-control" placeholder="Enter Application ID...">
+                                <input type="text" id="applicationIDInput" class="form-control" placeholder="Enter Application ID..." required>
                             </div>
                             <!-- Search Button -->
                             <div class="col-md-4">

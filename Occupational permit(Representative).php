@@ -116,15 +116,15 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label for="businessPermitNo" class="form-label">Business Permit No.</label>
-                                    <input type="text" class="form-control" id="representativebusinessPermitNo" placeholder=" Type Business Permit No." >
+                                    <input type="text" class="form-control" id="representativebusinessPermitNo" placeholder=" Type Business Permit No." required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="companyName" class="form-label">Company/Business Name</label>
-                                    <input type="text" class="form-control" id="representativecompanyName" placeholder="Type Company/Business Name" >
+                                    <input type="text" class="form-control" id="representativecompanyName" placeholder="Type Company/Business Name" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="companyAddress" class="form-label">Company/Business Address</label>
-                                    <input type="text" class="form-control" id="representativecompanyAddress" placeholder="Type Company/Business Address" >
+                                    <input type="text" class="form-control" id="representativecompanyAddress" placeholder="Type Company/Business Address" required>
                                 </div>
                             </div>
                         </form>
@@ -145,7 +145,7 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-3">
                                     <label for="representativefirstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="representativefirstName" placeholder="First Name" >
+                                    <input type="text" class="form-control" id="representativefirstName" placeholder="First Name" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="representativemiddleName" class="form-label">Middle Name</label>
@@ -153,7 +153,7 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-3">
                                     <label for="representativelastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="representativelastName" placeholder="Last Name" >
+                                    <input type="text" class="form-control" id="representativelastName" placeholder="Last Name" required>
                                 </div>
                                 <div class="col-md-1">
                                     <label for="representativesfx" class="form-label">Suffix</label>
@@ -178,7 +178,7 @@ include 'header.php';
                                 <div class="row mb-3">
                                     <div class="col-md-2">
                                         <label for="representativegender" class="form-label">Gender</label>
-                                        <select class="form-select" id="representativegender" >
+                                        <select class="form-select" id="representativegender" required>
                                             <option value="" disabled selected></option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
@@ -186,7 +186,7 @@ include 'header.php';
                                     </div>  
                                     <div class="col-md-2">
                                         <label for="representativecivil" class="form-label">Civil Status</label>
-                                        <select class="form-select" id="representativecivil" >
+                                        <select class="form-select" id="representativecivil" required>
                                             <option value="" disabled selected></option>
                                             <option value="male">Single</option>
                                             <option value="female">Married</option>
@@ -196,7 +196,7 @@ include 'header.php';
                                     </div>  
                                     <div class="col-md-3">
                                         <label for="representativebirthDate" class="form-label">Date of Birth</label>
-                                        <input type="date" class="form-control" id="representativebirthDate" placeholder="Date of Birth" >
+                                        <input type="date" class="form-control" id="representativebirthDate" placeholder="Date of Birth" required>
                                     </div>
                                     <div class="col-md-1">
                                         <label for="representativeage" class="form-label">Age</label>
@@ -204,14 +204,14 @@ include 'header.php';
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativebirthPlace" class="form-label">Place of Birth</label>
-                                        <input type="text" class="form-control" id="representativebirthPlace" placeholder="Place of Birth" >
+                                        <input type="text" class="form-control" id="representativebirthPlace" placeholder="Place of Birth" required>
                                     </div>
                                 </div>
     
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="representativenationality" class="form-label">Nationality</label>
-                                        <select class="form-select" id="representativenationality" >
+                                        <select class="form-select" id="representativenationality" required>
                                             <option value="" disabled selected></option>
                                             <option value="male">Filipino</option>
                                             <option value="female">Others</option>
@@ -219,26 +219,26 @@ include 'header.php';
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativesmID" class="form-label">San Mateo ID No.</label>
-                                        <input type="text" class="form-control" id="representativesmID" placeholder="Type San Mateo ID No." >
+                                        <input type="text" class="form-control" id="representativesmID" placeholder="Type San Mateo ID No." required>
                                     </div> 
                                     <div class="col-md-4">
                                         <label for="representativephilSys" class="form-label">PhilSys No.</label>
-                                        <input type="text" class="form-control" id="representativephilSys" placeholder="Type PhilSys No." >
+                                        <input type="text" class="form-control" id="representativephilSys" placeholder="Type PhilSys No." required>
                                     </div>
                                 </div>
     
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="representativetin" class="form-label">TIN</label>
-                                        <input type="text" class="form-control" id="representativetin" placeholder="Type TIN no." >
+                                        <input type="text" class="form-control" id="representativetin" placeholder="Type TIN no." required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativeSSS" class="form-label">SSS No.</label>
-                                        <input type="text" class="form-control" id="representativeSSS" placeholder="Type SSS No." >
+                                        <input type="text" class="form-control" id="representativeSSS" placeholder="Type SSS No." required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativepagIbig" class="form-label">PAG-IBIG No.</label>
-                                        <input type="text" class="form-control" id="representativepagIbig" placeholder="Type PAG-IBIG No." >
+                                        <input type="text" class="form-control" id="representativepagIbig" placeholder="Type PAG-IBIG No." required>
                                     </div>
                                 </div>
     
@@ -249,11 +249,11 @@ include 'header.php';
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativephone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="representativephone" placeholder="(+63) 0923-345-6783" >
+                                        <input type="tel" class="form-control" id="representativephone" placeholder="(+63) 0923-345-6783" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="representativeemail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="representativeemail" placeholder="Email" >
+                                        <input type="email" class="form-control" id="representativeemail" placeholder="Email" required>
                                     </div>
                                 </div>
                         </form>
@@ -265,22 +265,22 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-4 ">
                                     <label for="representativehouseNo"><span style="color: red;">*</span> House #</label>
-                                    <input type="text" class="form-control" id="representativehouseNo" placeholder="House #" >
+                                    <input type="text" class="form-control" id="representativehouseNo" placeholder="House #" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="representativestreet"><span style="color: red;">*</span> Street</label>
-                                    <input type="text" class="form-control" id="representativestreet" placeholder="Street" >
+                                    <input type="text" class="form-control" id="representativestreet" placeholder="Street" required>
                                 </div>
                                 <div class="col-md-4 ">
                                     <label for="representativesbd">Subdivison or Village</label>
-                                    <input type="text" class="form-control" id="representativesbd/vilg" placeholder="Subdivision or Village">
+                                    <input type="text" class="form-control" id="representativesbd/vilg" placeholder="Subdivision or Village" required>
                                 </div>
                             </div>
     
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label for="representativebarangay-dropdown"><span style="color: red;">*</span> Barangay</label>
-                                    <select class="form-select" id="representativebarangay-dropdown" name="barangay-dropdown" >
+                                    <select class="form-select" id="representativebarangay-dropdown" name="barangay-dropdown" required>
                                         <option value="" selected>Select a barangay</option>
                                         <option value="Ampid I">Ampid I</option>
                                         <option value="Ampid II">Ampid II</option>
@@ -301,40 +301,40 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-4 ">
                                     <label for="representativesbd">Province</label>
-                                    <input type="text" class="form-control" id="representativesbd/vilg" placeholder="Subdivision or Village">
+                                    <input type="text" class="form-control" id="representativesbd/vilg" placeholder="Subdivision or Village" required>
                                 </div>
                                 <div class="col-md-2 ">
                                     <label for="representativedistrict"><span style="color: red;">*</span> District</label>
-                                    <input type="text" class="form-control" id="representativedistrict"  placeholder="District" >
+                                    <input type="text" class="form-control" id="representativedistrict"  placeholder="District" required>
                                 </div>
                                 <div class="col-md-2 ">
                                     <label for="representativezip"><span style="color: red;">*</span> Zip Code</label>
-                                    <input type="text" class="form-control" id="representativezip" placeholder="Zip Code" >
+                                    <input type="text" class="form-control" id="representativezip" placeholder="Zip Code" required>
                                 </div>
                             </div>         
                             
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="authorizationForm" class="form-label">Authorization Form *</label>
-                                    <input type="file" class="form-control" id="authorizationForm">
+                                    <input type="file" class="form-control" id="authorizationForm" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="signatoryID" class="form-label">Valid ID of Signatory</label>
-                                    <input type="file" class="form-control" id="signatoryID">
+                                    <input type="file" class="form-control" id="signatoryID" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="representativeID" class="form-label">Valid ID of Authorized Representative</label>
-                                    <input type="file" class="form-control" id="representativeID">
+                                    <input type="file" class="form-control" id="representativeID" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="representativeCompanyID" class="form-label">Valid Company ID</label>
-                                    <input type="file" class="form-control" id="representativeCompanyID">
+                                    <input type="file" class="form-control" id="representativeCompanyID" required>
                                 </div>
                             </div>
                             <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
@@ -635,7 +635,7 @@ $("#next-btn").click(function() {
         }
     } else {
         // On the last section, redirect to the new page
-        window.location.href = 'Occupational Permit Application (Representative) For Applicant.html'; // Redirect to the desired page
+        window.location.href = 'Occupational Permit Application (Representative) For Applicant.php'; // Redirect to the desired page
     }
 });
 
@@ -647,7 +647,7 @@ function updateButtons() {
         $("#next-btn").text("Go To Applicant Form")
                       .removeClass("btn-primary") // Remove "Next" button style
                       .addClass("btn-success")    // Add "Submit" button style
-                      .attr("href", "Occupational Permit Application (Representative) For Applicant.html"); // Add href for the last section
+                      .attr("href", "Occupational Permit Application (Representative) For Applicant.php"); // Add href for the last section
     } else {
         $("#next-btn").text("Next")
                       .removeClass("btn-success")  // Remove "Submit" button style

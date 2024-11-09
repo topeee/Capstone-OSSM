@@ -205,7 +205,7 @@ include 'header.php';
                         </div>
                         <div class="col-md-4">
                             <label for="searchInputReg" class="form-label">Search:</label>
-                            <input type="text" id="searchInputReg" class="form-control" placeholder="Search...">
+                            <input type="text" id="searchInputReg" class="form-control" placeholder="Search..." required>
                         </div>
                     </div>
 

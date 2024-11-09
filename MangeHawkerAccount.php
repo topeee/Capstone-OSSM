@@ -67,22 +67,22 @@ include 'header.php';
                         <div class="row g-3 mb-3">
                             <div class="col-md-4">
                                 <label for="hawkerLeaseID" class="form-label">Hawker Permit No.</label>
-                                <input type="text" class="form-control" id="hawkerLeaseID">
+                                <input type="text" class="form-control" id="hawkerLeaseID" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="hawkerFirstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="hawkerFirstName">
+                                <input type="text" class="form-control" id="hawkerFirstName" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="hawkerLastName" class="form-label">Surname</label>
-                                <input type="text" class="form-control" id="hawkerLastName">
+                                <input type="text" class="form-control" id="hawkerLastName" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="hawkerMarketName" class="form-label">Name of Market</label>
-                                <select class="form-select" id="hawkerMarketName">
+                                <select class="form-select" id="hawkerMarketName" required>
                                     <option value="Sample Market" selected>Sample Market</option>
                                     <option value="Market 1">Market 1</option>
                                     <option value="Market 2">Market 2</option>
@@ -92,12 +92,12 @@ include 'header.php';
 
                             <div class="col-md-4">
                                 <label for="hawkerPlaceOfMarket" class="form-label">Place of Market</label>
-                                <input type="text" class="form-control" id="hawkerPlaceOfMarket">
+                                <input type="text" class="form-control" id="hawkerPlaceOfMarket" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="hawkerLeaseStatus" class="form-label">Status of Lease</label>
-                                <select class="form-select" id="hawkerLeaseStatus">
+                                <select class="form-select" id="hawkerLeaseStatus" required>
                                     <option value="Active" selected>Active</option>
                                     <option value="Expired">Expired</option>
                                     <option value="Terminated">Terminated</option>

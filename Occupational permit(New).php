@@ -127,15 +127,15 @@ include 'header.php';
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="businessPermitNo" class="form-label">Business Permit No.</label>
-                                <input type="text" class="form-control" id="businessPermitNo" placeholder=" Type Business Permit No." >
+                                <input type="text" class="form-control" id="businessPermitNo" placeholder=" Type Business Permit No." required>
                             </div>
                             <div class="col-md-4">
                                 <label for="companyName" class="form-label">Company/Business Name</label>
-                                <input type="text" class="form-control" id="companyName" placeholder="Type Company/Business Name" >
+                                <input type="text" class="form-control" id="companyName" placeholder="Type Company/Business Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="companyAddress" class="form-label">Company/Business Address</label>
-                                <input type="text" class="form-control" id="companyAddress" placeholder="Type Company/Business Address" >
+                                <input type="text" class="form-control" id="companyAddress" placeholder="Type Company/Business Address" required>
                             </div>
                         </div>
                     </form>
@@ -157,7 +157,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-3">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" >
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="middleName" class="form-label">Middle Name</label>
@@ -165,7 +165,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-3">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                             </div>
                             <div class="col-md-1">
                                 <label for="sfx" class="form-label">Suffix</label>
@@ -190,7 +190,7 @@ include 'header.php';
                             <div class="row mb-3">
                                 <div class="col-md-2">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select class="form-select" id="gender" >
+                                    <select class="form-select" id="gender" required>
                                         <option value="" disabled selected></option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -198,7 +198,7 @@ include 'header.php';
                                 </div>  
                                 <div class="col-md-2">
                                     <label for="civil" class="form-label">Civil Status</label>
-                                    <select class="form-select" id="civil" >
+                                    <select class="form-select" id="civil" required>
                                         <option value="" disabled selected></option>
                                         <option value="male">Single</option>
                                         <option value="female">Married</option>
@@ -208,7 +208,7 @@ include 'header.php';
                                 </div>  
                                 <div class="col-md-3">
                                     <label for="birthDate" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" id="birthDate" placeholder="Date of Birth" >
+                                    <input type="date" class="form-control" id="birthDate" placeholder="Date of Birth" required>
                                 </div>
                                 <div class="col-md-1">
                                     <label for="age" class="form-label">Age</label>
@@ -216,14 +216,14 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-4">
                                     <label for="birthPlace" class="form-label">Place of Birth</label>
-                                    <input type="text" class="form-control" id="birthPlace" placeholder="Place of Birth" >
+                                    <input type="text" class="form-control" id="birthPlace" placeholder="Place of Birth" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-2">
                                     <label for="nationality" class="form-label">Nationality</label>
-                                    <select class="form-select" id="nationality" >
+                                    <select class="form-select" id="nationality" required>
                                         <option value="" disabled selected></option>
                                         <option value="male">Filipino</option>
                                         <option value="female">Others</option>
@@ -231,26 +231,26 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-4">
                                     <label for="smID" class="form-label">San Mateo ID No.</label>
-                                    <input type="text" class="form-control" id="smID" placeholder="Type San Mateo ID No." >
+                                    <input type="text" class="form-control" id="smID" placeholder="Type San Mateo ID No." required>
                                 </div> 
                                 <div class="col-md-4">
                                     <label for="philSys" class="form-label">PhilSys No.</label>
-                                    <input type="text" class="form-control" id="philSys" placeholder="Type PhilSys No." >
+                                    <input type="text" class="form-control" id="philSys" placeholder="Type PhilSys No." required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label for="tin" class="form-label">TIN</label>
-                                    <input type="text" class="form-control" id="tin" placeholder="Type TIN no." >
+                                    <input type="text" class="form-control" id="tin" placeholder="Type TIN no." required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="SSS" class="form-label">SSS No.</label>
-                                    <input type="text" class="form-control" id="SSS" placeholder="Type SSS No." >
+                                    <input type="text" class="form-control" id="SSS" placeholder="Type SSS No." required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="pagIbig" class="form-label">PAG-IBIG No.</label>
-                                    <input type="text" class="form-control" id="pagIbig" placeholder="Type PAG-IBIG No." >
+                                    <input type="text" class="form-control" id="pagIbig" placeholder="Type PAG-IBIG No." required>
                                 </div>
                             </div>
 
@@ -261,11 +261,11 @@ include 'header.php';
                                 </div>
                                 <div class="col-md-4">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" >
+                                    <input type="tel" class="form-control" id="phone" placeholder="(+63) 0923-345-6783" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" >
+                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
                                 </div>
                             </div>
                     </form>
@@ -279,15 +279,15 @@ include 'header.php';
                         <div class="row mb-3">
                             <div class="col-md-4 ">
                                 <label for="houseNo"><span style="color: red;">*</span> House #</label>
-                                <input type="text" class="form-control" id="houseNo" placeholder="House #" >
+                                <input type="text" class="form-control" id="houseNo" placeholder="House #" required>
                             </div>
                             <div class="col-md-3 ">
                                 <label for="street"><span style="color: red;">*</span> Street</label>
-                                <input type="text" class="form-control" id="street" placeholder="Street" >
+                                <input type="text" class="form-control" id="street" placeholder="Street" required>
                             </div>
                             <div class="col-md-4 ">
                                 <label for="sbd">Subdivison or Village</label>
-                                <input type="text" class="form-control" id="sbd/vilg" placeholder="Subdivision or Village">
+                                <input type="text" class="form-control" id="sbd/vilg" placeholder="Subdivision or Village" required>
                             </div>
                         </div>
 
@@ -315,37 +315,37 @@ include 'header.php';
                             </div>
                             <div class="col-md-4 ">
                                 <label for="sbd">Province</label>
-                                <input type="text" class="form-control" id="sbd/vilg" placeholder="Subdivision or Village">
+                                <input type="text" class="form-control" id="sbd/vilg" placeholder="Subdivision or Village" required>
                             </div>
                             <div class="col-md-2 ">
                                 <label for="district"><span style="color: red;">*</span> District</label>
-                                <input type="text" class="form-control" id="district"  placeholder="District" >
+                                <input type="text" class="form-control" id="district"  placeholder="District" required>
                             </div>
                             <div class="col-md-2 ">
                                 <label for="zip"><span style="color: red;">*</span> Zip Code</label>
-                                <input type="text" class="form-control" id="zip" placeholder="Zip Code" >
+                                <input type="text" class="form-control" id="zip" placeholder="Zip Code" required>
                             </div>
                         </div>
                         <H5>Employment Details</H5>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="companyName" class="form-label">Company/Business Name</label>
-                                <input type="text" class="form-control" id="companyName" placeholder="Company/Business Name" >
+                                <input type="text" class="form-control" id="companyName" placeholder="Company/Business Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="placeAssignment" class="form-label">Place Of Assignment</label>
-                                <input type="text" class="form-control" id="placeAssignment" placeholder="Place Of Assignment" >
+                                <input type="text" class="form-control" id="placeAssignment" placeholder="Place Of Assignment" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="startDate" class="form-label">Start Date</label>
-                                <input type="date" class="form-control" id="startDate" placeholder="Start Date" >
+                                <input type="date" class="form-control" id="startDate" placeholder="Start Date" required>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="industry" class="form-label">Industry Category</label>
-                                <select class="form-select" id="industry" >
+                                <select class="form-select" id="industry" required>
                                     <option value="" disabled selected></option>
                                     <option value="34">AMUSEMENT (E-BINGO, E-CASINO AND THE LIKES)</option>
                                     <option value="35">ARCHITECTURAL/ENGINEERING SERVICES</option>
@@ -388,7 +388,7 @@ include 'header.php';
                             </div>
                             <div class="col-md-4">
                                 <label for="occupation" class="form-label">Occupation</label>
-                                <select class="form-select" id="occupation" >
+                                <select class="form-select" id="occupation" required>
                                     <option value="" disabled selected></option>   
                                     <option value="1">ACCOUNTANT</option>
                                     <option value="102">ACTOR</option>
@@ -513,18 +513,18 @@ include 'header.php';
                         <div class="row mb-3">      
                             <div class="col-md-4">
                                 <label for="nbi/police" class="form-label">NBA/Police Clearance No.</label>
-                                <input type="text" class="form-control" id="nbi/police" placeholder="NBI/Police Clearance No." >
+                                <input type="text" class="form-control" id="nbi/police" placeholder="NBI/Police Clearance No." required>
                             </div>
                             <div class="col-md-4">
                                 <label for="dateClearance" class="form-label">Date of Clearance</label>
-                                <input type="date" class="form-control" id="dateClearance" placeholder="Date of Clearance" >
+                                <input type="date" class="form-control" id="dateClearance" placeholder="Date of Clearance" required>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="mb-3">
                                 <label for="nbiImageUpload" class="form-label">Upload NBI/Police Clearance</label>
-                                <input type="file" class="form-control" id="nbiImageUpload" >
+                                <input type="file" class="form-control" id="nbiImageUpload" required>
                             </div>
                         </div>
 
@@ -546,7 +546,7 @@ include 'header.php';
                                     <strong>Glasses:</strong> Reading glasses allowed; no sun or dark glasses<br>
                                     <strong>Headgear:</strong> None, except for religious reasons">
                                 </i>
-                                <input type="file" class="form-control" id="idImageUpload"  onchange="displayImage(this, 'photo_upload')">
+                                <input type="file" class="form-control" id="idImageUpload"  onchange="displayImage(this, 'photo_upload')" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="signatureUpload" class="form-label">Applicant Signature</label>
@@ -557,7 +557,7 @@ include 'header.php';
                                 data-bs-html="true" 
                                 data-bs-content="The signature to be uploaded must be in black ink on a white background.">
                                 </i>
-                                <input type="file" class="form-control" id="signatureUpload" onchange="displayImage(this, 'uploadedSignatureIcon')">
+                                <input type="file" class="form-control" id="signatureUpload" onchange="displayImage(this, 'uploadedSignatureIcon')" required>
                             </div>
                             
                             <div class="col-md-3" style="padding-top: 30px;">
@@ -617,28 +617,28 @@ include 'header.php';
                         <h4>Additional Information</h4>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckYellow" onchange="toggleImageUpload()">
+                            <input class="form-check-input" type="checkbox" id="flexCheckYellow" onchange="toggleImageUpload()" >
                             <label class="form-check-yellow" for="flexCheckYellow">
                                 Yellow Card (entertainers or therapist)
                             </label>
                         </div>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckAEP" onchange="toggleImageUpload()">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckAEP" onchange="toggleImageUpload()" >
                             <label class="form-check-AEP" for="flexCheckAEP">
                                 A.E.P (Alien Employment Permit for Foreigners) * You may apply for this document in D.O.L.E.
                             </label>
                         </div>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDPOS" onchange="toggleImageUpload()">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDPOS" onchange="toggleImageUpload()" >
                             <label class="form-check-DPOS" for="flexCheckDPOS">
                                 DPOS Clearance (DPOS Department)
                             </label>
                         </div>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckEmbalming" onchange="toggleImageUpload()">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckEmbalming" onchange="toggleImageUpload()" >
                             <label class="form-check-Embalming" for="flexCheckEmbalming">
                                 Embalming License (Department of Health)
                             </label>

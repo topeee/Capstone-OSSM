@@ -371,9 +371,8 @@ include('dashboard_sidebar_start.php');
 <main>
     <div class="mt-5">
         <div class="row mt-5">
-
-            <h5 class="card-title" style="margin-left: 420px;">Monthly Views</h5> 
-            <h5 class="card-title" style="margin-left: 640px;">Pie Chart</h5>    
+            <h5 class="card-title" style="margin-left: 70px;">Monthly Views</h5> 
+            <h5 class="card-title" style="margin-left: 590px;">Pie Chart</h5>    
         </div>
             <div class="row">
                         <div class="chart-container">
@@ -527,7 +526,7 @@ include('dashboard_sidebar_start.php');
                     // Adjust the size of the chart container
     document.querySelector('.piechart-container').style.width = '30%';
     document.querySelector('.piechart-container').style.height = '500px';
-    document.querySelector('.piechart-container').style.marginLeft = '1000px';
+    document.querySelector('.piechart-container').style.marginLeft = '800px';
     document.querySelector('.piechart-container').style.marginTop = '-501px';
 
     // Modal functionality

@@ -84,36 +84,39 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="admn_certofres.php">
-                    <i class="bi bi-building-exclamation"></i>
-                        <span>Business Permit</span>
-                    </a>
-                </li>
+             
 
                 <li class="nav-item">
-                    <a class="nav-link" href="admn_brgyid.php">
+                    <a class="nav-link" href="citizenID.php">
                     <i class="bi bi-person-vcard-fill"></i>
                         <span>Citizen ID eApplication</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="admn_bspermit.php">
+                    <a class="nav-link" href="deathCertificate.php">
                     <i class="bi bi-file-earmark-diff"></i>
                         <span>Death Certificate</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="admn_brgyclearance.php">
+                    <a class="nav-link" href="moss.php">
                     <i class="bi bi-shop-window"></i>
                         <span>Market One-Stop Shop</span>
                     </a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="businesspermit.php">
+                        <i class="bi bi-briefcase"></i>
+                        <span>Business Permit Application</span>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
-                    <a class="nav-link" href="admn_certofindigency.php">
+                    <a class="nav-link" href="medicalrecords.php">
                     <i class="bi bi-prescription2"></i>
                         <span>Medical Records</span>
                     </a>
@@ -121,63 +124,63 @@
 
                  <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="occupational.php">
                     <i class="bi bi-briefcase-fill"></i>
                     <span>Occupational Permit</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="ossm.php">
                 <i class="bi bi-person-lines-fill"></i>
                     <span>OSSM Query Portal</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="ovrrr.php">
                 <i class="bi bi-sign-stop-lights-fill"></i>
                     <span>OVR Payment</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="pwdbasic.php">
                 <i class="bi bi-person-fill-down"></i>
                     <span>PWD Application</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="realproperty.php">
                 <i class="bi bi-bank2"></i>
                     <span>Real Property Tax</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="scholarshipapp.php">
                 <i class="bi bi-pencil-square"></i>
                     <span>Scholarship eApplication</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="seniorapp.php">
                 <i class="bi bi-person-plus-fill"></i>
                     <span>Senior Citizen Application</span></a>
             </li>
             
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="soloparentcontent.php">
+                <a class="nav-link" href="admn_blotterreport.php">
                 <i class="bi bi-people-fill"></i>
                     <span>Solo Parent Application</span></a>
             </li>
 
             <!-- Complain Blotter Report -->
             <li class="nav-item">
-                <a class="nav-link" href="admn_blotterreport.php">
+                <a class="nav-link" href="trycapp.php">
                 <i class="bi bi-bicycle"></i>
                     <span>Tricycle Permit Application</span></a>
             </li>

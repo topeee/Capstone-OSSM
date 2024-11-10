@@ -134,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="appointment-form">
     
-    <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto 20px; max-width: 150px;">
         <h2>Book a New Appointment</h2>
         <form id="appointmentForm" method="post" action="">
             <label for="name">Full Name</label>

@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include 'db_connection.php';
 
 // Fetch appointment details from the database

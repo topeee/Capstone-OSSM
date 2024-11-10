@@ -564,8 +564,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <button type="button" class="btn btn-success" onclick="addFamilyRow()">Add Family</button>
                                     </div>
                                 </div>
-                
-                            
+                                
+                                <div class="col-lg-offset-0 col-lg-12 col-xs-12"> 
+                              <i class="bi bi-info-circle-fill"></i>       
+                                Before clicking "Next", make sure to click the "Add Family" button to add family members to the table.
+                          </div>
                     </div>
                 
                     <!-- Section 4: User Summary Section -->

@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-
-
-
-
 include 'db_connection.php';
 require 'vendor/autoload.php';
 
@@ -12,8 +7,6 @@ if (isset($_POST['export_excel'])) {
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="users.xlsx"');
     header('Cache-Control: max-age=0');
-
-    require 'vendor/autoload.php';
 
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
@@ -37,7 +30,6 @@ if (isset($_POST['export_excel'])) {
 }
 
 if (isset($_POST['export_pdf'])) {
-
     $mpdf = new \Mpdf\Mpdf();
     $html = '<h1>Users</h1>';
     $html .= '<table border="1" style="width:100%;border-collapse:collapse;">';
@@ -98,31 +90,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 
 <!-- DataTables -->
-<!-- DataTables -->
-<link
-      href="assets/plugins/datatables/dataTables.bootstrap4.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="assets/plugins/datatables/buttons.bootstrap4.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Responsive datatable examples -->
-    <link
-      href="assets/plugins/datatables/responsive.bootstrap4.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-
-    <link
-      href="assets/css/bootstrap.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -131,98 +102,105 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <style>
-    /* Custom Table Styling */
-    table {
-        width: 100%;
-        margin: 20px 0;
-        border-collapse: collapse;
-        overflow-x: auto; /* Enables horizontal scrolling */
-        display: block; /* Make table block to allow scrolling */
-    }
-
-    /* Table headers */
-    th {
-        background-color: #2196f3; /* Blue color for the header */
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        padding: 12px;
-        border-right: 1px solid #ddd; /* Right border for columns */
-    }
-
-    /* Table rows */
-    td {
-        text-align: center;
-        padding: 12px;
-        border-right: 1px solid #ddd; /* Right border for columns */
-    }
-
-    /* Row hover effect */
-    tr:hover {
-        background-color: #f1f1f1;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
     }
 
     
 
-    /* Alternate row colors */
-    tr:nth-child(even) {
-        background-color: #fafafa;
+    .details-header {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 20px;
     }
 
-    tr:nth-child(odd) {
-        background-color: #ffffff;
-    }
-
-    /* Action buttons */
-    .btn-primary {
-        background-color: #2196f3;
-        border-color: #2196f3;
-    }
-
-    .btn-danger {
-        background-color: #f44336;
-        border-color: #f44336;
-    }
-
-    .btn-sm {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    /* Hover effects for buttons */
-    .btn:hover {
-        opacity: 0.9;
-    }
-
-    /* Button container */
-    .action-buttons {
+    .search-container {
         display: flex;
-        justify-content: space-around;
-        margin: 10px 0;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
 
-    /* Horizontal scroll for table */
+    .search-input {
+        flex: 1 1 70%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .search-btn {
+        flex: 1 1 20%;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .status-filter {
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
     .table-container {
         overflow-x: auto;
+        width: 90%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .table {
         width: 100%;
+        border-collapse: collapse;
     }
 
-    .button-container {
-        display: flex;
-        justify-content: center; /* Center-aligns the buttons */
-  
+    .table th, .table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+        text-align: left;
     }
 
-    /* Optional: Adds spacing between buttons */
-    .button-container button {
-        margin: 0 10px;
+    .table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+
+    .email-column {
+        width: 20%;
+    }
+
+    @media (max-width: 768px) {
+        .search-container {
+            flex-direction: column;
+        }
+
+        .search-input, .search-btn {
+            flex: 1 1 100%;
+        }
     }
 </style>
 
 <?php 
-include('dashboard_sidebar_start.php');
+include 'dashboard_sidebar_start.php';
 ?>
-<!-- Search form -->
+<div class="container mt-3 text-center">
+    <h2>Users Management</h2>
+</div>
 <div class="container mt-3">
     <form method="get" action="userscontent.php">
         <div class="input-group mb-3">
@@ -235,16 +213,27 @@ include('dashboard_sidebar_start.php');
 </div>
 
 <?php
-// Modify SQL query to include search functionality
 $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
-$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin, picture, verify_status FROM users";
+$filter_role = isset($_GET['filter_role']) ? $conn->real_escape_string($_GET['filter_role']) : '';
+$sort_order = isset($_GET['sort_order']) ? $conn->real_escape_string($_GET['sort_order']) : '';
+
+$sql = "SELECT id, first_name, middle_name, last_name, suffix, dob, gender, mobile_number, tel_number, email, house_number, street, barangay, is_admin, picture, verify_status FROM users WHERE 1=1";
+
 if ($search) {
-    $sql .= " WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR email LIKE '%$search%'";
+    $sql .= " AND (first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR email LIKE '%$search%')";
 }
+
+if ($filter_role) {
+    $sql .= " AND is_admin = '" . ($filter_role == 'admin' ? 1 : 0) . "'";
+}
+
+if ($sort_order) {
+    $sql .= " ORDER BY first_name " . ($sort_order == 'asc' ? 'ASC' : 'DESC');
+}
+
 $result = $conn->query($sql);
 ?>
 
-<!-- Filter form -->
 <div class="container mt-3">
     <form method="get" action="userscontent.php">
         <div class="input-group mb-3">
@@ -259,7 +248,7 @@ $result = $conn->query($sql);
         </div>
     </form>
 </div>
-<!-- Sort form -->
+
 <div class="container mt-3">
     <form method="get" action="userscontent.php">
         <div class="input-group mb-3">
@@ -274,27 +263,9 @@ $result = $conn->query($sql);
         </div>
     </form>
 </div>
-<?php
-// Modify SQL query to include sort functionality
-$sort_order = isset($_GET['sort_order']) ? $conn->real_escape_string($_GET['sort_order']) : '';
-if ($sort_order) {
-    $sql .= " ORDER BY first_name " . ($sort_order == 'asc' ? 'ASC' : 'DESC');
-}
-$result = $conn->query($sql);
-?>
-<?php
-// Modify SQL query to include filter functionality
-$filter_role = isset($_GET['filter_role']) ? $conn->real_escape_string($_GET['filter_role']) : '';
-if ($filter_role) {
-    $sql .= $search ? " AND" : " WHERE";
-    $sql .= " is_admin = '" . ($filter_role == 'admin' ? 1 : 0) . "'";
-}
-$result = $conn->query($sql);
-?>
 
 <div class="table-container">
-    <table  >
-                
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -349,16 +320,14 @@ $result = $conn->query($sql);
                 echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='14'>No users found</td></tr>";
+                echo "<tr><td colspan='17'>No users found</td></tr>";
             }
             ?>
         </tbody>
     </table>
 </div>
 
-
-<!-- Button container for centering -->
-<div class="button-container">
+<div class="button-container text-center mt-3">
     <form method="post">
         <button type="submit" name="export_excel" class="btn btn-success">Download Excel</button>
         <button type="submit" name="export_pdf" class="btn btn-danger">Download PDF</button>
@@ -378,4 +347,3 @@ $(document).ready(function() {
     });
 });
 </script>
-

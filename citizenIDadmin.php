@@ -132,7 +132,15 @@ if (isset($_POST['ticketId']) && isset($_POST['newStatus'])) {
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <style>
-    /* Custom Table Styling */
+    /* Custom Table Styling */.table-container {
+        overflow-x: auto;
+        width: 90%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
     table {
         width: 100%;
         margin: 20px 0;

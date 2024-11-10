@@ -99,8 +99,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
-    /* Custom Table Styling */
-    table {
+.table-container {
+        overflow-x: auto;
+        width: 90%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+        table {
         width: 100%;
         margin: 20px 0;
         border-collapse: collapse;
@@ -194,7 +202,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 include('dashboard_sidebar_start.php');
 ?>
 
-
+<title>Senior Application</title>
 
 
 <div class="container my-3">
@@ -262,7 +270,7 @@ include('dashboard_sidebar_start.php');
     </div>
 </div>
 
-<div class="table-container" style="margin-left:10px; margin-right:10px; ">
+<div class="table-container" >
     <table id="usersTable" class="display">
         <thead>
             <tr id="headerRow">

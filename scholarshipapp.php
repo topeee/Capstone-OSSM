@@ -118,6 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
 
 <style>
     /* Custom Table Styling */
+
+
+ 
     table {
         width: 100%;
         margin: 20px 0;
@@ -191,7 +194,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
     /* Horizontal scroll for table */
     .table-container {
         overflow-x: auto;
-        width: 100%;
+        width: 90%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
     }
 
     .button-container {
@@ -209,7 +217,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
 <?php 
 include 'dashboard_sidebar_start.php';
 ?>
-
+<div class="container mt-3 text-center">
+    <h2>Scholarship Application Users</h2>
+</div>
 
 <!-- Search Form -->
 <div class="container mt-3">

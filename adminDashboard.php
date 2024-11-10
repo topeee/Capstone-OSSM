@@ -341,7 +341,7 @@ include('dashboard_sidebar_start.php');
         </div>
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="container" id="ongoing-applications" style="color:#0000FF;">
-                <i class="fas fa-spinner"></i> PENDING APPOINTMENTS
+                <i class="fas fa-spinner"></i> ONGOING APPOINTMENTS
                 <div class="number" id="ongoing-count"></div>
                 <?php
                 // Fetch the total number of ongoing appointments from the database

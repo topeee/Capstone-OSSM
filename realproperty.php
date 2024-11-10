@@ -1,5 +1,8 @@
 
 <?php
+
+session_start();
+
 include('dashboard_sidebar_start.php');
 
 ?>

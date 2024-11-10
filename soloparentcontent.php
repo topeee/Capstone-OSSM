@@ -178,12 +178,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         margin: 10px 0;
     }
 
-    /* Horizontal scroll for table */
     .table-container {
         overflow-x: auto;
-        width: 100%;
+        width: 90%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
     }
-
     .button-container {
         display: flex;
         justify-content: center; /* Center-aligns the buttons */
@@ -199,7 +202,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <?php 
 include('dashboard_sidebar_start.php');
 ?>
-
+<h1 class="text-center">Solo Parent Applications</h1>
 <div class="container my-3">
     <!-- Top bar for search, filter, and column control -->
     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -298,7 +301,7 @@ include('dashboard_sidebar_start.php');
         </div>
     </div>
 </div>
-<div class="table-container" style="margin-left:20px;">
+<div class="table-container">
 <table id="usersTable" class="table">
     <thead>
         <tr id="headerRow">

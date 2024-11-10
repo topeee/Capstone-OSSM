@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Define the absolute path to the file
-$filePath = __DIR__ . '/Solo_Parent_Application_Form.pdf';
+$filePath = 'C:\Users\Ronnie\Documents\GitHub\Capstone-OSSM\Solo Parent Application Form.pdf';
 
 // Check if the file exists
 if (file_exists($filePath)) {

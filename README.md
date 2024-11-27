@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**OSSM (Online Smart Services Management)** is an integrated platform designed to streamline the management processes for the Municipality of San Mateo, Rizal. This system aims to enhance the efficiency of public service delivery through digitalization, providing a user-friendly experience for both government officials and residents. The system facilitates the automation of municipal services, enabling easy access to government services, document processing, and community engagement.
+**OSSM (One-Stope San Mateo)** is an integrated platform designed to streamline the management processes for the Municipality of San Mateo, Rizal. This system aims to enhance the efficiency of public service delivery through digitalization, providing a user-friendly experience for both government officials and residents. The system facilitates the automation of municipal services, enabling easy access to government services, document processing, and community engagement.
 
 ### Quote
 

@@ -67,6 +67,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 For any questions or feedback, please feel free to reach out to the team members:
 
-- **Christopher D. Ramos**  
+- **Christopher**  
   Email: toperramos23@gmail.com
 
